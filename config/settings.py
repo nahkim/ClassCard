@@ -34,6 +34,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -42,7 +44,21 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
     "django_extensions",
+
+    
 ]
+
+INSTALLED_APPS += [
+    # allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+
+    # include the providers you want to enable:
+    "allauth.socialaccount.providers.naver",
+]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -70,6 +86,15 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 WSGI_APPLICATION = "config.wsgi.application"
@@ -132,3 +157,8 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# # Provider specific settings
+# SOCIALACCOUNT_PROVIDERS = {
+
+# }
