@@ -1,0 +1,440 @@
+html.fixed {
+    /* position: fixed; */
+    overflow: scroll;
+    width: 100%;
+  }
+  
+  body {
+    background-color: #030C17;
+    height: 10000px;
+    /* font-size 명시적으로 입력하지 않아도 기본적으로 16px 이다. */
+    font-size: 16px; 
+    /* 줄 높이 */
+    line-height: 1;
+    font-family: "Roboto", "Noto Sans KR", sans-serif;
+    /*  */
+    word-break: keep-all;
+    color: #1d1d1d;
+  }
+  
+  /* 전체 a 태그에 기본적으로 밑줄이 생기지 않도록 공통 스타일 적용 */
+  a {
+    color: #1d1d1d;
+    text-decoration: none;
+  }
+  
+  /* img */
+  img {
+    display: block;
+    user-select: none;
+    /* 파이어폭스에서는 안됨 */
+    -webkit-user-drag: none;
+  }
+  
+  p {
+    line-height: 1.6;
+  }
+  
+  /* inner */
+  .inner {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+  }
+  
+  /* Btn */
+  .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 24px;
+    /* 좌우 여백만 추가 */
+    padding: 0 10px;
+    border: none;
+    /* 전부 둥글게 */
+    border-radius: 100px;
+    outline: none;
+    font-size: 11px;
+    line-height: 1;
+    color: #fff;
+    background-color: #0071e3;
+    cursor: pointer;
+  }
+  .btn:hover{
+    /* 불투명도 */
+    opacity: .7;
+  }
+  .btn:focus{
+    /* x값, y값, blur 값(흐림처리), spread, 그림자 색상 */
+    box-shadow: 0 0 0 4px #81b9f1;
+  }
+  
+  /* Background image text */
+  .bgtext {
+    display: block;
+    /* 글씨 안보이도록 */
+    text-indent: -999px;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* 범위 내에서 이미지가 짤리지 않도록 */
+    background-size: contain;
+  }
+  
+  /* links */
+  .links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+  
+  a.link {
+    color: #0071e3;
+    font-size: 19px;
+    line-height: 1.3; 
+  }
+  
+  a.link:hover {
+    text-decoration: underline;
+  }
+  
+  a.link::after {
+    content: " >";
+  }
+  
+
+  /* Header */
+  header {
+      background-color: #3a3a3a;
+      
+  }
+  
+  header .inner {
+      max-width: 1020px;
+      /* 공통속성으로 만듬 */
+      /* margin: 0 auto;
+      position: relative; */
+      
+  }
+  
+  header ul.menu {
+      height: 44px;
+      display: flex;
+      justify-content: space-between;
+  }
+  
+  /* 자식 선택자 header ul.menu > li  꺽쇠 기호 */
+  /* 자식 선택자를 표시함으로서, 장비구니 안에 있는 li 태그에 영향이 가지 않는다 */
+  header ul.menu > li {
+      display: flex;
+      position: relative;
+      transition: .4s;
+  }
+  
+  header ul.menu > li > a {
+      padding: 0 10px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      color: #f5f5f5;
+      opacity: .8;
+      text-decoration: none;
+  }
+  
+  header ul.menu > li.apple-logo > a,
+  header ul.menu > li.search-starter >  a,
+  header ul.menu > li.basket-starter > a {
+      width: 14px;
+      /* 글자가 구조적으로 있지만, 보이지 않도록 하겠다.*/
+      text-indent: -9999px;
+      background-repeat: no-repeat;
+      /* 좌우는 가운데 정렬,  위아래는 13px 값을 가진다.*/
+      background-position: center 13px;
+  }
+  
+
+  header ul.menu > li.search-starter > a{
+      background-image: url("../images/header_search.svg");
+  }
+  header ul.menu > li.basket-starter > a{
+      background-image: url("../images/header_bag.svg");
+  }
+  
+  header ul.menu > li > a:hover{
+      opacity: 1;
+  }
+  
+  /* Header / Menu / Basket */
+  header .basket {
+    /* display: none; */
+    width: 290px;
+    padding: 10px 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+    /* 요소의 크기가 변경되지 않도록 box-sizing! */
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    /* calc 함수를 통해 100% 만큼 이동을 하되 4px 만큼 이동을 해야한다. */
+    top: calc(100% + 4px);
+    right: -6px;
+    visibility: hidden;
+    transition: .4s;
+    opacity: 0;
+  }
+  header .basket.show{
+    /* display: block; */
+    visibility: visible;
+    opacity: 1;
+  }
+    
+  
+  
+    header .basket .arrow{
+      width: 20px;
+      height: 10px;
+      /* 넘치는 내용을 안보이도록 숨겨주기 */
+      overflow: hidden;
+      position: absolute;
+      top: -10px;
+      right: 12px;
+  
+    }
+    header .basket .arrow::before{
+      content: "";
+      width: 12px;
+      height: 12px;
+      border: 1px solid #d2d2d2;
+      background-color: #fff;
+      /* rotate 회전하는 함수 */
+      transform: rotate(45deg);
+      /* 첫번째 값이 x축 두번째 값이 y축 */
+      transform-origin: 0 0;
+      position: absolute;
+      top: 0;
+      left: 50%;
+    }
+  
+    header .basket .message {
+      padding: 30px 0;
+      font-size: 13px;
+      color: #6e6e6e;
+      text-align: center;
+    }
+    header .basket ul {
+      /* 외부여백 */
+      margin-top: 10px;
+    }
+    header .basket ul li {
+      /* 테두리선과 동일 */
+      border-top: 1px solid #d2d2d2;
+    }
+    header .basket ul li a {
+      display: block;
+      padding: 14px;
+      font-size: 13px;
+      color: #0071e3;
+    }
+    header .basket ul li a:hover {
+      /* 밑줄이 생기도록 만들어준다. */
+      text-decoration: underline;
+    }
+  
+   /* Header / Search */
+   header .search-wrap {
+    position: absolute;  /*  position: absolutes는 부모 요소에  position  값이 포함이 되어있는지 확인해야한다. */
+    top: 0;
+    left: 0;
+    width: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: .4s;
+   }
+  
+   header .search{
+    max-width: 680px;  /* 680 이상 커질수는 없지만 그 이하로는 얼마든지 작아질 수 있다. */
+    margin: 0 auto;  /* 가운데 정렬 */
+    position: relative;
+   }
+  
+   header .search .shadow {
+    /* viewport 기준으로 정렬 */
+    position: fixed;  
+    top: 0;
+    left: 0;
+    /* 전체 영역 사용하기 */
+    width: 100%;
+    height: 100%;
+    /* 배경이 살짝 어둡게 */
+    background-color: rgb(0, 0, 0, .4);
+   }
+   header .search .textfield{
+    position: relative; /* position 값이 없을 때 추가하는 relative */
+  
+   }
+   header .search input {
+    width: 100%;
+    height: 44px;
+    padding: 0 40px; /* 좌우만 */
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    background-color: transparent; /* 투명한 색깔 */
+    font-size: 17px;
+    color: #fff;
+    
+   }
+  
+   header .search .search-icon{
+    width: 40px;
+    height: 44px;
+    background-image: url("../images/header_search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .4;
+   }
+  
+   header .search .search-closer {
+    width: 40px;
+    height: 44px;
+    background-image: url("../images/header_close.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: .4;
+    cursor: pointer;
+   }
+   header .search .search-closer:hover{
+    opacity: 1;
+    
+   }
+  
+   header .search .autocompletes {
+    width: 100%;
+    /* 위,  좌측과 우측, 아래*/
+    padding: 26px 40px 20px;
+    /* 시계방향 */
+    border-radius: 0 0 18px 18px;
+    box-sizing: border-box;
+    background-color: #fff;
+    position: absolute;
+    top: 44px;
+    left: 0;
+   }
+  
+   header .search .autocompletes h3 {
+    font-size: 12px;
+    color: #6e6e6e;
+    margin-bottom: 12px;
+   }
+  
+   header .search .autocompletes ul li a{
+    /* a 태그는 기본적으로 인라인요소 */
+    display: block;
+    margin: 0 -14px;
+    /* 시계방향 */
+    padding: 10px 0 10px 30px;
+    font-size: 14px;
+    cursor: pointer;
+   }
+  
+   header .search .autocompletes ul li:hover a{
+    background-color: #f5f5f5;
+    color: #0071e3;
+   }
+  
+  header .search input, 
+  header .search .search-icon,
+  header .search .autocompletes h3,
+  header .search .autocompletes li {
+    transition: .6s;
+    /* translate 이동하는 함수 */
+    transform: translate(100px, 0);
+    
+  }
+  
+  
+   header.searching ul.menu > li{
+    transform: scale(.7); /* 크기가 조금 작아지면서 */
+    opacity: 0; /* 투명해진다 */
+   }
+  
+   header.searching .search-wrap {
+    visibility: visible;
+    opacity: 1;
+    /* 사라질때는 바로 사라지도록! */
+    transition-delay: .2s;
+   }
+  
+   header .search input, 
+   header .search .search-icon,
+   header .search .autocompletes h3,
+   header .search .autocompletes li {
+    transition-delay: .2s;   
+    transform: translate(0, 0);
+   }
+   
+   /* Navigation */
+   nav{
+    /* 투명도 값 .7 */
+    background-color: rgb(255, 255, 255, .7);
+    /* 블러 처리 */
+    backdrop-filter: blur(20px);
+    /* 아래 한줄의 테두리 선 */
+    border-bottom: 1px solid #d2d2d2;
+    /* 상단 위에 있도록 */
+    position: sticky;
+    /* 상단 붙어있을때 위치 */
+    top: 0;
+    /* 다른 요소보다 위에 있어야 하기 때문 */
+    z-index: -1;
+   }
+  
+   nav .inner{
+    max-width: 1000px;
+    height: 52px;
+    /* 공통속성 */
+    /* margin: 0 auto; */
+    /* 수평 정렬 */
+    display: flex;
+    align-items: center;
+   }
+  
+   nav h1 {
+    /* 최대한 늘어나도록 설정 */
+    /* 오른쪽으로 이동 */
+    flex-grow: 1;
+    font-size: 22px;
+    font-weight: 500;
+   }
+  
+   nav .menu {
+    display: flex;
+    gap: 12px;
+    margin-right: 18px;
+   }
+  
+   /* a태그는 인라인태그 */
+   nav .menu li a{
+    display: block;
+    padding: 6px;
+    font-size: 11px;
+   }
+  
+   nav .menu li.active a {
+    opacity: .5;
+    cursor: default;
+   }
+  
+   nav .menu li:hover a {
+    color : #0071e3;
+   }
+   
+   nav .menu li.active:hover a {
+    color: #1d1d1d;
+   }
