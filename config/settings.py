@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "soso",
     "accounts",
     "articles",
     "card",
@@ -59,7 +60,8 @@ INSTALLED_APPS += [
     "allauth.socialaccount.providers.naver",
 ]
 
-SITE_ID = 1
+SITE_ID = 2
+LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
