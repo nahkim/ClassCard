@@ -34,7 +34,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-
+    "accounts",
+    "articles",
+    "card",
+    "magazine",
     "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -44,8 +47,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
     "django_extensions",
-
-    
 ]
 
 INSTALLED_APPS += [
