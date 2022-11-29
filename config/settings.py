@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
     "django_extensions",
+    "django_bootstrap5",
 ]
 
 INSTALLED_APPS += [
