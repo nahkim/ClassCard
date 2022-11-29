@@ -7,6 +7,7 @@ cryptography==38.0.4
 defusedxml==0.7.1
 Django==3.2.13
 django-allauth==0.51.0
+django-bootstrap5==22.2
 django-cleanup==6.0.0
 django-extensions==3.2.1
 idna==3.4
