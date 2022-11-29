@@ -59,9 +59,10 @@ INSTALLED_APPS += [
 
     # include the providers you want to enable:
     "allauth.socialaccount.providers.naver",
+    "allauth.socialaccount.providers.google",
 ]
 
-SITE_ID = 2
+SITE_ID = 3
 LOGIN_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
@@ -162,7 +163,15 @@ MEDIA_URL = "/media/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# # Provider specific settings
-# SOCIALACCOUNT_PROVIDERS = {
-
-# }
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}

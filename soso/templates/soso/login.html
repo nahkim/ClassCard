@@ -1,3 +1,5 @@
+<!-- {% load socialaccount %} -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,17 +14,36 @@
       {% if user.is_authenticated %}
       # 사용자가 로그인 되어 있으면, 로그아웃 버튼을 화면에 표시 
       <a class="button is-primary" href="{% url 'account_logout' %}">
-        Log Out
+        네이버 로그아웃
       </a>
       {% else %}
       # 그렇지 않다면, 회원가입과 로그아웃 버튼 표시 
       <a class="button is-primary" href="{% url 'account_signup' %}">
-        <strong>Sign up</strong>
+        <strong>네이버 회원가입</strong>
       </a>
       <a class="button is-light" href="{% url 'account_login' %}">
-        Log in
+        네이버 로그인
       </a>
       {% endif %}
     </div>
+
+    <!-- <div class="navbar-item">
+      <div class="buttons">
+        {% if user.is_authenticated %}
+        # 사용자가 로그인 되어 있으면, 로그아웃 버튼을 화면에 표시 
+        <a class="button is-primary" href="{% url 'account_logout' %}">
+          구글 로그아웃
+        </a>
+        {% else %}
+        # 그렇지 않다면, 회원가입과 로그아웃 버튼 표시 
+        <a class="button is-primary" href="{% url 'account_signup' %}">
+          <strong>구글 회원가입</strong>
+        </a>
+        <a class="button is-light" href="{% provider_login_url 'google' %}">
+          구글 로그인
+        </a>
+        {% endif %}
+      </div> -->
+
 </body>
 </html>
