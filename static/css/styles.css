@@ -628,3 +628,120 @@ border-radius: 100%;
 }
 
 
+/* card detail 페이지 */
+.card-detail{
+  margin-top: 4rem;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-detail-name{
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-detail-name,
+.card-detail-brand{
+  margin-top: 0.7rem;
+  color: white;
+}
+
+.card-detail-bnf1-all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2rem auto;
+  border-radius: 10px;
+  padding:2rem 1rem;
+  background-color: #384352;
+}
+
+.card-detail-bnf1{
+  display: flex;
+  justify-content: center;
+}
+
+.card-detail-bnf1-btn{
+  margin-top: 2rem;
+  border-radius: 30px;
+  padding: 1rem;
+  background-color: #C59F19;
+}
+
+.card-detail-bnf1-btn > a{
+  color:white;
+}
+
+.card-detail-bnf1-btn > a:hover{
+  color: rgb(153, 153, 153);
+}
+
+.card-detail-bnf1-inout,
+.card-detail-bnf1-record,
+.card-detail-bnf1-overseas{
+  color: white;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
+
+
+.card-detail-bnf2-name,
+.card-detail-bnf2-content,
+.card-detail-bnf2-detail {
+  color: white;
+}
+
+.card-detail-bnf2{
+  display: flex;
+  flex-direction: column;
+  margin: 5rem auto;
+  border-radius: 10px;
+  background-color: #384352;
+}
+
+.card-detail-bnf2-title{
+  margin:2rem 0;
+  font-size: 2rem;
+  text-align: center;
+  color: white;
+}
+
+.card-detail-card-group{
+  display: flex;
+  justify-content: center;
+}
+
+.card-detail-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 2rem;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 200px;
+  height: 310px;
+  background-color: #97A2B1;
+}
+
+.card-detail-bnf2-name{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-detail-bnf1 {
+    flex-direction: column;
+    align-items: center;
+    margin: rem 10rem;
+  }
+
+  .card-detail-bnf1-inout,
+  .card-detail-bnf1-record,
+  .card-detail-bnf1-overseas{
+    color: white;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+}

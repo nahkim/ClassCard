@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "django_bootstrap5",
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 INSTALLED_APPS += [
     # allauth
     "allauth",
