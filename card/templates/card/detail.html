@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% static 'css/styles.css' %}
+
+{% block body %}
+<div class="card-detail">
+  <img class="card-detail-image" src="{{ card_img }}" alt="">
+  <p class="card-detail-name">{{ card_name }}</p>
+  <p class="card-detail-brand">{{ card_brand }}</p>
+</div>
+
+<div class="card-detail-bnf1-all container">
+  <div class="card-detail-bnf1">
+    <p class="card-detail-bnf1-inout">{{ card_in_out }}</p>
+    <p class="card-detail-bnf1-record">{{ card_record }}</p>
+    <p class="card-detail-bnf1-overseas">{{ card_overseas }}</p>
+  </div>
+  <div>
+    {% if card_brand == "신한카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.shinhancard.com/pconts/html/main.html#utm_source=naver_pc&utm_medium=brandsearch_sa&utm_campaign=home_button">신한카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "BC 바로카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://paybooc.co.kr/mobile/BCBaroPlus.html?coCd=R005">BC 바로카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "BNK부산은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.busanbank.co.kr/ib20/mnu/FPMCRD122001001">BNK부산은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "DB금융투자" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://dhp.db-fi.com:8100/product/cma/viewProductCmaCardList.dhp">DB금융투자 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "DGB대구은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.dgb.co.kr/fnc_ebz_sm_11010_card.act">DGB대구은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "IBK기업은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.ibk.co.kr/card/mainList.ibk">IBK기업은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "KB국민카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://card.kbcard.com/CMN/DVIEW/HOAMCXPRIZZC0002">KB국민카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "KB증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://m.kbsec.com/go.able?linkcd=et00101">KB증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "KDB산업은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://smart.kdb.co.kr/mp/MHBMCA01N00.act">KDB산업은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "KG모빌리언스" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.mobilcard.co.kr/">KG모빌리언스 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "MG새마을금고" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://mgcheck.kfcc.co.kr/pers/appl/persCdGuidList.do">MG새마을금고 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "NH농협카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://card.nonghyup.com/IPCC01.menu">NH농협카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "SBI저축은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.sbisb.co.kr/IHPPRODcard0801l.web">SBI저축은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "SC제일은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.standardchartered.co.kr/np/kr/Intro.jsp">SC제일은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "Sh수협은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://suhyup-bank.com/">Sh수협은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "SK증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="http://direct-sks.co.kr/">SK증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "SSGPAY. CARD" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://card.ssgpay.com/">SSGPAY 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "광주은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.kjbank.com/ib20/mnu/FPMCARD010000">광주은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "교보증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://m.iprovest.com/weblogic/CheckCardServlet/checkCard">교보증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "다날" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.danalpay.com/service_introduction/creditcard_payment">다날 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "롯데카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.lottecard.co.kr/app/LPMAIAA_V100.lc?referrer=https%3A%2F%2Fwww.google.com%2F">롯데카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "미래에셋증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://securities.miraeasset.com/">미래에셋증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "삼성카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.samsungcard.com/personal/main/UHPPCO0101M0.jsp">삼성카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "신협" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://openbank.cu.co.kr/">신협 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "씨티카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.citibank.co.kr/CrdMainCnts0100.act">씨티카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "아이오로라" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.i-aurora.kr/">아이오로라 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "엔에이치엔페이코" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://company.payco.com/">엔에이치엔페이코 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "우리카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://pc.wooricard.com/dcpc/main.do">우리카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "우체국" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="http://m.epostbank.kr/pbcd0100.screen">우체국 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "유안타증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="">유안타증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "유진투자증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.myasset.com/extern/eventtotal/views/dmstcStock.jsp?mkt=keyword_naverpc_tradar&gclid=Cj0KCQiA-JacBhC0ARIsAIxybyOmVA_CPrQ2u4DS3DMLgiyiAho-gvRYhQ-X3pL9GJpUt9e7o857u80aAmIXEALw_wcB">유진투자증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "전북은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.jbbank.co.kr/">전북은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "제주은행" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.e-jejubank.com/JeJuBankInfo.do">제주은행 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "차이" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://chai.finance/card/">차이 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "카카오뱅크" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.kakaobank.com/">카카오뱅크 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "케이뱅크" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.kbanknow.com/ib20/mnu/PBKMAN000000">케이뱅크 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "코나카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.konacard.co.kr/">코나카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "토스" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://toss.im/">토스 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "토스뱅크" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.tossbank.com/">토스뱅크 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "트래블월렛" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.travel-wallet.com/">트래블월렛 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "핀크카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="">핀크카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "핀트" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.fint.co.kr/">핀트 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "하나카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.hanacard.co.kr/OPH30000000N.web?_frame=no&schID=pcd&mID=OPH30000000C&">하나카드 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "한국투자증권" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://securities.koreainvestment.com/main/Main.jsp">한국투자증권 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "한패스" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.hanpass.com/card">한패스 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "현대백화점" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="http://www.ehyundai.com/newPortal/card/main.do">현대백화점 사이트로 가기</a>
+    </div>
+    {% elif card_brand == "현대카드" %}
+    <div class="card-detail-bnf1-btn">
+      <a href="https://www.hyundaicard.com/index.jsp">현대카드 사이트로 가기</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+
+<div class="card-detail-bnf2 container text-center">
+  <p class="card-detail-bnf2-title">주요 혜택</p>
+  <div class="row d-flex justify-content-center">
+    {% for benefit in benefits %}
+    <div class="card-detail-card-group col-sm-6 col-md-6 col-lg-4 col-xl-3">
+      <div class="card-detail-card">
+        <p class="card-detail-bnf2-name">{{ benefit.bnf_name }}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock body %}
