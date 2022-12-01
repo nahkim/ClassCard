@@ -1,5 +1,115 @@
 /* banner */
+body {
+  background-color: white;
+  color: white;
+}
 
+.one {
+  background-image: url("/static/images/bg_1.jpg");
+  background-size: cover;
+  background-position: center;
+
+}
+
+.two {
+  background-image: url("/static/images/bg_2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.three {
+  background-image: url("/static/images/bg_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.four {
+  background-image: url("/static/images/bg_4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.five {
+  background-image: url("/static/images/bg_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.one_0 {
+  margin-top: 4rem;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  animation: img_ 3s;
+}
+
+/* .one_1 {
+  background-image: url("/static/images/oooo.plus_162.png");
+  background-size: cover;
+  background-position: center;
+  width: 250px;
+  height: 480px;
+} */
+
+.one_2 {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  top: 270px;
+  right: 2px;
+  animation: img_2 3s;
+}
+
+.text {
+  position: relative;
+  animation: fadeInUp 3s;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 6%;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0.5;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes img_ {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0.5;
+    transform: scale(0.9)
+  }
+}
+
+@keyframes img_2 {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2)
+  }
+}
+
+@media (max-width: 800px) {
+  .btn {
+    visibility: hidden;
+  }
+}
 
 /*============= card detail 페이지 ====================*/
 .card-detail{
