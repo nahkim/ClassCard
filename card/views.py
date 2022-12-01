@@ -16,7 +16,7 @@ edu = ['교육/육아', '도서', '학습지', '학원', '어린이집', '유치
 business = ['직장인', '비즈니스']
 life = ['생활', '인테리어', '아이행복']
 gov = ['공과금', '공과금/렌탈', '국민행복']
-card = ['카드사', '선택형', '하이브리드', '제휴/PLCC']
+card_bene = ['카드사', '선택형', '하이브리드', '제휴/PLCC']
 app = ['APP']
 pet = ['동물병원', '펫샵', '애완동물']
 car = ['차/중고차', '충전소', '주유', '주유소', '렌터카', '정비', '하이패스', '자동차', '자동차/하이패스']
@@ -41,64 +41,63 @@ def detail(request, num):
         benefit = Benefit.objects.filter(card_id = num)
         benefit_cate = []
 
-        # for bnf in benefit:
-        #     if bnf.bnf_name in bene:
-        #         benefit_cate.append('혜택')
-        #     elif bnf.bnf_name in leisure:
-        #         benefit_cate.append('문화/레져')
-        #     elif bnf.bnf_name in travel:
-        #         benefit_cate.append('여행')
-        #     elif bnf.bnf_name in transport:
-        #         benefit_cate.append('교통')
-        #     elif bnf.bnf_name in pay:
-        #         benefit_cate.append('페이')
-        #     elif bnf.bnf_name in point:
-        #         benefit_cate.append('포인트')
-        #     elif bnf.bnf_name in tele:
-        #         benefit_cate.append('통신사')
-        #     elif bnf.bnf_name in shop:
-        #         benefit_cate.append('쇼핑')
-        #     elif bnf.bnf_name in edu:
-        #         benefit_cate.append('교육')
-        #     elif bnf.bnf_name in business:
-        #         benefit_cate.append('비즈니스')
-        #     elif bnf.bnf_name in life:
-        #         benefit_cate.append('생활')
-        #     elif bnf.bnf_name in gov:
-        #         benefit_cate.append('공과금')
-        #     elif bnf.bnf_name in card:
-        #         benefit_cate.append('카드')
-        #     elif bnf.bnf_name in app:
-        #         benefit_cate.append('어플')
-        #     elif bnf.bnf_name in pet:
-        #         benefit_cate.append('애완동물')
-        #     elif bnf.bnf_name in car:
-        #         benefit_cate.append('자동차')
-        #     elif bnf.bnf_name in cafe:
-        #         benefit_cate.append('카페')
-        #     elif bnf.bnf_name in health:
-        #         benefit_cate.append('건강')
-        #     elif bnf.bnf_name in assurance:
-        #         benefit_cate.append('보험')
-        #     elif bnf.bnf_name in food:
-        #         benefit_cate.append('음식')
-        #     elif bnf.bnf_name in finance:
-        #         benefit_cate.append('금융')
-        #     elif bnf.bnf_name in beauty:
-        #         benefit_cate.append('뷰티')
-        #     elif bnf.bnf_name in airplane:
-        #         benefit_cate.append('항공')
-        #     elif bnf.bnf_name in fashion:
-        #         benefit_cate.append('패션')
-        #     elif bnf.bnf_name in premium:
-        #         benefit_cate.append('프리미엄')
-        #     elif bnf.bnf_name in place:
-        #         benefit_cate.append('지역')
-        #     elif bnf.bnf_name in etc:
-        #         benefit_cate.append('기타')
-        #     elif bnf.bnf_name in note:
-        #         benefit_cate.append('유의사항')
-        #     print(benefit_cate)
+        for bnf in benefit:
+            if bnf.bnf_name in bene:
+                benefit_cate.append('혜택')
+            elif bnf.bnf_name in leisure:
+                benefit_cate.append('문화/레져')
+            elif bnf.bnf_name in travel:
+                benefit_cate.append('여행')
+            elif bnf.bnf_name in transport:
+                benefit_cate.append('교통')
+            elif bnf.bnf_name in pay:
+                benefit_cate.append('페이')
+            elif bnf.bnf_name in point:
+                benefit_cate.append('포인트')
+            elif bnf.bnf_name in tele:
+                benefit_cate.append('통신사')
+            elif bnf.bnf_name in shop:
+                benefit_cate.append('쇼핑')
+            elif bnf.bnf_name in edu:
+                benefit_cate.append('교육')
+            elif bnf.bnf_name in business:
+                benefit_cate.append('비즈니스')
+            elif bnf.bnf_name in life:
+                benefit_cate.append('생활')
+            elif bnf.bnf_name in gov:
+                benefit_cate.append('공과금')
+            elif bnf.bnf_name in card_bene:
+                benefit_cate.append('카드')
+            elif bnf.bnf_name in app:
+                benefit_cate.append('어플')
+            elif bnf.bnf_name in pet:
+                benefit_cate.append('애완동물')
+            elif bnf.bnf_name in car:
+                benefit_cate.append('자동차')
+            elif bnf.bnf_name in cafe:
+                benefit_cate.append('카페')
+            elif bnf.bnf_name in health:
+                benefit_cate.append('건강')
+            elif bnf.bnf_name in assurance:
+                benefit_cate.append('보험')
+            elif bnf.bnf_name in food:
+                benefit_cate.append('음식')
+            elif bnf.bnf_name in finance:
+                benefit_cate.append('금융')
+            elif bnf.bnf_name in beauty:
+                benefit_cate.append('뷰티')
+            elif bnf.bnf_name in airplane:
+                benefit_cate.append('항공')
+            elif bnf.bnf_name in fashion:
+                benefit_cate.append('패션')
+            elif bnf.bnf_name in premium:
+                benefit_cate.append('프리미엄')
+            elif bnf.bnf_name in place:
+                benefit_cate.append('지역')
+            elif bnf.bnf_name in etc:
+                benefit_cate.append('기타')
+            elif bnf.bnf_name in note:
+                benefit_cate.append('유의사항')
 
         context = {
             'card_img' : card.card_img,
