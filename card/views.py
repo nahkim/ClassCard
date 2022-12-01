@@ -118,7 +118,17 @@ def detail(request, num):
 
         context = {
             # 카드 배너
-            'cards_random' : cards_random,
+            'cards_random1' : cards_all[cards_random[0]],
+            'cards_random2' : cards_all[cards_random[1]],
+            'cards_random3' : cards_all[cards_random[2]],
+            'cards_random4' : cards_all[cards_random[3]],
+            'cards_random5' : cards_all[cards_random[4]],
+            'cards_random6' : cards_all[cards_random[5]],
+            'cards_random7' : cards_all[cards_random[6]],
+            'cards_random8' : cards_all[cards_random[7]],
+            'cards_random9' : cards_all[cards_random[8]],
+            'cards_random10' : cards_all[cards_random[9]],
+
 
             'card_img' : card.card_img,
             'card_name' : card.card_name,

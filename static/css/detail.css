@@ -4,6 +4,10 @@ body {
   color: white;
 }
 
+.banner-rotate90 {
+  transform: rotate(270deg);
+}
+
 .one {
   background-image: url("/static/images/bg_1.jpg");
   background-size: cover;
@@ -55,9 +59,14 @@ body {
 
 .one_2 {
   position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
+  width:350px;
+  height:210px;
   top: 270px;
   right: 2px;
   animation: img_2 3s;
@@ -119,6 +128,18 @@ body {
   align-items: center;
 }
 
+.card-detail-image-box{
+  display: flex;
+  height: 300px;
+  width: 190px;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
 .card-detail-name{
   font-size: 2.5rem;
   font-weight: bold;
@@ -127,7 +148,7 @@ body {
 .card-detail-name,
 .card-detail-brand{
   margin-top: 0.7rem;
-  color: white;
+  color: #97A2B1;
 }
 
 .card-detail-bnf1-all{

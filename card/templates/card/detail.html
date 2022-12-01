@@ -11,225 +11,217 @@
 {% block body %}
 
 <div class="">
-  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
+  <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="100000">
     <div class="carousel-inner" style="background-color:black;">
       <div class="carousel-item active">
         <div class="one p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random1.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random1.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
-          <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+          <div class="card-detail-center">
+            <div class="one_2">
+              <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random1.card_img }}" alt="">
+            </div>
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random1.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random1.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item" >
         <div class="two p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random2.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random2.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random2.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random2.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random2.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="three p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random3.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random3.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random3.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random3.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random3.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="four p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random4.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random4.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random4.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random4.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random4.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="five p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random5.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random5.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random5.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random5.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random5.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="one p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random6.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random6.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random6.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random6.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random6.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="two p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random7.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random7.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random7.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random7.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random7.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="three p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random8.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random8.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random8.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random8.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random8.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="four p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random9.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random9.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random9.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random9.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random9.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
       <div class="carousel-item">
         <div class="five p-5" style="height: 800px;">
           <div>
-            <h5 class="text mb-1" style="font-size: 25px;">01</h5>
-            <h3 class="text" style="font-size: 35px;">Card Title</h3>
+            {% if cards_random10.card_name == 'None'%}
+            <h3 class="text" style="font-size: 35px;"></h3>
+            {% else %}
+            <h3 class="text" style="font-size: 35px;">{{ cards_random10.card_name }}</h3>
+            {% endif %}
           </div>
           <div class="one_0">
             {% comment %} <div class="one_1"></div> {% endcomment %}
           </div>
           <div class="one_2">
-            <img style="width:350px; height:210px;" class="d-flex justify-content-center" src="https://api.card-gorilla.com:8080/storage/card/8/card_img/20090/8card.png" alt="">
+            <img class="card-detail-banner-card-image d-flex justify-content-center" src="{{ cards_random10.card_img }}" alt="">
           </div>
           <div class="mt-3">
-            <p class="mb-2" style="font-size: 20px;">Buy-In</p>
-            <div>
-              <p class="text m-0" style="font-size: 16px;">50 000 KKI</p>
-              <p class="text" style="font-size: 16px;">A Titanium account For an exclusive experience</p>
-            </div>
-            <a href="" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">-> Discover perks</a>
+            <p class="mb-2" style="font-size: 20px;">{{ cards_random10.card_brand }}</p>
+            <a href="{% url 'card:detail' cards_random10.card_id %}" class="btn mt-4" style="border: 1px solid white; background-color:white; color: black; width: 150px; font-size: 15px; border-radius: 20px; padding: 18px 17px 18px 17px;">카드보러 가기</a>
           </div>
         </div>
       </div>
@@ -246,7 +238,9 @@
 </div>
 
 <div class="card-detail">
-  <img class="card-detail-image" src="{{ card_img }}" alt="">
+  <div class="card-detail-image-box" style="height:300px; width:190px;">
+    <img class="card-detail-image" src="{{ card_img }}" alt="">
+  </div>
   <p class="card-detail-name">{{ card_name }}</p>
   <p class="card-detail-brand">{{ card_brand }}</p>
 </div>
@@ -255,7 +249,95 @@
   <div class="card-detail-bnf1">
     <p class="card-detail-bnf1-inout">{{ card_in_out }}</p>
     <p class="card-detail-bnf1-record">{{ card_record }}</p>
-    <p class="card-detail-bnf1-overseas">{{ card_overseas }}</p>
+    <div class="card-detail-card-overseas">
+      {% if card_overseas == 'VISAmastercardJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  JCB</p>
+      {% elif card_overseas == 'VISAmastercardAMEXUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  AMEX  UnionPay</p>
+      {% elif card_overseas == 'VISAmastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  UnionPay</p>
+      {% elif card_overseas == 'VISAmastercard' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard</p>
+      {% elif card_overseas == 'VISAUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  UnionPay</p>
+      {% elif card_overseas == 'mastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">mastercard  UnionPay</p>
+      {% elif card_overseas == 'VISAmastercardAMEX' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  AMEX</p>
+      {% elif card_overseas == 'AMEXUnionPay' %}
+      <p class="card-detail-bnf1-overseas">AMEX  UnionPay</p>
+      {% elif card_overseas == 'VISABCBC GlobalmastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  BC Global  mastercardU  nionPay</p>
+      {% elif card_overseas == 'VISABC' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC</p>
+      {% elif card_overseas == 'VISABCmastercard' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  mastercard</p>
+      {% elif card_overseas == 'BCmastercard' %}
+      <p class="card-detail-bnf1-overseas">BC  mastercard</p>
+      {% elif card_overseas == 'BCmastercardJCB' %}
+      <p class="card-detail-bnf1-overseas">BC  mastercard  JCB</p>
+      {% elif card_overseas == 'BCmastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">BC  mastercard  UnionPay</p>
+      {% elif card_overseas == 'VISABCUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  UnionPay</p>
+      {% elif card_overseas == 'VISAmastercardAMEXUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  AMEX  UnionPay  JCB</p>
+      {% elif card_overseas == 'mastercardJCB' %}
+      <p class="card-detail-bnf1-overseas">mastercard  JCB</p>
+      {% elif card_overseas == 'mastercardAMEXUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">mastercard  AMEX  UnionPay  JCB</p>
+      {% elif card_overseas == 'mastercardAMEX' %}
+      <p class="card-detail-bnf1-overseas">mastercard  AMEX</p>
+      {% elif card_overseas == 'VISAmastercardUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  mastercard  UnionPay  JCB</p>
+      {% elif card_overseas == 'VISAJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  JCB</p>
+      {% elif card_overseas == 'AMEXUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">AMEX  UnionPay  JCB</p>
+      {% elif card_overseas == 'mastercardUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">mastercard  UnionPay  JCB</p>
+      {% elif card_overseas == 'BCBC Global' %}
+      <p class="card-detail-bnf1-overseas">BC  BC Global</p>
+      {% elif card_overseas == 'BCBC GlobalmastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">BC  BC Global  mastercard  UnionPay</p>
+      {% elif card_overseas == 'BCBC Globalmastercard' %}
+      <p class="card-detail-bnf1-overseas">BC  BC Global  mastercard</p>
+      {% elif card_overseas == 'BCUnionPay' %}
+      <p class="card-detail-bnf1-overseas">BC  UnionPay</p>
+      {% elif card_overseas == 'VISABCBC Globalmastercard' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  BC Global  mastercard</p>
+      {% elif card_overseas == 'VISABCmastercardUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  mastercard  UnionPay</p>
+      {% elif card_overseas == 'VISABC Global' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC Global</p>
+      {% elif card_overseas == 'VISABCBC Global' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  BC Global</p>
+      {% elif card_overseas == 'BC Globalmastercard' %}
+      <p class="card-detail-bnf1-overseas">BC Global  mastercard</p>
+      {% elif card_overseas == 'VISAAMEXUnionPay' %}
+      <p class="card-detail-bnf1-overseas">VISA  AMEX  UnionPay</p>
+      {% elif card_overseas == 'mastercardAMEXJCB' %}
+      <p class="card-detail-bnf1-overseas">mastercard  AMEX  JCB</p>
+      {% elif card_overseas == 'VISAAMEX' %}
+      <p class="card-detail-bnf1-overseas">VISA  AMEX</p>
+      {% elif card_overseas == 'VISAUnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  UnionPay  JCB</p>
+      {% elif card_overseas == 'AMEXJCB' %}
+      <p class="card-detail-bnf1-overseas">AMEX  JCB</p>
+      {% elif card_overseas == 'UnionPayJCB' %}
+      <p class="card-detail-bnf1-overseas">UnionPay  JCB</p>
+      {% elif card_overseas == 'mastercardAMEXUnionPay' %}
+      <p class="card-detail-bnf1-overseas">mastercard  AMEX  UnionPay</p>
+      {% elif card_overseas == 'BCJCB' %}
+      <p class="card-detail-bnf1-overseas">BC  JCB</p>
+      {% elif card_overseas == 'VISABC Globalmastercard' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC Global  mastercard</p>
+      {% elif card_overseas == 'VISABCmastercardJCB' %}
+      <p class="card-detail-bnf1-overseas">VISA  BC  mastercard  JCB</p>
+      {% else %}
+      <p class="card-detail-bnf1-overseas">{{ card_overseas }}</p>
+      {% endif %}
+    </div>
   </div>
   <div>
     {% if card_brand == "신한카드" %}
@@ -523,4 +605,39 @@
     {% endfor %}
   </div>
 </div>
+
+<script>
+  // 카드 디테일 세로로 바꾸기
+  let cardImage = document.querySelector('.card-detail-image')
+  let imageWidth = cardImage.width
+  let imageHeight = cardImage.height
+
+  if (imageWidth > imageHeight) {
+    console.log('회전하기!')
+    cardImage.style.width = '300px';
+    cardImage.style.height = '190px';
+    cardImage.classList.add('rotate90');
+  } else {
+    cardImage.style.width = '190px';
+    cardImage.style.height = '300px';
+  }
+
+  // 카드 베너 가로로 바꾸기
+  let bannerCardImage = document.querySelectorAll('.card-detail-banner-card-image')
+  console.log(bannerCardImage)
+
+  for (let i = 0; i < 10; i++) {
+      if (bannerCardImage[i].height > bannerCardImage[i].width) {
+        console.log('회전하기!')
+        bannerCardImage[i].style.width = '210px';
+        bannerCardImage[i].style.height = '350px';
+        bannerCardImage[i].style.borderRadius = '15px';
+        bannerCardImage[i].classList.add('banner-rotate90')
+      } else {
+        bannerCardImage[i].style.width = '350px';
+        bannerCardImage[i].style.height = '210px';
+        bannerCardImage[i].style.borderRadius = '15px';
+      }
+    }
+</script>
 {% endblock body %}
