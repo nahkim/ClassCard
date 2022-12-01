@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Card, Benefit
 from django.contrib import messages
+import random
 
 # Create your views here.
 
@@ -37,9 +38,16 @@ def detail(request, num):
     # 크롤링 할 때에 중간중간 없는 카드들이 있어서 id와 card_id가 다르다
     # 그래서 id가 아니라 card_id를 사용할 것 (id를 사용하면 혜택 부분이랑 꼬이게 된다)
     try:
+        cards_all = Card.objects.all()
         card = Card.objects.get(card_id = num)
         benefit = Benefit.objects.filter(card_id = num)
         benefit_cate = []
+        # benefit과 benfit_cate를 하나씩 튜플로 넣어서 저장하기
+        # 탬플렛에서 사용하기 편하게
+        bnf_list = []
+
+        # 카드 10개를 랜덤으로 가지고오기 (배너)
+        cards_random = random.sample(range(len(cards_all)), 10)
 
         for bnf in benefit:
             if bnf.bnf_name in bene:
@@ -99,7 +107,13 @@ def detail(request, num):
             elif bnf.bnf_name in note:
                 benefit_cate.append('유의사항')
 
+        for j in range(len(benefit)):
+            bnf_list.append((benefit[j], benefit_cate[j]))
+
         context = {
+            # 카드 배너
+            'cards_random' : cards_random,
+
             'card_img' : card.card_img,
             'card_name' : card.card_name,
             # 카드사
@@ -112,8 +126,7 @@ def detail(request, num):
             'card_overseas' : card.card_overseas,
             # ===== 주요 혜택 ========
             'benefit_count' : range(len(benefit)),
-            'benefits' : benefit, 
-            'bnf_cate' : benefit_cate,
+            'benefits' : bnf_list, 
         }
 
     except:
