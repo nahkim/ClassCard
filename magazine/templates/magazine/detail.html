@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body %}
+  <h1>
+    매거진 디테일페이지</h1>
+  <p>
+    디테일 변수는 magazine 입니다
+  </p>
+  <p>
+    ex >
+    <br>
+    - magazine.title,
+    <br>
+    - magazine.content,
+    <br>
+    - magazine.image,
+    <br>
+    - magazine.created_at
+    <br>
+
+  </p>
+
+  <a class='btn btn-primary' data-bs-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">
+    댓글작성</a>
+  <div class='collapse' id='collapseComment'>
+    <form action="{% url 'magazine:mzcomment_create' %}" method='POST'>
+      {% csrf_token %}
+      {% bootstrap_form mzcomment_form %}
+      <input type="submit" value='작성'>
+    </form>
+  </div>
+  {% for mzcomment in mzcomments %}
+    {{mzcomment.user}}|{{ mzcomment.content}}
+    <a href="{% url 'magazine:mzcomment_delete' %}">댓글삭제</a>
+    <hr>
+  {% endfor %}
+
+{% endblock body %}
