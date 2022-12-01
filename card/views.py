@@ -36,6 +36,8 @@ benefit_dict = {
 }
 kor_benefit_dict_keys = ['혜택', '문화/레져', '여행','교통','페이','포인트','통신사','쇼핑','교육','비즈니스','생활','공과금','카드','어플','애완동물','자동차','카페','건강','보험','음식','금융','뷰티','항공','패션','프리미엄','지역','기타','유의사항']
 
+benefit_lst = benefit_dict.keys()
+benefit_key = list(benefit_lst)
 
 def detail(request, num):
     # 크롤링 할 때에 중간중간 없는 카드들이 있어서 id와 card_id가 다르다
@@ -51,64 +53,65 @@ def detail(request, num):
 
         # 카드 10개를 랜덤으로 가지고오기 (배너)
         cards_random = random.sample(range(len(cards_all)), 10)
+         
+        for bnf in benefit:
 
-        # for bnf in benefit:
-        #     if bnf.bnf_name in bene:
-        #         benefit_cate.append('혜택')
-        #     elif bnf.bnf_name in leisure:
-        #         benefit_cate.append('문화/레져')
-        #     elif bnf.bnf_name in travel:
-        #         benefit_cate.append('여행')
-        #     elif bnf.bnf_name in transport:
-        #         benefit_cate.append('교통')
-        #     elif bnf.bnf_name in pay:
-        #         benefit_cate.append('페이')
-        #     elif bnf.bnf_name in point:
-        #         benefit_cate.append('포인트')
-        #     elif bnf.bnf_name in tele:
-        #         benefit_cate.append('통신사')
-        #     elif bnf.bnf_name in shop:
-        #         benefit_cate.append('쇼핑')
-        #     elif bnf.bnf_name in edu:
-        #         benefit_cate.append('교육')
-        #     elif bnf.bnf_name in business:
-        #         benefit_cate.append('비즈니스')
-        #     elif bnf.bnf_name in life:
-        #         benefit_cate.append('생활')
-        #     elif bnf.bnf_name in gov:
-        #         benefit_cate.append('공과금')
-        #     elif bnf.bnf_name in card_bene:
-        #         benefit_cate.append('카드')
-        #     elif bnf.bnf_name in app:
-        #         benefit_cate.append('어플')
-        #     elif bnf.bnf_name in pet:
-        #         benefit_cate.append('애완동물')
-        #     elif bnf.bnf_name in car:
-        #         benefit_cate.append('자동차')
-        #     elif bnf.bnf_name in cafe:
-        #         benefit_cate.append('카페')
-        #     elif bnf.bnf_name in health:
-        #         benefit_cate.append('건강')
-        #     elif bnf.bnf_name in assurance:
-        #         benefit_cate.append('보험')
-        #     elif bnf.bnf_name in food:
-        #         benefit_cate.append('음식')
-        #     elif bnf.bnf_name in finance:
-        #         benefit_cate.append('금융')
-        #     elif bnf.bnf_name in beauty:
-        #         benefit_cate.append('뷰티')
-        #     elif bnf.bnf_name in airplane:
-        #         benefit_cate.append('항공')
-        #     elif bnf.bnf_name in fashion:
-        #         benefit_cate.append('패션')
-        #     elif bnf.bnf_name in premium:
-        #         benefit_cate.append('프리미엄')
-        #     elif bnf.bnf_name in place:
-        #         benefit_cate.append('지역')
-        #     elif bnf.bnf_name in etc:
-        #         benefit_cate.append('기타')
-        #     elif bnf.bnf_name in note:
-        #         benefit_cate.append('유의사항')
+            if bnf.bnf_name in benefit_dict['bene']:
+                benefit_cate.append('혜택')
+            elif bnf.bnf_name in benefit_dict['leisure']:
+                benefit_cate.append('문화/레져')
+            elif bnf.bnf_name in benefit_dict['travel']:
+                benefit_cate.append('여행')
+            elif bnf.bnf_name in benefit_dict['transport']:
+                benefit_cate.append('교통')
+            elif bnf.bnf_name in benefit_dict['pay']:
+                benefit_cate.append('페이')
+            elif bnf.bnf_name in benefit_dict['point']:
+                benefit_cate.append('포인트')
+            elif bnf.bnf_name in benefit_dict['tele']:
+                benefit_cate.append('통신사')
+            elif bnf.bnf_name in benefit_dict['shop']:
+                benefit_cate.append('쇼핑')
+            elif bnf.bnf_name in benefit_dict['edu']:
+                benefit_cate.append('교육')
+            elif bnf.bnf_name in benefit_dict['business']:
+                benefit_cate.append('비즈니스')
+            elif bnf.bnf_name in benefit_dict['life']:
+                benefit_cate.append('생활')
+            elif bnf.bnf_name in benefit_dict['gov']:
+                benefit_cate.append('공과금')
+            elif bnf.bnf_name in benefit_dict['card_bene']:
+                benefit_cate.append('카드')
+            elif bnf.bnf_name in benefit_dict['app']:
+                benefit_cate.append('어플')
+            elif bnf.bnf_name in benefit_dict['pet']:
+                benefit_cate.append('애완동물')
+            elif bnf.bnf_name in benefit_dict['car']:
+                benefit_cate.append('자동차')
+            elif bnf.bnf_name in benefit_dict['cafe']:
+                benefit_cate.append('카페')
+            elif bnf.bnf_name in benefit_dict['health']:
+                benefit_cate.append('건강')
+            elif bnf.bnf_name in benefit_dict['assurance']:
+                benefit_cate.append('보험')
+            elif bnf.bnf_name in benefit_dict['food']:
+                benefit_cate.append('음식')
+            elif bnf.bnf_name in benefit_dict['finance']:
+                benefit_cate.append('금융')
+            elif bnf.bnf_name in benefit_dict['beauty']:
+                benefit_cate.append('뷰티')
+            elif bnf.bnf_name in benefit_dict['airplane']:
+                benefit_cate.append('항공')
+            elif bnf.bnf_name in benefit_dict['fashion']:
+                benefit_cate.append('패션')
+            elif bnf.bnf_name in benefit_dict['premium']:
+                benefit_cate.append('프리미엄')
+            elif bnf.bnf_name in benefit_dict['place']:
+                benefit_cate.append('지역')
+            elif bnf.bnf_name in benefit_dict['etc']:
+                benefit_cate.append('기타')
+            elif bnf.bnf_name in benefit_dict['note']:
+                benefit_cate.append('유의사항')
 
         for j in range(len(benefit)):
             bnf_list.append((benefit[j], benefit_cate[j]))
@@ -138,9 +141,10 @@ def detail(request, num):
     return render(request, 'card/detail.html', context)
 
 def search(request):
-    benefit_lst = benefit_dict.keys()
-    benefit_key = list(benefit_lst)
+
+    global benefit_key
     global kor_benefit_dict_keys
+    
     if request.method == 'GET':
         kbl = request.GET.get('benefit','')
 
