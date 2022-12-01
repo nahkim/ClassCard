@@ -1,257 +1,116 @@
 /* banner */
 body {
+  background-color: white;
   color: white;
 }
 
-.bg-img {
-  background-image: url('/static/images/bg_img.png');
-  height: 400px;
+.one {
+  background-image: url("/static/images/bg_1.jpg");
   background-size: cover;
+  background-position: center;
+
 }
 
-.bg-content {
+.two {
+  background-image: url("/static/images/bg_2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.three {
+  background-image: url("/static/images/bg_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.four {
+  background-image: url("/static/images/bg_4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.five {
+  background-image: url("/static/images/bg_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.one_0 {
+  margin-top: 4rem;
+  width: 100%;
+  height: 400px;
   display: flex;
   justify-content: center;
+  position: relative;
+  animation: img_ 3s;
 }
 
-form {
+/* .one_1 {
+  background-image: url("/static/images/oooo.plus_162.png");
+  background-size: cover;
+  background-position: center;
+  width: 250px;
+  height: 480px;
+} */
+
+.one_2 {
+  position: absolute;
   display: flex;
+  justify-content: center;
   width: 100%;
-}
-
-fieldset {
-  position: relative;
-}
-
-.fa-search{
-  position: relative;
-  top: 23px;
-  left: 10px;
-  font-size: 20px !important;
-}
-
-.url{
-  margin: 20px 50px 0px 100px;    
-  flex-grow: 100;
-}
-
-.enter{
-  margin: 20px 20px;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
-}
-
-label {
-  position: absolute;
-  top: -5px;
-  letter-spacing: 10px;
-  font-size: 20px;
-  color: RGBA(55, 73, 87, 0.8);
-  transition: all 0.3s ease;
-}
-
-input:focus ~ label {
-  color: RGBA(254, 253, 255, 1.00);
-}
-
-input:focus ~ label,
-input:valid ~ label {
-  top: 0;
-  letter-spacing: 5px;
-  transform: translate(0, -30px) scale(0.7, 0.7);
-}
-
-input {
-  color:white;
-  font-family: system-ui, Helvetica, Arial, sans-serif;
-  font-size: 20px !important;
-  width: 100%;
-  border: none;
-  margin-top: 0;
-  background-color: transparent;
-}
-
-input:focus {
-  outline: none;
-}
-
-.after {
-  width: 100%;
-  height: 2px;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, RGBA(254, 253, 255, 1.00)), color-stop(50%, transparent));
-  background: -webkit-linear-gradient(left, RGBA(254, 253, 255, 1.00) 50%, transparent 50%);
-  background: -o-linear-gradient(left, RGBA(254, 253, 255, 1.00) 50%, transparent 50%);
-  background: linear-gradient(to right, RGBA(254, 253, 255, 1.00) 50%, transparent 50%);
-  background-color: RGBA(55, 73, 87, 0.8);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  -webkit-transition: all 0.3s ease;
-  -o-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-input:focus ~ .after {
-  background-position: 0 0;
-}
-
-button {
-  position: relative;
-  width: 180px;
-  height: 34px;
-  font-size: 20px;
-  font-family: system-ui, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  margin-top: 10px;
-  margin-right: 10rem;
-  padding: 2px 10px;
-  color: white;
-  background: white;
-  border: none;
-  border-radius: 15px;
-  background: -webkit-gradient(linear, left top, right top, color-stop(50%, white), color-stop(50%, transparent));
-  background: -webkit-linear-gradient(left, white 50%, transparent 50%);
-  background: -o-linear-gradient(left, white 50%, transparent 50%);
-  background: linear-gradient(to right, white 50%, transparent 50%);
-  background-color: RGBA(55, 73, 87, 0.8);
-  background-size: 200% 100%;
-  background-position: 100% 0;
-  transition: all 0.3s ease;
-}
-
-button:before {
-  position: absolute;
-  font-family: system-ui, FontAwesome, Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  content: "\f00c";
-  letter-spacing: 3px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  top: 2px;
-  bottom: 2px;
-  left: 2px;
+  top: 270px;
   right: 2px;
-  display: block;
-  border-radius: 15px;
-  /*color: white;*/
-  background-color: rgba(0, 0, 0, 0.3);
+  animation: img_2 3s;
 }
 
-button:active,
-button:focus,
-button:hover {
-  outline: none;
-  background-position: 0 0;
-  color: white;
+.text {
+  position: relative;
+  animation: fadeInUp 3s;
 }
 
-@media (min-width: 1260px){
-  .body{
-    background-size: 100%;
+.carousel-control-next, .carousel-control-prev {
+  width: 6%;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
   }
-  label {
-    position: absolute;
-    top: -5px;
-    letter-spacing: 10px;
-    font-size: 20px;
-    color: RGBA(55, 73, 87, 0.8);
-    transition: all 0.3s ease;
-    letter-spacing: 7px;
-  }
-  fieldset {
-    position: relative;
-    left:140px;
+  to {
+    opacity: 0.5;
+    transform: translate3d(0, 100%, 0);
   }
 }
 
-@media (max-width: 590px){
-  button{
-    width: 150px;
-    margin-left: -20px !important;
+@keyframes img_ {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
   }
-  label {
-    position: absolute;
-    top: -5px;
-    letter-spacing: 10px;
-    font-size: 20px;
-    color: RGBA(55, 73, 87, 0.8);
-    transition: all 0.3s ease;
-    letter-spacing: 7px;
-  }
-  fieldset {
-    position: relative;
+  to {
+    opacity: 0.5;
+    transform: scale(0.9)
   }
 }
 
-@media (max-width: 475px){
-  form{
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -ms-flex-direction: column !important;
-    flex-direction: column !important;
+@keyframes img_2 {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
   }
-  button{
-    float: right;
-    margin-right: 25px !important;
+  to {
+    opacity: 1;
+    transform: scale(1.2)
   }
 }
 
-@media (max-width: 315px){
-  label{
-    letter-spacing: 5px;
-  }
-  
-}
-
-@media (max-width: 300px){
-  label{
-    font-size: 10px;
-    letter-spacing: 3px;
+@media (max-width: 800px) {
+  .btn {
+    visibility: hidden;
   }
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-  border-radius: 8px;
-  flex-direction: column; 
-  justify-content: flex-start;
-  align-items: flex-start; 
-  padding:2rem;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.btn {
-  border: 2px solid #232931;
-  color: rgb(207, 207, 207);
-}
 
 /*=================== card detail 페이지 =============================*/
 .card-detail{
