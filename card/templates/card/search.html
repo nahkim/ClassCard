@@ -1,0 +1,19 @@
+{% for kbl in kor_benefit_lst %}
+  <a href="?benefit={{kbl}}">
+    {{ kbl}}
+  </a>
+{% endfor %}
+<br>
+<span>
+  <!-- 카드리스트 갯수 -->
+  {{ benefit_card_list.count}}
+</span>
+
+{% for card in benefit_card_list %}
+  <p>
+    <a href="{% url 'card:detail' card.card_id%}">
+      {{ card.card_name }}
+    </a>
+  </p>
+  <br>
+{% endfor %}
