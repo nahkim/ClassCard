@@ -70,6 +70,7 @@ body {
   top: 270px;
   right: 2px;
   animation: img_2 3s;
+  animation-fill-mode: forwards;
 }
 
 .text {

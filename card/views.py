@@ -6,7 +6,9 @@ import random
 # Create your views here.
 benefit_dict = {
     'bene' : ['혜택2', '혜택5', '혜택 프로모션', '할인', '수수료우대', '연회비지원', '무이자할부', '바우처', '무실적', '모든가맹점'],
-    'leisure' : ['게임', '골프', '경기관람', '공연/전시', '레저/스포츠', '테마파크', '음원사이트', '영화', '영화/문화', '디지털구독', '문화센터'],
+    'sport' : ['골프', '경기관람', '레저/스포츠'],
+    'movie' : ['영화', '영화/문화', '디지털구독',],
+    'culture': ['게임', '테마파크', '음원사이트', '문화센터', '공연/전시'],
     'travel' : ['고속버스', '렌탈', '호텔', '면세점', '리조트', '온라인 여행사', '여행/숙박', '여행사'],
     'transport' : ['교통', '기차', '대중교통', '택시'],
     'pay' : ['PAYCO', '네이버페이', '간편결제', '카카오페이', '삼성페이'],
@@ -34,7 +36,7 @@ benefit_dict = {
     'etc' : ['기타'],
     'note' : ['유의사항'],
 }
-kor_benefit_dict_keys = ['혜택', '문화/레져', '여행','교통','페이','포인트','통신사','쇼핑','교육','비즈니스','생활','공과금','카드','어플','애완동물','자동차','카페','건강','보험','음식','금융','뷰티','항공','패션','프리미엄','지역','기타','유의사항']
+kor_benefit_dict_keys = ['혜택', '스포츠', '영화', '문화', '여행','교통','페이','포인트','통신사','쇼핑','교육','비즈니스','생활','공과금','카드','어플','애완동물','자동차','카페','건강','보험','음식','금융','뷰티','항공','패션','프리미엄','지역','기타','유의사항']
 
 benefit_lst = benefit_dict.keys()
 benefit_key = list(benefit_lst)
@@ -58,8 +60,12 @@ def detail(request, num):
 
             if bnf.bnf_name in benefit_dict['bene']:
                 benefit_cate.append('혜택')
-            elif bnf.bnf_name in benefit_dict['leisure']:
-                benefit_cate.append('문화/레져')
+            elif bnf.bnf_name in benefit_dict['sport']:
+                benefit_cate.append('스포츠')
+            elif bnf.bnf_name in benefit_dict['movie']:
+                benefit_cate.append('영화')
+            elif bnf.bnf_name in benefit_dict['culture']:
+                benefit_cate.append('문화')
             elif bnf.bnf_name in benefit_dict['travel']:
                 benefit_cate.append('여행')
             elif bnf.bnf_name in benefit_dict['transport']:
