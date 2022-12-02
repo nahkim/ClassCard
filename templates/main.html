@@ -5,32 +5,887 @@
 
 {% block body %}
 
-<!-- Visual -->
-<section class="visual">
-    <div class="inner10">
-        <!-- ㅏㅣ어ㅣ먼ㅇ러ㅣ멍러ㅣ머 -->
-      <!-- filter: brightness(50%); -->
-        <img style=" width: 1900px; height: 500px; " src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/7efed1154021375.633c041f4710b.jpg" alt="">
-    </div>
-    <div class="fade-in0">
-      <img style="width: 750px;" src="{% static 'images/class-card-img4.png' %}" alt="">
-    </div>
-    <div class="fade-in1">
-      <img src="{% static 'images/class-card-img5.png' %}" alt="">
-    </div>
-    <div class="fade-in2">
-        <img  src="{% static 'images/class-card-img6.png' %}" alt="">
-    </div>
-    <div class="fade-in3">
-      <img src="{% static 'images/class-card-img7.png' %}" alt="">
-    </div>
-    <div class="fade-in4">
-      <img src="{% static 'images/class-card-img8.png' %}" alt="">
-    </div>
+   <!-- visual -->
+   <section class="visual">
+    <div class="inner">
+      <div class="title fade-in">
+        <img style="width: 850px; height: 450px;" src="./images/class-card-img10.png" alt="" />
+      </div>
+      <div class="fade-in">
+        <img src="" alt="" class="cup1 image" />
+        <img src="" alt="" class="cup1 text" />
+      </div>
+      <div class="fade-in">
+        <img src="" alt="" class="cup2 image" />
+        <img src="" alt="" class="cup2 text" />
+      </div>
+      <div class="fade-in">
+        <img src="" alt="" class="spoon" />
+      </div>
 
-
+    </div>
   </section>
+
+
+  <!-- 공지사항 -->
+<section class="notice">
+  <!--NOTICE LINE-->
+  <div class="notice-line">
+    <div class="bg-left"></div>
+    <div class="bg-right"></div>
+    <div class="inner">
+      
+      <div class="inner__left">
+        <h2>공지사항</h2>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a style="font-size: 14px;" href="javascript:void(0)">점점 올라가는 물가의 부담을 어떻게 해결?</a>
+            </div>
+            <div class="swiper-slide">
+              <a style="font-size: 14px;" href="javascript:void(0)">[당첨자 발표] 2022 클라스 카드 디자인</a>
+            </div>
+            <div class="swiper-slide">
+              <a style="font-size: 14px;" href="javascript:void(0)">클라스_카드 애플리케이션 버전 업데이트 안내</a>
+            </div>
+            <div class="swiper-slide">
+              <a style="font-size: 14px;" href="javascript:void(0)">2022 클라스 카드 예약시스템 이용 안내</a>
+            </div>
+          </div>
+        </div>
+        <!-- <a href="javascript:void(0)" class="notice-line__more">
+          <div class="material-icons">add_circle</div>
+        </a> -->
+      </div>
+      <div class="inner__right">
+        <h2>CLASS CARD 프로모션</h2>
+        <div class="toggle-promotion open">
+          <div class="material-icons">upload</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 대상 카드 title _ 버튼-->
+<div style="margin-top: 80px; display: flex; justify-content: center;  border-radius: 10px 10px;" class="container mb-5">
+  <button style="border-style: none; padding: 20px 250px 20px 250px; border-radius: 20px 20px 20px 20px;  background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */" type="button" class="btn-outline-warning text-center">
+    <a style="letter-spacing: 3px; color: #fff;">2022 BEST CARD 만나보세요!</a>
+  </button>
+</div>
+  
+<div class="py-0">
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <!-- style="padding: 40px;" class="col-md-3" -->
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/715/card_img/22189/715card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">멀티 하나 카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#청년</button>&nbsp<button type="button" class="btn btn-light">#교통</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#편의점</button>&nbsp<button type="button" class="btn btn-light">#통신비</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2296/card_img/22992/2296card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">KB 국민 톡톡 M카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#멤버쉽</button>&nbsp<button type="button" class="btn btn-light">#온라인</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#편의점</button>&nbsp<button type="button" class="btn btn-light">#간편결제</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2304/card_img/23588/2304card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">신한카드 Eats More</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#청년</button>&nbsp<button type="button" class="btn btn-light">#환전</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#국내</button>&nbsp<button type="button" class="btn btn-light">#해외</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div>
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2231/card_img/21350/2231card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">신한카드 Puzzle</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#시니어</button>&nbsp<button type="button" class="btn btn-light">#국내</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#해외</button>&nbsp<button type="button" class="btn btn-light">#서비스팩</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2300/card_img/25153/2300card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">내맘대로 쁨 카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#신혼부부</button>&nbsp<button type="button" class="btn btn-light">#쇼핑</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#EV충전</button>&nbsp<button type="button" class="btn btn-light">#국내</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/687/card_img/25343/687card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">신한카드 Unboxing</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#온라인</button>&nbsp<button type="button" class="btn btn-light">#배송비</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#편의점</button>&nbsp<button type="button" class="btn btn-light">#청년</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2407/card_img/26843/2407card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">삼성 iD PET 카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#반려동물</button>&nbsp<button type="button" class="btn btn-light">#온라인</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#반려동물 쇼핑몰</button>&nbsp<button type="button" class="btn btn-light">#손해보험</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2387/card_img/25536/2387card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">신한카드 래플(Raffle)</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#해외</button>&nbsp<button type="button" class="btn btn-light">#국내</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#프로모션</button>&nbsp<button type="button" class="btn btn-light">#실적</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2229/card_img/21352/2229card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">LOCA LIKIT - New York Blue</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#청년</button>&nbsp<button type="button" class="btn btn-light">#스타벅스</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#영화</button>&nbsp<button type="button" class="btn btn-light">#통신비</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+</div>
+
+
+
+<!-- 체크 카드 -->
+<div class="py-0">
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <!-- style="padding: 40px;" class="col-md-3" -->
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/765/card_img/25707/765card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">010PAY 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#웰컴포인트</button>&nbsp<button type="button" class="btn btn-light">#10%적립</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#교통</button>&nbsp<button type="button" class="btn btn-light">#선택형</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/762/card_img/26507/762card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">오늘하루체크</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#온라인</button>&nbsp<button type="button" class="btn btn-light">#간편결제</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#배달주문</button>&nbsp<button type="button" class="btn btn-light">#생활</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">신한카드 On 체크(잔망루피)</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#생활편의</button>&nbsp<button type="button" class="btn btn-light">#간편결제</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#선택형</button>&nbsp<button type="button" class="btn btn-light">#해외</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div>
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/2432/card_img/27295/2432card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">네이버페이 머니 하나 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#적립</button>&nbsp<button type="button" class="btn btn-light">#네이버</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#생활</button>&nbsp<button type="button" class="btn btn-light">#선택형</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/435/card_img/20935/435card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">카카오뱅크 프렌즈 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#가맹점</button>&nbsp<button type="button" class="btn btn-light">#학원</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#배달의민족</button>&nbsp<button type="button" class="btn btn-light">#생활</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/528/card_img/21216/528card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">라이언 치즈 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#커피</button>&nbsp<button type="button" class="btn btn-light">#대중교통</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#유튜브</button>&nbsp<button type="button" class="btn btn-light">#생활</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/614/card_img/21381/614card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">위글위글 첵첵 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#카카오페이</button>&nbsp<button type="button" class="btn btn-light">#네이버페이</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#스타벅스</button>&nbsp<button type="button" class="btn btn-light">#텐바이텐</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/586/card_img/21342/586card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">어피치 스윗 체크카드</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#간편결제</button>&nbsp<button type="button" class="btn btn-light">#넷플릭스</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#카페</button>&nbsp<button type="button" class="btn btn-light">#올리브영</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="swiper-slide">
+          <div >
+              <div  style="width: 200px; " class="card">
+                <div class="content">
+                  <div class="front">
+                    <img  style="width: 200px;" class="profile" src="https://api.card-gorilla.com:8080/storage/card/559/card_img/21264/559card.png" alt="card">
+                  </div>
+                  <!-- 숨긴 내용 공간 -->
+                  <div style="align-items: center;" class="back from-bottom">
+                    <h3 style="margin-bottom: 20px; margin-top: 50px;">펭수 노리 체크카드(펭카)</h3>
+                    <p style="display: flex; justify-content:center;" class="des m-0">
+                      <button type="button" class="btn btn-light">#교통</button>&nbsp<button type="button" class="btn btn-light">#통신</button>&nbsp
+                    </p>
+                    <p style="display: flex; justify-content:center;" class="des">
+                      <button type="button" class="btn btn-light">#CGV</button>&nbsp<button type="button" class="btn btn-light">#생활</button>&nbsp
+                    </p>
+                    <ul style="margin-top: 30px;" class="social-icon">
+                      <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+                      <li><a href=""><i class="fab fa-instagram"></i></a></li>
+                      <li><a href=""><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+    <div   class="swiper-pagination"></div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- 인기차트 -->
+<div class="py-5">
+  <div  class="py-5">
+    <div style="display: flex; justify-content: center; height: 200px; background-color: #f5f5f5; border-radius: 40px 40px 40px 40px;" class="container">
+      <div  class="row">
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img style="background-color: #fff;" class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api6.card-gorilla.com:8080/storage/corp/2/tips/23748/tips_icon_01.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;"> <b>신용카드 TOP100</b> </h4>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img style="background-color: #fff;" class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api6.card-gorilla.com:8080/storage/corp/2/tips/23749/tips_icon_02.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;" > <b>체크카드 TOP100</b> </h4>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img  style="background-color: #fff;" class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/25284/tips_ico_02.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;" > <b>항공 마일리지</b> </h4>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img  style="background-color: #fff;" class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/25285/tips_ico_03.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;" > <b>통신+공과금</b> </h4>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img style="background-color: #fff;" class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api6.card-gorilla.com:8080/storage/corp/2/tips/23750/tips_icon_03.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;" > <b>점심+교통</b> </h4>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div style="width: 155px;" class="col-lg-12 col-6 p-4">
+            <img style="background-color: #fff;"  class="img-fluid d-block mb-3 mx-auto rounded-circle" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/25287/tips_ico_05.png" width="150" alt="Card image cap">
+            <h4 style="text-align: center;"> <b>연회비 1만원 이하</b> </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+</section>
+
+
+
+<!-- 연말 정산 초보 -->
+<div  class="py-5" >
+<div class="container">
+  <div class="row">
+    <div>
+      <!-- 큰 타이틀 -->
+      <!-- <div  class="col-md-12">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a style="color: #fff; font-size: 25px;" href="#">연말 정산 10만원 더 환급 받으려면</a>
+          </li>
+        </ul> -->
+        <!-- 소제목 -->
+        <!-- <ul>
+          <li class="breadcrumb-item"> <em style="color: #777;" href="#">초보자 필승법 공유</em> </li>
+        </ul>
+    </div>
+     -->
+
+      <div style="display: flex; justify-content: center;" class="row">
+        <!-- 첫번째 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <!-- 카드 이미지 -->
+            <img style="border-radius: 10px 10px 10px 10px; border-color: #fff; height: 165px; width:300px;" class="img-fluid" src="https://api.card-gorilla.com:8080/storage/post/2336/post_top_img/27211/card_1193_0.jpg" width="200" alt="Card image cap">
+            <!-- 카드 내용 -->
+            <p style="color: #ffa800; font-size: 14px;"> <b>연말 정산</b> </p>
+            <br>
+            <p class="mb-0">환급이냐 세금폭탄이냐, D-50 충분히 뒤집을 수 있어요</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">#꿀팁 #마지막한달 #환급받기</p>
+          </div>
+        </div>
+        <!-- 두번쨰 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4"> 
+            <img  style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2338/post_top_img/27216/card_1195_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>연말 정산</b> </p>
+            <br>
+            <p  class="mb-0">직장인 필독! 연말정산 소득공제 기본개념 총정리</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">#꿀팁 #마지막한달 #환급받기</p>
+          </div>
+        </div>
+        <!-- 세번쨰 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <img style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2033/post_top_img/19673/card_1063_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>연말 정산</b> </p>
+            <br>
+            <p   class="mb-0">중도 퇴사했다면 연말정산 ‘이것’만 기억하세요 (인턴, 알바 연말정산)</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">##인턴 #알바 #퇴사</p>
+          </div>
+        </div>
+        <!-- 마지막 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <img style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2254/post_top_img/26041/news_380_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>뉴스/이벤트</b> </p>
+            <br>
+            <p  class="mb-0">올해 연말정산에도 신용카드 소득공제 적용</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">#소득공제 #공제율 #대중교통</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 두번째 섹션 시작 -->
+      <div style="display: flex; justify-content: center;" class="row">
+        <!-- 첫번째 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <!-- 카드 이미지 -->
+            <img style="border-radius: 10px 10px 10px 10px; border-color: #fff; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2355/post_top_img/27358/card_1200_0.jpg" width="200" alt="Card image cap">
+            <!-- 카드 내용 -->
+            <p style="color: #ffa800; font-size: 14px;"> <b>알짜카드 추천</b> </p>
+            <br>
+            <p   class="mb-0">[에디터추천] 무실적 카드, 내가 써도 괜찮을까</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">신규 알짜카드로 알아본 ‘무실적 VS 건당 3,000원 할인’, 승자는?</p>
+          </div>
+        </div>
+        <!-- 두번쨰 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4"> 
+            <img  style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2352/post_top_img/27326/card_1198_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>알짜카드 추천</b> </p>
+            <br>
+            <p  class="mb-0">[후기] 해외에서 마음껏 사용해도 수수료 없는 카드</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">요즘 인기라는 트래블로그 체크카드, 에디터가 직접 해외에서 사용해봤어요</p>
+          </div>
+        </div>
+        <!-- 세번쨰 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <img style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2261/post_top_img/26219/card_1163_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>카드 활용 꿀팁</b> </p>
+            <br>
+            <p  class="mb-0">신용카드 여러 장 쓰는 이를 위한 최적의 카드 조합 가이드 4단계</p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3">아무도 가르쳐 주지 않았던 최적의 카드 조합 가이드</p>
+          </div>
+        </div>
+        <!-- 마지막 -->
+        <div class="col-md-3">
+          <div class="col-6 col-lg-12 p-4">
+            <img style="border-radius: 10px 10px 10px 10px; height: 165px; width:300px;" class="img-fluid d-block mb-3 mx-auto" src="https://api.card-gorilla.com:8080/storage/post/2344/post_top_img/27269/card_1197_0.jpg" width="200" alt="Card image cap">
+            <p style="color: #ffa800; font-size: 14px;"> <b>금융 트렌드</b> </p>
+            <br>
+            <p  class="mb-0">'카타르 월드컵 에디션' 신용카드, 나도 발급 받을 수 있을까? </p>
+            <br>
+            <p  style="color: #888; font-size: 14px; font-weight: 400;" class="mb-3"><월드컵 특별 에디션 신용카드> 속 숨은 이야기 3가지를 소개한다.</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content:center; margin-top: 25px;">
+        <a href=""><button style="padding: 25px 90px;" type="button" class="btn btn-warning">인기 콘텐츠 더 보기</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+<!-- 카드 추천 -->
+<div class="py-5">
+<div style="display: flex; justify-content:center;" class="container">
+  <div class="row" >
+    <div style="padding-right: 50px;" class="col-md-6">
+      <div style="width: 575px;" class="card" style="width: 18rem;">
+        <img src="https://api.card-gorilla.com:8080/storage/post/2345/post_top_img/27276/%EC%82%AC%EC%9D%B4%ED%8A%B8%ED%97%A4%EB%8D%94-%289%29.jpg" class="card-img-top" alt="반려동물을 위한 카드 추천">
+        <div class="txt">
+          <p class="subj">가슴으로 낳아 카드로 키운 우리집 막내 댕냥이</p>
+        </div>
+        <!-- 첫번째 추천 -->
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="width: 70px;" src="https://api.card-gorilla.com:8080/storage/card/2407/card_img/26843/2407card.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">삼성카드</h5>
+                    <p class="card-text">삼성 ID PET 카드</p>
+                    <p class="card-text"><small class="text-muted">국내전용 15,000원 / 해외겸용 15,000원</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- 두번째 추천 -->
+          <li class="list-group-item">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="margin-top: 20px; width: 100px;" src="https://api.card-gorilla.com:8080/storage/card/141/card_img/20369/141card.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">KB 국민카드</h5>
+                    <p class="card-text">KB국민 펫코노미 카드</p>
+                    <p class="card-text"><small class="text-muted">국내전용 30,000원 / 해외겸용  30,000원</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <!-- 마지막 추천 -->
+          <li class="list-group-item">
+            <div class="card mb-3" style="max-width: 540px;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="width: 70px;" src="https://api.card-gorilla.com:8080/storage/card/481/card_img/21171/481card.png" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <h5 class="card-title">우리 카드</h5>
+                    <p class="card-text">카드의정석 댕댕냥이(강아지)</p>
+                    <p class="card-text"><small class="text-muted">국내전용 10,000원 / 해외겸용  12,000원</small></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 두번째 카테고리 -->
+    <div style="padding-left: 50px;" class="col-md-6">
+      <div  style="width: 575px;" class="card" style="width: 18rem;">
+        <img  src="https://api.card-gorilla.com:8080/storage/post/1581/post_top_img/10857/card_875_0.jpg" class="card-img-top" alt="...">
+        <div class="txt">
+          <p class="subj">군고구마, 호빵, 어묵 아직도 제 값 주고 먹어요?</p>
+        </div>
+
+       <!-- 첫번째 추천 -->
+       <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img style="margin-top: 20px; width: 100px;" src="https://api.card-gorilla.com:8080/storage/card/41/card_img/20122/41card.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">신한 카드</h5>
+                  <p class="card-text">신한카드 Deep On Platinum+</p>
+                  <p class="card-text"><small class="text-muted">해외겸용 30,000원</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 두번째 추천 -->
+        <li class="list-group-item">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img style="margin-top: 20px; width: 100px;" src="https://api.card-gorilla.com:8080/storage/card/141/card_img/20369/141card.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">KB 국민카드</h5>
+                  <p class="card-text">청춘대로 1코노미 카드</p>
+                  <p class="card-text"><small class="text-muted">해외겸용  17,000원</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <!-- 마지막 추천 -->
+        <li class="list-group-item">
+          <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+              <div class="col-md-4">
+                <img style="margin-top: 20px; width: 100px;" src="https://api.card-gorilla.com:8080/storage/card/14/card_img/20096/14card.png" class="img-fluid rounded-start" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">신한 카드</h5>
+                  <p class="card-text">신한카드 YOLO ⓘ</p>
+                  <p class="card-text"><small class="text-muted">국내전용 15,000원 / 해외겸용  18,000원</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
     
 {% endblock body %}
+
 
 
