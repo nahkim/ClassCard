@@ -141,7 +141,9 @@ def detail(request, num):
             # 카드사
             'card_brand' : card.card_brand,
             # 국내 해외 전용  
-            'card_in_out' : card.card_in_out,
+            'card_in_out_1' : card.card_in_out_1,
+            'card_in_out_2' : card.card_in_out_2,
+            'card_in_out_3' : card.card_in_out_3,
             # 전월실적
             'card_record' : card.card_record,
             # 연동 해외 카드
@@ -150,6 +152,8 @@ def detail(request, num):
             'benefit_count' : range(len(benefit)),
             'benefits' : bnf_list, 
         }
+
+        print(bnf_list[0][0].bnf_detail, type(bnf_list[0][0].bnf_detail))
 
     except:
         return redirect('main')
