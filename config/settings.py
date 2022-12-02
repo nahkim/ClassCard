@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     "django_bootstrap5",
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 INSTALLED_APPS += [
     # allauth
     "allauth",
@@ -175,3 +177,8 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
+
+# Message Framework
+# https://docs.djangoproject.com/en/4.1/ref/contrib/messages/
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"

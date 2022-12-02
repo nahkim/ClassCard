@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block body %}
+  <!-- magazine.create와 magazine.update는 이 템플릿을 공유합니다. -->
+  <form action="" method='POST' enctype='multipart/form-data'>
+    {% csrf_token %}
+    {% bootstrap_form magazine_form %}
+
+    {% if request.resolver_match.url_name == 'create' %}
+      <input type="submit" value='작성'>
+    {% else %}
+      <input type="submit" value='수정'>
+    {% endif %}
+  </form>
+{% endblock body %}

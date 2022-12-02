@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+  <a href="{% url 'magazine:create' %}" class='btn btn-primary'>쓰기</a>
+  {% for magazine in magazines %}
+    <a href="{% url 'magazine:detail' magazine.pk %}">
+      <img src="" alt="">
+      {{ magazine.title }}
+    </a>
+  {% endfor %}
+{% endblock body %}

@@ -20,10 +20,12 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
-    
+
     path("", views.main, name="main"),
     path("soso/", include("soso.urls")),
     path("articles/", include("articles.urls")),
     path("accounts/", include("allauth.urls")),
+    path("card/", include("card.urls")),
+    path("magazine/", include("magazine.urls")),
     path("admin/", admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
