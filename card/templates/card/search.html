@@ -1,19 +1,36 @@
-{% for kbl in kor_benefit_lst %}
-  <a href="?benefit={{kbl}}">
-    {{ kbl}}
-  </a>
-{% endfor %}
-<br>
-<span>
-  <!-- 카드리스트 갯수 -->
-  {{ benefit_card_list.count}}
-</span>
-
-{% for card in benefit_card_list %}
-  <p>
-    <a href="{% url 'card:detail' card.card_id%}">
-      {{ card.card_name }}
-    </a>
-  </p>
+{% extends 'base.html' %}
+{% block css %}
+  input[value="{{kbl}}":checked + label { }]
+{% endblock css %}
+{% block body %}
+  <div>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+        {% for kbl in kor_benefit_lst %}
+          <div class="">
+            <label class='btn btn-outline-primary'>
+              <input type="checkbox" class='btn btn-primary' name='answers[]' autocomplete='off' value="{{kbl}}" style='display:None;'>
+              {{kbl}}
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
   <br>
-{% endfor %}
+  <span class='text-white'>
+    <!-- 카드리스트 갯수 -->
+    {{ benefit_card_list.count}}
+  </span>
+
+  {% for card in benefit_card_list %}
+    <p>
+      <a href="{% url 'card:detail' card.card_id%}" class='text-white'>
+        {{ card.card_name }}
+      </a>
+    </p>
+    <br>
+  {% endfor %}
+{% endblock body %}
