@@ -245,7 +245,7 @@
   <p class="card-detail-brand">{{ card_brand }}</p>
 </div>
 
-<div class="card-detail-bnf1-all container">
+<div class="card-detail-bnf1-all">
   <div class="card-detail-bnf1">
     <p class="card-detail-bnf1-inout">{{ card_in_out }}</p>
     <p class="card-detail-bnf1-record">{{ card_record }}</p>
@@ -533,80 +533,82 @@
 </div>
 
 {% comment %} 튜플 (benefit queryset, benefit category) {% endcomment %}
-<div class="card-detail-bnf2 container text-center">
-  <p class="card-detail-bnf2-title">주요 혜택</p>
-  <div class="row d-flex justify-content-center">
-    {% for benefit in benefits %}
-    <div class="card-detail-card-group col-sm-6 col-md-6 col-lg-4 col-xl-3">
-      <div class="card-detail-card">
-        <div>
-          {% if benefit.1 == '혜택' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">loyalty</span>
-          {% elif benefit.1 == '스포츠' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">sports_soccer</span>
-          {% elif benefit.1 == '영화' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">movie</span>
-          {% elif benefit.1 == '문화' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">theater_comedy</span>
-          {% elif benefit.1 == '여행' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">luggage</span>
-          {% elif benefit.1 == '교통' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">directions_bus</span>
-          {% elif benefit.1 == '페이' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">add_card</span>
-          {% elif benefit.1 == '포인트' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">paid</span>
-          {% elif benefit.1 == '통신사' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">phone_android</span>
-          {% elif benefit.1 == '쇼핑' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">shopping_bag</span>
-          {% elif benefit.1 == '교육' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">school</span>
-          {% elif benefit.1 == '비즈니스' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">business_center</span>
-          {% elif benefit.1 == '생활' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">home</span>
-          {% elif benefit.1 == '공과금' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">assured_workload</span>
-          {% elif benefit.1 == '카드' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">credit_card</span>
-          {% elif benefit.1 == '어플' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">touch_app</span>
-          {% elif benefit.1 == '애완동물' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">pets</span>
-          {% elif benefit.1 == '자동차' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">directions_car</span>
-          {% elif benefit.1 == '카페' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">coffee</span>
-          {% elif benefit.1 == '건강' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">stethoscope</span>
-          {% elif benefit.1 == '보험' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">account_balance</span>
-          {% elif benefit.1 == '음식' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">ramen_dining</span>
-          {% elif benefit.1 == '금융' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">savings</span>
-          {% elif benefit.1 == '뷰티' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">diversity_1</span>
-          {% elif benefit.1 == '항공' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">flight_takeoff</span>
-          {% elif benefit.1 == '패션' %}
-          <i class="fa-regular fa-shirt"></i>
-          {% elif benefit.1 == '프리미엄' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">diamond</span>
-          {% elif benefit.1 == '지역' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">pin_drop</span>
-          {% elif benefit.1 == '기타' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">more</span>
-          {% elif benefit.1 == '유의사항' %}
-          <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">help_center</span>
-          {% endif %}
+<div class="card-detail-bnf2 text-center">
+  <div class="container">
+    <p class="card-detail-bnf2-title">주요 혜택</p>
+    <div class="row d-flex justify-content-center">
+      {% for benefit in benefits %}
+      <div class="card-detail-card-group col-sm-6 col-md-6 col-lg-4 col-xl-3">
+        <div class="card-detail-card">
+          <div>
+            {% if benefit.1 == '혜택' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">loyalty</span>
+            {% elif benefit.1 == '스포츠' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">sports_soccer</span>
+            {% elif benefit.1 == '영화' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">movie</span>
+            {% elif benefit.1 == '문화' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">theater_comedy</span>
+            {% elif benefit.1 == '여행' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">luggage</span>
+            {% elif benefit.1 == '교통' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">directions_bus</span>
+            {% elif benefit.1 == '페이' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">add_card</span>
+            {% elif benefit.1 == '포인트' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">paid</span>
+            {% elif benefit.1 == '통신사' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">phone_android</span>
+            {% elif benefit.1 == '쇼핑' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">shopping_bag</span>
+            {% elif benefit.1 == '교육' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">school</span>
+            {% elif benefit.1 == '비즈니스' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">business_center</span>
+            {% elif benefit.1 == '생활' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">home</span>
+            {% elif benefit.1 == '공과금' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">assured_workload</span>
+            {% elif benefit.1 == '카드' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">credit_card</span>
+            {% elif benefit.1 == '어플' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">touch_app</span>
+            {% elif benefit.1 == '애완동물' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">pets</span>
+            {% elif benefit.1 == '자동차' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">directions_car</span>
+            {% elif benefit.1 == '카페' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">coffee</span>
+            {% elif benefit.1 == '건강' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">stethoscope</span>
+            {% elif benefit.1 == '보험' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">account_balance</span>
+            {% elif benefit.1 == '음식' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">ramen_dining</span>
+            {% elif benefit.1 == '금융' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">savings</span>
+            {% elif benefit.1 == '뷰티' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">diversity_1</span>
+            {% elif benefit.1 == '항공' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">flight_takeoff</span>
+            {% elif benefit.1 == '패션' %}
+            <i class="fa-regular fa-shirt"></i>
+            {% elif benefit.1 == '프리미엄' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">diamond</span>
+            {% elif benefit.1 == '지역' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">pin_drop</span>
+            {% elif benefit.1 == '기타' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">more</span>
+            {% elif benefit.1 == '유의사항' %}
+            <span class="material-symbols-outlined" style="margin-bottom:1rem; font-size:4.5rem;">help_center</span>
+            {% endif %}
 
+          </div>
+          <p class="card-detail-bnf2-name">{{ benefit.0.bnf_name }}</p>
         </div>
-        <p class="card-detail-bnf2-name">{{ benefit.0.bnf_name }}</p>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </div>
 
