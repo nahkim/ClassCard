@@ -206,9 +206,10 @@ body {
 
 .card-detail-bnf2-title{
   margin: 2rem 0;
-  font-size: 2rem;
+  font-size: 2.5rem;
   text-align: center;
   color: #757d89;
+  font-weight: bold;
 }
 
 .card-detail-card-group{
@@ -227,12 +228,51 @@ body {
   width: 200px;
   height: 310px;
   background-color: #666e78;
-  box-shadow: 3px 3px 16px 1px #666e78;
+  box-shadow: 1px 3px 8px 0px #666e7894;
+}
+
+.card-detail-card-all .card-detail-card-cards{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  }
+
+.card-detail-card-all .card-detail-card-cards .card-detail-back{
+  position: absolute;
+  border-radius: 10px;
+  width: 202px;
+  height: 312px;
+  background-color: #ebebebd1;
+  transition: 1s;
+  z-index: 1;
+  padding: 10px;
+  }
+
+.card-from-bottom{
+  top: 100%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+} 
+
+.card-detail-card-all:hover .card-detail-card-cards .card-from-bottom {
+  top: 0%;
 }
 
 .card-detail-bnf2-name{
   font-size: 1.5rem;
   font-weight: bold;
+}
+
+.card-detail-detail{
+  color: black;
+  margin: 2rem 0;
+}
+
+.linebreaks p {
+  color: black;
+  text-align: left;
+  margin-bottom: 2rem;
 }
 
 @media only screen and (max-width: 1200px) {
