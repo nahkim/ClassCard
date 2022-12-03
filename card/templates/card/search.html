@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
 {% block css %}
   input[value="{{kbl}}":checked + label { }]
 {% endblock css %}
@@ -9,8 +10,8 @@
       <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
         {% for kbl in kor_benefit_lst %}
           <div class="">
-            <label class='btn btn-outline-primary'>
-              <input type="checkbox" class='btn btn-primary' name='answers[]' autocomplete='off' value="{{kbl}}" style='display:None;'>
+            <label class='btn btn-outline-primary' id="cate-btn" style="background-color:white; color: #0d6efd; border: 1px #0d6efd solid;">
+              <input type="checkbox" name='answers[]' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
               {{kbl}}
             </label>
           </div>
@@ -20,17 +21,47 @@
     </form>
   </div>
   <br>
-  <span class='text-white'>
+  <span class=''>
     <!-- 카드리스트 갯수 -->
     {{ benefit_card_list.count}}
   </span>
 
   {% for card in benefit_card_list %}
     <p>
-      <a href="{% url 'card:detail' card.card_id%}" class='text-white'>
+      <a href="{% url 'card:detail' card.card_id%}" class=''>
         {{ card.card_name }}
       </a>
     </p>
     <br>
   {% endfor %}
 {% endblock body %}
+
+{% block script %}
+
+<script>
+  const categoryCheck = document.querySelectorAll("#cate-check")
+  const categoryBtn = document.querySelectorAll("#cate-btn")
+
+  var arr = new Array(categoryCheck.length);
+  for (var i = 0; i < categoryCheck.length; i++) {
+      arr[i] = 1;
+  }
+
+  for (let i = 0 ; i < categoryCheck.length ; i++) {
+    categoryCheck[i].addEventListener('click', function(event) {
+      arr[i] += 1
+      if (arr[i] % 2 === 0) {
+        console.log(arr[i])
+        event.isTrusted = false
+        categoryBtn[i].style.backgroundColor = '#0d6efd';
+        categoryBtn[i].style.color = 'white';
+      } else {
+        console.log(arr[i])
+        categoryBtn[i].style.backgroundColor = 'white';
+        categoryBtn[i].style.color = '#0d6efd';
+      }
+    })
+  }
+</script>
+
+{% endblock script %}

@@ -164,6 +164,9 @@ def search(request):
 
     global benefit_key
     global kor_benefit_dict_keys
+    
+    # kbl : korea benefit list
+
     if request.method == 'POST':
         kbl = request.POST.getlist('answers[]',None)
         # print(kbl)
@@ -195,8 +198,8 @@ def search(request):
                 'kor_benefit_lst' : kor_benefit_dict_keys,
                 'benefit_card_list' : card_list,
             }
-        else:
-            context = {
-                'kor_benefit_lst' : kor_benefit_dict_keys,
-            }
+    else:
+        context = {
+            'kor_benefit_lst' : kor_benefit_dict_keys,
+        }
     return render(request, 'card/search.html',context)
