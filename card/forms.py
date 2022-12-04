@@ -4,4 +4,4 @@ from django import forms
 class DetailCommentForm(forms.ModelForm):
     class Meta:
         model = DetailComment
-        fields = ["content"]
+        fields = ["content", "rate"]
