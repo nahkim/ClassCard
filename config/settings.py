@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django_cleanup.apps.CleanupConfig",
     "django_extensions",
     "django_bootstrap5",
+    'widget_tweaks',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'

@@ -4,11 +4,11 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 
 rate_choice = (
-    (1, '⭐'),
-    (2, '⭐⭐'),
-    (3, '⭐⭐⭐'),
-    (4, '⭐⭐⭐⭐'),
-    (5, '⭐⭐⭐⭐⭐'),
+    ('1', '⭐'),
+    ('2', '⭐⭐'),
+    ('3', '⭐⭐⭐'),
+    ('4', '⭐⭐⭐⭐'),
+    ('5', '⭐⭐⭐⭐⭐'),
   )
 
 class Card(models.Model):
@@ -33,4 +33,4 @@ class DetailComment(models.Model):
     rate = models.CharField(max_length=10, choices=rate_choice)
     updated_at = models.DateTimeField(auto_now = True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    post = models.ForeignKey(Card, on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)

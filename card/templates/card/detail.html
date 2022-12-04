@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block css %}
@@ -591,9 +592,38 @@
   </div>
 </div>
 
-<div class="detail-comment">
-  <p>카드 후기</p>
-  
+<div style='padding-bottom:5rem; background-color: #ebebeb;'>
+  <div class="detail-comment-create container">
+    <p class="detail-comment-title">카드 후기</p>
+    <form action="{% url 'card:comment' card_id %}" method="POST" class="detail-comment-form">
+      <div class="detail-comment-input-box">
+        {% csrf_token %}
+        <div>
+          <p style="color:#757d89;">후기 작성</p>
+          {% render_field detail_comment_form.content class="detail-comment-write form-control"  placeholder="후기를 작성해주세요" add_required_class="is-required"%}
+        </div>
+        <div style="margin-top: 1rem;">
+          <p style="color:#757d89;">카드 평점</p>
+          {% render_field detail_comment_form.rate class="detail-comment-rate form-control" placeholder="만족도를 선택해주세요" add_required_class="is-required" %}
+        </div>
+      </div>
+      <input class="btn-detail-comment" type="submit" value="Submit">
+    </form>
+  </div>
+  <div style="background-color:#ebebeb;">
+    <div class="detail-comment-box container">
+      {% for comment in detail_comments %}
+      <div class="detail-comment">
+        <div class="detail-comment-detail">
+          <p class="detail-comment-user">작성자 | {{ comment.user }}</p>
+          <p class="detail-comment-rate">{{ comment.get_rate_display }}</p>
+          <p class="detail-comment-content">{{ comment.content }}</p>
+          <p class="detail-comment-time">{{ comment.updated_at }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 
