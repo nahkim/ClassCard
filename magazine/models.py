@@ -13,6 +13,7 @@ class Magazine(models.Model):
 
     # 유저가 없어서 현재는 작성이 안됩니당
     # 다중이미지 고려..
+    # 에디터 가지고 오시죠...
 
 class Comment(models.Model):
     content = models.CharField(max_length=300)
