@@ -2,11 +2,21 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+from allauth.account.forms import SignupForm
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserCreationForm(SignupForm):
     email = forms.EmailField(
         required=True,
     )
+    nickname = forms.CharField()
+    profile = forms.ImageField()
+
+    def save(self, request):
+        user = super(CustomUserCreationForm, self).save(request)
+        user.nickname = self.cleaned_data['nickname']
+        user.profile = self.cleaned_data['profile']
+        user.save()
+        return user
 
     class Meta:
         model = get_user_model()
