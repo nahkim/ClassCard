@@ -4,6 +4,7 @@ from .forms import DetailCommentForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 import random
 
 # Create your views here.
@@ -244,7 +245,8 @@ def detail(request, num):
 @login_required
 def comment(request, pk):
     card = Card.objects.get(card_id=pk)
-    
+    user = request.user.pk
+
     if request.method == "POST":
         comment_form = DetailCommentForm(request.POST)
         
@@ -253,6 +255,59 @@ def comment(request, pk):
             comment.card = card
             comment.user = request.user
             comment.save()
+
+    comments = DetailComment.objects.all().order_by('-updated_at')
+    comment_data = []
+
+    for comment in comments:
+        comment_data.append({
+            'user_id' : comment.user.id,
+            'comment_id': comment.id,
+            'userName': comment.user.username,
+            'rate' : comment.rate,
+            'content' : comment.content,
+            'update' : comment.updated_at,
+        })
+    
+    data = {
+        'commentData' : comment_data,
+        'user' : user,
+        'cardId' : card.card_id,
+    }
+
+    return JsonResponse(data)
+
+
+def comment_delete(request, card_id, comment_pk):
+    card = Card.objects.get(card_id=card_id)
+    comment = DetailComment.objects.get(pk = comment_pk)
+    user = request.user.pk
+
+    comment.delete()
+
+    comments = DetailComment.objects.all().order_by('-updated_at')
+    comment_data = []
+
+    for comment in comments:
+        comment_data.append({
+            'user_id' : comment.user.id,
+            'comment_id': comment.id,
+            'userName': comment.user.username,
+            'rate' : comment.rate,
+            'content' : comment.content,
+            'update' : comment.updated_at,
+        })
+    
+    data = {
+        'commentData' : comment_data,
+        'user' : user,
+        'cardId' : card.card_id,
+    }
+
+    return JsonResponse(data)
+
+def comment_update(request, card_id, comment_pk):
+    card = Card.objects.get(card_id=card_id)
 
     return redirect("card:detail", card.card_id)
 
