@@ -22,7 +22,6 @@ from . import views
 urlpatterns = [
 
     path("", views.main, name="main"),
-    path("soso/", include("soso.urls")),
     path("articles/", include("articles.urls")),
     path("accounts/", include("accounts.urls")),
     path("", include("allauth.urls")),
