@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_bootstrap5",
     'widget_tweaks',
+    'django_summernote',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -81,6 +82,7 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -134,7 +136,9 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_URL = "/media/"
 
