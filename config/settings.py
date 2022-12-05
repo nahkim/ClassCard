@@ -34,7 +34,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "soso",
     "accounts",
     "articles",
     "card",
@@ -50,6 +49,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_bootstrap5",
     'widget_tweaks',
+    'django_summernote',
 ]
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -69,7 +69,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],
+        "DIRS": [os.path.join(BASE_DIR, "templates"), os.path.join(BASE_DIR, "templates", "allauth")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -82,6 +82,7 @@ TEMPLATES = [
     },
 ]
 
+MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -135,7 +136,9 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 MEDIA_URL = "/media/"
 
@@ -189,6 +192,12 @@ SOCIALACCOUNT_PROVIDERS = {
 
 AUTH_USER_MODEL = 'accounts.User'
 
-ACCOUNT_FORMS = { 'signup' : 'accounts.forms.CustomUserCreationForm'}
-
+ACCOUNT_FORMS = {
+    'signup' : 'accounts.forms.CustomUserCreationForm'
+}
+# 로그아웃 확인 페이지 제거
+ACCOUNT_LOGOUT_ON_GET = True
+# SMTP 서버실행 해결
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# 세션 쿠키 유효기간
 SESSION_COOKIE_AGE = 3600

@@ -24,14 +24,14 @@ class CustomUserCreationForm(SignupForm):
             "username",
             "email",
             "nickname",
-            "role",
+            # "role",
             "profile",
         )
         labels = {
             "username" : "아이디",
             "email" : "이메일",
             "nickname" : "닉네임",
-            "role" : "역할",
+            # "role" : "역할",
             "profile" : "프로필 이미지",
         }
         widgets = {

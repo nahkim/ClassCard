@@ -4,6 +4,7 @@ from .forms import MagazineForm, MagazineCommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
+from django.http import HttpResponseForbidden
 # Create your views here.
 
 def index(request):
@@ -14,24 +15,27 @@ def index(request):
         'magazines' : magazines,
     }
     return render(request, 'magazine/index.html', context)
-
-# @login_required
+    
+# admin에서 사용자들 -> 사용자 이름 클릭 -> role 변경(필수항목 점검)
+@login_required
 def create_(request):
-    # if request.user.role == 'column':
-    if request.method == 'POST':
-        magazine_form = MagazineForm(request.POST, request.FILES)
-        if magazine_form.is_valid():
-            magazine_form.save()
-            return redirect('magazine:index')
-    else:
-        magazine_form = MagazineForm()
-
-    context = {
-        'magazine_form' : magazine_form,
-    }
-    # else: 
-        # messages.warning(request,'쓰기 권한이 없습니다.')
-    return render(request, 'magazine/create.html', context)
+    if request.user.role == 'C':
+        if request.method == 'POST':
+            form = MagazineForm(request.POST, request.FILES)
+            if form.is_valid():
+                magazine_form = form.save(commit=False)
+                magazine_form.user = request.user
+                magazine_form.save()
+                return redirect('magazine:index')
+        else:
+            form = MagazineForm()
+        context = {
+            'magazine_form' : form,
+        }
+        return render(request, 'magazine/create.html', context)
+    else: 
+        messages.warning(request,'쓰기 권한이 없습니다.')
+        return redirect('magazine:index')
 
 def detail(request,pk):
     magazine = Magazine.objects.get(pk=pk)
@@ -44,39 +48,37 @@ def detail(request,pk):
     }
     return render(request, 'magazine/detail.html', context)
 
-# @login_required
+@login_required
 def update_(request,pk):
-    # if request.user.role == 'column':
     magazine = Magazine.objects.get(pk=pk)
     if request.method == 'POST':
         magazine_form = MagazineForm(request.POST, request.FILES, instance=magazine)
         if magazine_form.is_valid():
-            # magazine_form.save(commit=False)
-            # request.user = magazine.user:
-            magazine_form.save()
-            return redirect('magazine:index')
+            form = magazine_form.save(commit=False)
+            request.user = form.user
+            form.save()
+            return redirect('magazine:detail',pk)
     else:
         magazine_form = MagazineForm(instance=magazine)
-    # else: 
-        # messages.warning(request,'쓰기 권한이 없습니다.')
     context = {
         'magazine_form' : magazine_form,
     }
     return render(request, 'magazine/create.html', context)
 
-# @login_required
+
+@login_required
 def delete_magazine(request, pk):
     magazine = Magazine.objects.get(pk=pk)
-    # if request.user == magazine.user:
-    if request.method == 'POST':
-        magazine.delete()
+    if request.user == magazine.user:
+        if request.method == 'POST':
+            magazine.delete()
+            return redirect('magazine:index')
+        else:
+            messages.warning(request, '비정상적인 접근')
+            return redirect('magazine:detail', pk)
     else:
-        messages.warning(request, '비정상적인 접근')
+        messages.warning(request, '작성자만 삭제 가능')
         return redirect('magazine:detail', pk)
-    # else:
-    #     messages.warning(request, '작성자만 삭제 가능')
-    #     return redirect('magazine:detail', pk)
-    return redirect('magazine:index')
 
 # @login_required
 def mzcomment_create(request,pk):
@@ -100,10 +102,9 @@ def mzcomment_delete(request, mz_pk, mzcm_pk):
     if request.user == mzcomment.user :
         mzcomment.magazine = magazine
         mzcomment.delete()
+        return redirect("magazine:detail", mz_pk)
     else:
-        messages.warning(request, '본인이 작성한 글만 삭제 가능합니다.')
-    return redirect(request, 'magazine/detail.html', mz_pk)
-    
+        return HttpResponseForbidden()
     
 
     
