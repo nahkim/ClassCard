@@ -1,6 +1,15 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 
 # Create your models here.
+
+rate_choice = (
+    ('1', '⭐'),
+    ('2', '⭐⭐'),
+    ('3', '⭐⭐⭐'),
+    ('4', '⭐⭐⭐⭐'),
+    ('5', '⭐⭐⭐⭐⭐'),
+  )
 
 class Card(models.Model):
     card_id = models.IntegerField()
@@ -18,3 +27,10 @@ class Benefit(models.Model):
     bnf_name = models.CharField(max_length=200, null=True)
     bnf_content = models.TextField(null=True)
     bnf_detail = models.TextField(null=True)
+
+class DetailComment(models.Model):
+    content = models.TextField()
+    rate = models.CharField(max_length=10, choices=rate_choice)
+    updated_at = models.DateTimeField(auto_now = True)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+    card = models.ForeignKey(Card, on_delete=models.CASCADE)
