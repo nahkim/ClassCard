@@ -171,6 +171,8 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -186,5 +188,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 AUTH_USER_MODEL = 'accounts.User'
+
+ACCOUNT_FORMS = { 'signup' : 'accounts.forms.CustomUserCreationForm'}
 
 SESSION_COOKIE_AGE = 3600

@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     ROLE_CHOICES = [
         ('U', 'User'),
-        ('A', 'Admin'),
+        ('C', 'Critic'),
     ]
 
     nickname = models.CharField(max_length=10)
