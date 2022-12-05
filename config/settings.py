@@ -54,20 +54,6 @@ INSTALLED_APPS = [
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
-INSTALLED_APPS += [
-    # allauth
-    "allauth",
-    "allauth.account",
-    "allauth.socialaccount",
-
-    # include the providers you want to enable:
-    "allauth.socialaccount.providers.naver",
-    "allauth.socialaccount.providers.google",
-]
-
-SITE_ID = 2
-LOGIN_REDIRECT_URL = '/'
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -96,14 +82,6 @@ TEMPLATES = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = [
-
-    # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -157,7 +135,7 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 MEDIA_URL = "/media/"
 
@@ -165,6 +143,34 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Message Framework
+# https://docs.djangoproject.com/en/4.1/ref/contrib/messages/
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
+# Allauth
+INSTALLED_APPS += [
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+
+    # include the providers you want to enable:
+    "allauth.socialaccount.providers.naver",
+    "allauth.socialaccount.providers.google",
+]
+
+AUTHENTICATION_BACKENDS = [
+
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
@@ -179,7 +185,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-# Message Framework
-# https://docs.djangoproject.com/en/4.1/ref/contrib/messages/
+AUTH_USER_MODEL = 'accounts.User'
 
-MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+SESSION_COOKIE_AGE = 3600
