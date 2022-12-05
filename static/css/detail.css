@@ -123,10 +123,26 @@ body {
 
 /*============= card detail 페이지 ====================*/
 .card-detail{
-  margin-top: 4rem;
-  display:flex;
+  position: relative;
+  padding: 4rem 0;
+  height: 400px;
+  display: flex;
   flex-direction: column;
   align-items: center;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-detail-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -40%;
 }
 
 .card-detail-image-box{
@@ -137,18 +153,25 @@ body {
   align-items: center;
 }
 
+.card-detail-image{
+  width: 300px;
+  height: 190px;
+  border-radius: 10px;
+  box-shadow: #8e8e8e 5px 2px 20px 3px;
+}
+
 .rotate90 {
   transform: rotate(90deg);
 }
 
 .card-detail-name{
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
+  color: black;
 }
 
-.card-detail-name,
-.card-detail-brand{
-  margin-top: 0.7rem;
+.card-detail-brand {
+  margin-top: 1rem;
   color: #757d89;
 }
 
@@ -156,15 +179,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem auto 0;
-  border-bottom: solid 1px #828b9747;
-  padding: 2rem 1rem;
-  background-color: #ebebeb;
+  padding: 12rem 1rem 2.5rem;
 }
 
 .card-detail-bnf1{
   display: flex;
   justify-content: center;
+  padding-top: 2rem;
 }
 
 .card-detail-bnf1-btn{
@@ -201,11 +222,12 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 6rem;
-  background-color: #ebebeb;
 }
 
 .card-detail-bnf2-title{
-  margin: 2rem 0;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: solid 1px #828b9747;
   font-size: 2.5rem;
   text-align: center;
   color: #757d89;
@@ -222,12 +244,17 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem 2rem;
+  margin: 2rem;
   border-radius: 10px;
   padding: 2rem;
-  width: 200px;
-  height: 310px;
-  background-color: #666e78;
+  width: 250px;
+  height: 360px;
+  /* background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  background-color: #738ffd;
   box-shadow: 1px 3px 8px 0px #666e7894;
 }
 
@@ -235,28 +262,47 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-.card-detail-card-all .card-detail-card-cards .card-detail-back{
+.card-detail-back{
   position: absolute;
   border-radius: 10px;
-  width: 202px;
-  height: 312px;
-  background-color: #ebebebd1;
-  transition: 1s;
+  width: 251px;
+  height: 360px;
+  background-color: #ebebebea;
   z-index: 1;
   padding: 10px;
-  }
+  bottom: -80%;
+  visibility: hidden;
+}
 
-.card-from-bottom{
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, 10%);
-} 
+.card-detail-card-all:hover .card-detail-back{
+  top: 32px;
+  visibility: visible;
+  transition: all ease-in 2s;
+}
 
-.card-detail-card-all:hover .card-detail-card-cards .card-from-bottom {
-  top: 0%;
+.btn-bnf{
+  margin-top: 1.5rem;
+  border-radius: 30px;
+  border: solid 1px #0071e3;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #0071e3;
+  background-color: #ffffff00;
+}
+
+.btn-bnf:hover{
+  margin-top: 1.5rem;
+  border-radius: 30px;
+  border: solid 1px #0071e3;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #0071e3;
 }
 
 .card-detail-bnf2-name{

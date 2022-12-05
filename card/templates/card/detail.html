@@ -10,7 +10,7 @@
 {% endblock css %}
 
 {% block body %}
-
+<!--
 <div class="">
   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="2500">
     <div class="carousel-inner" style="background-color:black;">
@@ -237,13 +237,16 @@
     </button>
   </div>
 </div>
+-->
 
 <div class="card-detail">
-  <div class="card-detail-image-box" style="height:300px; width:190px;">
-    <img class="card-detail-image" src="{{ card_img }}" alt="">
+  <div class="card-detail-top">
+    <div class="card-detail-image-box">
+      <img class="card-detail-image" src="{{ card_img }}" alt="">
+    </div>
+    <p class="card-detail-brand">{{ card_brand }}</p>
+    <p class="card-detail-name">{{ card_name }}</p>
   </div>
-  <p class="card-detail-name">{{ card_name }}</p>
-  <p class="card-detail-brand">{{ card_brand }}</p>
 </div>
 
 <div class="card-detail-bnf1-all">
@@ -557,10 +560,10 @@
                 {% endif %}
               </div>
             </div>
-            <div class="card-detail-back card-from-bottom d-flex flex-column align-items-center justify-content-center">
-              <p style="font-weight:bold; color:black;">{{ benefit.0.bnf_content }}</p>
+            <div class="card-detail-back d-flex flex-column align-items-center justify-content-center">
+              <p style="font-size: 1.2rem; font-weight:bold; color:black;">{{ benefit.0.bnf_content }}</p>
               <!-- Modal 버튼 -->
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ forloop.counter0 }}" style="margin-top: 1.5rem;">
+              <button type="button" class="btn-bnf" data-bs-toggle="modal" data-bs-target="#exampleModal-{{ forloop.counter0 }}">
                 혜택 자세히 보기
               </button>
             </div>
