@@ -1,38 +1,51 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% block body %}
+  <a href="{% url 'magazine:index' %}">매거진 목록</a>
   <h1>
     매거진 디테일페이지</h1>
-  <p>
-    디테일 변수는 magazine 입니다
-  </p>
-  <p>
-    ex >
-    <br>
-    - magazine.title,
-    <br>
-    - magazine.content,
-    <br>
-    - magazine.image,
-    <br>
-    - magazine.created_at
-    <br>
+  <div class="m-5">
 
-  </p>
-
-  <a class='btn btn-primary' data-bs-toggle="collapse" href="#collapseComment" role="button" aria-expanded="false" aria-controls="collapseComment">
-    댓글작성</a>
-  <div class='collapse' id='collapseComment'>
-    <form action="{% url 'magazine:mzcomment_create' %}" method='POST'>
+    <p>
+      디테일 변수는 magazine 입니다
+    </p>
+    {{magazine.title}}
+    <br>
+    {{ magazine.user}}
+    <br>
+    <a href="{% url 'magazine:update' magazine.pk %}" class='btn btn-warning'>수정버튼 위치</a>
+    <form action="{% url 'magazine:delete_magazine' magazine.pk %}" method='POST'>
       {% csrf_token %}
-      {% bootstrap_form mzcomment_form %}
-      <input type="submit" value='작성'>
+      <input type="submit" class='btn btn-danger' value='매거진 삭제 버튼'>
     </form>
+    {{magazine.content | safe }},
+    <br>
+    {{magazine.created_at}}
+    <br>
+
   </div>
-  {% for mzcomment in mzcomments %}
-    {{mzcomment.user}}|{{ mzcomment.content}}
-    <a href="{% url 'magazine:mzcomment_delete' %}">댓글삭제</a>
-    <hr>
-  {% endfor %}
+  <div class="mb-5">
+
+    <p class=''>
+      댓글작성</p>
+    <div class='mb-5'>
+      <form action="{% url 'magazine:mzcomment_create' magazine.pk %}" method='POST'>
+        {% csrf_token %}
+        <p>
+
+          {% bootstrap_form mzcomment_form %}
+          <input type="submit" value='작성' class='btn btn-primary'>
+        </p>
+      </form>
+    </div>
+    {% for mzcomment in mzcomments %}
+      <p>
+
+        {{mzcomment.user}}|{{ mzcomment.content}}
+        <a href="{% url 'magazine:mzcomment_delete' magazine.pk mzcomment.pk %}" class='btn btn-danger'>삭제(버튼 왜 죄다 이렇게 나와용,,,?)</a>
+      </p>
+      <hr>
+    {% endfor %}
+  </div>
 
 {% endblock body %}
