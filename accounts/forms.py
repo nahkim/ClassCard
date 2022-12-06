@@ -53,3 +53,24 @@ class CustomUserCreationForm(SignupForm):
         if len(get_user_model().objects.filter(email=email)):
             raise ValidationError("중복된 이메일이 있습니다.")
         return email
+
+class CustomUserChangeForm(UserChangeForm):
+    email = forms.EmailField(
+        required=True,
+    )
+
+    class Meta:
+        model = get_user_model()
+        fields = (
+            "profile",
+            "nickname",
+        )
+        labels = {
+            "profile": "프로필 이미지",
+            "nickname": "닉네임",
+        }
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        if len(get_user_model().objects.filter(email=email)):
+            raise ValidationError("중복된 이메일이 있습니다.")
+        return 
