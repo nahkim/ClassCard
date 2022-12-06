@@ -431,3 +431,32 @@ body {
   color: #738ffd;
   cursor: pointer;
 }
+
+.comment-update-form-style{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment-update-rate{
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: 0px;
+  color: #738ffd;
+}
+
+.comment-update-content{
+  width: 90%;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 0px;
+  padding: 0.3rem;
+  color: #6a717b;
+}
+
+.comment-control-update:hover,
+.comment-control-update-exit:hover{
+  color: #6a717b;
+  cursor: pointer;
+}

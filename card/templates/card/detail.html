@@ -622,15 +622,36 @@
             <p class="detail-comment-user">{{ comment.user }}</p>
             {% if request.user == comment.user %}
             <div style="margin-top:10px; display:flex">
-              <p class="detail-comment-update">수정</p>
+              <p class="detail-comment-update" onclick="comment_update(this)" id="okBtn-{{ comment.pk }}" data-cardup-id="{{ card_id }}" data-commentup-id="{{ comment.pk }}">수정</p>
               <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-carddel-id="{{ card_id }}" data-commentdel-id="{{ comment.pk }}" style="margin-left: 1.5rem;">삭제</p>
             </div>
             {% endif %}
           </div>
           <div class="detail-comment-review">
-            <p class="detail-comment-rate">{{ comment.get_rate_display }}</p>
-            <p class="detail-comment-content">{{ comment.content }}</p>
-            <p class="detail-comment-time">{{ comment.updated_at }}</p>
+            <div class="detail-comment-review-okBtn-{{ comment.pk }} review-comment-update-{{ comment.pk }}" style="display:block;">
+              <p class="detail-comment-rate">{{ comment.get_rate_display }}</p>
+              <p class="detail-comment-content">{{ comment.content }}</p>
+              <p class="detail-comment-time">{{ comment.updated_at }}</p>
+            </div>
+            {% if request.user == comment.user %}
+            <form class="comment-update-form form-comment-update-{{ comment.pk }}" id="form-comment-update-okBtn-{{ comment.pk }}" action="{% url 'card:comment_update' card_id comment.pk %}" method="post" style="display:none">
+              {% csrf_token %}
+              <div class="comment-update-form-style">
+                <select class="comment-update-rate" id="comment-update-rate-{{ comment.pk }}" value="{{ comment.rate }}">
+                  <option value="1">⭐</option>
+                  <option value="2">⭐⭐</option>
+                  <option value="3">⭐⭐⭐</option>
+                  <option value="4">⭐⭐⭐⭐</option>
+                  <option value="5">⭐⭐⭐⭐⭐</option>
+                </select>
+                <input class="comment-update-content" id="comment-update-input-{{ comment.pk }}" type="text" value="{{ comment.content }}">
+                <div class="d-flex">
+                  <p class="comment-control-update" onclick="comment_update_ok(this)" id="comment-update-ok-{{ comment.pk }}" data-cardup-id="{{ card_id }}" data-commentup-id="{{ comment.pk }}">수정 완료</p>
+                  <p class="comment-control-update-exit ms-3" onclick="comment_update_exit(this)" id="comment-update-{{ comment.pk }}">취소</p>
+                </div>
+              </div>
+            </form>
+            {% endif %}
           </div>
         </div>
       </div>
@@ -718,22 +739,41 @@
 
         if (user === commentData[i].user_id) {
         comments.insertAdjacentHTML('beforeend', `
-          <div class="detail-comment">
-            <div class="detail-comment-detail">
-              <div class="d-flex flex-column">
-                <p class="detail-comment-user">${ commentData[i].userName }</p>
-                <div style="margin-top:10px; display:flex">
-                  <p class="detail-comment-update">수정</p>
-                  <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
-                </div>
+        <div class="detail-comment">
+          <div class="detail-comment-detail">
+            <div class="d-flex flex-column">
+              <p class="detail-comment-user">${ commentData[i].userName }</p>
+              <div style="margin-top:10px; display:flex">
+                <p class="detail-comment-update" onclick="comment_update(this)" id="okBtn-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정</p>
+                <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
               </div>
-              <div class="detail-comment-review">
+            </div>
+            <div class="detail-comment-review">
+              <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
                 <p class="detail-comment-rate">${ rate }</p>
                 <p class="detail-comment-content">${ commentData[i].content }</p>
                 <p class="detail-comment-time">${ commentData[i].update }</p>
               </div>
+              <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
+                <div class="comment-update-form-style">
+                  <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                  </select>
+                  <input class="comment-update-content" id="comment-update-input-${ commentData[i].comment_id }" type="text" value="${ commentData[i].content }">
+                  <div class="d-flex">
+                    <p class="comment-control-update" onclick="comment_update_ok(this)" id="comment-update-ok-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정 완료</p>
+                    <p class="comment-control-update-exit ms-3" onclick="comment_update_exit(this)" id="comment-update-${ commentData[i].comment_id }">취소</p>
+                  </div>
+                </div>
+              </form>
             </div>
-          </div>`
+          </div>
+        </div>
+        `
         )} else {
           comments.insertAdjacentHTML('beforeend', `
           <div class="detail-comment">
@@ -742,16 +782,20 @@
                 <p class="detail-comment-user">${ commentData[i].userName }</p>
               </div>
               <div class="detail-comment-review">
-                <p class="detail-comment-rate">${ commentData[i].rate }</p>
-                <p class="detail-comment-content">${ commentData[i].content }</p>
-                <p class="detail-comment-time">${ commentData[i].update }</p>
+                <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
+                  <p class="detail-comment-rate">${ rate }</p>
+                  <p class="detail-comment-content">${ commentData[i].content }</p>
+                  <p class="detail-comment-time">${ commentData[i].update }</p>
+                </div>
               </div>
             </div>
-          </div>`
+          </div>
+          `
           )
         }
       }
     })
+    commentForm.reset()
   })
 
   // 댓글 삭제 비동기
@@ -792,22 +836,41 @@
 
         if (user === commentData[i].user_id) {
         comments.insertAdjacentHTML('beforeend', `
-          <div class="detail-comment">
-            <div class="detail-comment-detail">
-              <div class="d-flex flex-column">
-                <p class="detail-comment-user">${ commentData[i].userName }</p>
-                <div style="margin-top:10px; display:flex">
-                  <p class="detail-comment-update">수정</p>
-                  <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
-                </div>
+        <div class="detail-comment">
+          <div class="detail-comment-detail">
+            <div class="d-flex flex-column">
+              <p class="detail-comment-user">${ commentData[i].userName }</p>
+              <div style="margin-top:10px; display:flex">
+                <p class="detail-comment-update" onclick="comment_update(this)" id="okBtn-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정</p>
+                <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
               </div>
-              <div class="detail-comment-review">
+            </div>
+            <div class="detail-comment-review">
+              <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
                 <p class="detail-comment-rate">${ rate }</p>
                 <p class="detail-comment-content">${ commentData[i].content }</p>
                 <p class="detail-comment-time">${ commentData[i].update }</p>
               </div>
+              <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
+                <div class="comment-update-form-style">
+                  <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                  </select>
+                  <input class="comment-update-content" id="comment-update-input-${ commentData[i].comment_id }" type="text" value="${ commentData[i].content }">
+                  <div class="d-flex">
+                    <p class="comment-control-update" onclick="comment_update_ok(this)" id="comment-update-ok-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정 완료</p>
+                    <p class="comment-control-update-exit ms-3" onclick="comment_update_exit(this)" id="comment-update-${ commentData[i].comment_id }">취소</p>
+                  </div>
+                </div>
+              </form>
             </div>
-          </div>`
+          </div>
+        </div>
+        `
         )} else {
           comments.insertAdjacentHTML('beforeend', `
           <div class="detail-comment">
@@ -816,16 +879,144 @@
                 <p class="detail-comment-user">${ commentData[i].userName }</p>
               </div>
               <div class="detail-comment-review">
-                <p class="detail-comment-rate">${ commentData[i].rate }</p>
-                <p class="detail-comment-content">${ commentData[i].content }</p>
-                <p class="detail-comment-time">${ commentData[i].update }</p>
+                <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
+                  <p class="detail-comment-rate">${ rate }</p>
+                  <p class="detail-comment-content">${ commentData[i].content }</p>
+                  <p class="detail-comment-time">${ commentData[i].update }</p>
+                </div>
               </div>
             </div>
-          </div>`
+          </div>
+          `
           )
         }
       }
     })
+  }
+
+  const comment_update_ok = (e) => {
+    const commentId = event.target.dataset.commentupId
+    const cardId = event.target.dataset.cardupId
+    const commentInput = document.querySelector(`#comment-update-input-${commentId}`)
+    const rateInput = document.querySelector(`#comment-update-rate-${commentId}`)
+
+
+    axios({
+      method: 'post',
+      url: `/card/comment_update/${ cardId }/${ commentId }/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: {
+        'content': commentInput.value,
+        'rate' : rateInput.value
+      }
+    }) .then(response => {
+      const comments = document.querySelector(".detail-comment-box")
+      comments.textContent= ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const cardId = response.data.cardId
+      for (i = 0 ; i < commentData.length; i++) {
+
+        let rate = commentData[i].rate
+
+        if (rate == '1') {
+          rate = '⭐'
+        } else if (rate == '2') {
+          rate = '⭐⭐'
+        } else if (rate == '3') {
+          rate = '⭐⭐⭐'
+        } else if (rate == '4') {
+          rate = '⭐⭐⭐⭐'
+        } else {
+          rate = '⭐⭐⭐⭐⭐'
+        }
+
+        if (user === commentData[i].user_id) {
+        comments.insertAdjacentHTML('beforeend', `
+        <div class="detail-comment">
+          <div class="detail-comment-detail">
+            <div class="d-flex flex-column">
+              <p class="detail-comment-user">${ commentData[i].userName }</p>
+              <div style="margin-top:10px; display:flex">
+                <p class="detail-comment-update" onclick="comment_update(this)" id="okBtn-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정</p>
+                <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
+              </div>
+            </div>
+            <div class="detail-comment-review">
+              <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
+                <p class="detail-comment-rate">${ rate }</p>
+                <p class="detail-comment-content">${ commentData[i].content }</p>
+                <p class="detail-comment-time">${ commentData[i].update }</p>
+              </div>
+              <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
+                <div class="comment-update-form-style">
+                  <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option value="1">⭐</option>
+                    <option value="2">⭐⭐</option>
+                    <option value="3">⭐⭐⭐</option>
+                    <option value="4">⭐⭐⭐⭐</option>
+                    <option value="5">⭐⭐⭐⭐⭐</option>
+                  </select>
+                  <input class="comment-update-content" id="comment-update-input-${ commentData[i].comment_id }" type="text" value="${ commentData[i].content }">
+                  <div class="d-flex">
+                    <p class="comment-control-update" onclick="comment_update_ok(this)" id="comment-update-ok-${ commentData[i].comment_id }" data-cardup-id="${ cardId }" data-commentup-id="${ commentData[i].comment_id }">수정 완료</p>
+                    <p class="comment-control-update-exit ms-3" onclick="comment_update_exit(this)" id="comment-update-${ commentData[i].comment_id }">취소</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        `
+        )} else {
+          comments.insertAdjacentHTML('beforeend', `
+          <div class="detail-comment">
+            <div class="detail-comment-detail">
+              <div class="d-flex flex-column">
+                <p class="detail-comment-user">${ commentData[i].userName }</p>
+              </div>
+              <div class="detail-comment-review">
+                <div class="detail-comment-review-okBtn-${ commentData[i].comment_id } review-comment-update-${ commentData[i].comment_id }" style="display:block;">
+                  <p class="detail-comment-rate">${ rate }</p>
+                  <p class="detail-comment-content">${ commentData[i].content }</p>
+                  <p class="detail-comment-time">${ commentData[i].update }</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          `
+          )
+        }
+      }
+    })
+  } 
+
+  const comment_update = (e) => {
+    const commentId = document.querySelector(`#${e.id}`).id
+    // 수정을 클릭하면 수정 작성 폼이 보인다
+    const commentUpdateForm = document.querySelector(`#form-comment-update-${e.id}`)
+    // 그리고 원래 내용은 안 보이게 한다
+    const commentForm = document.querySelector(`.detail-comment-review-${ e.id }`)
+
+    if (commentUpdateForm.style.display === 'none') {
+      commentUpdateForm.style.display = 'block'
+      commentForm.style.display = 'none'
+    } else {
+      commentUpdateForm.style.display = 'none'
+      commentForm.style.display = 'block'
+    }
+  }
+
+  const comment_update_exit = (e) => {
+    // 취소를 누르면 폼을 없앤다
+    const commentUpdateForm = document.querySelector(`.form-${e.id}`)
+    // 취소를 누르면 원래 내용을 보여준다
+    const commentForm = document.querySelector(`.review-${ e.id }`)
+
+    commentUpdateForm.style.display = 'none'
+    commentForm.style.display = 'block'
   }
 </script>
 {% endblock body %}
