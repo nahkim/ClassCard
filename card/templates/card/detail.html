@@ -598,7 +598,7 @@
 <div style='padding-bottom:5rem; background-color: #ebebeb;'>
   <div class="detail-comment-create container">
     <p class="detail-comment-title">카드 후기</p>
-    <form action="{% url 'card:comment' card_id %}" method="POST" class="detail-comment-form">
+    <form action="{% url 'card:comment' card_id %}" method="POST" class="detail-comment-form" data-card-id="{{ card_id }}">
       <div class="detail-comment-input-box">
         {% csrf_token %}
         <div>
@@ -618,10 +618,20 @@
       {% for comment in detail_comments %}
       <div class="detail-comment">
         <div class="detail-comment-detail">
-          <p class="detail-comment-user">작성자 | {{ comment.user }}</p>
-          <p class="detail-comment-rate">{{ comment.get_rate_display }}</p>
-          <p class="detail-comment-content">{{ comment.content }}</p>
-          <p class="detail-comment-time">{{ comment.updated_at }}</p>
+          <div class="d-flex flex-column">
+            <p class="detail-comment-user">{{ comment.user }}</p>
+            {% if request.user == comment.user %}
+            <div style="margin-top:10px; display:flex">
+              <p class="detail-comment-update">수정</p>
+              <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-carddel-id="{{ card_id }}" data-commentdel-id="{{ comment.pk }}" style="margin-left: 1.5rem;">삭제</p>
+            </div>
+            {% endif %}
+          </div>
+          <div class="detail-comment-review">
+            <p class="detail-comment-rate">{{ comment.get_rate_display }}</p>
+            <p class="detail-comment-content">{{ comment.content }}</p>
+            <p class="detail-comment-time">{{ comment.updated_at }}</p>
+          </div>
         </div>
       </div>
       {% endfor %}
@@ -633,6 +643,8 @@
 
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 <script>
   // 카드 디테일 세로로 바꾸기
   let cardImage = document.querySelector('.card-detail-image')
@@ -650,8 +662,7 @@
   }
 
   // 카드 베너 가로로 바꾸기
-  let bannerCardImage = document.querySelectorAll('.card-detail-banner-card-image')
-  console.log(bannerCardImage)
+  {% comment %} let bannerCardImage = document.querySelectorAll('.card-detail-banner-card-image')
 
   for (let i = 0; i < 10; i++) {
       if (bannerCardImage[i].height > bannerCardImage[i].width) {
@@ -665,6 +676,156 @@
         bannerCardImage[i].style.height = '210px';
         bannerCardImage[i].style.borderRadius = '15px';
       }
-    }
+    } {% endcomment %}
+
+  // 댓글 생성 비동기
+  const commentForm = document.querySelector('.detail-comment-form') 
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+  commentForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+    axios({
+      method: 'post',
+      url: `/card/comment/${event.target.dataset.cardId}/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: new FormData(commentForm)
+    }).then(response => {
+      
+      console.log(response.data.cardId)
+      const comments = document.querySelector(".detail-comment-box")
+      comments.textContent= ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const cardId = response.data.cardId
+
+      for (i = 0 ; i < commentData.length; i++) {
+
+        let rate = commentData[i].rate
+
+        if (rate == '1') {
+          rate = '⭐'
+        } else if (rate == '2') {
+          rate = '⭐⭐'
+        } else if (rate == '3') {
+          rate = '⭐⭐⭐'
+        } else if (rate == '4') {
+          rate = '⭐⭐⭐⭐'
+        } else {
+          rate = '⭐⭐⭐⭐⭐'
+        }
+
+        if (user === commentData[i].user_id) {
+        comments.insertAdjacentHTML('beforeend', `
+          <div class="detail-comment">
+            <div class="detail-comment-detail">
+              <div class="d-flex flex-column">
+                <p class="detail-comment-user">${ commentData[i].userName }</p>
+                <div style="margin-top:10px; display:flex">
+                  <p class="detail-comment-update">수정</p>
+                  <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
+                </div>
+              </div>
+              <div class="detail-comment-review">
+                <p class="detail-comment-rate">${ rate }</p>
+                <p class="detail-comment-content">${ commentData[i].content }</p>
+                <p class="detail-comment-time">${ commentData[i].update }</p>
+              </div>
+            </div>
+          </div>`
+        )} else {
+          comments.insertAdjacentHTML('beforeend', `
+          <div class="detail-comment">
+            <div class="detail-comment-detail">
+              <div class="d-flex flex-column">
+                <p class="detail-comment-user">${ commentData[i].userName }</p>
+              </div>
+              <div class="detail-comment-review">
+                <p class="detail-comment-rate">${ commentData[i].rate }</p>
+                <p class="detail-comment-content">${ commentData[i].content }</p>
+                <p class="detail-comment-time">${ commentData[i].update }</p>
+              </div>
+            </div>
+          </div>`
+          )
+        }
+      }
+    })
+  })
+
+  // 댓글 삭제 비동기
+  const comment_delete = (e) => {
+    console.log(e.id)
+    const comment_id = document.querySelector(`#${e.id}`).id
+
+    axios({
+      method: 'post',
+      url: `/card/comment_delete/${event.target.dataset.carddelId}/${event.target.dataset.commentdelId}/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      }
+    }) .then(response => {
+      console.log(response.data.cardId)
+      console.log(response.data)
+      const comments = document.querySelector(".detail-comment-box")
+      comments.textContent= ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const cardId = response.data.cardId
+
+      for (i = 0 ; i < commentData.length; i++) {
+
+        let rate = commentData[i].rate
+
+        if (rate == '1') {
+          rate = '⭐'
+        } else if (rate == '2') {
+          rate = '⭐⭐'
+        } else if (rate == '3') {
+          rate = '⭐⭐⭐'
+        } else if (rate == '4') {
+          rate = '⭐⭐⭐⭐'
+        } else {
+          rate = '⭐⭐⭐⭐⭐'
+        }
+
+        if (user === commentData[i].user_id) {
+        comments.insertAdjacentHTML('beforeend', `
+          <div class="detail-comment">
+            <div class="detail-comment-detail">
+              <div class="d-flex flex-column">
+                <p class="detail-comment-user">${ commentData[i].userName }</p>
+                <div style="margin-top:10px; display:flex">
+                  <p class="detail-comment-update">수정</p>
+                  <p class="detail-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].comment_id }" data-carddel-id="${ cardId }" data-commentdel-id="${ commentData[i].comment_id }" style="margin-left: 1.5rem;">삭제</p>
+                </div>
+              </div>
+              <div class="detail-comment-review">
+                <p class="detail-comment-rate">${ rate }</p>
+                <p class="detail-comment-content">${ commentData[i].content }</p>
+                <p class="detail-comment-time">${ commentData[i].update }</p>
+              </div>
+            </div>
+          </div>`
+        )} else {
+          comments.insertAdjacentHTML('beforeend', `
+          <div class="detail-comment">
+            <div class="detail-comment-detail">
+              <div class="d-flex flex-column">
+                <p class="detail-comment-user">${ commentData[i].userName }</p>
+              </div>
+              <div class="detail-comment-review">
+                <p class="detail-comment-rate">${ commentData[i].rate }</p>
+                <p class="detail-comment-content">${ commentData[i].content }</p>
+                <p class="detail-comment-time">${ commentData[i].update }</p>
+              </div>
+            </div>
+          </div>`
+          )
+        }
+      }
+    })
+  }
 </script>
 {% endblock body %}

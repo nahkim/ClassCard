@@ -1,10 +1,15 @@
 from django.forms import ModelForm
 from .models import Magazine, Comment
+from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
+
 
 class MagazineForm(ModelForm):
     class Meta:
         model = Magazine
-        fields = ('title', 'content', 'image','sub_title')
+        fields = ('title', 'sub_title', 'content',)
+        widgets = {
+            'content': SummernoteWidget(),
+        }
 
 class MagazineCommentForm(ModelForm):
     class Meta:
