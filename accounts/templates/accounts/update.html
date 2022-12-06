@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+
+{% block body %}
+  <a href="{% url 'accounts:delete' %}" class="delete">회원 탈퇴</a>
+{% endblock body %}
