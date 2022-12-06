@@ -311,52 +311,65 @@ def comment_update(request, card_id, comment_pk):
 
     return redirect("card:detail", card.card_id)
 
+from django.core.paginator import Paginator, PageNotAnInteger
 
+card_list = []
 def search(request):
-
-    global benefit_key
-    global kor_benefit_dict_keys
-
+    global card_list
     # kbl : korea benefit list
-
     if request.method == "POST":
+        card_list = []
         kbl = request.POST.getlist("answers[]", None)
         # print(kbl)
-        if kbl:
-            vl = []
-            # print('kbl=',kbl) # 디버깅용 print
-            index_lst = [
-                i for i, value in enumerate(kor_benefit_dict_keys) if value in kbl
-            ]
-            # print('index_lst=',index_lst,type(index_lst))# 디버깅용 print
-            benefit_key_r = [
-                value for i, value in enumerate(benefit_key) if i in index_lst
-            ]
+        vl = []
+        # print('kbl=',kbl) # 디버깅용 print
+        index_lst = [
+            i for i, value in enumerate(kor_benefit_dict_keys) if value in kbl
+        ]
+        # print('index_lst=',index_lst,type(index_lst))# 디버깅용 print
+        benefit_key_r = [
+            value for i, value in enumerate(benefit_key) if i in index_lst
+        ]
 
-            # print('benefit_key_r=',benefit_key_r,type(benefit_key_r)) # 디버깅용 print
-            # 키 값으로 딕셔너리 값 찾아가기
-            benefit_list = [
-                vl.extend(v) for k, v in benefit_dict.items() if k in benefit_key_r
-            ]
-            # print(benefit_list)
-            # print(vl)
+        # print('benefit_key_r=',benefit_key_r,type(benefit_key_r)) # 디버깅용 print
+        # 키 값으로 딕셔너리 값 찾아가기
+        benefit_list = [
+            vl.extend(v) for k, v in benefit_dict.items() if k in benefit_key_r
+        ]
+        # print(benefit_list)
+        # print(vl)
 
-            #     # 값리스트에 포함되는 혜택 필터링
-            benefit_card_lst = Benefit.objects.filter(bnf_name__in=vl)
-            # print(benefit_card_lst)
-            #     # card_id 추출, 중복제거
-            benefit_card_lst_d = benefit_card_lst.values("card_id").distinct()
-            # print(benefit_card_lst_d)
-            #     # print(type(benefit_card_lst_d))
-            #     # 카드id로 카드 리스트 필터링
-            card_list = Card.objects.filter(card_id__in=benefit_card_lst_d)
-            # print(card_list)
-            context = {
-                "kor_benefit_lst": kor_benefit_dict_keys,
-                "benefit_card_list": card_list,
-            }
+        #     # 값리스트에 포함되는 혜택 필터링
+        benefit_card_lst = Benefit.objects.filter(bnf_name__in=vl)
+        # print(benefit_card_lst)
+        #     # card_id 추출, 중복제거
+        benefit_card_lst_d = benefit_card_lst.values("card_id").distinct()
+        # print(benefit_card_lst_d)
+        #     # print(type(benefit_card_lst_d))
+        #     # 카드id로 카드 리스트 필터링
+        card_list = Card.objects.filter(card_id__in=benefit_card_lst_d)
+        # print(card_list)
+
+        page = 1
+        paginator = Paginator(card_list, 10)
+        try:
+            paged_list = paginator.page(page)
+        except PageNotAnInteger:
+            page = 1
+            paged_list = paginator.page(page)
+
     else:
-        context = {
-            "kor_benefit_lst": kor_benefit_dict_keys,
-        }
+        page = request.GET.get('page')
+        paginator = Paginator(card_list, 10)
+        try:
+            paged_list = paginator.page(page)
+        except PageNotAnInteger:
+            page = 1
+            paged_list = paginator.page(page)
+        
+    context = {
+        "kor_benefit_lst": kor_benefit_dict_keys,
+        "benefit_card_list": paged_list,   
+        "card_lst" : card_list,
+    }
     return render(request, "card/search.html", context)
