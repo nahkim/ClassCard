@@ -50,3 +50,13 @@
   border-radius: 25px;
   color: white;
 }
+
+.logo_img:hover {
+  border-radius: 20px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.alert {
+  --bs-alert-padding-x: 0rem;
+  --bs-alert-padding-y: 0rem;
+}
