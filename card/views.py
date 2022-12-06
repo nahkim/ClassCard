@@ -5,7 +5,9 @@ from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 import random
+import json
 
 # Create your views here.
 benefit_dict = {
@@ -308,8 +310,36 @@ def comment_delete(request, card_id, comment_pk):
 
 def comment_update(request, card_id, comment_pk):
     card = Card.objects.get(card_id=card_id)
+    comment = DetailComment.objects.get(pk=comment_pk)
+    user = request.user.pk
 
-    return redirect("card:detail", card.card_id)
+    jsonObject = json.loads(request.body)
+
+    if request.method == 'POST':
+        comment.content = jsonObject.get('content')
+        comment.rate = jsonObject.get('rate')
+        comment.save()
+
+    comments = DetailComment.objects.all().order_by('-updated_at')
+    comment_data = []
+
+    for comment in comments:
+        comment_data.append({
+            'user_id' : comment.user.id,
+            'comment_id': comment.id,
+            'userName': comment.user.username,
+            'rate' : comment.rate,
+            'content' : comment.content,
+            'update' : comment.updated_at,
+        })
+    
+    data = {
+        'commentData' : comment_data,
+        'user' : user,
+        'cardId' : card.card_id,
+    }
+
+    return JsonResponse(data)
 
 from django.core.paginator import Paginator, PageNotAnInteger
 
