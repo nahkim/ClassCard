@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load widget_tweaks %}
 {% block body %}
   <a href="{% url 'magazine:index' %}">매거진 목록</a>
   <h1>
@@ -29,18 +30,21 @@
     <p class=''>
       댓글작성</p>
     <div class='mb-5'>
-      <form action="{% url 'magazine:mzcomment_create' magazine.pk %}" method='POST'>
+      <form action="{% url 'magazine:mzcomment_create' magazine.pk %}" method='POST' class='magazine-comment-form' data-magazine-id="{{ magazine.pk }}" id="formform">
         {% csrf_token %}
-        <p>
-
-          {% bootstrap_form mzcomment_form %}
+        <div class="detail-comment-input-box">
+          <p>댓글 작성</p>
+            {% render_field mzcomment_form.content class="form-control" placeholder='댓글 작성' add_required_class="is-required" %}
+        </div>
+        <div class="">
+          <p>평점</p>
+          {% render_field mzcomment_form.grade class="form-control" placeholder='댓글평점' add_required_class="is-required" %}
+        </div>
           <input type="submit" value='작성' class='btn btn-primary'>
-        </p>
       </form>
     </div>
     {% for mzcomment in mzcomments %}
       <p>
-
         {{mzcomment.user}}|{{ mzcomment.content}}
         <a href="{% url 'magazine:mzcomment_delete' magazine.pk mzcomment.pk %}" class='btn btn-danger'>삭제(버튼 왜 죄다 이렇게 나와용,,,?)</a>
       </p>
