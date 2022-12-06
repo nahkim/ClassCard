@@ -1,21 +1,74 @@
 {% extends "account/base.html" %}
+{% load django_bootstrap5 %}
+{% load static %}
 
-{% load i18n %}
-
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock css %}
 
 {% block content %}
-<h1>{% trans "Sign Up" %}</h1>
 
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+<div class="bg-img">
+  <div class="d-flex justify-content-center">
+    <div class="p-4" style="margin-top: 4rem; width: 350px; height: 595px; background-color: white; border-radius: 8px;">
+      <p class="mt-3 mb-4 d-flex justify-content-center" style="font-size: 20px;">회원 가입</p>
+      <form class="signup" id="signup_form" method="post" enctype="multipart/form-data" action="{% url 'account_signup' %}">
+        {% csrf_token %}
 
-<form class="signup" id="signup_form" method="post" enctype="multipart/form-data" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
+        <!-- id -->
+        <label class="mb-2">아이디</label>
+        {{ form.username }}
+
+        <!-- email -->
+        <label class="mb-2">이메일</label>
+        {{ form.email }}
+
+        <!-- nickname -->    
+        <label class="mb-2">이름</label>
+        {{ form.nickname }}
+
+        <!-- password -->
+        <label class="mb-2">비밀번호</label>
+        {{ form.password1 }}
+
+        <!-- password_2 -->
+        <label class="mb-2">비밀번호 확인</label>
+        {{ form.password2 }}
+
+        <!-- already have -->
+        <div class="d-flex justify-content-end">
+          <p class="mb-4" style="font-size: 12px;">
+            이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a> 하세요.
+          </p>
+        </div>
+        
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+        {% endif %}
+        <div class="btn-div pull-center">
+          <div class="position-relative">
+            <a class="btn signup-btn" type="submit">
+              <a href="" style="position: absolute; top: 11px; left:40%; color: white;">회원가입</a>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#id_username').addClass('form-control').removeAttr('autofocus').blur();
+  $('#id_email').addClass('form-control');
+  $('#id_nickname').addClass('form-control');
+  $('#id_profile').addClass('form-control');
+  $('#id_password1').addClass('form-control').removeAttr('autofocus').blur();
+  $('#id_password2').addClass('form-control');
+
+  $( document ).ready( function() {
+    $("#id_username").attr("placeholder", "아이디를 입력하세요");
+  });
+</script>
 
 {% endblock %}
