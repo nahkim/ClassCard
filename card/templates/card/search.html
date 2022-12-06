@@ -21,9 +21,9 @@
     </form>
   </div>
   <br>
-  <span class=''>
+  <span class='text-black'>
     <!-- 카드리스트 갯수 -->
-    {{ benefit_card_list.count}}
+    {{ card_lst.count}}
   </span>
 
   {% for card in benefit_card_list %}
@@ -34,34 +34,75 @@
     </p>
     <br>
   {% endfor %}
+
+  <div>
+    <!-- 페이징처리 시작 -->
+    <ul class="pagination justify-content-center">
+      <!-- 이전페이지 -->
+      {% if benefit_card_list.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ benefit_card_list.previous_page_number }}">이전</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+        </li>
+      {% endif %}
+      <!-- 페이지리스트 -->
+      {% for page_number in benefit_card_list.paginator.page_range %}
+        {% if page_number >= benefit_card_list.number|add:-5 and page_number <= benefit_card_list.number|add:5 %}
+          {% if page_number == benefit_card_list.number %}
+            <li class="page-item active" aria-current="page">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+      <!-- 다음페이지 -->
+      {% if benefit_card_list.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ benefit_card_list.next_page_number }}">다음</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled">
+          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+        </li>
+      {% endif %}
+    </ul>
+    <!-- 페이징처리 끝 -->
+  </div>
 {% endblock body %}
 
 {% block script %}
 
-<script>
-  const categoryCheck = document.querySelectorAll("#cate-check")
-  const categoryBtn = document.querySelectorAll("#cate-btn")
+  <script>
+    const categoryCheck = document.querySelectorAll("#cate-check")
+    const categoryBtn = document.querySelectorAll("#cate-btn")
 
-  var arr = new Array(categoryCheck.length);
-  for (var i = 0; i < categoryCheck.length; i++) {
+    var arr = new Array(categoryCheck.length);
+    for (var i = 0; i < categoryCheck.length; i++) {
       arr[i] = 1;
-  }
+    }
 
-  for (let i = 0 ; i < categoryCheck.length ; i++) {
-    categoryCheck[i].addEventListener('click', function(event) {
-      arr[i] += 1
-      if (arr[i] % 2 === 0) {
-        console.log(arr[i])
-        event.isTrusted = false
-        categoryBtn[i].style.backgroundColor = '#0d6efd';
-        categoryBtn[i].style.color = 'white';
-      } else {
-        console.log(arr[i])
-        categoryBtn[i].style.backgroundColor = 'white';
-        categoryBtn[i].style.color = '#0d6efd';
-      }
-    })
-  }
-</script>
+    for (let i = 0; i < categoryCheck.length; i++) {
+      categoryCheck[i].addEventListener('click', function (event) {
+        arr[i] += 1
+        if (arr[i] % 2 === 0) {
+          console.log(arr[i])
+          event.isTrusted = false
+          categoryBtn[i].style.backgroundColor = '#0d6efd';
+          categoryBtn[i].style.color = 'white';
+        } else {
+          console.log(arr[i])
+          categoryBtn[i].style.backgroundColor = 'white';
+          categoryBtn[i].style.color = '#0d6efd';
+        }
+      })
+    }
+  </script>
 
 {% endblock script %}
