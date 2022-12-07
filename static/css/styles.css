@@ -449,7 +449,7 @@ nav .menu li.active:hover a {
   background-repeat: no-repeat;
 }
 
-.card:hover {
+.card5:hover {
   transform: scale(0.9, 0.9);
   box-shadow: 5px 5px 30px 15px rgba(102, 158, 243, 0.25), 
     -5px -5px 30px 15px rgba(102, 158, 243, 0.25);
