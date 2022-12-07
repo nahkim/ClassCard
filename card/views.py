@@ -404,5 +404,17 @@ def search(request):
     }
     return render(request, "card/search.html", context)
 
-def cardcompany(request):
-    return render(request, 'card/cardcompany.html')
+def cardcompanylist(request):
+    companies = Card.objects.values_list('card_brand',flat=True).distinct()
+    
+    context = {
+        'companies' : companies,
+    }
+    return render(request, 'card/cardcompanylist.html', context)
+
+def cardcompany(request,company):
+    card_list = Card.objects.filter(card_brand=company)
+    context = {
+        'card_list' : card_list,
+    }
+    return render(request,'card/cardcompany.html', context)

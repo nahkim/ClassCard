@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>
+    카드사?
+  </h1>
+  <form action="" method='GET'>
+    {% for company in companies %}
+      <a href="{% url 'card:cardcompany' company%}">
+        {{company}}
+      </a>
+    {% endfor %}
+  </form>
+{% endblock body %}
