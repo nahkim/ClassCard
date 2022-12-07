@@ -403,3 +403,6 @@ def search(request):
         "card_lst" : card_list,
     }
     return render(request, "card/search.html", context)
+
+def cardcompany(request):
+    return render(request, 'card/cardcompany.html')

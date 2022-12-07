@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>servicecenter.index.html</h1>
+
+  <form class="d-flex" role="search" method='GET'>
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='search'>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+  <a href="{% url 'service:create' %}" class='btn btn-warning' style='width:100px'>create</a><br>
+
+  {% for question in questions %}
+    <a href="{% url 'service:detail' question.pk %}">{{ question.title }}</a><br>
+  {% endfor %}
+{% endblock body %}
