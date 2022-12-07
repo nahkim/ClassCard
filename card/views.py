@@ -6,48 +6,24 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.core.paginator import Paginator
+from django.db.models import Q
 import random
 import json
 
+benefit_all = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"테마파크" ,"음원사이트" ,"공연/전시" ,"문화센터" ,"게임" ,"고속버스" ,"렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" ,"베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑" ,"패스트푸드" ,"저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트" ,"해외직구" ,"아울렛" ,"홈쇼핑" ,"소셜커머스" ,"쇼핑" ,"백화점" ,"마트/편의점" ,"온라인쇼핑" ,"전통시장" ,"편의점" ,"공항" ,"공항라운지" ,"공항라운지/PP" ,"대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어" ,"라운지키" ,"교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스" ,"프리미엄" ,"프리미엄 서비스" ,"PP" ,"생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
+
 # Create your views here.
 benefit_dict = {
-    "bene": [
-        "혜택2",
-        "혜택5",
-        "혜택 프로모션",
-        "할인",
-        "수수료우대",
-        "연회비지원",
-        "무이자할부",
-        "바우처",
-        "무실적",
-        "모든가맹점",
-    ],
+    "bene": ["혜택2", "혜택5", "혜택 프로모션", "할인", "수수료우대", "연회비지원", "무이자할부", "바우처", "무실적", "모든가맹점"],
     "sport": ["골프", "경기관람", "레저/스포츠"],
-    "movie": [
-        "영화",
-        "영화/문화",
-        "디지털구독",
-    ],
+    "movie": [ "영화", "영화/문화", "디지털구독"],
     "culture": ["게임", "테마파크", "음원사이트", "문화센터", "공연/전시"],
     "travel": ["고속버스", "렌탈", "호텔", "면세점", "리조트", "온라인 여행사", "여행/숙박", "여행사"],
     "transport": ["교통", "기차", "대중교통", "택시"],
     "pay": ["PAYCO", "네이버페이", "간편결제", "카카오페이", "삼성페이"],
     "point": ["CJ ONE", "OK캐쉬백", "해피포인트", "캐시백", "멤버십포인트", "적립", "BC TOP", "SSM"],
     "tele": ["KT", "LGU+", "SKT", "통신"],
-    "shop": [
-        "대형마트",
-        "해외직구",
-        "아울렛",
-        "홈쇼핑",
-        "소셜커머스",
-        "쇼핑",
-        "백화점",
-        "마트/편의점",
-        "온라인쇼핑",
-        "전통시장",
-        "편의점",
-    ],
+    "shop": ["대형마트", "해외직구", "아울렛", "홈쇼핑", "소셜커머스", "쇼핑", "백화점", "마트/편의점", "온라인쇼핑", "전통시장", "편의점"],
     "edu": ["교육/육아", "도서", "학습지", "학원", "어린이집", "유치원"],
     "business": ["직장인", "비즈니스"],
     "life": ["생활", "인테리어", "아이행복"],
@@ -62,57 +38,15 @@ benefit_dict = {
     "food": ["아이스크림", "패밀리레스토랑", "패스트푸드", "저녁", "점심", "푸드", "일반음식점", "배달앱"],
     "finance": ["금융", "증권사", "은행사"],
     "beauty": ["헤어", "화장품", "뷰티/피트니스"],
-    "airplane": [
-        "공항",
-        "공항라운지",
-        "공항라운지/PP",
-        "대한항공",
-        "아시아나항공",
-        "항공권",
-        "항공마일리지",
-        "제주항공",
-        "저가항공",
-        "진에어",
-        "라운지키",
-    ],
+    "airplane": ["공항", "공항라운지", "공항라운지/PP", "대한항공", "아시아나항공", "항공권", "항공마일리지", "제주항공", "저가항공", "진에어", "라운지키"],
     "fashion": ["SPA브랜드"],
     "premium": ["프리미엄", "프리미엄 서비스", "PP"],
     "place": ["해외", "해외이용", "지역"],
     "etc": ["기타"],
     "note": ["유의사항"],
 }
-kor_benefit_dict_keys = [
-    "혜택",
-    "스포츠",
-    "영화",
-    "문화",
-    "여행",
-    "교통",
-    "페이",
-    "포인트",
-    "통신사",
-    "쇼핑",
-    "교육",
-    "비즈니스",
-    "생활",
-    "공과금",
-    "카드",
-    "어플",
-    "애완동물",
-    "자동차",
-    "카페",
-    "건강",
-    "보험",
-    "음식",
-    "금융",
-    "뷰티",
-    "항공",
-    "패션",
-    "프리미엄",
-    "지역",
-    "기타",
-    "유의사항",
-]
+
+kor_benefit_dict_keys = ["혜택", "스포츠", "영화", "문화", "여행", "교통", "페이", "포인트", "통신사", "쇼핑", "교육", "비즈니스", "생활", "공과금", "카드", "어플", "애완동물", "자동차", "카페", "건강", "보험", "음식", "금융", "뷰티", "항공", "패션", "프리미엄", "지역", "기타", "유의사항"]
 
 benefit_lst = benefit_dict.keys()
 benefit_key = list(benefit_lst)
@@ -346,39 +280,130 @@ from django.core.paginator import Paginator, PageNotAnInteger
 card_list = []
 def search(request):
     global card_list
-    # kbl : korea benefit list
-    if request.method == "POST":
+
+    if request.method == "GET":
         card_list = []
-        kbl = request.POST.getlist("answers[]", None)
-        # print(kbl)
-        vl = []
-        # print('kbl=',kbl) # 디버깅용 print
-        index_lst = [
-            i for i, value in enumerate(kor_benefit_dict_keys) if value in kbl
-        ]
-        # print('index_lst=',index_lst,type(index_lst))# 디버깅용 print
-        benefit_key_r = [
-            value for i, value in enumerate(benefit_key) if i in index_lst
-        ]
+        cards = Card.objects.exclude(card_name = None)
+        
+        #============================ 체크 카드랑 신용카드 분리 하기 ===========================
 
-        # print('benefit_key_r=',benefit_key_r,type(benefit_key_r)) # 디버깅용 print
-        # 키 값으로 딕셔너리 값 찾아가기
-        benefit_list = [
-            vl.extend(v) for k, v in benefit_dict.items() if k in benefit_key_r
-        ]
-        # print(benefit_list)
-        # print(vl)
+        check_card = []
+        credit_card = []
 
-        #     # 값리스트에 포함되는 혜택 필터링
-        benefit_card_lst = Benefit.objects.filter(bnf_name__in=vl)
-        # print(benefit_card_lst)
-        #     # card_id 추출, 중복제거
-        benefit_card_lst_d = benefit_card_lst.values("card_id").distinct()
-        # print(benefit_card_lst_d)
-        #     # print(type(benefit_card_lst_d))
-        #     # 카드id로 카드 리스트 필터링
-        card_list = Card.objects.filter(card_id__in=benefit_card_lst_d)
-        # print(card_list)
+        for card in cards:
+            if "체크" in card.card_name:
+                check_card.append(card)
+            else:
+                credit_card.append(card)
+
+        #==========================================================
+
+        age = request.GET.get("age", "")
+        card_type = request.GET.get("type", "")
+        # korean benefit list
+        kbl = request.GET.getlist("answers", "")
+
+        # ============================ 나이와 카드 종류로 필터링 하기 ==========================================
+        if age == "20대":
+            age_20 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"테마파크" ,"음원사이트" ,"공연/전시" ,"게임" ,"고속버스" ,"렌탈" ,"면세점", "온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통", "PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이", "동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" , "베이커리", "피트니스" , "PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림", "패스트푸드" ,"저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" , "KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스", "해외직구" ,"아울렛", "소셜커머스" ,"쇼핑" ,"백화점" ,"마트/편의점" ,"온라인쇼핑","편의점" , "공항", "대한항공", "아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어", "도서", "SPA브랜드" ,"직장인" ,"비즈니스" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
+            
+            # ================ 카드 혜택 필터링도 입력 했을 때 ==================
+            if kbl: 
+                bnf_list = []
+
+                for k in kbl:
+                    bene_index = kor_benefit_dict_keys.index(k)
+                    bnfs = benefit_dict[benefit_key[bene_index]]
+
+                    for bnf in bnfs:
+                        if bnf in age_20:
+                            bnf_list.append(bnf)
+                
+                if card_type == "체크":
+                    for check in check_card:
+                        benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                        
+                        for benefit in benefits_temp:
+                            if benefit.bnf_name in bnf_list:
+                                card_list.append(check)
+                                break
+                
+                else:
+                    for credit in credit_card:
+                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        
+                        for benefit in benefits_temp:
+                            if benefit in bnf_list:
+                                card_list.append(check)
+                                break
+        
+            print(card_list)
+
+        elif age == "30대":
+            age_30 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"음원사이트" ,"공연/전시","렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" ,"베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑", "저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트" ,"해외직구" ,"아울렛" ,"소셜커머스" ,"쇼핑" ,"백화점","온라인쇼핑", "편의점" ,"공항", "대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어", "교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스", "생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
+            
+            # ================ 카드 혜택 필터링도 입력 했을 때 ==================
+            if kbl: 
+                bnf_list = []
+
+                for k in kbl:
+                    bene_index = kor_benefit_dict_keys.index(k)
+                    bnfs = benefit_dict[benefit_key[bene_index]]
+
+                    for bnf in bnfs:
+                        if bnf in age_30:
+                            bnf_list.append(bnf)
+
+                if card_type == "체크":
+                    for check in check_card:
+                        benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                        
+                        for benefit in benefits_temp:
+                            if benefit.bnf_name in bnf_list:
+                                card_list.append(check)
+                                break
+                
+                else:
+                    for credit in credit_card:
+                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        
+                        for benefit in benefits_temp:
+                            if benefit in bnf_list:
+                                card_list.append(check)
+                                break
+
+        else:
+            age_40 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"음원사이트" ,"공연/전시" ,"문화센터","렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물","베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑", "저녁" ,"점심" ,"푸드" ,"일반음식점" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트", "아울렛", "홈쇼핑", "쇼핑" ,"백화점", "온라인쇼핑" ,"전통시장" ,"편의점" ,"공항" ,"공항라운지" ,"공항라운지/PP" ,"대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어" ,"라운지키" ,"교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스" ,"프리미엄" ,"프리미엄 서비스" ,"PP" ,"생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
+            
+            # ================ 카드 혜택 필터링도 입력 했을 때 ==================
+            if kbl: 
+                bnf_list = []
+
+                for k in kbl:
+                    bene_index = kor_benefit_dict_keys.index(k)
+                    bnfs = benefit_dict[benefit_key[bene_index]]
+
+                    for bnf in bnfs:
+                        if bnf in age_40:
+                            bnf_list.append(bnf)
+
+                if card_type == "체크":
+                        for check in check_card:
+                            benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                            
+                            for benefit in benefits_temp:
+                                if benefit.bnf_name in bnf_list:
+                                    card_list.append(check)
+                                    break
+                    
+                else:
+                    for credit in credit_card:
+                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        
+                        for benefit in benefits_temp:
+                            if benefit in bnf_list:
+                                card_list.append(check)
+                                break
 
         page = 1
         paginator = Paginator(card_list, 10)
@@ -401,5 +426,8 @@ def search(request):
         "kor_benefit_lst": kor_benefit_dict_keys,
         "benefit_card_list": paged_list,   
         "card_lst" : card_list,
+        "age_param": age,
+        "card_type_param": card_type, 
+        "kbl_param": ','.join(kbl),
     }
     return render(request, "card/search.html", context)
