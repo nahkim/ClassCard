@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "articles",
     "card",
     "magazine",
+    "servicecenter",
     "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.auth",
