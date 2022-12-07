@@ -2,126 +2,6 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-{% block css %}
-<style>
-  /*VISUAL*/
-.visual {
-  /* margin-top: 120px; */
-  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg");
-  background-position: center;
-  object-fit: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.card:hover {
-  transform: scale(0.9, 0.9);
-  box-shadow: 5px 5px 30px 15px rgba(102, 158, 243, 0.25), 
-    -5px -5px 30px 15px rgba(102, 158, 243, 0.25);
-}
-
-/* img-content */
-.img-content {
-position: absolute;
-}
-
-.img-content button {
-position: absolute;
-}
-
-.reserve-store .medal:hover .front {
-transform: rotateY(180deg);
-}
-.reserve-store .medal .back {
-transform: rotateY(-180deg);
-}
-.reserve-store .medal:hover .back {
-transform: rotateY(0deg);
-}
-.reserve-store .medal .back .btn {
-position: absolute;
-top: 240px;
-left: 0;
-right: 0;
-margin: auto;
-}
-
-/*FOOTER*/
-footer {
-background-color: #fff;
-  /* border-top: 1px solid #333; */
-}
-footer .inner {
-padding: 40px 0 60px 0;
-}
-footer .menu {
-display: flex;
-justify-content: center;
-}
-footer .menu li {
-position: relative;
-}
-footer .menu li::before {
-content: "";
-width: 3px;
-height: 3px;
-background-color: #555;
-position: absolute;
-top: 0;
-bottom: 0;
-right: -1px;
-margin: auto;
-}
-footer .menu li:last-child::before {
-display: none;
-}
-footer .menu li a {
-display: block;
-color: #000;
-font-size: 12px;
-font-weight: 700;
-padding: 15px;
-}
-footer .menu li a.green {
-color: #669900;
-}
-footer .btn-group {
-margin-top: 20px;
-display: flex;
-justify-content: center;
-}
-footer .btn-group .btn {
-font-size: 12px;
-margin-right: 10px;
-}
-footer .btn-group .btn:last-child {
-margin-right: 0;
-}
-footer .info {
-margin-top: 30px;
-text-align: center;
-}
-footer .info span {
-margin-right: 20px;
-color: #000;
-font-size: 12px;
-}
-footer .info span:last-child {
-margin-right: 0;
-}
-footer .copyright {
-color: #999;
-font-size: 12px;
-text-align: center;
-margin-top: 12px;
-}
-footer .logo {
-margin: 30px auto 0;
-}
-
-</style>
-
-{% endblock css %}
 
 {% block body %}
 
@@ -166,8 +46,181 @@ margin: 30px auto 0;
         </div>
       </div>
   </div>
+</section>
 
 
+
+
+  <div style="margin-top: 160px;" class="">
+    <div class="container">
+        <div class="row" >
+          <div class="col-md-4">
+            <h3 style="font-size: 60px; margin-left: 40px; font-weight: 900;">2022 <br> BEST TOP3</h3>
+        <h6 style="margin-left: 50px;">2022년도 가장 인기가 많았던 카드</h6>
+            <pre></pre>
+            <button style="margin-left: 38px; border-radius: 30px; background-color: #0071E3; height: 40px;" type="button" class="btn">
+                <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 > </a>
+            </button>
+          </div>
+          <div class="col-md-8">
+            <div class="row" >
+                <div class="col-md-4">
+                    <div  class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/700/card_img/22174/700card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1  class="card__title">현대카드 M BOOST</h1>
+                            <!-- <span class="card__preci">현대카드</span> -->
+                            <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="display: flex;" class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/1149/card_img/26710/1149card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1 class="card__title">삼성 iD 달달할인</h1>
+                            <p class="card__description">스트리밍 · 온라인쇼핑몰 멤버십 50% 결제일할인</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="display: flex;" class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2300/card_img/25153/2300card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1 class="card__title">내맘대로 쁨 카드</h1>
+                            <p class="card__description">전 가맹점 0.5% / 대형마트 5% / 주유소 5% 하나머니 적립</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
+                </div>
+              </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+ <!-- 경계선 -->
+ 
+ <div style="margin-top: 50px;" class="py-5">
+  <hr></hr>
+</div>  
+
+
+<!-- ****************** MOST SEARCH ****************** -->
+<div class="py-5">
+  <div class="container">
+      <h3 style="font-size: 60px; margin-left: 40px; font-weight: 900;">MOST SEARCH</h3>
+      <h6 style="margin-left: 40px;">2022년도 가장 인기가 많았던 카드</h6>
+      <pre></pre>
+      <button style="margin-left: 40px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 > </a>
+      </button>
+
+      <div style="margin-top: 30px;" class="row" >
+          <div style="margin-left: 30px;" class="row" >
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/a8/74/64/a8746477d80a017be7002639ea954a31.gif" alt="">
+                      <div class="card-info">
+                          <h2>항공 마일리지</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/d6/3c/de/d63cded9d8454a5b57ee8bef31c3ee71.gif" alt="">
+                      <div class="card-info">
+                          <h2>반려동물 카드</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/cf/64/96/cf6496ccdd4ee4ff2b07736be5c956c2.gif" alt="">
+                      <div class="card-info">
+                          <h2>배달+외식카드</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- 경계선 -->
+<div class="py-5">
+  <hr></hr>
+</div>  
+
+
+<!-- ****************** DAILY CLASS NEWS ************** -->
+<div class="py-2">
+  <div class="container">
+      <h3 style="font-size: 60px; margin-left: 50px; font-weight: 900;">DAILY CLASS NEWS</h3>
+      <h6 style="margin-left: 50px;">이번달 카드에 대한 다양한 소식을 알려드릴게요!</h6>
+      <pre></pre>
+      <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">인기 콘텐츠 더 보기 > </a>
+      </button>
+      <div class="py-5" >
+          <div style="margin-left: 30px;" class="container">
+            <div class="row">
+              <div  class="col-md-4">
+                  <img style="position: relative; object-fit: cover; width: 350px; height: 550px; border-radius: 45px;" class="" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/e569d7112455715.60147df4bccb5.png" >
+                  <div class="img-content">
+                      <p style="font-size: 20px; color: #FFF; margin-left: 40px; margin-top: -530px; width: 500px; position: absolute;">연말정산</p>
+                      <p style="font-size: 30px; color: #FFF; margin-left: 40px; margin-top: -490px; width: 500px; position: absolute;">직장인 필독! <br> 연말정산 총정리</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <img style="position: relative; object-fit: cover; width: 350px; height: 550px; border-radius: 45px;" class="" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/4ca74e127445963.6141ff41d8f72.jpg" >
+                  <div class="img-content">
+                      <p style="font-size: 20px; color: #FFF; margin-left: 40px; margin-top: -530px; width: 500px; position: absolute;">연말정산</p>
+                      <p style="font-size: 30px; color: #FFF; margin-left: 40px; margin-top: -490px; width: 500px; position: absolute;">직장인 필독! <br> 연말정산 총정리</p>
+                  </div>
+              </div>
+              <div class="col-md-4">
+                  <img style="position: relative; object-fit: cover; width: 350px; height: 550px; border-radius: 45px;" class="" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/63995476445769.5c6a842acd7a5.jpg">
+                  <div class="img-content">
+                      <p style="font-size: 20px; color: #FFF; margin-left: 40px; margin-top: -530px; width: 500px; position: absolute;">연말정산</p>
+                      <p style="font-size: 30px; color: #FFF; margin-left: 40px; margin-top: -490px; width: 500px; position: absolute;">직장인 필독! <br> 연말정산 총정리</p>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+
+<!-- 경계선 -->
+<div class="py-5">
+  <hr></hr>
+</div> 
 
 
 
