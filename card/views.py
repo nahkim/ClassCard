@@ -333,7 +333,7 @@ def search(request):
                         benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
                         
                         for benefit in benefits_temp:
-                            if benefit in bnf_list:
+                            if benefit.bnf_name in bnf_list:
                                 card_list.append(check)
                                 break
         
@@ -368,7 +368,7 @@ def search(request):
                         benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
                         
                         for benefit in benefits_temp:
-                            if benefit in bnf_list:
+                            if benefit.bnf_name in bnf_list:
                                 card_list.append(check)
                                 break
 
@@ -401,7 +401,7 @@ def search(request):
                         benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
                         
                         for benefit in benefits_temp:
-                            if benefit in bnf_list:
+                            if benefit.bnf_name in bnf_list:
                                 card_list.append(check)
                                 break
 
