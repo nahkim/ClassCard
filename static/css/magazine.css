@@ -114,11 +114,6 @@ dl.movs dd.desc, dl.movs dd.url { display:none; }
 	transform: scale(1);
 }
 
-.card:hover {
-  -webkit-transform: scale(1.04);
-  transform: scale(1.04);
-}
-
 .movs:hover {
   -webkit-transform: scale(1.01);
 	transform: scale(1.01);
