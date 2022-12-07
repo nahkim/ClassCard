@@ -1,46 +1,97 @@
 {% extends "account/base.html" %}
-
-{% load i18n %}
 {% load account socialaccount %}
+{% load widget_tweaks %}
+{% load django_bootstrap5 %}
+{% load static %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+{% endblock css %}
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="bg-img">
+  <div class="d-flex justify-content-center">
+    <div class="p-4" style="margin-top: 4rem; width: 350px; height: auto; overflow: hidden; background-color: white; border-radius: 8px;">
+      <p class="mt-3 d-flex justify-content-center" style="font-size: 20px;">로그인</p>
+            
+      <!-- Login Form -->
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %} 
+        {% if form.non_field_errors %}
+        <div class="alert alert-warning" style="font-size: 13px;">
+          <ul class="alert-message" style="padding: 5px 10px 0px 10px;">
+            {% for error in form.non_field_errors %}
+            <li style="line-height: 20px; list-style-type: none;">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        
+        <!-- id -->
+        <label class="mb-2">아이디</label>
+        <div class="input-group {% if form.login.errors %}has-error{% endif %}">
+          <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+          {{ form.login }}
+        </div>
 
-{% get_providers as socialaccount_providers %}
+        <!-- password -->
+        <label class="mb-2">비밀번호</label>
+        <div class="input-group {% if form.login.errors %}has-error{% endif %}">
+          <span class="input-group-addon glyphicon glyphicon-envelope"></span>
+          {{ form.password }}
+        </div>
+      
+        <!-- remember -->
+        <div class="mb-4 fieldWrapper form-inline remember">
+          {{ form.remember }}
+          <label for="id_remember" class="text-muted">아이디 저장</label>
+        </div>
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+         <!-- 계정이 없다면 회원가입을 진행하세요. -->
+         <div class="mb-2">
+           <span><img src="{% static 'images/exclamation.png' %}" alt=""></span>
+           <span style="font-size: 13px;">계정이 없다면 <a href="{{ signup_url }}">회원가입</a>을 진행하세요.</span>
+         </div>
 
-<div class="socialaccount_ballot">
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="mb-5" style="position: relative;">
+          <span><img src="{% static 'images/exclamation.png' %}" alt=""></span>
+          <a style="position: absolute; top: 4px; left: 22px; font-size: 13px;" class="button secondaryAction" href="{% url 'account_reset_password' %}">비밀번호를 잊으셨나요?</a>
+        </div>
+        <div class="mt-4 d-flex justify-content-center" style="position: relative;">
+          <button class="signup_btn" type="submit"></button>   
+          <button style="position: absolute; color: white; top: 12px; background:none; border: 0px;">로그인</button>   
+        </div>
+      </form>
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
+      <!-- Social Account -->
+      <div class="mt-5 d-flex justify-content-center">
+        {% get_providers as socialaccount_providers %}
+        <div class="socialaccount_ballot">
+          <ul class="socialaccount_providers p-0">
+            <a title="Naver" class="socialaccount_provider naver" href="/naver/login/?process=login"><img class="logo_img" src="{% static 'images/naver_logo.png' %}" style="width: 60px; height: 60px; margin-right: 1rem;"></a>
+            <a title="Google" class="socialaccount_provider google" href="/google/login/?process=login"><img class="logo_img" src="{% static 'images/google_logo.png' %}" style="width: 60px; height: 60px;"></a>
+          </ul>
+        </div>
+        {% include "socialaccount/snippets/login_extra.html" %}
+      </div>
 
-  <div class="login-or">{% trans 'or' %}</div>
-
+    </div>
+  </div>
 </div>
 
-{% include "socialaccount/snippets/login_extra.html" %}
+<script>
+  $('#id_login').addClass('form-control').removeAttr('autofocus').blur();
+  $('#id_password').addClass('form-control').removeAttr('autofocus').blur();
 
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
+  $( document ).ready( function() {
+    $("#id_login").attr("placeholder", "아이디를 입력하세요");
+    $("#id_password").attr("placeholder", "비밀번호를 입력하세요");
+  });
+</script>
 
 {% endblock %}

@@ -2,482 +2,172 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-{% block css %}
-<style>
-  /*VISUAL*/
-.visual {
-  /* margin-top: 120px; */
-  background-image: url("https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg");
-  background-position: center;
-  object-fit: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-
-
-/* swiper */
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.swiper-slide .tag {
-  position: absolute;
-  margin-top: 190px;
-  margin-right: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* most search */
-/* 두번째 swiper */
-.swiper1 {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide1 {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-}
-
-/* img-content */
-.img-content {
-position: absolute;
-}
-
-.img-content button {
-position: absolute;
-}
-
-.reserve-store .medal:hover .front {
-transform: rotateY(180deg);
-}
-.reserve-store .medal .back {
-transform: rotateY(-180deg);
-}
-.reserve-store .medal:hover .back {
-transform: rotateY(0deg);
-}
-.reserve-store .medal .back .btn {
-position: absolute;
-top: 240px;
-left: 0;
-right: 0;
-margin: auto;
-}
-
-/*FOOTER*/
-footer {
-background-color: #fff;
-  /* border-top: 1px solid #333; */
-}
-footer .inner {
-padding: 40px 0 60px 0;
-}
-footer .menu {
-display: flex;
-justify-content: center;
-}
-footer .menu li {
-position: relative;
-}
-footer .menu li::before {
-content: "";
-width: 3px;
-height: 3px;
-background-color: #555;
-position: absolute;
-top: 0;
-bottom: 0;
-right: -1px;
-margin: auto;
-}
-footer .menu li:last-child::before {
-display: none;
-}
-footer .menu li a {
-display: block;
-color: #000;
-font-size: 12px;
-font-weight: 700;
-padding: 15px;
-}
-footer .menu li a.green {
-color: #669900;
-}
-footer .btn-group {
-margin-top: 20px;
-display: flex;
-justify-content: center;
-}
-footer .btn-group .btn {
-font-size: 12px;
-margin-right: 10px;
-}
-footer .btn-group .btn:last-child {
-margin-right: 0;
-}
-footer .info {
-margin-top: 30px;
-text-align: center;
-}
-footer .info span {
-margin-right: 20px;
-color: #000;
-font-size: 12px;
-}
-footer .info span:last-child {
-margin-right: 0;
-}
-footer .copyright {
-color: #999;
-font-size: 12px;
-text-align: center;
-margin-top: 12px;
-}
-footer .logo {
-margin: 30px auto 0;
-}
-
-</style>
-
-{% endblock css %}
 
 {% block body %}
 
-<!-- visual -->
+<!--VISUAL-->
 <section class="visual">
-  <div style="height: 550px;" class="inner"></div>
-     
+  <div style=" height: 570px;" class="inner" class="inner">
+
+    <div class="title fade-in">
+      <h3 style="margin-left: 200px; font-size: 80px; font-weight: 900; color: #fff;">FIND YOUR <br> CLASS CARD</h3>
+      <h3 style="margin-top: 30px; margin-left: 200px; font-size: 35px; font-weight: 600; color: #fff; ">나를 위한 카드 추천 플랫폼 <br> 클래스 카드</h3>
+      <button style="margin-left: 200px; margin-top: 30px; border-radius: 30px; background-color: #0071E3; height: 38px;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">시작하기 </a>
+      </button>
+      <img style="position: absolute; top: 66px; right: 500px;" src="{% static 'images/visual1.png' %}" alt="구름 소년">
+      <img style="width: 759px; position: absolute; bottom: 2px; right: 3px;" src="{% static 'images/class-card-img16.png' %}" alt="카드 뭉치">
+    </div>
+
+    <!-- sub -->
+    <div style="margin-left: 120px; position: absolute; margin-top: 150px;" class="container">
+      <div style="display: flex; justify-content: center;" class="row">
+          <div class="col-md-4">
+            <div style="border-color: #fff; background-color:rgba( 255, 255, 255, 0.3 ); border-radius: 50px;" class="card">
+              <div class="card-body">
+                <p style="font-size: 18px; margin-top: 10px; " class="text-center">정부 지원 혜택 카드가 따로 있다면?</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div style="border-color: #fff; border-radius: 50px;" class="card">
+              <div class="card-body">
+                <p style="font-size: 18px; margin-top: 10px; " class="text-center">다양한 생활 문화 서비스를 클래스 카드에서!</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div  style="border-color: #fff; border-radius: 50px;" class="card" >
+              <div class="card-body">
+                <p style="font-size: 18px; margin-top: 10px; " class="text-center">생활 요금을 자동 납부 서비스로 한 번에!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
 </section>
 
 
 
-<!-- Swiper -->
-<div style="margin-top: 25px;" class="py-5">
-  <div class="container">
-      <div class="row" >
-        <div class="col-md-4">
-          <h3 style="font-size: 60px; margin-left: 40px; font-weight: 900;">2022 <br> BEST CARD</h3>
-      <h6 style="margin-left: 50px;">2022년도 가장 인기가 많았던 카드</h6>
-          <pre></pre>
-          <button style="margin-left: 38px; border-radius: 30px; background-color: #0071E3;" type="button" class="btn">
-              <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 > </a>
-          </button>
-        </div>
-        <div class="col-md-8">
-          <div class="swiper mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img style=" width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/1149/card_img/26710/1149card.png" alt="카드1">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8); border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#아파트 관리비</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#쓸때 마다 할인</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#프리미엄</a></button>
-                  </div>
+
+  <div style="margin-top: 160px;" class="">
+    <div class="container">
+        <div class="row" >
+          <div class="col-md-4">
+            <h3 style="font-size: 60px; margin-left: 40px; font-weight: 900;">2022 <br> BEST TOP3</h3>
+        <h6 style="margin-left: 50px;">2022년도 가장 인기가 많았던 카드</h6>
+            <pre></pre>
+            <button style="margin-left: 38px; border-radius: 30px; background-color: #0071E3; height: 40px;" type="button" class="btn">
+                <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 > </a>
+            </button>
+          </div>
+          <div class="col-md-8">
+            <div class="row" >
+                <div class="col-md-4">
+                    <div  class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/700/card_img/22174/700card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1  class="card__title">현대카드 M BOOST</h1>
+                            <!-- <span class="card__preci">현대카드</span> -->
+                            <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
                 </div>
-                <div class="swiper-slide">
-                  <img  style="  width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/2228/card_img/21353/2228card.png" alt="카드2">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#스타벅스 60%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#영화 50%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#이동통신 10%</a></button>
-                  </div>
+                <div class="col-md-4">
+                    <div style="display: flex;" class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/1149/card_img/26710/1149card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1 class="card__title">삼성 iD 달달할인</h1>
+                            <p class="card__description">스트리밍 · 온라인쇼핑몰 멤버십 50% 결제일할인</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
                 </div>
-                <div class="swiper-slide">
-                  <img style="width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/2300/card_img/25153/2300card.png" alt="카드3">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#20% 하나머니 적립</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#쇼핑/패션/명품</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#페이결제</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/2304/card_img/23588/2304card.png" alt="카드4">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#환전수수료 면제</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#투자 서비스</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#이벤트 카드</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/49/card_img/24313/49card.png" alt="카드5">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#커피/주유</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#공항 라운지 무료</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#프리미엄</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="border-radius: 10px; width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/715/card_img/22189/715card.png" alt="카드6">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#디지털구독</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#통신 10%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#편의점 10%</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="border-radius: 10px; width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/714/card_img/22188/714card.png" alt="카드7">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#주유 10%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#커피 5%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#페이결제 1% 할인</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/2387/card_img/25536/2387card.png" alt="카드8">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#이벤트 카드</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#쓸때 마다 할인</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#프리미엄</a></button>
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <img style="width: 230px;" src="https://api.card-gorilla.com:8080/storage/card/2407/card_img/26843/2407card.png" alt="카드9">
-                  <div class="tag">
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#반려동물</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#보험사 10%</a></button>
-                      <button style="font-size: 14px; opacity: 1; background-color: rgba(226, 226, 226, 0.8);  margin: 3px; border-radius: 30px;" type="button" class="btn"><a style="color: #000; text-decoration: none;" href="">#간편결제</a></button>
-                  </div>
+                <div class="col-md-4">
+                    <div style="display: flex;" class="container1">
+                        <div class="card1">
+                          <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2300/card_img/25153/2300card.png" alt="" class="card__img"> 
+                      
+                          <!-- <div class="card__content">  -->
+                          <div class="card__data">
+                            <h1 class="card__title">내맘대로 쁨 카드</h1>
+                            <p class="card__description">전 가맹점 0.5% / 대형마트 5% / 주유소 5% 하나머니 적립</p>
+                            <a href="#" class="card__button"> 추가하기 + </a>
+                          </div>
+                          <!-- </div> -->
+                        </div>
+                      </div>
                 </div>
               </div>
-              
-              <!-- <div class="swiper-pagination"></div> -->
-            </div>
+          </div>
         </div>
-      </div>
     </div>
 </div>
 
 
-<!-- 경계선 -->
-
-<div class="py-5">
+ <!-- 경계선 -->
+ 
+ <div style="margin-top: 50px;" class="py-5">
   <hr></hr>
 </div>  
 
 
-<!-- most search -->
-<div class="py-0">
+<!-- ****************** MOST SEARCH ****************** -->
+<div class="py-5">
   <div class="container">
-      <h3 style="margin-left: 50px; font-weight: 900;">MOST SEARCH</h3>
-      <h6 style="margin-left: 50px;">2022년도 가장 인기가 많았던 카드</h6>
+      <h3 style="font-size: 60px; margin-left: 40px; font-weight: 900;">MOST SEARCH</h3>
+      <h6 style="margin-left: 40px;">2022년도 가장 인기가 많았던 카드</h6>
       <pre></pre>
-      <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+      <button style="margin-left: 40px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
           <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 > </a>
       </button>
-      <div class="py-4"></div>
-       <!-- Swiper -->
-       <div style="margin-left: 30px;" class="container">
-          <div class="swiper1 mySwiper1">
-              <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/6172/6172530.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/6172/6172530.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">신용카드 TOP 100</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">인기 카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
+
+      <div style="margin-top: 30px;" class="row" >
+          <div style="margin-left: 30px;" class="row" >
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/a8/74/64/a8746477d80a017be7002639ea954a31.gif" alt="">
+                      <div class="card-info">
+                          <h2>항공 마일리지</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
                       </div>
-                    </div>
-              </div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/7994/7994394.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/7994/7994394.mp4" type="video/mp4">
-                                  </video>
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1198/1198350.png" alt=""> -->
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">체크카드 TOP 100</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">인기 카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/3097/3097185.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/6416/6416391.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/6416/6416391.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">항공 마일리지</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/3059/3059590.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/8722/8722498.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/8722/8722498.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">통신요금 알뜰 카드</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/8112/8112946.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/8112/8112946.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">교통비 알뜰 카드</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
-                      </div>
-                    </div>
-              </div>
-              <div class="swiper-slide"> <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                  <div class="card-body">
-                      <div class="container">
-                          <div class="row">
-                            <div class="col-md-4">
-                              <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" alt=""> -->
-                              <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/8722/8722486.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                  <source src="https://cdn-icons-mp4.flaticon.com/512/8722/8722486.mp4" type="video/mp4">
-                              </video>
-                            </div>
-                            <div style="margin-top: 20px;" class="col-md-8">
-                              <p style=" margin: 0; font-weight: bolder; font-size: 15px;">공부 지킴이 카드</p>
-                              <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                            </div>
-                          </div>
-                        </div>
                   </div>
-                </div></div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/7211/7211975.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/7211/7211975.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">반려동물 혜택 카드</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/d6/3c/de/d63cded9d8454a5b57ee8bef31c3ee71.gif" alt="">
+                      <div class="card-info">
+                          <h2>반려동물 카드</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
                       </div>
-                    </div>
+                  </div>
               </div>
-              <div class="swiper-slide">
-                  <div style="border-radius: 40px; border-style: none; background-color: #F9F9F9; width: 300px" class="card">
-                      <div class="card-body">
-                          <div class="container">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <!-- <img style="width: 80px;" src="https://cdn-icons-png.flaticon.com/512/1657/1657088.png" alt=""> -->
-                                  <video style="border-radius: 40px;" preload="none" style="background: transparent  url('https://cdn-icons-png.flaticon.com/512/8761/8761687.png') 50% 50% / fit no-repeat;" autoplay="autoplay" loop="true" muted="muted" playsinline="" width="80" >
-                                      <source src="https://cdn-icons-mp4.flaticon.com/512/8761/8761687.mp4" type="video/mp4">
-                                  </video>
-                                </div>
-                                <div style="margin-top: 20px;" class="col-md-8">
-                                  <p style=" margin: 0; font-weight: bolder; font-size: 15px;">외식 알뜰 카드</p>
-                                  <P style="margin-top: 0;"><a style="color: #000; font-size:12px; text-decoration: none;" href="">카드 보러가기 > </a></P>
-                                </div>
-                              </div>
-                            </div>
+              <div class="col-md-4">
+                  <div class="card2">
+                      <img src="https://i.pinimg.com/originals/cf/64/96/cf6496ccdd4ee4ff2b07736be5c956c2.gif" alt="">
+                      <div class="card-info">
+                          <h2>배달+외식카드</h2>
+                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem nisi rem quo officia voluptatum, dicta nulla praesentium a temporibus voluptas.</p>
+                          <button>See More</button>
                       </div>
-                    </div>
+                  </div>
               </div>
-              </div>
-              <div style="margin-top: 30px;" class="swiper-pagination1"></div>
           </div>
-       </div>
+      </div>
   </div>
 </div>
 
@@ -487,12 +177,10 @@ margin: 30px auto 0;
 </div>  
 
 
-
-<!-- daily card news -->
-<!-- 데일리 카드 뉴스 -->
+<!-- ****************** DAILY CLASS NEWS ************** -->
 <div class="py-2">
   <div class="container">
-      <h3 style="margin-left: 50px; font-weight: 900;">DAILY CLASS NEWS</h3>
+      <h3 style="font-size: 60px; margin-left: 50px; font-weight: 900;">DAILY CLASS NEWS</h3>
       <h6 style="margin-left: 50px;">이번달 카드에 대한 다양한 소식을 알려드릴게요!</h6>
       <pre></pre>
       <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
@@ -530,87 +218,82 @@ margin: 30px auto 0;
 
 
 <!-- 경계선 -->
-
-<div style="margin-top: 30px;" class="py-2">
+<div class="py-5">
   <hr></hr>
-</div>  
+</div> 
 
 
-<!-- 에디터가 추천해주는 카드 -->
-<!-- <div class="py-5"> -->
-  <div class="container">
-      <h3 style="margin-top: 60px; margin-left: 50px; font-weight: 900;">에디터가 추천해 주는 카드</h3>
-      <pre></pre>
-      <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">인기 콘텐츠 더 보기 > </a>
-      </button>
-  </div>
+<div class="container">
+  <h3 style="font-size: 55px; margin-top: 60px; margin-left: 50px; font-weight: 900;">에디터가 추천해 주는 카드</h3>
+  <pre></pre>
+  <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+      <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">인기 콘텐츠 더 보기 > </a>
+  </button>
 
-    <div class="py-5">
-      <div style="justify-content:center;" class="container">
-        <div class="row">
-          <div style="margin-left: 50px; width: 500px;" class="col-md-6">
-            <img style=" border-radius: 30px; width: 480px;" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/787086156169523.63625952b22b9.jpg">
-            <h5 style="margin-left: 10px; margin-top: 20px; color:#0071E3;" class="">알짜 카드 추천</h5>
-            <h4 style="margin-left: 10px; line-height: 1.6; font-size: 19px;" class="">군고구마, 호빵, 어묵 아직도 <br> 제 값 주고 먹어요?</h4>
-          </div>
-          <div style="margin-left: 80px;" class="col-md-6">
-            <div class="row">
-              <div class="col-md-4">
-                  <img style=" width: 165px;" class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/2261/card_img/21011/2261card.png">
-                <div style="border-radius: 20px;  border-color: #0071E3; margin-top: 20px; width: 165px;" class="card">
-                  <div class="card-body">
-                    <h5 class="card-title text-center"><b>LOCA LIKIT 1.2</b></h5>
-                    <h6 class="card-subtitle my-2 text-muted text-center">롯데카드</h6>
-                    <p style="font-size: 10px;" class="card-text text-center">국내10,000원 <br> 해외10,000원</p>
-                    <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-                      <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">카드 신청 </a>
-                    </button>
-                  </div>
+  <!-- Service Start -->
+  <div class="container-xxl py-5">
+    <div class="container">
+        <div style="margin-top: 15px;" class="row gy-5 gx-4">
+            <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item d-flex h-100">
+                    <div class="service-img">
+                        <img class="img-fluid" src="https://i.pinimg.com/236x/ff/d7/14/ffd714d05ba643bbd3dab3c8fd473aa5.jpg" alt="">
+                    </div>
+                    <div class="service-text p-5 pt-0">
+                        <div class="service-icon">
+                            <img class="img-fluid rounded-circle" src="https://i.pinimg.com/564x/93/7a/e0/937ae0670effb378c53a37600323526c.jpg" alt="">
+                        </div>
+                        <h5 class="mb-3">좋은 생활 습관을 가지기 위해</h4>
+                        <p class="mb-4">좋은 생활 습관을 지키기 위한 바른 카드 사용 방법</p>
+                        <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-4">
-                  <img style=" width: 165px;" class="img-fluid d-block" class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/2346/card_img/25293/2346card.png">
-               <div style="border-radius: 20px;  border-color: #0071E3; margin-top: 20px; width: 165px;" class="card">
-                  <div class="card-body">
-                      <h5 class="card-title text-center"><b>바로 클리어 <br> 플러스</b></h5>
-                      <h6 class="card-subtitle my-2 text-muted text-center">BC 바로카드</h6>
-                      <p style="font-size: 10px;" class="card-text text-center">국내5,000원 <br> 해외5,000원</p>
-                      <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-                          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">카드 신청 </a>
-                      </button>
-                  </div>
-               </div>
-              </div>
-              <div class="col-md-4">
-                  <img style=" width: 165px;" class="img-fluid d-block" class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/2297/card_img/22991/2297card.png">
-                  <div style="border-radius: 20px;  border-color: #0071E3; margin-top: 20px; width: 165px;" class="card">
-                      <div class="card-body">
-                          <h5 class="card-title text-center"><b>톡톡F 카드 <br> FASHION</b></h5>
-                          <h6 class="card-subtitle my-2 text-muted text-center">KB국민카드</h6>
-                          <p style="font-size: 10px;" class="card-text text-center">국내12,000원 <br> 해외12,000원</p>
-                          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-                              <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">카드 신청 </a>
-                          </button>
-                      </div>
-                  </div>
-              </div>
             </div>
-          </div>
+            <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="service-item d-flex h-100">
+                    <div class="service-img">
+                        <img class="img-fluid" src="https://i.pinimg.com/236x/2a/03/60/2a03607a436344461a03a600969a0408.jpg" alt="">
+                    </div>
+                    <div class="service-text p-5 pt-0">
+                        <div class="service-icon">
+                            <img class="img-fluid rounded-circle" src="https://i.pinimg.com/564x/a4/b0/7a/a4b07a687b939f794a048837c19852f7.jpg" alt="">
+                        </div>
+                        <h5 class="mb-3">항공 마일리지 카드 소개</h5>
+                        <p class="mb-4">온 가족이 행복하고 즐거운 여행을 할 수 있도록 도와주는 카드</p>
+                        <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pt-5 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="service-item d-flex h-100">
+                    <div class="service-img">
+                        <img class="img-fluid" src="https://i.pinimg.com/236x/83/ff/0b/83ff0b54df30aeec2cf9f7fc4c2c69ba.jpg" alt="">
+                    </div>
+                    <div class="service-text p-5 pt-0">
+                        <div class="service-icon">
+                            <img class="img-fluid rounded-circle" src="https://i.pinimg.com/236x/51/1a/5f/511a5f3f288307f2bf85fc734af13e1a.jpg" alt="">
+                        </div>
+                        <h5 class="mb-3">20대가 사용할 수 있는 카드</h5>
+                        <p class="mb-4">하고 싶은 것들이 많은 만큼 사용하자! 20대를 위한 카드</p>
+                        <a class="btn btn-square rounded-circle" href=""><i class="bi bi-chevron-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
+</div>
+<!-- Service End -->
+</div>
 
-<!--RESERVE STORE-->
-<section style="background-size: cover; background-attachment: fixed; background-position: center; background-repeat: no-repeat; margin-top: 30px; background-image: url('https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/6676af119709473.60a63a197a129.gif');
-" class="reserve-store">
-  <div style="height: 600px; display: flex; justify-content: center; align-items: center; " class="inner">
+<!-- ************* 마지막 ************* -->
+<section style="margin-top: 60px;" class="reserve-store">
+  <div class="inner">
 
-    <div style="width: 334px; height: 334px; perspective: 600px; " class="medal">
-      <div style="width: inherit; height: inherit; position: absolute; transition: 1s; backface-visibility: hidden; " class="front">
-        <img style="width: 334px; height:334px;" class="rounded-circle" src="{% static 'images/class-logo.png' %}" alt="R">
+    <div class="medal">
+      <div class="front">
+        <img style="width: 334px; height:334px;" class="rounded-circle" src="{% static 'images/class-logo.png' %}" alt="CLASS CARD">
       </div>
-      <div style="width: inherit; height: inherit; position: absolute; transition: 1s; backface-visibility: hidden; " class="back">
+      <div class="back">
         <div style="background-color: rgba(226, 226, 226, 0.3); width: 334px; height: 334px;" class="rounded-circle">
           <img style="width: 300px; margin-left: 15px; margin-top: 10px;" src="{% static 'images/class-card-img5.png' %}" alt="">
       </div>
@@ -622,7 +305,6 @@ margin: 30px auto 0;
 
   </div>
 </section>
-
   
     
 {% endblock body %}

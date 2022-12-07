@@ -10,14 +10,23 @@ from django.http import HttpResponseForbidden
 def index(request):
     # 인덱스에서 별점 평균 어떻게 산출할까요 나중에 데이터 넣고 고민해봅시다.
     magazines = Magazine.objects.all()
-    
+    mz_year = Magazine.objects.filter(tag__contains='YEAR')
+    mz_news = Magazine.objects.filter(tag__contains='NEWS')
+    mz_recommend = Magazine.objects.filter(tag__contains='RECOMMEND')
+    mz_basic = Magazine.objects.filter(tag__contains='BASIC')
+    mz_bodo = Magazine.objects.filter(tag__contains='BODO')
     context = {
         'magazines' : magazines,
+        'mz_year' : mz_year,
+        'mz_news' : mz_news,
+        'mz_recommend' : mz_recommend,
+        'mz_basic' : mz_basic,
+        'mz_bodo' : mz_bodo,
     }
     return render(request, 'magazine/index.html', context)
     
 # admin에서 사용자들 -> 사용자 이름 클릭 -> role 변경(필수항목 점검)
-@login_required
+@login_required(login_url='/login/')
 def create_(request):
     if request.user.role == 'C':
         if request.method == 'POST':

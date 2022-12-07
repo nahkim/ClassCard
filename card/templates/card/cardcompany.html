@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>card_list by card_brand
+  </h1>
+  {% for card in card_list %}
+    <a href="{% url 'card:detail' card.pk %}">{{ card.card_name }}</a>
+    <br>
+  {% endfor %}
+{% endblock body %}

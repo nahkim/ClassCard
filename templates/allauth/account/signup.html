@@ -1,5 +1,6 @@
 {% extends "account/base.html" %}
 {% load django_bootstrap5 %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block css %}
@@ -11,10 +12,31 @@
 
 <div class="bg-img">
   <div class="d-flex justify-content-center">
-    <div class="p-4" style="margin-top: 4rem; width: 350px; height: 595px; background-color: white; border-radius: 8px;">
+    <div class="p-4" style="margin-top: 4rem; width: 350px; height: auto; overflow: hidden; background-color: white; border-radius: 8px;">
       <p class="mt-3 mb-4 d-flex justify-content-center" style="font-size: 20px;">회원 가입</p>
       <form class="signup" id="signup_form" method="post" enctype="multipart/form-data" action="{% url 'account_signup' %}">
         {% csrf_token %}
+
+        {% if form.errors %}
+        <div class="alert alert-warning" style="font-size: 13px;">
+          <ul class="alert-message" style="padding: 5px 10px 0px 10px;">
+              {% for field in form %}
+              {% for error in field.errors %}
+                <div class="alert alert-error mb-1" style="padding-top: 10px; font-size: 13px; color: #664d03;">
+                    <div style="background-color: #fff3cd;">
+                      <strong>{{ error|escape }}</strong>
+                    </div>
+                </div>
+              {% endfor %}
+              {% endfor %}
+            </ul>
+          </div>
+          {% for error in form.non_field_errors %}
+            <div class="alert alert-error" style="font-size: 13px;">
+              <strong>{{ error|escape }}</strong>
+            </div>
+          {% endfor %}
+        {% endif %}
 
         <!-- id -->
         <label class="mb-2">아이디</label>
@@ -36,22 +58,25 @@
         <label class="mb-2">비밀번호 확인</label>
         {{ form.password2 }}
 
-        <!-- already have -->
-        <div class="d-flex justify-content-end">
-          <p class="mb-4" style="font-size: 12px;">
-            이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a> 하세요.
-          </p>
+        <!-- profile -->
+        <div>
+          <label class="mb-3">프로필 사진</label>
+          {{ form.profile }}
         </div>
-        
+
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
-        {% endif %}
-        <div class="btn-div pull-center">
-          <div class="position-relative">
-            <a class="btn signup-btn" type="submit">
-              <a href="" style="position: absolute; top: 11px; left:40%; color: white;">회원가입</a>
-            </a>
-          </div>
+        {% endif %}      
+        <div class="mt-4 d-flex justify-content-center" style="position: relative;">
+          <button class="signup_btn" type="submit"></button>   
+          <button style="position: absolute; color: white; top: 12px; background:none; border: 0px;">회원가입</button>   
+        </div>
+        
+         <!-- already have -->
+         <div class="mt-2 d-flex justify-content-center">
+          <p style="font-size: 12px;">
+            이미 계정이 있으신가요? 바로 <a href="{{ login_url }}">로그인</a> 하세요.
+          </p>
         </div>
       </form>
     </div>
@@ -62,12 +87,13 @@
   $('#id_username').addClass('form-control').removeAttr('autofocus').blur();
   $('#id_email').addClass('form-control');
   $('#id_nickname').addClass('form-control');
-  $('#id_profile').addClass('form-control');
+  $('#id_profile').addClass('form-control2');
   $('#id_password1').addClass('form-control').removeAttr('autofocus').blur();
   $('#id_password2').addClass('form-control');
 
   $( document ).ready( function() {
     $("#id_username").attr("placeholder", "아이디를 입력하세요");
+    $("#id_password2").attr("placeholder", "비밀번호 확인");
   });
 </script>
 

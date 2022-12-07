@@ -1,6 +1,6 @@
 .bg-img {
   background-image: url('/static/images/bg-img.png');
-  height: 850px;
+  height: 900px;
   background-size: cover;
 }
 
@@ -22,10 +22,41 @@
   border-bottom: 1px solid rgb(0, 8, 100);
 }
 
-.signup-btn {
+.form-control2 {
+  font-size: 14px;
+}
+
+.form-control2::-webkit-file-upload-button {
+  border-radius: 15px;
+  border: 1px solid rgb(128, 128, 128);
+  padding: 7px 10px 7px 10px;
+  background-color: white;
+  font-size: 14px;
+}
+
+.form-control2::-webkit-file-upload-button:hover {
+  background-color: rgb(209, 209, 209);
+  color: white;
+  border: 1px solid white;
+}
+
+.signup_btn {
   background-image: url('/static/images/bg-img.png');
   background-size: cover;
-  filter: brightness(90%);
-  padding-top: 1.2rem;
-  padding-bottom: 1.2rem;
+  filter: brightness(85%);
+  width: 270px;
+  height: 45px;
+  border: 0px;
+  border-radius: 25px;
+  color: white;
+}
+
+.logo_img:hover {
+  border-radius: 20px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.alert {
+  --bs-alert-padding-x: 0rem;
+  --bs-alert-padding-y: 0rem;
 }

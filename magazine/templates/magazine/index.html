@@ -1,16 +1,439 @@
 {% extends 'base.html' %}
-{% block body %}
-  <div class="m-5">
+{% load django_bootstrap5 %}
+{% load static %}
 
-    <div class="mb-5" style="width:50px;">
-      <a href="{% url 'magazine:create' %}" class='btn btn-primary'>쓰기</a>
-    </div>
-    {% for magazine in magazines %}
-      <a href="{% url 'magazine:detail' magazine.pk %}">
-        {{ magazine.title }}
-        |
-        {{ magazine.user}}
-      </a>
-    {% endfor %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/magazine.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+{% endblock css %}
+
+{% block body %}
+<!-- banner -->
+<div class="container mt-5">
+  <p class="bg-img"></p>
+  <div class="d-flex justify-content-center">
+    <h1 class="bg-txt">카드  
+      <img class="bg-txt-img" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26378/tips_gosty_bi.png">
+      를 입다
+    </h1>
+    <p class="bg-txt-2">
+      0.5mm까지 빈틈없이 커버하는 고스티로 한 끗 차이를 만들어보세요.
+    </p>
   </div>
+</div>
+
+<!-- HISTORY -->
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <div class="col">
+      <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
+        <img src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26377/tips_gosty.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">  
+        <div class="card-img-overlay d-flex justify-content-center">
+          <h3 class="card-title" style="position: relative; top:110px; height: 30px;">Gosty</h3>
+        </div>
+      </div>
+      <p class="mt-2">카드 새 옷을 입다</p>
+    </div>
+    <div class="col">
+      <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
+        <img src="https://api.card-gorilla.com:8080/storage/corp/2/tips/25414/tips_wooricardnu.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">
+        <div class="card-img-overlay d-flex justify-content-center">
+          <h3 class="card-title" style="position: relative; top:110px; height: 30px;">우리카드 NU</h3>
+        </div>
+      </div>
+      <p class="mt-2">What's NU?</p>
+    </div>
+    <div class="col">
+      <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
+        <img src="http://photo.sentv.co.kr/photo/2022/02/18/20220218103210.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">
+        <div class="card-img-overlay d-flex justify-content-center">
+          <h3 class="card-title" style="position: relative; top:110px; height: 30px;">대한항공</h3>
+        </div>
+      </div>
+      <p class="mt-2">"올해는, 한국을 뜨셔야죠"</p>
+    </div>
+  </div>
+  <hr class="mt-5">
+</div>
+
+<!-- YouTube -->
+<div class="mt-5 d-flex justify-content-center container">
+  <!-- 에디터 Class가 추천해주는 영상 -->
+  <div class="editor-tag" style="margin-right: 40px;">
+    <div class="mb-5">
+      <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 영상</span>
+    </div>
+    <div>
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#연회비만원</span>
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#사회초년생</span><br>
+    </div>
+    <div class="my-5">
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#쓸때 마다 할인</span>
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#수수료 0원</span><br>
+    </div>
+    <div>
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#프리미엄</span>
+      <span style="color: #8b8b8b; border:1px solid #c1c1c1; border-radius: 21px; padding: 10px 12px 9px 12px;">#신용카드 추천</span>
+    </div>
+  </div>
+  <!-- player -->
+  <div id="player">
+    <div id="player_screen">
+      <iframe class="f-iframe mb-3" width="976" height="549" src="https://www.youtube.com/embed/x_YJD3pFX5E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p class="player-txt">첫 신용카드를 받는 20대 사회 초년생을 위한 4가지 유형별 신용카드 추천</p>
+    </div>
+  </div>
+</div>
+
+<!-- Card-Player -->
+<div id="list" class="mt-5 container">
+  <div class="row d-flex justify-content-center">
+    <div class="col blogbox2 moreBox2" style="max-width:330px;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/erNxDAmVHwc/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">첫 신용카드를 받는 20대 사회초년생을 위한 4가지 유형별 신용카드 추천</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/erNxDAmVHwc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl> 
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/HddD1sI8aZY/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">[연말정산] 13월의 월급이냐 세금폭탄 이냐는 지금도 늦지 않았습니다!!</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/HddD1sI8aZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl> 
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/GnMmoKf1Lrs/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">현명한 부모는 이 카드로 용돈 준다! 용돈카드 BEST5 비교하기</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/GnMmoKf1Lrs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl> 
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/q335qw_Q5MQ/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">[EVENT]5만 구독자 달성 공약🙏 카고가 선물을 드립니다!!❤️</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/q335qw_Q5MQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl>
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px; display: none;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/fv008gCIzaw/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">카드 여러 장 쓰면 신용점수 떨어지나요?<br>신용점수 올리는 팁! 최적의 카드 조합</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/fv008gCIzaw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl>
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px; display: none;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/qiDk9E0CsOA/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">22년 11월 체크카드 인기순위 TOP100</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/qiDk9E0CsOA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl> 
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px; display: none;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/6XSuQg_yOjo/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">22년 11월 신용카드 인기순위 TOP100<br>연 1위를 차지한 카드는?</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/6XSuQg_yOjo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl> 
+    </div>
+    <div class="col blogbox2 moreBox2" style="max-width:330px; display: none;">
+      <dl class="movs">
+        <dt><a href="#"><img style="border-radius: 15px;" src="https://img.youtube.com/vi/bDu-P-4IvaI/mqdefault.jpg" alt=""></a></dt>
+        <dt><a href="" class="mt-2" style="text-decoration:none; color:black; display: block; width: 320px;">카드계의 트렌드세터!! 현대카드는 왜 인기가 많을까??</a></dt>
+        <dd class="url"><iframe width="560" height="315" src="https://www.youtube.com/embed/bDu-P-4IvaI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></dd>
+      </dl>
+    </div>
+  </div>
+  <div id="loadMore2" class="my-5 d-flex justify-content-center">
+    <a class="loadMoreBtn2" href="" style="text-decoration:none; width: 220px; height: 50px; text-align: center; background-color: #d1d1d1; border-radius: 25px;">
+      <span style="position: relative; top: 15px; color: white;">영상 전체 보러가기 ></span>
+    </a>
+  </div>
+  <hr class="mt-5">
+</div>
+
+<!-- 에디터 Class가 추천해주는 매거진 -->
+<div class="container mt-5">
+  <div class="editor-tag2 d-flex justify-content-between" style="margin-right: 40px; position: relative;">
+    <div>
+      <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 매거진</span>
+    </div>
+    <div style="width: 130px;">
+      <a href="{% url 'magazine:create' %}" class='btn' style="position: absolute; top: 25px; background-color: white; color: gray; border: 1px solid gray; padding: 20px 25px 20px 25px;">매거진 작성하기</a>
+    </div>
+  </div>
+
+  <!-- Tab -->
+  <div style="margin-top: 4rem;">
+    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">
+          <span>전체</span>
+        </button>
+      </li>
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link" id="year-tab" data-bs-toggle="tab" data-bs-target="#year-tab-pane" type="button" role="tab" aria-controls="year-tab-pane" aria-selected="false">
+          <span>연말정산</span>
+        </button>
+      </li>
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-tab-pane" type="button" role="tab" aria-controls="news-tab-pane" aria-selected="false">
+          <span>뉴스</span>
+        </button>
+      </li>
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link" id="reco-tab" data-bs-toggle="tab" data-bs-target="#reco-tab-pane" type="button" role="tab" aria-controls="reco-tab-pane" aria-selected="false">
+          <span>추천·리뷰</span>
+        </button>
+      </li>
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab" aria-controls="basic-tab-pane" aria-selected="false">
+          <span>기초상식</span>
+        </button>
+      </li>
+      <li class="nav-item mx-1" role="presentation">
+        <button class="nav-link" id="bodo-tab" data-bs-toggle="tab" data-bs-target="#bodo-tab-pane" type="button" role="tab" aria-controls="bodo-tab-pane" aria-selected="false">
+          <span>보도자료</span>
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content mt-5" id="myTabContent">
+      <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for magazine in magazines %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' magazine.pk %}">
+                <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ magazine.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ magazine.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ magazine.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ magazine.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for my in mz_year %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' my.pk %}">
+                <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ my.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ my.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ my.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ my.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}  
+        </div>
+      </div>
+      <div class="tab-pane fade" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for mn in mz_news %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' mn.pk %}">
+                <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mn.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ mn.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ mn.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ mn.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}  
+        </div>
+      </div>
+      <div class="tab-pane fade" id="reco-tab-pane" role="tabpanel" aria-labelledby="reco-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for mr in mz_recommend %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' mr.pk %}">
+                <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mr.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ mr.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ mr.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ mr.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}  
+        </div>
+      </div>
+      <div class="tab-pane fade" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for mb in mz_basic %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' mb.pk %}">
+                <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mb.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ mb.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ mb.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ mb.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}  
+        </div>
+      </div>
+      <div class="tab-pane fade" id="bodo-tab-pane" role="tabpanel" aria-labelledby="bodo-tab" tabindex="0">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+          {% for mbd in mz_bodo %}
+          <div class="col">
+            <div class="card h-100" style="border: 0px; width: auto;">
+              <a href="{% url 'magazine:detail' mbd.pk %}">
+                <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body p-2">
+                  <div class="d-flex justify-content-between">
+                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mbd.tag }}</span>
+                    <span style="font-size: 10px;">editor 
+                      <span style="font-size: 12px;">{{ mbd.user}}</span>
+                    </span>
+                  </div>
+                  <p class="card-title" style="font-size: 14px;">{{ mbd.title }}</p>
+                  <p class="card-text" style="font-size: 13px;">{{ mbd.sub_title }}</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          {% endfor %}  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// loadMore
+$( document ).ready(function () {
+  $(".moreBox").slice(0, 3).show();
+  if ($(".blogBox:hidden").length != 0) {
+    $("#loadMore").show();
+  }   
+  $("#loadMore").on('click', function (e) {
+  e.preventDefault();
+  $(".moreBox:hidden").slice(0, 4).slideDown();
+  if ($(".moreBox:hidden").length == 0) {
+    $(".loadMoreBtn").hide()
+    }
+  });
+});
+
+// loadMore2
+$( document ).ready(function () {
+  $(".moreBox2").slice(0, 3).show();
+  if ($(".blogBox2:hidden").length != 0) {
+    $("#loadMore2").show();
+  }
+  $("#loadMore2").on('click', function (e) {
+  e.preventDefault();
+  $(".moreBox2:hidden").slice(0, 4).slideDown();
+  if ($(".moreBox2:hidden").length == 0) {
+    $(".loadMoreBtn2").hide()
+    }
+  });
+});
+
+// loadMore3
+$( document ).ready(function () {
+  $(".moreBox3").slice(0, 3).show();
+  if ($(".blogBox3:hidden").length != 0) {
+    $("#loadMore3").show();
+  }
+  $("#loadMore3").on('click', function (e) {
+  e.preventDefault();
+  $(".moreBox3:hidden").slice(0, 4).slideDown();
+  if ($(".moreBox3:hidden").length == 0) {
+    $(".loadMoreBtn3").hide()
+    }
+  });
+});
+
+// YouTube
+$('#player_screen .top_img').on('click', function(e) { // 플레이어 영역을 덮은 이미지를 클릭하면
+  e.preventDefault(); // 일단 a태그에 걸린 링크는 무시하고
+  var $item_top = $("#player_screen").find("iframe").attr("src"); // 플레이어 영역에 넣은 iframe의 주소를 찾아서 $item_top 로 간직하고 있다가
+  $('#player_screen .top_img').fadeOut("slow"); // 플레이어 영역을 덮은 이미지를 천천히 페이드처리하고
+  $('#player_screen iframe').show().attr("src",$item_top); // 플레이어 영역의 iframe 주소에 autoplay 코드를 추가해서 변경
+  });
+
+$('#list .movs a').on('click', function(e) { // 썸네일 영역의 a 링크들을 클릭하면
+  e.preventDefault(); // 일단 a태그에 걸린 링크는 무시하고
+  var $itemx = $(this).parents("dl.movs") // 클릭된 a 의 부모요소 중 dl.movs라는 요소를 찾아 $itemx 로 지정합니다.
+  var $itemx_tit = $itemx.find("dt").html(); // 간직한 $itemx 요소에 dt를 찾아 그 안의 내용을 $itemx_tit으로 지정합니다. 
+  var $itemx_url = $itemx.find("dd.url iframe").attr("src"); // 간직한 $itemx 요소에서 dd.url 안에 있는 iframe을 찾아, 그 주소를 $itemx_url 로 지정합니다.
+  var $sc_top = $(document).scrollTop(); // 사실 없어도 되지만, 플레이어 영역이 스크롤되어 감춰졌을 때 제대로 보여주기 위해서 지정합니다. 문서가 얼마나 스크롤되었는지 지정합니다.
+  var $player_top = $('#player').offset().top // 문서 내에서 플레이어 영역의 세로 위치가 어디 쯤에 위치하는지를 지정합니다.
+
+  $('#player_screen .top_img').hide(); // 커버 이미지를 감춥니다. 
+  $('#player_screen iframe').attr("src",$itemx_url); // 플레이어 영역의 iframe에 아까 지정해두었던 iframe주소와 자동실행 코드를 넣어줍니다. 동영상이 재생됩니다.
+  $('#player_screen iframe').show(); // 만약 iframe이 감춰져 있었다면, 이 코드를 통해 보여지게 됩니다.
+  $('#player_text dt').html( $itemx_tit ); // 플레이어 영역의 제목 부분에 썸네일에 있던 제목을 그대로 가져와 넣어줍니다.
+  if ( $player_top < $sc_top) { // 만약 플레이어 영역의 높이값보다 페이지를 더 아래로 스크롤했을 경우,
+    $('html, body').animate({ scrollTop: $player_top }, "slow"); // 현재 보고있는 페이지를 플레이어 영역이 다 보일 때까지 스크롤 합니다.
+    }
+  else { return false } // 만약 플레이어 영역의 높이값이 화면에 보인다면, 그냥 관둡니다.
+});
+
+// 반응형 Tab menu
+$(document).ready(function () {
+    
+  $('#nav').children('li').first().children('a').addClass('active')
+      .next().addClass('is-open').show();
+      
+  $('#nav').on('click', 'li > a', function() {
+      
+    if (!$(this).hasClass('active')) {
+
+      $('#nav .is-open').removeClass('is-open').hide();
+      $(this).next().toggleClass('is-open').toggle();
+        
+      $('#nav').find('.active').removeClass('active');
+      $(this).addClass('active');
+    } else {
+      $('#nav .is-open').removeClass('is-open').hide();
+      $(this).removeClass('active');
+    }
+  });
+});
+</script>
+
 {% endblock body %}
