@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+
+{% block body %}
+<div class="">
+  <div class="">
+    <div class="">
+      <p>{{ user }}</p>
+      <!-- 로그인 했을 경우 회원정보 수정버튼 보임-->
+      {% if request.user.is_authenticated %}
+      <!-- 회원정보 수정 -->
+      {% if user == request.user %}
+      <button
+        type="submit"
+        class=""
+        onclick="location.href='{% url 'accounts:update' %}'"
+      >
+        회원정보 수정
+      </button>
+      {% else %}
+      <!-- 팔로우 버튼 -->
+      {% if request.user != user %}
+      <form action="{% url 'accounts:follow' user.username %}" method='POST'>
+        {% csrf_token %}
+        {% if request.user in user.followers.all %}
+        <input type="submit" value="팔로우 취소" class="follow-button" />
+        {% else %}
+        <input type="submit" value="팔로우" class="follow-button" />
+        {% endif %}
+      </form>
+      {% endif %}
+      {% endif %}
+        {% endif %}
+    </div>
+    <div class="">
+      <p class="">팔로잉
+        {{user.follow.count}}
+      </p>
+      <p class="">팔로워
+        {{user.followers.count}}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+{% endblock js %}
