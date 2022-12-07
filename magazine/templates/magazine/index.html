@@ -5,7 +5,7 @@
     <div class="mb-5" style="width:50px;">
       <a href="{% url 'magazine:create' %}" class='btn btn-primary'>쓰기</a>
     </div>
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <ul class="nav nav-pills justify-content-center" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
         <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all-tab-pane" type="button" role="tab" aria-controls="all-tab-pane" aria-selected="true">
           전체
@@ -21,6 +21,21 @@
           news
         </button>
       </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="reco-tab" data-bs-toggle="tab" data-bs-target="#reco-tab-pane" type="button" role="tab" aria-controls="reco-tab-pane" aria-selected="false">
+          reco
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="basic-tab" data-bs-toggle="tab" data-bs-target="#basic-tab-pane" type="button" role="tab" aria-controls="basic-tab-pane" aria-selected="false">
+          basic
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="bodo-tab" data-bs-toggle="tab" data-bs-target="#bodo-tab-pane" type="button" role="tab" aria-controls="bodo-tab-pane" aria-selected="false">
+          bodo
+        </button>
+      </li>
     </ul>
     <div class="tab-content" id="myTabContent">
       <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
@@ -32,105 +47,56 @@
           </a>
         {% endfor %}
       </div>
-      <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">...</div>
-      <div class="tab-pane fade" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">...</div>
+      <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
+        연말정산
+        {% for my in mz_year %}
+          <a href="{% url 'magazine:detail' my.pk %}">
+            {{ my.title }}
+            |
+            {{ my.user}}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="tab-pane fade" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
+        뉴스
+        {% for mn in mz_news %}
+          <a href="{% url 'magazine:detail' mn.pk %}">
+            {{ mn.title }}
+            |
+            {{ mn.user}}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="tab-pane fade" id="reco-tab-pane" role="tabpanel" aria-labelledby="reco-tab" tabindex="0">
+        추천·리뷰
+        {% for mr in mz_rocommend %}
+          <a href="{% url 'magazine:detail' mr.pk %}">
+            {{ mr.title }}
+            |
+            {{ mr.user}}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="tab-pane fade" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
+        기초상식
+        {% for mb in mz_masic %}
+          <a href="{% url 'magazine:detail' mb.pk %}">
+            {{ mb.title }}
+            |
+            {{ mb.user}}
+          </a>
+        {% endfor %}
+      </div>
+      <div class="tab-pane fade" id="bodo-tab-pane" role="tabpanel" aria-labelledby="bodo-tab" tabindex="0">
+        보도자료
+        {% for mbd in mz_bodo %}
+          <a href="{% url 'magazine:detail' mbd.pk %}">
+            {{ mbd.title }}
+            |
+            {{ mbd.user}}
+          </a>
+        {% endfor %}
+      </div>
     </div>
 
-    <div class="btn-group">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#all" aria-expanded="false" aria-controls="all" onclick="all()">
-            전체
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#year" aria-expanded="false" aria-controls="year" onclick="year()">
-            연말정산
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#news" aria-expanded="false" aria-controls="news" onclick="news()">
-            뉴스
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#reco" aria-expanded="false" aria-controls="reco" onclick="reco()">
-            추천·리뷰
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#basic" aria-expanded="false" aria-controls="basic" onclick="basic()">
-            기초상식
-          </button>
-        </li>
-        <li class="nav-item">
-          <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#bodo" aria-expanded="false" aria-controls="bodo" onclick="bodo()">
-            보도자료
-          </button>
-        </li>
-      </ul>
-    </div>
-
-    <div class="collapse" id="all">
-      {% for magazine in magazines %}
-        <a href="{% url 'magazine:detail' magazine.pk %}">
-          {{ magazine.title }}
-          |
-          {{ magazine.user}}
-        </a>
-      {% endfor %}
-    </div>
-    <div class="collapse" id="year">
-      연말정산
-      {% for my in mz_year %}
-        <a href="{% url 'magazine:detail' my.pk %}">
-          {{ my.title }}
-          |
-          {{ my.user}}
-        </a>
-      {% endfor %}
-    </div>
-    <div class="collapse" id="news">
-      뉴스
-      {% for mn in mz_news %}
-        <a href="{% url 'magazine:detail' mn.pk %}">
-          {{ mn.title }}
-          |
-          {{ mn.user}}
-        </a>
-      {% endfor %}
-    </div>
-    <div class="collapse" id="reco">
-      추천·리뷰
-      {% for mr in mz_rocommend %}
-        <a href="{% url 'magazine:detail' mr.pk %}">
-          {{ mr.title }}
-          |
-          {{ mr.user}}
-        </a>
-      {% endfor %}
-    </div>
-    <div class="collapse" id="basic">
-      기초상식
-      {% for mb in mz_masic %}
-        <a href="{% url 'magazine:detail' mb.pk %}">
-          {{ mb.title }}
-          |
-          {{ mb.user}}
-        </a>
-      {% endfor %}
-    </div>
-    <div class="collapse" id="bodo">
-      보도자료
-      {% for mbd in mz_bodo %}
-        <a href="{% url 'magazine:detail' mbd.pk %}">
-          {{ mbd.title }}
-          |
-          {{ mbd.user}}
-        </a>
-      {% endfor %}
-    </div>
-  </div>
-
-{% endblock body %}
+  {% endblock body %}
