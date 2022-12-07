@@ -5,12 +5,10 @@ from django.views.decorators.http import (
     require_POST,
     require_safe,
 )
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from django.contrib.auth import login as auth_login
+from .forms import CustomUserChangeForm, CheckPasswordForm
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse
 
 
 @require_safe
@@ -27,27 +25,16 @@ def profile(request, username):
 
 @require_POST
 def follow(request, username):
-    print("!!!!!!!")
     if not request.user.is_authenticated:
         messages.warning(request, "로그인이 필요합니다.")
-        # 확인
         return redirect("login")
 
-    print("user model : ", get_user_model())
     user = get_object_or_404(get_user_model(), username=username)
     if user != request.user:
         if user.followers.filter(username=request.user.username).exists():
             user.followers.remove(request.user)
-            # is_followed = False
         else:
             user.followers.add(request.user)
-        #     is_followed = True
-        # context = {
-        #     "is_followed": is_followed,
-        #     "followersCount": user.followers.all().count(),
-        #     "followCount": user.follow.all().count(),
-        # }
-        # return JsonResponse(context)
     return redirect("accounts:profile", user.username)
 
 
@@ -70,7 +57,15 @@ def update(request):
 
 @login_required
 def delete(request):
-    request.user.delete()
-    auth_logout(request)
-    messages.success(request, "탈퇴 완료")
-    return redirect("main")
+    if request.method == "POST":
+        password_form = CheckPasswordForm(request.user, request.POST)
+
+        if password_form.is_valid():
+            request.user.delete()
+            auth_logout(request)
+            messages.success(request, "회원 탈퇴가 완료되었습니다.")
+            return redirect("main")
+    else:
+        password_form = CheckPasswordForm(request.user)
+    context = {"password_form": password_form}
+    return render(request, "accounts/check_delete.html", context)
