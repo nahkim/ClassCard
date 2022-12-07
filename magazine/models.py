@@ -7,6 +7,7 @@ TAG_CHOICES = {
     ('RECOMMEND','추천·리뷰'),
     ('BASIC','기초상식'),
     ('BODO','보도자료'),
+    ('ECT','기타'),
 }
 # Create your models here.
 class Magazine(models.Model):
@@ -16,7 +17,7 @@ class Magazine(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='image/mzimg')
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    tag = models.CharField(max_length=20, verbose_name='태그명', choices=TAG_CHOICES)
+    tag = models.CharField(max_length=20, verbose_name='태그명', choices=TAG_CHOICES, default='ECT')
 
     # 유저가 없어서 현재는 작성이 안됩니당
     # 다중이미지 고려..
