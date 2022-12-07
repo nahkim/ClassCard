@@ -201,3 +201,8 @@ ACCOUNT_LOGOUT_ON_GET = True
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # 세션 쿠키 유효기간
 SESSION_COOKIE_AGE = 3600
+
+# 썸머노트 이미지 용량제한
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': 5 * 1024 * 1024
+}

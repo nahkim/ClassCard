@@ -6,7 +6,7 @@ from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 class MagazineForm(ModelForm):
     class Meta:
         model = Magazine
-        fields = ('title', 'sub_title', 'content',)
+        fields = ('title', 'sub_title', 'content','tag')
         widgets = {
             'content': SummernoteWidget(),
         }
