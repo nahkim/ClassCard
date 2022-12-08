@@ -183,3 +183,25 @@ ul#nav {
     left: 0;
   }
 }
+
+.mz-comment-mz {
+  padding: 50px 50px 50px 50px;
+}
+
+.mz-comment {
+  padding: 0px 20px 0px 20px;
+}
+
+@media all and (max-width:600px) {
+  .mz-comment-img {
+    display: none;
+  }
+  .mz-comment {
+    padding: 0px 0px 0px 0px;
+  }
+
+  .mz-comment-mz {
+    padding: 0px 0px 0px 0px;
+  }
+  
+}
