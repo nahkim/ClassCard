@@ -9,6 +9,7 @@
 {% endblock css %}
 
 {% block body %}
+
   <div class="card-cate">
     <form action="" method="GET" class="card-cate-form">
       <!-- 유저 나이대 (필수면서, 하나씩 밖에 못 고름) -->
@@ -215,7 +216,7 @@
           {% endfor %}
         </div>
       </div>
-      <input type="submit" class="btn-cate-submit" value="카드 보러 가기">
+      <input type="submit" class="btn-cate-submit" value="카드 미리 보기">
     </form>
   </div>
   <br>
@@ -224,16 +225,22 @@
     {{ card_lst.count}}
   </span>
 
-  {% for card in benefit_card_list %}
+  <div class="random-card-5">
+    <div class="row">
+ 
+    </div>
+  </div>
+
+  {% for card in card_list_5 %}
     <p>
-      <a href="{% url 'card:detail' card.card_id%}" class=''>
+      <a href="{% url 'card:detail' card.pk%}" class=''>
         {{ card.card_name }}
       </a>
     </p>
     <br>
   {% endfor %}
 
-  <div>
+  {% comment %} <div>
     <!-- 페이징처리 시작 -->
     <ul class="pagination justify-content-center">
       <!-- 이전페이지 -->
@@ -272,7 +279,7 @@
       {% endif %}
     </ul>
     <!-- 페이징처리 끝 -->
-  </div>
+  </div> {% endcomment %}
 
 {% endblock body %}
 

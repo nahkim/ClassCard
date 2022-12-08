@@ -53,19 +53,14 @@ benefit_key = list(benefit_lst)
 
 
 def detail(request, num):
-    # 크롤링 할 때에 중간중간 없는 카드들이 있어서 id와 card_id가 다르다
-    # 그래서 id가 아니라 card_id를 사용할 것 (id를 사용하면 혜택 부분이랑 꼬이게 된다)
+
     try:
-        cards_all = Card.objects.all()
-        card = Card.objects.get(card_id=num)
+        card = Card.objects.get(pk=num)
         benefit = Benefit.objects.filter(card_id=num)
         benefit_cate = []
         # benefit과 benfit_cate를 하나씩 튜플로 넣어서 저장하기
         # 탬플렛에서 사용하기 편하게
         bnf_list = []
-
-        # 카드 10개를 랜덤으로 가지고오기 (배너)
-        cards_random = random.sample(range(len(cards_all)), 10)
 
         for bnf in benefit:
 
@@ -141,17 +136,7 @@ def detail(request, num):
 
         context = {
             # 카드 배너
-            "cards_random1": cards_all[cards_random[0]],
-            "cards_random2": cards_all[cards_random[1]],
-            "cards_random3": cards_all[cards_random[2]],
-            "cards_random4": cards_all[cards_random[3]],
-            "cards_random5": cards_all[cards_random[4]],
-            "cards_random6": cards_all[cards_random[5]],
-            "cards_random7": cards_all[cards_random[6]],
-            "cards_random8": cards_all[cards_random[7]],
-            "cards_random9": cards_all[cards_random[8]],
-            "cards_random10": cards_all[cards_random[9]],
-            "card_id": card.card_id,
+            "card_id": card.pk,
             "card_img": card.card_img,
             "card_name": card.card_name,
             # 카드사
@@ -180,7 +165,7 @@ def detail(request, num):
 
 @login_required
 def comment(request, pk):
-    card = Card.objects.get(card_id=pk)
+    card = Card.objects.get(pk=pk)
     user = request.user.pk
 
     if request.method == "POST":
@@ -208,14 +193,14 @@ def comment(request, pk):
     data = {
         'commentData' : comment_data,
         'user' : user,
-        'cardId' : card.card_id,
+        'cardId' : card.pk,
     }
 
     return JsonResponse(data)
 
 
 def comment_delete(request, card_id, comment_pk):
-    card = Card.objects.get(card_id=card_id)
+    card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk = comment_pk)
     user = request.user.pk
 
@@ -237,13 +222,13 @@ def comment_delete(request, card_id, comment_pk):
     data = {
         'commentData' : comment_data,
         'user' : user,
-        'cardId' : card.card_id,
+        'cardId' : card.pk,
     }
 
     return JsonResponse(data)
 
 def comment_update(request, card_id, comment_pk):
-    card = Card.objects.get(card_id=card_id)
+    card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
     user = request.user.pk
 
@@ -270,7 +255,7 @@ def comment_update(request, card_id, comment_pk):
     data = {
         'commentData' : comment_data,
         'user' : user,
-        'cardId' : card.card_id,
+        'cardId' : card.pk,
     }
 
     return JsonResponse(data)
@@ -321,7 +306,7 @@ def search(request):
                 
                 if card_type == "체크":
                     for check in check_card:
-                        benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                        benefits_temp = Benefit.objects.filter(card_id = check.pk)
                         
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
@@ -330,11 +315,11 @@ def search(request):
                 
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
                         
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
-                                card_list.append(check)
+                                card_list.append(credit)
                                 break
         
             print(card_list)
@@ -356,7 +341,7 @@ def search(request):
 
                 if card_type == "체크":
                     for check in check_card:
-                        benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                        benefits_temp = Benefit.objects.filter(card_id = check.pk)
                         
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
@@ -365,11 +350,11 @@ def search(request):
                 
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
                         
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
-                                card_list.append(check)
+                                card_list.append(credit)
                                 break
 
         else:
@@ -389,7 +374,7 @@ def search(request):
 
                 if card_type == "체크":
                         for check in check_card:
-                            benefits_temp = Benefit.objects.filter(card_id = check.card_id)
+                            benefits_temp = Benefit.objects.filter(card_id = check.pk)
                             
                             for benefit in benefits_temp:
                                 if benefit.bnf_name in bnf_list:
@@ -398,39 +383,56 @@ def search(request):
                     
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.card_id)
+                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
                         
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
-                                card_list.append(check)
+                                card_list.append(credit)
                                 break
 
-        page = 1
-        paginator = Paginator(card_list, 10)
-        try:
-            paged_list = paginator.page(page)
-        except PageNotAnInteger:
-            page = 1
-            paged_list = paginator.page(page)
+    #     page = 1
+    #     paginator = Paginator(card_list, 10)
+    #     try:
+    #         paged_list = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         page = 1
+    #         paged_list = paginator.page(page)
 
-    else:
-        page = request.GET.get('page')
-        paginator = Paginator(card_list, 10)
-        try:
-            paged_list = paginator.page(page)
-        except PageNotAnInteger:
-            page = 1
-            paged_list = paginator.page(page)
-        
+    # else:
+    #     page = request.GET.get('page')
+    #     paginator = Paginator(card_list, 10)
+    #     try:
+    #         paged_list = paginator.page(page)
+    #     except PageNotAnInteger:
+    #         page = 1
+    #         paged_list = paginator.page(page)
+    
+
+    if len(card_list) != 0:
+        if len(card_list) >= 5:
+            card_list_5 = random.sample(range(len(card_list)), 5)
+        else:
+            card_list_5 = random.sample(range(len(card_list)), len(card_list))
+
+        card_random_list = []
+
+        if len(card_list_5) != 0: 
+            for i in card_list_5:
+                card_random_list.append(Card.objects.get(pk=i))
+
+        print(card_random_list)
+
     context = {
         "kor_benefit_lst": kor_benefit_dict_keys,
-        "benefit_card_list": paged_list,   
+        # "benefit_card_list": paged_list,   
         "card_lst" : card_list,
         "age_param": age,
         "card_type_param": card_type, 
         "kbl_param": ','.join(kbl),
     }
     return render(request, "card/search.html", context)
+
+
 
 def cardcompanylist(request):
     companies = Card.objects.values_list('card_brand',flat=True).distinct()
