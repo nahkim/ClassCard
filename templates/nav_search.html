@@ -9,4 +9,11 @@
     </a>
   {% endfor %}
   <!-- <h6>혜택</h6> {% for bcard in benefit_card_lst %} {{bcard.card_name}} {% endfor %} -->
+
+  <h6>매거진</h6>
+  {% for magazine in magazine_list %}
+    <a href="{% url 'magazine:detail' magazine.pk %}">
+      {{magazine.title}}
+    </a>
+  {% endfor %}
 {% endblock body %}
