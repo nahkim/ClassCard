@@ -43,7 +43,6 @@ def main(request):
 
     # 애완동물을 위한 카드
 
-    
 
     return render(request, "main.html")
 

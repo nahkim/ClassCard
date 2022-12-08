@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
-{% block body %}
-  <a href="{% url 'magazine:index' %}">매거진 목록</a>
-  <h1>
-    매거진 디테일페이지</h1>
-  <div class="m-5">
 
-    <p>
-      디테일 변수는 magazine 입니다
-    </p>
+{% block body %}
+  {% comment %} <a href="{% url 'magazine:index' %}">매거진 목록</a> {% endcomment %}
+
+  {{ magazine.image.url }}
+  <div class="container m-5">
     {{magazine.title}}
     <br>
     {{ magazine.user}}

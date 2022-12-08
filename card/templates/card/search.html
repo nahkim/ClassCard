@@ -1,23 +1,221 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
+
 {% block css %}
-  input[value="{{kbl}}":checked + label { }]
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 {% endblock css %}
+
 {% block body %}
-  <div>
-    <form action="" method="POST">
-      {% csrf_token %}
-      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-        {% for kbl in kor_benefit_lst %}
-          <div class="">
-            <label class='btn btn-outline-primary' id="cate-btn" style="background-color:white; color: #0d6efd; border: 1px #0d6efd solid;">
-              <input type="checkbox" name='answers[]' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
-              {{kbl}}
-            </label>
-          </div>
-        {% endfor %}
+  <div class="card-cate">
+    <form action="" method="GET" class="card-cate-form">
+      <!-- 유저 나이대 (필수면서, 하나씩 밖에 못 고름) -->
+      <div class="card-cate-age">
+        <p class="card-cate-age-title">연령대를 골라주세요</p>
+        <select name="age" id="card-age" multiple required>
+            <option value="20대">20대</option>
+            <option value="30대">30대</option>
+            <option value="40대 이상">40대</option>
+        </select>
       </div>
-      <input type="submit" class="btn btn-primary">
+
+      <!-- 카드 종류 (신용, 체크) (필수면서, 하나씩 밖에 못 고름) -->
+      <div class="card-cate-type">
+        <p class="card-cate-type-title">카드 종류를 선택해주세요</p>
+        <select name="type" id="card-type" multiple required>
+            <option value="신용">신용</option>
+            <option value="체크">체크</option>
+        </select>
+      </div>
+
+
+      <div class="card-cate-benefit">
+        <p class="card-cate-benefit-title">카드 혜택을 선택해주세요</p>
+        <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+          {% for kbl in kor_benefit_lst %}
+            <div class="">
+              {% if kbl == '혜택' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">loyalty</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '스포츠' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">sports_soccer</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '영화' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">movie</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '문화' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">theater_comedy</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '여행' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">luggage</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '교통' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">directions_bus</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '페이' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">add_card</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '포인트' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">paid</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '통신사' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">phone_android</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '쇼핑' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">shopping_bag</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '교육' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">school</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '비즈니스' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">business_center</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '생활' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">home</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '공과금' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">assured_workload</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '카드' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">credit_card</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '어플' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">touch_app</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '애완동물' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">pets</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '자동차' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">directions_car</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '카페' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">coffee</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '건강' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">stethoscope</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '보험' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">account_balance</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '음식' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">ramen_dining</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '금융' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">savings</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '뷰티' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">diversity_1</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '항공' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">flight_takeoff</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '패션' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <i class="fa-regular fa-shirt"></i>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '프리미엄' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">diamond</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '지역' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">pin_drop</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% elif kbl == '기타' %}
+              <label class='btn btn-outline-primary' id="cate-btn">
+                <span class="material-symbols-outlined">more</span>
+                <input type="checkbox" name='answers' id="cate-check" autocomplete='off' value="{{kbl}}" style='display:None;'>
+                {{kbl}}
+              </label>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <input type="submit" class="btn-cate-submit" value="카드 보러 가기">
     </form>
   </div>
   <br>
@@ -41,7 +239,7 @@
       <!-- 이전페이지 -->
       {% if benefit_card_list.has_previous %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ benefit_card_list.previous_page_number }}">이전</a>
+          <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ benefit_card_list.previous_page_number }}">이전</a>
         </li>
       {% else %}
         <li class="page-item disabled">
@@ -53,11 +251,11 @@
         {% if page_number >= benefit_card_list.number|add:-5 and page_number <= benefit_card_list.number|add:5 %}
           {% if page_number == benefit_card_list.number %}
             <li class="page-item active" aria-current="page">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+              <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ page_number }}">{{ page_number }}</a>
             </li>
           {% else %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+              <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ page_number }}">{{ page_number }}</a>
             </li>
           {% endif %}
         {% endif %}
@@ -65,7 +263,7 @@
       <!-- 다음페이지 -->
       {% if benefit_card_list.has_next %}
         <li class="page-item">
-          <a class="page-link" href="?page={{ benefit_card_list.next_page_number }}">다음</a>
+          <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ benefit_card_list.next_page_number }}">다음</a>
         </li>
       {% else %}
         <li class="page-item disabled">
@@ -76,116 +274,16 @@
     <!-- 페이징처리 끝 -->
   </div>
 
-
-  <!-- 맞춤 카드 추천 -->
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 style="display: flex; justify-content:center;" class="">맞춤 카드 검색</h1>
-        </div>
-      </div>
-      <div style="margin-top: 85px;" class="row">
-        <div class="col-md-6">
-          <h2 class="">성별을 알려주세요. <font color="#6c757d"><span style="font-size: 25.6px;">필수</span></font></h2>
-          <div class="choice">
-            <button style="margin: 15px; margin-right: 20px; padding: 10px 60px 10px 60px;"  type="button" class="btn btn-outline-primary">남</button>
-            <button style="margin: 15px; margin-right: 20px; padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">여</button>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <h2 class="">연령대를 알려주세요. <font color="#6c757d"><span style="font-size: 25.6px;">필수</span></font>
-            <div class="choice">
-                <button style="margin: 15px;  padding: 10px 60px 10px 60px;"  type="button" class="btn btn-outline-primary">20대</button>
-                <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">30대</button>
-                <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            </div>
-          </h2>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h2 class="">카드 혜택을 선택하세요. <font color="#6c757d"><span style="font-size: 25.6px;">선택</span></font></h2>
-          <div class="choice">
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;"  type="button" class="btn btn-outline-primary">20대</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">30대</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-            <button style="margin: 15px;  padding: 10px 60px 10px 60px;" type="button" class="btn btn-outline-primary">40대이상</button>
-        </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12"></div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- 유명 메거진 -->
-  <div class="py-5 text-center" >
-    <div class="container">
-      <div class="row">
-        <div class="mx-auto col-md-12">
-          <!-- <h1 class="mb-3">Our team</h1> -->
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://static.pingendo.com/cover-moon.svg" width="200" alt="Card image cap">
-          <h4> <b>J. W. Goethe</b> </h4>
-          <p class="mb-3">CEO and founder</p>
-          <p class="mb-0">I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand.</p>
-        </div>
-        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://static.pingendo.com/cover-bubble-light.svg" width="200" alt="Card image cap">
-          <h4> <b>G. W. John</b> </h4>
-          <p class="mb-3">Co-founder</p>
-          <p class="mb-0">Then, my friend, when darkness overspreads my eyes, and heaven and earth seem to dwell in my soul.</p>
-        </div>
-        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://static.pingendo.com/cover-bubble-dark.svg" width="200">
-          <h4> <b>J. G. Wolf</b> </h4>
-          <p class="mb-3">Evangelist</p>
-          <p class="mb-0"> I should be incapable of drawing a single stroke at the present moment; and yet I feel that I never was a greater.</p>
-        </div>
-        <div class="col-6 col-lg-3 p-4"> <img class="img-fluid d-block mb-3 mx-auto" src="https://static.pingendo.com/cover-moon.svg" width="200">
-          <h4> <b>A. Gang</b> </h4>
-          <p class="mb-3">CFO</p>
-          <p class="mb-0">Artist than now. When, while the lovely valley teems with vapour around me, and the meridian sun strikes.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 {% endblock body %}
 
 {% block script %}
-
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     const categoryCheck = document.querySelectorAll("#cate-check")
     const categoryBtn = document.querySelectorAll("#cate-btn")
+    // url 파라미터를 리스트로 변환하기
+    const answers = []
+    console.log(answers)
 
     var arr = new Array(categoryCheck.length);
     for (var i = 0; i < categoryCheck.length; i++) {
@@ -195,18 +293,41 @@
     for (let i = 0; i < categoryCheck.length; i++) {
       categoryCheck[i].addEventListener('click', function (event) {
         arr[i] += 1
+        // 버튼을 클릭하면 입력되는 값, answer 리스트에 값 넣기
         if (arr[i] % 2 === 0) {
-          console.log(arr[i])
-          event.isTrusted = false
-          categoryBtn[i].style.backgroundColor = '#0d6efd';
+          categoryBtn[i].style.backgroundColor = '#7797fe';
           categoryBtn[i].style.color = 'white';
+          answers.push(categoryCheck[i].defaultValue)
         } else {
-          console.log(arr[i])
           categoryBtn[i].style.backgroundColor = 'white';
-          categoryBtn[i].style.color = '#0d6efd';
+          categoryBtn[i].style.color = '#7797fe';
+
+          // answers 리스트 안에, 특정 단어가 있으면 삭제하기 
+          for(let j = 0; j < answers.length; j++) {
+            if(answers[j] === categoryCheck[i].defaultValue)  {
+              answers.splice(j, 1);
+              j--;
+            }
+          }
         }
       })
     }
+
+    const url = window.location.href
+    console.log(url)
+
+    {% comment %} const searchParam = {
+      answers: answers.join(",")
+    }
+
+    console.log(searchParam)
+
+    const url = "/card/search/?";
+      return axios.get(url, answers={params: searchParam})
+          .then(res => {
+              return res.data.value;
+          })  {% endcomment %}
+
   </script>
 
 {% endblock script %}
