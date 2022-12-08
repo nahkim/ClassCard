@@ -1,54 +1,82 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
 {% load widget_tweaks %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/magazine.css' %}">
+{% endblock css %}
 
 {% block body %}
-  {% comment %} <a href="{% url 'magazine:index' %}">매거진 목록</a> {% endcomment %}
-<!--
-  /* 이건 썸네일 이미지! detail에선 나타내지 않아요! */
-  <img src="{{ magazine.image.url }}" alt="">
--->
-<div class="container m-5">
-    {{magazine.title}}
-    <br>
-    {{ magazine.user}}
-    <br>
-    <a href="{% url 'magazine:update' magazine.pk %}" class='btn btn-warning'>수정버튼 위치</a>
-    <form action="{% url 'magazine:delete_magazine' magazine.pk %}" method='POST'>
-      {% csrf_token %}
-      <input type="submit" class='btn btn-danger' value='매거진 삭제 버튼'>
-    </form>
-    {{magazine.content | safe }},
-    <br>
-    {{magazine.created_at}}
-    <br>
 
-  </div>
-  <div class="mb-5">
-
-    <p class=''>
-      댓글작성</p>
-    <div class='mb-5'>
-      <form action="{% url 'magazine:mzcomment_create' magazine.pk %}" method='POST' class='magazine-comment-form' data-magazine-id="{{ magazine.pk }}" id="formform">
-        {% csrf_token %}
-        <div class="detail-comment-input-box">
-          <p>댓글 작성</p>
-            {% render_field mzcomment_form.content class="form-control" placeholder='댓글 작성' add_required_class="is-required" %}
-        </div>
-        <div class="">
-          <p>평점</p>
-          {% render_field mzcomment_form.grade class="form-control" placeholder='댓글평점' add_required_class="is-required" %}
-        </div>
-          <input type="submit" value='작성' class='btn btn-primary'>
-      </form>
+<div class="container">
+  <div class="m-5 d-flex justify-content-center" style="flex-direction: column">
+    <!-- Title -->  
+    <h1 style="text-align: center">{{ magazine.title }}</h1>
+    <a href="{% url 'accounts:profile' magazine.user.username %}" class="d-flex justify-content-end" style="font-size: 25px;"><p style="font-size: 20px; padding-top: 5px; padding-right: 10px;" class="text-muted m-0"><span style="font-size: 14px;">{{ magazine.created_at|date:'Y-m-d' }}</span> Editor</p> <span style="padding-top: 5.5px;">{{ magazine.user }}</span></a>
+     
+    <!-- Update, Delete Button -->
+    <div class="mt-2 d-flex justify-content-end">
+      <span>
+        <a href="{% url 'magazine:update' magazine.pk %}" class='btn' style="margin-right: 14px; width: 70px; height: 30px; background-color: #cfd3e1; color: white;">수정</a>
+      </span>
+      <span>
+        <form action="{% url 'magazine:delete_magazine' magazine.pk %}" method='POST'>
+          {% csrf_token %}
+          <input type="submit" class='btn' style="width: 70px; height: 30px; background-color: #d94141; color: white;" value='삭제'>
+        </form>
+      </span>
     </div>
-    {% for mzcomment in mzcomments %}
-      <p>
-        {{mzcomment.user}}|{{ mzcomment.content}}
-        <a href="{% url 'magazine:mzcomment_delete' magazine.pk mzcomment.pk %}" class='btn btn-danger'>삭제(버튼 왜 죄다 이렇게 나와용,,,?)</a>
-      </p>
+    
+    <!-- Content -->
+    <div class="mt-4">
+      {{magazine.content | safe }}
+    </div>
+
+    <!-- Comment -->
+    <div class="mt-4">
       <hr>
-    {% endfor %}
+      <!-- 댓글 작성 -->
+      <div class='my-4 mz-comment-mz'>
+        <form action="{% url 'magazine:mzcomment_create' magazine.pk %}" method='POST' class='magazine-comment-form' data-magazine-id="{{ magazine.pk }}" id="formform">
+          {% csrf_token %}
+          <div class="detail-comment-input-box">
+            <p>댓글 작성</p>
+              {% render_field mzcomment_form.content class="form-control" placeholder='댓글 작성' add_required_class="is-required" %}
+          </div>
+          <div class="mt-3">
+            <p>평점</p>
+            {% render_field mzcomment_form.grade class="form-control" placeholder='댓글평점' add_required_class="is-required" %}
+          </div>
+          <div class="d-flex justify-content-center" style="margin-top: 30px;">
+            <input value="작성" type="submit" class='btn' style="width: 25%; padding: 14px 0px 22px 0px; border: 1px solid gray; background-color: white; color: gray;">
+          </div>
+        </form>
+      </div>
+
+      <!-- 댓글 목록 -->
+      <div class="p-5" style="background-color: #fbfbfb; object-fit: contain;">
+        {% for mzcomment in mzcomments %}
+          <div class="d-flex p-4 mt-5 shadow rounded" style="border: 1px solid #cbcbcb; background-color: white; border-radius: 10px;">         
+            <div class="mz-comment-img">
+              {% if mzcomment.user.image %}
+                <img src="{{ mzcomment.user.image.url }}" alt="" style="width: 80px; heigth: 80px; border-radius: 50px;">
+              {% else %}
+                <img src="{% static 'images/profile.png' %}" style="width: 80px; heigth: 80px; border-radius: 50px;">
+              {% endif %}
+            </div>
+            <div class="mz-comment">
+              <h4>{{mzcomment.user}}</h4>
+              <p>{{ mzcomment.content}}</p>
+            </div>
+            <div  class="ms-auto">
+              <a style="color: #e51e1e;" href="{% url 'magazine:mzcomment_delete' magazine.pk mzcomment.pk %}">삭제</a>
+            </div>       
+          </div>
+        {% endfor %}
+      </div>
+    </div>
   </div>
+</div>
 
 {% endblock body %}
