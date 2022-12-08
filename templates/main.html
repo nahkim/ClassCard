@@ -2,51 +2,106 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
+{% block css %} 
+
+{% endblock css %}
 
 {% block body %}
 
-<!--VISUAL-->
+
 <section class="visual">
   <div style=" height: 570px;" class="inner" class="inner">
-
-    <div class="title fade-in">
-      <h3 style="margin-left: 200px; font-size: 80px; font-weight: 900; color: #fff;">FIND YOUR <br> CLASS CARD</h3>
-      <h3 style="margin-top: 30px; margin-left: 200px; font-size: 35px; font-weight: 600; color: #fff; ">나를 위한 카드 추천 플랫폼 <br> 클래스 카드</h3>
-      <button style="margin-left: 200px; margin-top: 30px; border-radius: 30px; background-color: #0071E3; height: 38px;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">시작하기 </a>
-      </button>
-      <img style="position: absolute; top: 66px; right: 500px;" src="{% static 'images/visual1.png' %}" alt="구름 소년">
-      <img style="width: 759px; position: absolute; bottom: 2px; right: 3px;" src="{% static 'images/class-card-img16.png' %}" alt="카드 뭉치">
-    </div>
-
-    <!-- sub -->
-    <div style="margin-left: 120px; position: absolute; margin-top: 150px;" class="container">
-      <div style="display: flex; justify-content: center;" class="row">
-          <div class="col-md-4">
-            <div style="border-color: #fff; background-color:rgba( 255, 255, 255, 0.3 ); border-radius: 50px; transform: scale(0.9, 0.9); box-shadow: 5px 5px 30px 15px rgba(102, 158, 243, 0.25), -5px -5px 30px 15px rgba(102, 158, 243, 0.25); " class="card">
-              <div class="card-body">
-                <p style="font-size: 18px; margin-top: 10px; " class="text-center">정부 지원 혜택 카드가 따로 있다면?</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div style="border-color: #fff; border-radius: 50px; transform: scale(0.9, 0.9); box-shadow: 5px 5px 30px 15px rgba(102, 158, 243, 0.25), -5px -5px 30px 15px rgba(102, 158, 243, 0.25); " class="card">
-              <div class="card-body">
-                <p style="font-size: 18px; margin-top: 10px; " class="text-center">다양한 생활 문화 서비스를 클래스 카드에서!</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div style="border-color: #fff; border-radius: 50px; transform: scale(0.9, 0.9); box-shadow: 5px 5px 30px 15px rgba(102, 158, 243, 0.25), -5px -5px 30px 15px rgba(102, 158, 243, 0.25); " class="card" >
-              <div class="card-body">
-                <p style="font-size: 18px; margin-top: 10px; " class="text-center">생활 요금을 자동 납부 서비스로 한 번에!</p>
-              </div>
-            </div>
-          </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div style=" height: 590px;" class="carousel-inner">
+    <!-- 첫번쨰 -->
+    <div class="carousel-item active">
+      <div class="title fade-in">
+        <div  style="margin-top: 60px; margin-left: 150px;">
+          <h3 id="first"  class="anim-fade-up" style="font-family: 'Shrikhand'; margin-left: 200px; font-size: 80px; font-weight: 900; color: #fff;">FIND YOUR <br> CLASS CARD</h3>
+          <h3 id="second"  class="anim-fade-up" style="margin-top: 30px; margin-left: 200px; font-size: 35px; font-weight: 600; color: #fff; ">나를 위한 카드 추천 플랫폼 <br> 클래스 카드</h3>
+          <button  id="second" style="margin-left: 200px; margin-top: 30px; border-radius: 30px; background-color: #0071E3; height: 38px;" type="button" class="btn anim-fade-up">
+              <a  style="font-size: 16px; margin: 20px; color: #fff; text-decoration: none;" href="">시작하기 </a>
+          </button>
+        </div>
+        <img id="third" class="anim-fade-up" style="position: absolute; top: 68px; right: 650px; " src="{% static 'images/visual1.png' %}" alt="구름 소년">
+        <div id="third" class="anim-fade-up" style="margin-top: 140px;">
+          <img style=" width: 719px; position: absolute; bottom: 2px; right: 1px;" src="{% static 'images/class-card-img16.png' %}" alt="카드 뭉치">
         </div>
       </div>
+  <!-- 두번째 -->
+    </div>
+    <div class="carousel-item">
+      <div class="title fade-in">
+        <div  style="margin-top: 60px; margin-left: 150px;">
+          <h3 id="first"  class="anim-fade-up" style="font-family: 'Shrikhand'; margin-left: 200px; font-size: 80px; font-weight: 900; color: #fff;">FIND YOUR <br> CLASS CARD</h3>
+          <h3 id="second"  class="anim-fade-up" style="margin-top: 30px; margin-left: 200px; font-size: 35px; font-weight: 600; color: #fff; ">나를 위한 카드 추천 플랫폼 <br> 클래스 카드</h3>
+          <button  id="second" style="margin-left: 200px; margin-top: 30px; border-radius: 30px; background-color: #0071E3; height: 38px;" type="button" class="btn anim-fade-up">
+              <a  style="font-size: 16px; margin: 20px; color: #fff; text-decoration: none;" href="">시작하기 </a>
+          </button>
+        </div>
+        <img id="third" class="anim-fade-up" style="position: absolute; top: 68px; right: 650px; transform: scaleX(-1);" src="{% static 'images/class-img01.png' %}" alt="또 다른 소년">
+        <div id="third" class="anim-fade-up" style="margin-top: 140px;">
+          <img style=" width: 719px; position: absolute; bottom: 2px; right: 1px;" src="{% static 'images/class-card04.png' %}" alt="카드 뭉치">
+        </div>
+      </div>
+    </div>
+    
+    <!-- 세번째 -->
+    <div class="carousel-item">
+      <div class="title fade-in">
+        <div  style="margin-top: 60px; margin-left: 150px;">
+          <h3 id="first"  class="anim-fade-up" style="font-family: 'Shrikhand'; margin-left: 200px; font-size: 80px; font-weight: 900; color: #fff;">FIND YOUR <br> CLASS CARD</h3>
+          <h3 id="second"  class="anim-fade-up" style="margin-top: 30px; margin-left: 200px; font-size: 35px; font-weight: 600; color: #fff; ">나를 위한 카드 추천 플랫폼 <br> 클래스 카드</h3>
+          <button  id="second" style="margin-left: 200px; margin-top: 30px; border-radius: 30px; background-color: #0071E3; height: 38px;" type="button" class="btn anim-fade-up">
+              <a  style="font-size: 16px; margin: 20px; color: #fff; text-decoration: none;" href="">시작하기 </a>
+          </button>
+        </div>
+        <img id="third" class="anim-fade-up" style="position: absolute; top: 68px; right: 650px; transform: scaleX(-1);" src="{% static 'images/class-img01.png' %}" alt="또 다른 소년">
+        <div id="third" class="anim-fade-up" style="margin-top: 140px;">
+          <img style=" width: 719px; position: absolute; bottom: 2px; right: 1px;" src="{% static 'images/class-card04.png' %}" alt="카드 뭉치">
+        </div>
+      </div>
+  
+    </div>
   </div>
+  
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      <div style="border-color: #fff; background-color:rgba( 255, 255, 255, 0.3 ); " class="card">
+          <p style="font-size: 18px; margin-top: 10px; " class="text-center">정부 지원 혜택 카드가 따로 있다면?</p>
+      </div>
+    </div>
+    <div class="col">
+      <div style="border-color: #fff; background-color:rgba( 255, 255, 255, 0.3 ); " class="card">
+        <p style="font-size: 18px; margin-top: 10px; " class="text-center">다양한 생활 문화 서비스를 클래스 카드에서!</p>
+    </div>
+    </div>
+    <div class="col">
+      <div style="border-color: #fff; background-color:rgba( 255, 255, 255, 0.3 ); " class="card">
+        <p style="font-size: 18px; margin-top: 10px; " class="text-center">생활 요금을 자동 납부 서비스로 한 번에!</p>
+    </div>
+    </div>
+  </div>
+</div>
+
 </section>
+
 
 
 
