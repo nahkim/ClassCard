@@ -9,12 +9,15 @@
 {% endblock css %}
 
 {% block body %}
+  <div class="search-banner">
+    <p class="search-banner-title">Search Your Card</p>
+  </div>
 
   <div class="card-cate">
     <form action="" method="GET" class="card-cate-form">
       <!-- 유저 나이대 (필수면서, 하나씩 밖에 못 고름) -->
       <div class="card-cate-age">
-        <p class="card-cate-age-title">연령대를 골라주세요</p>
+        <p class="card-cate-age-title">연령대를 골라주세요 <span style="font-size: 1rem; color: #7797fe;">필수</span></p>
         <select name="age" id="card-age" multiple required>
             <option value="20대">20대</option>
             <option value="30대">30대</option>
@@ -24,7 +27,7 @@
 
       <!-- 카드 종류 (신용, 체크) (필수면서, 하나씩 밖에 못 고름) -->
       <div class="card-cate-type">
-        <p class="card-cate-type-title">카드 종류를 선택해주세요</p>
+        <p class="card-cate-type-title">카드 종류를 선택해주세요 <span style="font-size: 1rem; color: #7797fe;">필수</span></p>
         <select name="type" id="card-type" multiple required>
             <option value="신용">신용</option>
             <option value="체크">체크</option>
@@ -216,70 +219,26 @@
           {% endfor %}
         </div>
       </div>
-      <input type="submit" class="btn-cate-submit" value="카드 미리 보기">
+      <input type="submit" class="btn-cate-submit" value="카드 검색">
     </form>
   </div>
   <br>
-  <span class='text-black'>
-    <!-- 카드리스트 갯수 -->
-    {{ card_lst.count}}
-  </span>
 
-  <div class="random-card-5">
-    <div class="row">
- 
-    </div>
-  </div>
-
-  {% for card in card_list_5 %}
-    <p>
-      <a href="{% url 'card:detail' card.pk%}" class=''>
-        {{ card.card_name }}
-      </a>
-    </p>
-    <br>
-  {% endfor %}
-
-  {% comment %} <div>
-    <!-- 페이징처리 시작 -->
-    <ul class="pagination justify-content-center">
-      <!-- 이전페이지 -->
-      {% if benefit_card_list.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ benefit_card_list.previous_page_number }}">이전</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-        </li>
-      {% endif %}
-      <!-- 페이지리스트 -->
-      {% for page_number in benefit_card_list.paginator.page_range %}
-        {% if page_number >= benefit_card_list.number|add:-5 and page_number <= benefit_card_list.number|add:5 %}
-          {% if page_number == benefit_card_list.number %}
-            <li class="page-item active" aria-current="page">
-              <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ page_number }}">{{ page_number }}</a>
-            </li>
-          {% else %}
-            <li class="page-item">
-              <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ page_number }}">{{ page_number }}</a>
-            </li>
-          {% endif %}
-        {% endif %}
+  {% comment %} <div class="random-card-5">
+    <div class="card-random-card-box">
+      {% for card in card_random_list %}
+        <div class="card-random-card col-12 col-sm-6 col-md-4 col-lg-2">
+          <div class="card-search-overlay">
+            <a href="{% url 'card:detail' card.pk %}">더 자세히 보기</a>
+          </div>
+          <div class="card-search-card-arrange">
+            <img class="card-search-image" src="{{ card.card_img }}" alt="">
+          </div>
+        </div>
       {% endfor %}
-      <!-- 다음페이지 -->
-      {% if benefit_card_list.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?age={{ age_param }}&type={{ card_type_param }}&answers={{ kbl_param }}&page={{ benefit_card_list.next_page_number }}">다음</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled">
-          <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-        </li>
-      {% endif %}
-    </ul>
-    <!-- 페이징처리 끝 -->
+    </div>
   </div> {% endcomment %}
+
 
 {% endblock body %}
 
@@ -335,6 +294,24 @@
               return res.data.value;
           })  {% endcomment %}
 
+  </script>
+
+  <script>
+    // 카드 디테일 세로로 바꾸기
+    let cardImage = document.querySelectorAll('.card-search-image')
+
+    for (let i = 0 ; i < cardImage.length ; i ++) {
+  
+      if (cardImage[i].width > cardImage[i].height) {
+        console.log('회전하기!')
+        cardImage[i].style.width = '250px';
+        cardImage[i].style.height = '150px';
+        cardImage[i].classList.add('rotate90');
+      } else {
+        cardImage[i].style.width = '150px';
+        cardImage[i].style.height = '250px';
+      }
+    }
   </script>
 
 {% endblock script %}
