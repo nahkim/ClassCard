@@ -30,4 +30,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('summernote/', include('django_summernote.urls')),
     path('service/', include('servicecenter.urls')),
+    path('nav_search/', views.nav_search, name='nav_search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

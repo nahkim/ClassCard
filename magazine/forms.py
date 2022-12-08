@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, NumberInput
 from .models import Magazine, Comment
 from django_summernote.widgets import SummernoteWidget, SummernoteInplaceWidget
 
@@ -18,3 +18,6 @@ class MagazineCommentForm(ModelForm):
     class Meta:
         model = Comment
         fields = ('content','grade',)
+        widgets = {
+            'grade' : NumberInput(attrs={'min':'1','max':'5'}) 
+        }

@@ -45,3 +45,28 @@ def main(request):
 
 
     return render(request, "main.html")
+
+# nav 검색기능(프로젝트 전체)
+from django.db.models import Q
+from card.models import Card, Benefit
+from magazine.models import Magazine
+
+def nav_search(request):
+    if request.method == 'GET':
+        text = request.GET.get('text')
+        card_list = Card.objects.filter(Q(card_name__icontains=text)|Q(card_brand__icontains=text)|Q(card_in_out_1__contains=text)|Q(card_in_out_2__icontains=text)|Q(card_in_out_3__icontains=text)|Q(card_overseas__icontains=text)).distinct()
+        
+        
+        # 카드 id 필드 사라짐. 보류
+        # benefit_list = Benefit.objects.filter(Q(bnf_name__icontains=text)|Q(bnf_content__icontains=text)|Q(bnf_detail__icontains=text))
+        # benefit_card_lst = benefit_list.values('card_id').distinct()
+
+        # 매거진
+        magazin_list = Magazine.objects.filter(Q(title__icontains=text)|Q(content__icontains=text)).distinct()
+        context = {
+            'text' : text,
+            'card_list' : card_list,
+            # 'benefit_card_lst' : benefit_list,
+            'magazine_list' : magazin_list,
+        }
+        return render(request, 'nav_search.html',context)
