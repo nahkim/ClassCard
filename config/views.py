@@ -60,9 +60,13 @@ def nav_search(request):
         # 카드 id 필드 사라짐. 보류
         # benefit_list = Benefit.objects.filter(Q(bnf_name__icontains=text)|Q(bnf_content__icontains=text)|Q(bnf_detail__icontains=text))
         # benefit_card_lst = benefit_list.values('card_id').distinct()
+
+        # 매거진
+        magazin_list = Magazine.objects.filter(Q(title__icontains=text)|Q(content__icontains=text)).distinct()
         context = {
             'text' : text,
             'card_list' : card_list,
             # 'benefit_card_lst' : benefit_list,
+            'magazine_list' : magazin_list,
         }
         return render(request, 'nav_search.html',context)

@@ -4,9 +4,11 @@
 
 {% block body %}
   {% comment %} <a href="{% url 'magazine:index' %}">매거진 목록</a> {% endcomment %}
-
-  {{ magazine.image.url }}
-  <div class="container m-5">
+<!--
+  /* 이건 썸네일 이미지! detail에선 나타내지 않아요! */
+  <img src="{{ magazine.image.url }}" alt="">
+-->
+<div class="container m-5">
     {{magazine.title}}
     <br>
     {{ magazine.user}}
