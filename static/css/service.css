@@ -1,0 +1,77 @@
+.bg-img {
+  background-image: url('/static/images/center.png');
+  height: 500px;
+  background-size: cover;
+  filter: brightness(50%);
+}
+
+.bg-content {
+  color: white;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  top: 280px;
+  align-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Search-bar {
+  padding-left: 30px; 
+  width: 600px; 
+  height: 50px;
+  background-color: rgb(219 219 219);
+  border: 0px; 
+  border-radius: 30px;
+  outline: none;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.service-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+@media all and (max-width:650px) {
+  .service-icons {
+    padding-left: 58px;
+  }
+  .Search-bar {
+    padding-left: 30px; 
+    width: 400px; 
+    height: 50px;
+    background-color: rgb(219 219 219);
+    border: 0px; 
+    border-radius: 30px;
+    outline: none;
+    color: white;
+  }
+}
+
+.Qna {
+  display: flex;
+  justify-content: end;
+  text-align: center;
+}
+
+.questionBtn {
+  width: 120px; 
+  padding: 8px 15px 8px 15px; 
+  background-color: white; 
+  color: gray; 
+  border: 1px solid gray; 
+  border-radius: 10px;
+}
+
+.questionBtn:hover {
+  background-color: #0c63e4;
+  color: white;
+  border: 1px solid #0c63e4;
+}
