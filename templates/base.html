@@ -173,7 +173,11 @@
             <a href="javascript:void(0)">CARD 정보</a>
           </li>
         </ul>
+        {% if request.user.is_authenticated %}
+        <button onclick="location.href='/logout'" class="btn">LOGOUT</button>
+        {% else %}
         <button onclick="location.href='/signup'" class="btn">JOIN</button>
+        {% endif %}
 
       </div>
     </nav>
