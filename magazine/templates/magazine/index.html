@@ -205,10 +205,12 @@
           <div class="swiper-wrapper">
             {% for magazine in magazines %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' magazine.pk %}">
-                  <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ magazine.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -224,18 +226,20 @@
             {% endfor %}
           </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
-      <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
+      <div class="tab-pane fade show" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             {% for my in mz_year %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' my.pk %}">
-                  <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ my.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -248,21 +252,23 @@
                 </a>
               </div>
             </div>
-            {% endfor %}  
+            {% endfor %}
           </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
-      <div class="tab-pane fade" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
+      <div class="tab-pane fade show" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             {% for mn in mz_news %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' mn.pk %}">
-                  <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mn.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -275,21 +281,23 @@
                 </a>
               </div>
             </div>
-            {% endfor %} 
+            {% endfor %}
           </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
-      <div class="tab-pane fade" id="reco-tab-pane" role="tabpanel" aria-labelledby="reco-tab" tabindex="0">
+      <div class="tab-pane fade show" id="reco-tab-pane" role="tabpanel" aria-labelledby="reco-tab" tabindex="0">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             {% for mr in mz_recommend %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' mr.pk %}">
-                  <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mr.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -305,18 +313,20 @@
             {% endfor %}
           </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>  
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
-      <div class="tab-pane fade" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
+      <div class="tab-pane fade show" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             {% for mb in mz_basic %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' mb.pk %}">
-                  <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mb.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -330,20 +340,22 @@
               </div>
             </div>
             {% endfor %}
-          </div>  
+          </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>  
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
-      <div class="tab-pane fade" id="bodo-tab-pane" role="tabpanel" aria-labelledby="bodo-tab" tabindex="0">
+      <div class="tab-pane fade show" id="bodo-tab-pane" role="tabpanel" aria-labelledby="bodo-tab" tabindex="0">
         <div class="swiper mySwiper">
           <div class="swiper-wrapper">
             {% for mbd in mz_bodo %}
             <div class="swiper-slide">
-              <div class="card h-100" style="border: 0px; width: auto;">
+              <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' mbd.pk %}">
-                  <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
-                  <div class="card-body p-2">
+                  <div class="p-3">
+                    <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
+                  </div>
+                  <div class="card-body">
                     <div class="d-flex justify-content-between">
                       <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mbd.tag }}</span>
                       <span style="font-size: 10px;">editor 
@@ -359,7 +371,7 @@
             {% endfor %}
           </div>
           <div class="swiper-button-next" style="padding-left: 18px;"></div>
-          <div class="swiper-button-prev"></div>    
+          <div class="swiper-button-prev" style="padding-right: 18px;"></div>
         </div>
       </div>
     </div>
@@ -464,14 +476,10 @@ $(document).ready(function () {
 
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 4,
-  spaceBetween: 30,
+  spaceBetween: 20,
   slidesPerGroup: 4,
   loop: true,
   loopFillGroupWithBlank: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
