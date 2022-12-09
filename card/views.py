@@ -289,7 +289,7 @@ def search(request):
                 check_card.append(card)
             else:
                 credit_card.append(card)
-
+                
         #==========================================================
 
         age = request.GET.get("age", "")
@@ -520,4 +520,24 @@ def card_compare(request):
     return render(request,"card/card_compare.html")
 
 def search_list(request):
-    return render(request, "card/search_list.html")
+    bene_tu_li = []
+    # 혜택 갯수 조절
+    for bk in kor_benefit_dict_keys[1:28]:
+        ls = Benefit.objects.filter(bnf_content__icontains=bk).values_list('card_id',flat=True).distinct()
+        # 카드 갯수 조절
+        card = Card.objects.filter(id__contains=ls)[:4]
+        bene_tu_li.append((bk,card))
+    print(len(bene_tu_li))
+    context = {
+        'bene_tu_li' : bene_tu_li,
+    }
+    return render(request, "card/search_list.html",context)
+
+def rank(request):
+    card_credit = Card.objects.filter(card_name__icontains='신용')[:9]
+    card_check = Card.objects.filter(card_name__icontains='체크')[:9]
+    context = {
+        'card_credit' : card_credit,
+        'card_check' : card_check,
+    }
+    return render(request,'card/rank.html',context)

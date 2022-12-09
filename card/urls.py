@@ -21,4 +21,5 @@ urlpatterns = [
 
     # 카드를 검색했을 떄 보이는 카드 목록 페이지
     path('search/card_list/', views.search_list, name="search_list"),
+    path('rank/',views.rank, name='rank'),
 ]

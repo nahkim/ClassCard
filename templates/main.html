@@ -2,9 +2,7 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-{% block css %}
-  
-{% endblock css %}
+{% block css %}{% endblock css %}
 
 {% block body %}
 
@@ -126,7 +124,7 @@
             <h6 style="margin-left: 50px;">2022년도 가장 인기가 많았던 카드</h6>
             <pre></pre>
             <button style="margin-left: 38px; border-radius: 30px; background-color: #0071E3; height: 40px;" type="button" class="btn">
-              <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 >
+              <a style=" margin: 20px; color: #fff; text-decoration: none;" href="{% url 'card:rank' %}">전체 보기 >
               </a>
             </button>
           </div>
@@ -332,7 +330,7 @@
         <h6 style="margin-left: 40px;">2022년도 가장 인기가 많았던 카드</h6>
         <pre></pre>
         <button style="margin-left: 40px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">전체 보기 >
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="{% url 'card:search_list' %}">전체 보기 >
           </a>
         </button>
 
@@ -466,7 +464,7 @@
       <h6 style="margin-left: 50px;">이번달 카드에 대한 다양한 소식을 알려드릴게요!</h6>
       <pre></pre>
       <button style="margin-left: 50px; border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-        <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">인기 콘텐츠 더 보기 >
+        <a style=" margin: 20px; color: #fff; text-decoration: none;" href="{% url 'magazine:index' %}">인기 콘텐츠 더 보기 >
         </a>
       </button>
       <div class="py-5">
