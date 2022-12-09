@@ -49,11 +49,11 @@ INSTALLED_APPS = [
     "django_cleanup.apps.CleanupConfig",
     "django_extensions",
     "django_bootstrap5",
-    'widget_tweaks',
-    'django_summernote',
+    "widget_tweaks",
+    "django_summernote",
 ]
 
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -70,7 +70,10 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "templates"), os.path.join(BASE_DIR, "templates", "allauth")],
+        "DIRS": [
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates", "allauth"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -83,7 +86,7 @@ TEMPLATES = [
     },
 ]
 
-MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -158,52 +161,47 @@ INSTALLED_APPS += [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-
     # include the providers you want to enable:
     "allauth.socialaccount.providers.naver",
     "allauth.socialaccount.providers.google",
 ]
 
 AUTHENTICATION_BACKENDS = [
-
     # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
+    "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
-ACCOUNT_SIGNUP_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/"
 
 
 # Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
         ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
     }
 }
 
-AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = "accounts.User"
 
-ACCOUNT_FORMS = {
-    'signup' : 'accounts.forms.CustomUserCreationForm'
-}
+ACCOUNT_FORMS = {"signup": "accounts.forms.CustomUserCreationForm"}
 # 로그아웃 확인 페이지 제거
 ACCOUNT_LOGOUT_ON_GET = True
 # SMTP 서버실행 해결
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 # 세션 쿠키 유효기간
 SESSION_COOKIE_AGE = 3600
+# 소셜 로그인 확인 페이지 제거
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 # 썸머노트 이미지 용량제한
-SUMMERNOTE_CONFIG = {
-    'attachment_filesize_limit': 5 * 1024 * 1024
-}
+SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}
