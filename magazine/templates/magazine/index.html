@@ -4,6 +4,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/magazine.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock css %}
 
@@ -200,146 +201,172 @@
     </ul>
     <div class="tab-content mt-5" id="myTabContent">
       <div class="tab-pane fade show active" id="all-tab-pane" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for magazine in magazines %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' magazine.pk %}">
-                <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ magazine.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ magazine.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for magazine in magazines %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' magazine.pk %}">
+                  <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ magazine.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ magazine.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ magazine.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ magazine.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ magazine.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ magazine.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <div class="tab-pane fade" id="year-tab-pane" role="tabpanel" aria-labelledby="year-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for my in mz_year %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' my.pk %}">
-                <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ my.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ my.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for my in mz_year %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' my.pk %}">
+                  <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ my.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ my.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ my.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ my.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ my.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ my.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
+            {% endfor %}  
           </div>
-          {% endfor %}  
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <div class="tab-pane fade" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for mn in mz_news %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' mn.pk %}">
-                <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mn.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ mn.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for mn in mz_news %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' mn.pk %}">
+                  <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mn.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ mn.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ mn.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ mn.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ mn.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ mn.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
+            {% endfor %} 
           </div>
-          {% endfor %}  
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>
         </div>
       </div>
       <div class="tab-pane fade" id="reco-tab-pane" role="tabpanel" aria-labelledby="reco-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for mr in mz_recommend %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' mr.pk %}">
-                <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mr.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ mr.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for mr in mz_recommend %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' mr.pk %}">
+                  <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mr.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ mr.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ mr.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ mr.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ mr.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ mr.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}  
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>  
         </div>
       </div>
       <div class="tab-pane fade" id="basic-tab-pane" role="tabpanel" aria-labelledby="basic-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for mb in mz_basic %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' mb.pk %}">
-                <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mb.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ mb.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for mb in mz_basic %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' mb.pk %}">
+                  <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mb.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ mb.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ mb.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ mb.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ mb.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ mb.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
-          </div>
-          {% endfor %}  
+            {% endfor %}
+          </div>  
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>  
         </div>
       </div>
       <div class="tab-pane fade" id="bodo-tab-pane" role="tabpanel" aria-labelledby="bodo-tab" tabindex="0">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-          {% for mbd in mz_bodo %}
-          <div class="col">
-            <div class="card h-100" style="border: 0px; width: auto;">
-              <a href="{% url 'magazine:detail' mbd.pk %}">
-                <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
-                <div class="card-body p-2">
-                  <div class="d-flex justify-content-between">
-                    <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mbd.tag }}</span>
-                    <span style="font-size: 10px;">editor 
-                      <span style="font-size: 12px;">{{ mbd.user}}</span>
-                    </span>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            {% for mbd in mz_bodo %}
+            <div class="swiper-slide">
+              <div class="card h-100" style="border: 0px; width: auto;">
+                <a href="{% url 'magazine:detail' mbd.pk %}">
+                  <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
+                  <div class="card-body p-2">
+                    <div class="d-flex justify-content-between">
+                      <span class="mb-2" style="color: #ffa800; font-size: 10px;">{{ mbd.tag }}</span>
+                      <span style="font-size: 10px;">editor 
+                        <span style="font-size: 12px;">{{ mbd.user}}</span>
+                      </span>
+                    </div>
+                    <p class="card-title" style="font-size: 14px;">{{ mbd.title }}</p>
+                    <p class="card-text" style="font-size: 13px;">{{ mbd.sub_title }}</p>
                   </div>
-                  <p class="card-title" style="font-size: 14px;">{{ mbd.title }}</p>
-                  <p class="card-text" style="font-size: 13px;">{{ mbd.sub_title }}</p>
-                </div>
-              </a>
+                </a>
+              </div>
             </div>
+            {% endfor %}
           </div>
-          {% endfor %}  
+          <div class="swiper-button-next" style="padding-left: 18px;"></div>
+          <div class="swiper-button-prev"></div>    
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 <script>
 // loadMore
@@ -433,6 +460,22 @@ $(document).ready(function () {
       $(this).removeClass('active');
     }
   });
+});
+
+var swiper = new Swiper(".mySwiper", {
+  slidesPerView: 4,
+  spaceBetween: 30,
+  slidesPerGroup: 4,
+  loop: true,
+  loopFillGroupWithBlank: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
 });
 </script>
 
