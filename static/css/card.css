@@ -2,27 +2,18 @@
   border: 1px solid rgb(226, 226, 226);
   text-align: center;
   border-radius: 15px;
+  height: 200px;
 }
 
 .card:hover {
   box-shadow: 5px 5px 10px;
   transform: scale(1.02);
   transform: translate(-5px, -5px);
-  filter: brightness(80%);
-}
-
-.bgimg {
-  background-image:url('/static/images/sinhan.jpg');
+  filter: brightness(90%);
 }
 
 .card-title {
   color: black;
-}
-
-.card_img {
-  opacity: 0.9;
-  height:180px;
-  border-radius: 20px;
 }
 
 .card_content {
