@@ -444,6 +444,7 @@ def cardcompany(request,company):
         'card_list' : card_list,
     }
     return render(request,'card/cardcompany.html', context)
+    
 from django.db.models import Count
 
 def bookmark(request,pk):
@@ -462,3 +463,6 @@ def bookmark(request,pk):
             messages.warning(request,'이미 비교함에 있어요!')
 # 3개...user.card를 세..
     return render(request,'detail.html')
+
+def card_list(request):
+    return render(request, 'card/card_list.html')
