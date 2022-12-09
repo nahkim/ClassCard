@@ -449,3 +449,4 @@ def cardcompany(request,company):
         'card_list' : card_list,
     }
     return render(request,'card/cardcompany.html', context)
+
