@@ -74,17 +74,77 @@
     </div>
   </div>
 
-  <h3 class="mt-5 d-flex justify-content-center">최근 문의 내역</h3>
-  <!-- question List -->
-  <div>
-    {% for question in questions %}
-    <div class="mb-5">
-      <h3><a href="{% url 'accounts:profile' question.user.username %}">{{ question.user }}</a></h3>
-      <a href="{% url 'service:detail' question.pk %}">{{ question.title }}</a>
-      <p>{{ question.content }}</p>
+  <h3 class="my-5 d-flex justify-content-center">최근 문의 내역</h3>
+  <div style="width: 100%;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">닉네임</th>
+          <th scope="col">제목</th>
+          <th scope="col">문의내용</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% if question_list %}
+      {% for question in question_list %}
+      <tr>
+          <td>
+            {% if mzcomment.user.image %}
+              <img src="{{ mzcomment.user.image.url }}" alt="" style="width: 40px; heigth: 40px; border-radius: 50px;">
+            {% else %}
+              <img src="{% static 'images/profile.png' %}" style="width: 40px; heigth: 40px; border-radius: 50px;">
+            {% endif %}
+          </td>
+          <td style="padding-top: 20px;"><a href="{% url 'accounts:profile' question.user.username %}">{{ question.user }}</a></a></td>
+          <td style="padding-top: 20px;"><a href="{% url 'service:detail' question.pk %}">{{ question.title }}</a></td>
+          <td style="padding-top: 20px;">{{ question.content }}</td>  
+      </tr>
       {% endfor %}
-    </div>
+      {% else %}
+      <tr>
+        <td colspan="3">질문이 없습니다.</td>
+      </tr>
+      {% endif %}
+      </tbody>
+    </table>
   </div>
+  <!-- 페이징처리 시작 -->
+   <ul class="pagination justify-content-center">
+    <!-- 이전페이지 -->
+    {% if question_list.has_previous %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ question_list.previous_page_number }}">이전</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+    </li>
+    {% endif %}
+    <!-- 페이지리스트 -->
+    {% for page_number in question_list.paginator.page_range %}
+    {% if page_number == question_list.number %}
+    <li class="page-item active" aria-current="page">
+        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% else %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+    <!-- 다음페이지 -->
+    {% if question_list.has_next %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ question_list.next_page_number }}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+    </li>
+    {% endif %}
+</ul>
+<!-- 페이징처리 끝 -->
 </div>
 
 <!-- Card -->
