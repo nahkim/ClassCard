@@ -466,3 +466,9 @@ def bookmark(request,pk):
 
 def card_list(request):
     return render(request, 'card/card_list.html')
+
+def card_compare(request):
+    return render(request,"card/card_compare.html")
+
+def search_list(request):
+    return render(request, "card/search_list.html")
