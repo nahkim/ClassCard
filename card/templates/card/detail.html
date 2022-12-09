@@ -17,10 +17,13 @@
     </div>
     <p class="card-detail-brand">{{ card_brand }}</p>
     <p class="card-detail-name">{{ card_name }}</p>
-    <form action="" method='POST'>
-      {% csrf_token %}
-      <button type='submit'>bookmark</button>
-    </form>
+    {% if request.user.is_authenticated %}
+      {% if request.user not in user_card_compare %}
+      <button type="button" id="card-com-add" class="card-compare card-compare-pos" data-cardcom-id={{ card_id }}>비교함에 추가</button>
+      {% else %}
+      <button type="button" id="card-com-add" class="card-compare card-compare-neg" data-cardcom-id={{ card_id }}>비교함에서 꺼내기</button>
+      {% endif %}
+    {% endif %}
   </div>
 </div>
 
@@ -450,6 +453,35 @@
     cardImage.style.width = '190px';
     cardImage.style.height = '300px';
   }
+
+  // 카드 비교에 넣기
+  const cardCompare = document.querySelector("#card-com-add")
+
+  cardCompare.addEventListener('click', function(event) {
+    console.log(event.target.dataset.cardcomId)
+    axios({
+      method: 'get',
+      url: `/card/bookmark/${event.target.dataset.cardcomId}/`
+    }) .then (response => {
+      console.log(response)
+      if (response.data.notWork === true) {   
+        if (response.data.compareAdd === true) {
+          event.target.classList.remove(".card-compare-pos")
+          event.target.classList.add(".card-compare-neg")
+          cardCompare.innerText = "비교함에서 꺼내기"
+          event.target.style.color = "#fd7373"
+        } else {
+          event.target.classList.remove(".card-compare-neg")
+          event.target.classList.add(".card-compare-pos")
+          cardCompare.innerText = "비교함에 추가"
+          event.target.style.color = "#738ffd"
+        }
+      } else {
+        alert('카드 3개까지 추가가 가능합니다! 비교함에서 카드를 꺼내주세요 ㅜ.ㅜ')
+      }
+    })
+  })
+
 
   // 카드 베너 가로로 바꾸기
   {% comment %} let bannerCardImage = document.querySelectorAll('.card-detail-banner-card-image')

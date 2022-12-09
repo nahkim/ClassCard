@@ -142,7 +142,7 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
-  bottom: -40%;
+  bottom: -50%;
 }
 
 .card-detail-image-box{
@@ -459,4 +459,27 @@ body {
 .comment-control-update-exit:hover{
   color: #6a717b;
   cursor: pointer;
+}
+
+/* 카드 비교 넣기 */
+.card-compare-pos{
+  border:0px;
+  background-color: white;
+  color: #738ffd;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-compare-neg{
+  border:0px;
+  background-color: white;
+  color: #fd7373;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-compare-pos:hover,
+.card-compare-neg:hover{
+  cursor: pointer;
+  color: #505361;
 }

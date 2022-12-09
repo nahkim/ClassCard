@@ -134,6 +134,13 @@ def detail(request, num):
 
         detail_comments_num = card.detailcomment_set.all().count
 
+        #=============== 카드 비교 ==========
+        compare_card = CompareCard.objects.filter(card_id = card.pk)
+        user_compare_card = []
+
+        for c in compare_card:
+            user_compare_card.append(c.user)
+
         context = {
             # 카드 배너
             "card_id": card.pk,
@@ -156,8 +163,10 @@ def detail(request, num):
             "detail_comment_form": detail_comment_form,
             "detail_comments": detail_comments,
             "detail_comments_num": detail_comments_num,
-        }
 
+            # CompareCard
+            "user_card_compare" : user_compare_card,
+        }
     except:
         return redirect("main")
 
@@ -447,22 +456,62 @@ def cardcompany(request,company):
     
 from django.db.models import Count
 
+@login_required
 def bookmark(request,pk):
 
     user = request.user
     card = Card.objects.get(pk=pk)
+    not_work = True
+    compare_add = True
 
-    if request.method == 'POST':
-        if CompareCard(user=user, card=card).DoesNotExist:
-            if CompareCard.objects.annotate(user_count = Count(user)) <= 3:
-                compare = CompareCard(user=user, card=card)
-                compare.save()
-            else:
-                messages.warning(request,'3개만 추가 가능합니다')
+    if user.is_authenticated:
+        user_bookmark = CompareCard.objects.filter(user = user)
+        
+        # CompareCard에 해당 유저 내용이 없으면, 바로 유저와 카드를 저장한다
+        if user_bookmark == 0:
+            compare_add = True
+            compare = CompareCard(user=user, card=card)
+            compare.save()
+        
         else:
-            messages.warning(request,'이미 비교함에 있어요!')
-# 3개...user.card를 세..
-    return render(request,'detail.html')
+            # 유저가 저장한 카드 내용들을 bookmark_card에 저장한다
+            bookmark_card = []
+            for bookmark in user_bookmark:
+                    bookmark_card.append(bookmark.card)
+
+            if 0 < len(bookmark_card) <= 3 :
+                # 같은 카드가 있는지 확인하고, 있으면 지워버린다
+
+                if card in bookmark_card:
+                    compare_add = False
+                    card_ind = bookmark_card.index(card)
+                    user_bookmark[card_ind].delete()
+
+                else:
+                    # 3개까지 카드를 저장할 수 있다
+                    if len(bookmark_card) + 1 != 4:
+                        compare_add = True
+                        compare = CompareCard(user=user, card=card)
+                        compare.save() 
+                    else:
+                        not_work = False
+                        messages.warning(request,'3개만 추가 가능합니다')
+                        pass
+
+            else:
+                not_work = False
+                messages.warning(request,'3개만 추가 가능합니다')
+
+    else:
+        pass
+
+    data = {
+        "compareAdd" : compare_add,
+        "notWork" : not_work,
+    }
+
+    return JsonResponse(data)
+
 
 def card_list(request):
     return render(request, 'card/card_list.html')
