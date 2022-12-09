@@ -45,7 +45,7 @@
         {% if request.user.is_authenticated %}
         {% if request.user != user %}
           {% if request.user in user.follow.all %}
-          <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style=" margin: 10px;" class="btn btn-outline-success">팔로우 취소</button>
+            <button style=" display: flex; justify-content: center;" id="follow-btn" type="button" data-user-name="{{ user.username }}" style=" margin: 10px;" class="btn btn-outline-success">팔로우 취소</button>
           {% else %}
             {% if user.role == "C" %}
             <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style="margin: 10px;" class="btn btn-outline-success">팔로우</button>
@@ -53,7 +53,7 @@
           {% endif %}
         {% endif %}
         {% endif %}
-        <div style="display: flex; justify-content:center; margin-top: 30px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content:center; margin-top: 8px;  margin-bottom: 50px; ">
           <p  id="following-cnt">팔로잉
             {{user.follow.count}}
           </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
