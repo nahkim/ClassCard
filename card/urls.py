@@ -12,4 +12,6 @@ urlpatterns = [
     path('cardcompanylist/',views.cardcompanylist,name='cardcompanylist'),
     path('cardcompany/<str:company>/',views.cardcompany,name='cardcompany'),
     path('card_list/', views.card_list, name="card_list"),
+    path('card_compare/', views.card_compare, name="card_compare"),
+    path('search/card_list/', views.search_list, name="search_list"),
 ]
