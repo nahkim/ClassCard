@@ -11,4 +11,5 @@ urlpatterns = [
     path('comment_update/<int:card_id>/<int:comment_pk>/', views.comment_update, name="comment_update"),
     path('cardcompanylist/',views.cardcompanylist,name='cardcompanylist'),
     path('cardcompany/<str:company>/',views.cardcompany,name='cardcompany'),
+    path('card_list/', views.card_list, name="card_list"),
 ]
