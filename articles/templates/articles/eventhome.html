@@ -4,6 +4,7 @@
 
 {% block css %} 
 <style>
+
   .btn1 {
     /* display: flex;
     justify-content: center; */
@@ -92,6 +93,129 @@
       text-align: center;
       line-height: 250px;
   }
+
+
+  *
+{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+h5
+{
+  margin:0px;
+  font-size:1.4em;
+  font-weight:700;
+}
+
+p
+{
+  font-size:12px;
+}
+
+.center
+{
+  height:100vh;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* End Non-Essential  */
+
+.property-card
+{
+  height:18em;
+  width:14em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+  box-shadow:  15px 15px 27px #e1e1e3, -15px -15px 27px #ffffff;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image
+{
+  height:6em;
+  width:14em;
+  padding:1em 2em;
+  position:Absolute;
+  top:0px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* Bottom Card Section */
+
+.property-description
+{
+  background-color: #FAFAFC;
+  height:12em;
+  width:14em;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align:center;
+}
+
+/* Social Icons */
+
+.property-social-icons
+{
+  width:1em;
+  height:1em;
+  background-color:black;
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+.property-card:hover .property-description
+{
+  height:0em;
+  padding:0px 1em;
+}
+.property-card:hover .property-image
+{
+  height:18em;
+}
+
+.property-card:hover .property-social-icons
+{
+  background-color:white;
+}
+
+.property-card:hover .property-social-icons:hover
+{
+  background-color:blue;
+  cursor:pointer;
+}
+
 
 </style>
 
@@ -184,46 +308,113 @@
           <p style="margin: 10px;" class="tab-link current" data-tab="tab-1">전체 이벤트</p>
           <p style="margin: 10px;" class="tab-link"  data-tab="tab-2">신한 카드</p>
           <p style="margin: 10px;" class="tab-link"  data-tab="tab-3">삼성 카드</p>
-          <p style="margin: 10px;" class="tab-link"  data-tab="tab-4">롯데 카드</p>
-          <p style="margin: 10px;" class="tab-link"  data-tab="tab-5">하나 카드</p>
+          <p style="margin: 10px;" class="tab-link"  data-tab="tab-4">하나 카드</p>
+          
       </div>
       <div id="tab-1" class="tab-content current">
-          <div class="py-5">
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/59/logo_img/26009/2330card.png" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/107/logo_img/27387/ss_3card.png" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/114/logo_img/26830/hn_8card.png" alt="Card image cap">
-                      <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
-                      </div>
-                    </div>
-                  </div>
+        <div class="py-5" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27304/tips_1669360315693.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27303/tips_1669360268692.png" alt="">
+                </div>
+              </div>
+              <div style="margin-top: 30px;" class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26928/tips_1665973834146.png" alt="">
+                </div>
+              </div>
+              <div style="margin-top: 30px;" class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27335/tips_1669684550973.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26692/tips_1663917949821.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26736/tips_1664427266096.png" alt="">
                 </div>
               </div>
             </div>
-            
+          </div>
+        </div>
+
       </div>
-      <div  id="tab-2" class="tab-content">ㄴㅇㄹㄴㅇㄹㄴㅇㅇㅇㅇ</div>
-      <div  id="tab-3" class="tab-content">ㄴㅇㄹㄴ</div>
-      <div  id="tab-4" class="tab-content">ㄴㅇㄹㄴㅇㄹ</div>
-      <div  id="tab-5" class="tab-content">contents05</div>
+      <!-- 두번째 메뉴  -->
+      <div style="margin-bottom: 50px;" id="tab-2" class="tab-content">
+        <div class="py-5" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27304/tips_1669360315693.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27303/tips_1669360268692.png" alt="">
+                </div>
+              </div>
+              <div style="margin-top: 30px;" class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26928/tips_1665973834146.png" alt="">
+                </div>
+              </div>
+              <div style="margin-top: 30px;" class="col-md-6">
+                <!-- <div class="card">
+                  <img style="width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27304/tips_1669360315693.png" alt="">
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+       
+<!-- 세번째 메뉴 -->
+      <div  id="tab-3" class="tab-content">
+        <div class="py-5" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/2/tips/27335/tips_1669684550973.png" alt="">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26692/tips_1663917949821.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div  id="tab-4" class="tab-content">
+        <div class="py-5" >
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div style="border-radius: 40px; margin-right: 80px;" class="card">
+                  <img style="border-radius: 40px; width: 640px; height: 180px;" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26736/tips_1664427266096.png" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </div>
 </div>
 
