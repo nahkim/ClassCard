@@ -17,6 +17,10 @@
     </div>
     <p class="card-detail-brand">{{ card_brand }}</p>
     <p class="card-detail-name">{{ card_name }}</p>
+    <form action="" method='POST'>
+      {% csrf_token %}
+      <button type='submit'>bookmark</button>
+    </form>
   </div>
 </div>
 

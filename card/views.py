@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Card, Benefit, DetailComment
+from .models import Card, Benefit, DetailComment, CompareCard
 from .forms import DetailCommentForm
 from django.contrib import messages
 from django.contrib.auth import get_user_model
@@ -436,12 +436,7 @@ def search(request):
 
 
 def cardcompanylist(request):
-    companies = Card.objects.values_list('card_brand',flat=True).distinct()
-    
-    context = {
-        'companies' : companies,
-    }
-    return render(request, 'card/cardcompanylist.html', context)
+    return render(request, 'card/cardcompanylist.html')
 
 def cardcompany(request,company):
     card_list = Card.objects.filter(card_brand=company)
@@ -449,3 +444,21 @@ def cardcompany(request,company):
         'card_list' : card_list,
     }
     return render(request,'card/cardcompany.html', context)
+from django.db.models import Count
+
+def bookmark(request,pk):
+
+    user = request.user
+    card = Card.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        if CompareCard(user=user, card=card).DoesNotExist:
+            if CompareCard.objects.annotate(user_count = Count(user)) <= 3:
+                compare = CompareCard(user=user, card=card)
+                compare.save()
+            else:
+                messages.warning(request,'3개만 추가 가능합니다')
+        else:
+            messages.warning(request,'이미 비교함에 있어요!')
+# 3개...user.card를 세..
+    return render(request,'detail.html')
