@@ -4,47 +4,6 @@
 
 
 {% block body %}
-<div class="">
-  <p>{{ user }}</p>
-  <!-- 로그인 했을 경우 회원정보 수정버튼 보임-->
-  {% if request.user.is_authenticated %}
-  <!-- 회원정보 수정 -->
-  {% if user == request.user %}
-  <button
-    type="submit"
-    class=""
-    onclick="location.href='{% url 'accounts:update' %}'"
-  >
-    회원정보 수정
-  </button>
-  {% else %}
-  <!-- 팔로우 버튼 -->
-  {% if request.user != user %}
-  <form action="{% url 'accounts:follow' user.username %}" method='POST'>
-    {% csrf_token %}
-    {% if request.user in user.followers.all %}
-    <input type="submit" value="팔로우 취소" class="follow-button" />
-    {% else %}
-      {% if user.role == "C" %}
-      <input type="submit" value="팔로우" class="follow-button" />
-      {% endif %}
-    {% endif %}
-  </form>
-  {% endif %}
-  {% endif %}
-    {% endif %}
-</div>
-<div class="">
-  <p class="">팔로잉
-    {{user.follow.count}}
-  </p>
-  <p class="">팔로워
-    {{user.followers.count}}
-  </p>
-</div>
-
-
-
 <div class="py-5">
   <div class="background">
       <img style="position: relative; width: 100%; height: 350px; background-repeat: no-repeat;" src="https://i.pinimg.com/originals/54/e6/d1/54e6d1d65a904550f2d0ee56c4f33665.gif" alt="">
@@ -67,19 +26,44 @@
       <div style="margin-top: 30px;" class="container">
           <nav class="navbar">
               <div  class="container-fluid">
-                  <a style="color: #000; font-size: 23px;"  class="navbar-brand">EMAIL: ____________________ </a>
-                  <form class="d-flex" role="search">
-                    <button style="margin: 10px;" class="btn btn-outline-success" type="submit">정보 수정하기</button>
-                    <button style="margin: 10px;" class="btn btn-outline-success" type="submit">회원 탈퇴하기</button>
-                  </form>
+                  <a style="color: #000; font-size: 23px;"  class="navbar-brand">EMAIL: {{user.email}} </a>
+                  {% if request.user.is_authenticated %}
+                  {% if user == request.user %}
+                  <div class="d-flex" role="search">
+                    <button style="margin: 10px;" class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:update' %}'">정보 수정하기</button>
+                    <button style="margin: 10px;" class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:delete' %}'">회원 탈퇴하기</button>
+                  </div>
+                  {% endif %}
+                  {% endif %}
                 </div>
             </nav>
       </div>
       <!-- 프로필 NAME -->
-      <div style="margin-top: 40px; font-size: 30px; display: flex; justify-content: center; top: 10px;">구름 소년</div>
+      <div style="margin-top: 40px; font-size: 30px; display: flex; justify-content: center; top: 10px;">{{ user }}</div>
       <div style="display: flex; justify-content:center;">
-          <button style="margin: 10px;" class="btn btn-outline-success" type="submit">팔로워</button>
-          <button style="margin: 10px;" class="btn btn-outline-success" type="submit">팔로윙</button>
+        <!-- 팔로우 버튼 -->
+        {% if request.user.is_authenticated %}
+        {% if request.user != user %}
+        <form action="{% url 'accounts:follow' user.username %}" method='POST'>
+          {% csrf_token %}
+          {% if request.user in user.followers.all %}
+          <input type="submit" style="margin: 10px;" value="팔로우 취소" class="btn btn-outline-success" />
+          {% else %}
+            {% if user.role == "C" %}
+            <input type="submit" style="margin: 10px;" value="팔로우" class="btn btn-outline-success" />
+            {% endif %}
+          {% endif %}
+        </form>
+        {% endif %}
+        {% endif %}
+        <div class="">
+          <p class="">팔로잉
+            {{user.follow.count}}
+          </p>
+          <p class="">팔로워
+            {{user.followers.count}}
+          </p>
+        </div>
       </div>
   </div>
 </div>
