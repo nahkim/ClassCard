@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block css %}
+
+<style>
+
+    .btn1 {
+      /* display: flex;
+      justify-content: center; */
+      width: 270px;
+      height: 70px;
+      margin: 20px;
+      font-size: 22px;
+  }
+  
+  
+    
+  /* 1. tab 영역 css 설정 */
+  .tab-area {
+      width: 1500px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    
+    
+    /* 2. tab 메뉴 부분 디자인 */
+    .tab-area input {
+      display: none;
+    }  
+    
+    .tab-area label {
+      margin-left: auto;
+      margin-right: auto;
+    }
+      
+    /* label에 마우스 올렸을 때 */
+    .tab-area label:hover {
+      cursor: pointer; /*마우스 모양 변경*/
+    }
+      
+    /* tab-area 안에 존재하는 input 태그가 체크되었을 때, 
+    체크된 input 태그 다음에 등장하는 label의 css 값 */
+    .tab-area input:checked + label {
+      /* 해당 메뉴가 선택된 상태인지 아닌지를 사용자에게 알려줄 수 있음 */
+      font-weight: bold;
+      color: #0071E3;
+    }
+      
+    
+    /* 3. tab 내용 부분 디자인 */
+    
+  
+  
+  .allWrap{
+      width: 100%;
+      height: 100%;
+      margin:0 auto;
+  }
+  
+    .tabBox{
+      margin:20px 0
+  }
+  
+    .tab-link{
+      width: 47%;
+      display: inline-block;
+      padding:10px;
+      text-align: center;
+      background-color:#929090;
+      border-radius: 30px;
+      color:#fff;
+      cursor: pointer;
+    }
+  
+    .tab-link.current{
+        background-color: #0071E3;
+        font-weight: 600;
+    }
+  
+    .tab-content{
+        display: none;
+    }
+  
+    .tab-content.current{
+        display: flex;
+        /* justify-content: center; */
+        width: 100%;
+        height: 100%;
+        /* background-color:#d5d8d7; */
+        font-size: 30px;
+        text-align: center;
+        line-height: 250px;
+    }
+  
+  </style>
+
+  
+{% endblock css %}
+
+{% block body %}
+
+<!-- visual -->
+<section class="visual">
+    <div style="display: flex; justify-content: center; height: 500px;" class="inner">
+      <p style="opacity:0; margin-top: 45px; font-weight: 600; font-size: 40px; position: absolute;" class="\">비교하실 카드를 골라주세요.</p>
+      <div  class="container">
+        <!-- <div class="py-5"> -->
+          <!-- <div class="container"> -->
+            <div style="margin-left: 150px;" class="row">
+              <div style=" margin-top: 210px;" class="col-md-4">
+                <img class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/700/card_img/22174/700card.png">
+                
+                <div style="display: flex; justify-content:center;">
+                  <h6 style="margin-top: 20px; margin-right: 145px;" class="">현대카드</h6>
+                </div>
+                <p style="font-size: 22px; font-weight: 700; margin-left: 10px;">현대카드 M BOOST</p>
+                <div style="margin-left: 65px;">
+                  <button type="button" class="btn btn-primary btn-sm">자세히보기</button>
+                </div>
+                
+              </div>
+              <div style=" margin-top: 210px;" class="col-md-4">
+                <img class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/528/card_img/21216/528card.png">
+                <div style="display: flex; justify-content:center;">
+                  <h6 style="margin-top: 20px; margin-right: 145px;" class="">NH농협카드</h6>
+                </div>
+                <p style="font-size: 22px; font-weight: 700; margin-left: 10px;">라이언 치즈 체크카드</p>
+                <div style="margin-left: 65px;">
+                  <button type="button" class="btn btn-primary btn-sm">자세히보기</button>
+                </div>
+              </div>
+              <div style=" margin-top: 210px;" class="col-md-4">
+                <img class="img-fluid d-block" src="https://api.card-gorilla.com:8080/storage/card/700/card_img/22174/700card.png">
+                <div style="display: flex; justify-content:center;">
+                  <h6 style="margin-top: 20px; margin-right: 145px;" class="">현대카드</h6>
+                </div>
+                <p style="font-size: 22px; font-weight: 700; margin-left: 10px;">현대카드 M BOOST</p>
+                <div style="margin-left: 65px;">
+                  <button type="button" class="btn btn-primary btn-sm">자세히보기</button>
+                </div>
+              </div>
+  
+              <div style="display: flex; top: 480px; justify-content: space-around;" class="card-btn">
+                <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 490px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
+                <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 880px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
+                <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 1260px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </section>
+  
+  
+  <div style="margin-top: 180px;" class="py-5">
+    <div class="container">
+      <div>
+        <hr>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- 카드사 이벤트 -->
+  <div class="container">
+    <div class="allWrap">     
+        <div style="display: flex; justify-content: center; margin: 40px;" class="tabBox">
+            <p style="margin: 10px;" class="tab-link current" data-tab="tab-1">카드 종류</p>
+            <p style="margin: 10px;" class="tab-link"  data-tab="tab-2">연회비</p>
+            <p style="margin: 10px;" class="tab-link"  data-tab="tab-3">핵심 혜택</p>
+            <p style="margin: 10px;" class="tab-link"  data-tab="tab-4">전월 실적</p>
+        </div>
+        <div id="tab-1" class="tab-content current">
+          
+          <div class="container text-center">
+            <!-- <div style="width: 800px; height: 20px; margin-bottom: 200px;">
+              <p style="width: 800px; height: 20px; left:;">카드의 종류를 확인해 보세요!</p>
+            </div> -->
+            <div class="row">
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <div>
+                  <p>신용카드 / 포인트형</p>
+                </div>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <p>체크카드 / 포인트형</p>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <p>신용카드 / 포인트형</p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        <div  id="tab-2" class="tab-content">
+  
+          <div class="container text-center">
+            <div class="row">
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <div>
+                  <dl>
+                    <dt>국내전용 [30,000]원 </dt>
+                    <dt>해외겸용[30,000]원</dt>
+                </dl>
+                </div>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <dl>
+                  <dt>국내전용 [30,000]원 </dt>
+                  <dt>해외겸용[30,000]원</dt>
+              </dl>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <dl>
+                  <dt>국내전용 [30,000]원 </dt>
+                  <dt>해외겸용[30,000]원</dt>
+              </dl>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+        <div  id="tab-3" class="tab-content">
+          <div class="container text-center">
+            <div class="row">
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <div>
+                  <dl>
+                    <dt>업종별 0.5~3%기본적립 </dt>
+                    <dt>온라인 간편결제 5%적립 </dt>
+                    <dt>해외가맹점 5%적립 </dt>
+                </dl>
+                </div>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <dl>
+                  <dt>업종별 0.5~3%기본적립 </dt>
+                  <dt>온라인 간편결제 5%적립 </dt>
+                  <dt>해외가맹점 5%적립 </dt>
+              </dl>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <dl>
+                  <dt>업종별 0.5~3%기본적립 </dt>
+                  <dt>온라인 간편결제 5%적립 </dt>
+                  <dt>해외가맹점 5%적립 </dt>
+              </dl>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div  id="tab-4" class="tab-content">
+          <div class="container text-center">
+  
+            <div class="row">
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <div>
+                  <p>50 만원 이상</p>
+                </div>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <p>20 만원 이상</p>
+              </div>
+              <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                <p>30 만원 이상</p>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+  
+        <!-- <div  id="tab-5" class="tab-content">
+  
+        </div> -->
+    </div>
+  </div>
+
+
+{% endblock body %}
+
+
+
+{% block script %}
+    <script>
+        $('.tab-link').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('.tab-link').removeClass('current');
+        $('.tab-content').removeClass('current');
+
+        $(this).addClass('current');
+        $("#" + tab_id).addClass('current');
+
+    });
+    </script>
+{% endblock script %}
