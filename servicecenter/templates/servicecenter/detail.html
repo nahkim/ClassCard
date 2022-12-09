@@ -1,20 +1,51 @@
 {% extends 'base.html' %}
 {% load django_bootstrap5 %}
+{% load static %}
+
 {% block body %}
-  <h1>detail</h1>
-  {{question.title}}<br>
-  {{question.user}}<br>
-  {{question.content}}<br>
-  {{question.created_at}}<br>
+
+<div class="container mt-5">
+  <h1 class="d-flex justify-content-center">{{question.title}}</h1> 
+  <div class="d-flex justify-content-end">
+    <span style="font-size: 15px; margin-right: 1rem; padding-top: 5px;" class="text-muted">{{ question.created_at|date:'Y-m-d' }}</span>
+    <span style="font-size: 20px;">{{ question.user }}</span>
+  </div>
+
+  <div class="p-3 my-5" style="background-color: #f9f9f9;">
+    <h3>{{ question.content }}</h3>
+  </div>
 
   <form action="" method='POST'>
     {% csrf_token %}
     {% bootstrap_form comment_form %}
-    <input type="submit">
+    <div class="d-flex justify-content-center">
+      <input value="작성" type="submit" class='btn' style="width: 25%; padding: 14px 0px 22px 0px; border: 1px solid gray; background-color: white; color: gray;">
+    </div>
   </form>
 
-  {% for comment in comments %}
-    {{comment.content}}<br>
-    {{comment.created_at|date:'Y-m-d H:i'}}<br>
-  {% endfor %}
+  <div class="mt-5" style="background-color: #fbfbfb; object-fit: contain;">
+    {% for comment in comments %}
+      <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+        <div style="position: relative;">
+          <div style="margin-right: 2rem;">
+            {% if comment.user.image %}
+              <img src="{{ comment.user.image.url }}" alt="" style="width: 80px; heigth: 80px; border-radius: 50px;">
+              <span style="position: absolute;">{{ comment.user.username }}</span>
+            {% else %}
+              <img src="{% static 'images/profile.png' %}" style="width: 80px; heigth: 80px; border-radius: 50px;">     
+              <span style="position: absolute; top: 85px; left: 14px;">{{ comment.user.username }}</span>
+            {% endif %}
+          </div>    
+        </div>
+        <div style="max-width: 76%; word-break: break-all;">
+          <p>{{ comment.content}}</p>  
+        </div>
+        <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+          <p>{{comment.created_at|date:'Y-m-d H:i'}}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
 {% endblock body %}
