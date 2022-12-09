@@ -407,24 +407,25 @@ def search(request):
     #         page = 1
     #         paged_list = paginator.page(page)
     
+    # print(card_list)
+    # if len(card_list) != 0:
+    #     if len(card_list) >= 5:
+    #         card_list_5 = random.sample(card_list, 5)
+    #     else:
+    #         card_list_5 = random.sample(card_list, len(card_list))
 
-    if len(card_list) != 0:
-        if len(card_list) >= 5:
-            card_list_5 = random.sample(range(len(card_list)), 5)
-        else:
-            card_list_5 = random.sample(range(len(card_list)), len(card_list))
+    #     card_random_list = []
 
-        card_random_list = []
+    #     if len(card_list_5) != 0: 
+    #         for i in card_list_5:
+    #             card_random_list.append(Card.objects.get(pk=i.pk))
 
-        if len(card_list_5) != 0: 
-            for i in card_list_5:
-                card_random_list.append(Card.objects.get(pk=i))
-
-        print(card_random_list)
+    #     print(card_random_list)
 
     context = {
         "kor_benefit_lst": kor_benefit_dict_keys,
-        # "benefit_card_list": paged_list,   
+        # "benefit_card_list": paged_list, 
+        # "card_random_list"  : card_random_list,
         "card_lst" : card_list,
         "age_param": age,
         "card_type_param": card_type, 

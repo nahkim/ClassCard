@@ -1,7 +1,60 @@
+
+/* banner */
+.search-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 400px;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search-banner-title{
+  color: white;
+  font-weight: bold;
+  font-size: 8rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .search-banner-title {
+    font-size: 7rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .search-banner-title {
+    font-size: 6rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .search-banner{
+    height: 300px;
+  }
+
+  .search-banner-title {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search-banner{
+    height: 150px;
+  }
+  .search-banner-title {
+    font-size: 2rem;
+  }
+}
+
 /* category search */
 
 .card-cate{
   margin-top: 3rem;
+  margin-bottom: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -83,9 +136,72 @@
 }
 
 .btn-cate-submit{
+  margin-top: 2rem;
   border: 0px;
   border-radius: 10px;
   padding: 0.5rem 2rem;
   background-color: #7797fe;
   color: white;
+}
+
+
+/*=========== card area =================*/
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.random-card-5{
+  margin: 4rem 0;
+}
+
+.card-random-card-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-random-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-search-card-arrange{
+  display: flex;
+  width: 150px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-search-image{
+  border-radius: 15px;
+  box-shadow: 2px -1px 20px 0px #393939e3;
+}
+
+.card-search-overlay{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  z-index: 100;
+  width: 150px;
+  height: 240px;
+  background: #b3b3b3bf;
+  visibility: hidden;
+}
+
+.card-search-overlay a {
+  color:#ffffff;
+  font-weight: bold;
+}
+
+.card-search-overlay a:hover {
+  color: #7797fe;
+}
+
+.card-random-card:hover .card-search-overlay{
+  visibility: visible;
 }
