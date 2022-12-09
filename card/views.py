@@ -453,3 +453,4 @@ def cardcompany(request,company):
 
 def card_list(request):
     return render(request, 'card/card_list.html')
+
