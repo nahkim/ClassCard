@@ -44,23 +44,20 @@
         <!-- 팔로우 버튼 -->
         {% if request.user.is_authenticated %}
         {% if request.user != user %}
-        <form action="{% url 'accounts:follow' user.username %}" method='POST'>
-          {% csrf_token %}
-          {% if request.user in user.followers.all %}
-          <input type="submit" style="margin: 10px;" value="팔로우 취소" class="btn btn-outline-success" />
+          {% if request.user in user.follow.all %}
+          <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style="margin: 10px;" class="btn btn-outline-success">팔로우 취소</button>
           {% else %}
             {% if user.role == "C" %}
-            <input type="submit" style="margin: 10px;" value="팔로우" class="btn btn-outline-success" />
+            <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style="margin: 10px;" class="btn btn-outline-success">팔로우</button>
             {% endif %}
           {% endif %}
-        </form>
         {% endif %}
         {% endif %}
-        <div class="">
-          <p class="">팔로잉
+        <div>
+          <p id="following-cnt">팔로잉
             {{user.follow.count}}
           </p>
-          <p class="">팔로워
+          <p id="follower-cnt">팔로워
             {{user.followers.count}}
           </p>
         </div>
@@ -158,13 +155,9 @@
 </div>
 </div>
 
-
-
-
-          
 {% endblock body %}
 
-{% block js %}
+{% block script %}
 <script>
   const clock = document.querySelector("h2#clock");
 
@@ -221,4 +214,29 @@ const quotes = [
   quote.innerText = todaysQuote.quote;
   author.innerText = todaysQuote.author;
 </script>
-{% endblock js %}
+
+<!-- 팔로우 비동기 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const followBtn = document.querySelector('#follow-btn')
+
+  followBtn.addEventListener('click', function(event) {
+    axios({
+      method: 'get',
+      url: `/accounts/follow/${event.target.dataset.userName}`
+    })
+    .then (response => {
+      if (response.data.is_followed === true) {
+        followBtn.innerText = "팔로우 취소";
+      } else {
+        followBtn.innerText = "팔로우";
+      }
+      const followerCnt = document.querySelector('#follower-cnt')
+      followerCnt.innerText = '팔로워 ' + response.data.followersCnt
+
+      const followingCnt = document.querySelector('#following-cnt')
+      followingCnt.innerText = '팔로잉 ' + response.data.followingsCnt
+    })
+  })
+</script>
+{% endblock script %}
