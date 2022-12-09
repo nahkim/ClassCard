@@ -4,10 +4,36 @@
     카드사?
   </h1>
   <form action="" method='GET'>
-    {% for company in companies %}
-      <a href="{% url 'card:cardcompany' company%}">
-        {{company}}
-      </a>
-    {% endfor %}
+    <a href="{% url 'card:cardcompany' '신한카드'%}">
+      신한카드
+    </a>
+
+    <a href="{% url 'card:cardcompany' '삼성카드'%}">
+      삼성카드
+    </a>
+    <a href="{% url 'card:cardcompany' 'KB국민카드'%}">
+      KB국민카드
+    </a>
+    <a href="{% url 'card:cardcompany' '롯데카드'%}">
+      롯데카드
+    </a>
+    <a href="{% url 'card:cardcompany' '하나카드'%}">
+      하나카드
+    </a>
+    <a href="{% url 'card:cardcompany' 'NH농협카드'%}">
+      NH농협카드
+    </a>
+    <a href="{% url 'card:cardcompany' 'IBK기업은행'%}">
+      IBK기업은행
+    </a>
+    <a href="{% url 'card:cardcompany' '현대카드'%}">
+      현대카드
+    </a>
+    <a href="{% url 'card:cardcompany' '우리카드'%}">
+      우리카드
+    </a>
+    <a href="{% url 'card:cardcompany' 'BNK부산은행'%}">
+      BNK부산은행
+    </a>
   </form>
 {% endblock body %}

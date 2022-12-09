@@ -33,3 +33,7 @@ class DetailComment(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     card = models.ForeignKey(Card, on_delete=models.CASCADE)
+
+class CompareCard(models.Model):
+    card = models.ForeignKey(Card,on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
