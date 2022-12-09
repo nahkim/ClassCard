@@ -2,16 +2,20 @@ from django.shortcuts import render,redirect
 from .models import ServiceQuestion,ServiceComment
 from .forms import QuestionCreateForm, ServiceCommentCreateForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 # Create your views here.
 
 def index(request):
     questions = ServiceQuestion.objects.all()
+    page = request.GET.get('page', '1') #GET 방식으로 정보를 받아오는 데이터
+    paginator = Paginator(questions, '5') #Paginator(분할될 객체, 페이지 당 담길 객체수)
+    page_obj = paginator.page(page) #페이지 번호를 받아 해당 페이지를 리턴 get_page 권장
     if request.method == 'GET':
         text = request.GET.get('search')
         if text :
             questions = ServiceQuestion.objects.filter(title__contains=text)
     context = {
-        'questions' : questions,
+        'question_list' : page_obj,
     }
     return render(request, 'servicecenter/index.html', context)
 
