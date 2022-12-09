@@ -1,4 +1,250 @@
 {% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% load static %}
+
+{% block css %} 
+<style>
+  .btn1 {
+    /* display: flex;
+    justify-content: center; */
+    width: 270px;
+    height: 70px;
+    margin: 20px;
+    font-size: 22px;
+}
+
+
+	
+/* 1. tab 영역 css 설정 */
+.tab-area {
+    width: 1500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  
+  /* 2. tab 메뉴 부분 디자인 */
+  .tab-area input {
+    display: none;
+  }  
+  
+  .tab-area label {
+    margin-left: auto;
+    margin-right: auto;
+  }
+    
+  /* label에 마우스 올렸을 때 */
+  .tab-area label:hover {
+    cursor: pointer; /*마우스 모양 변경*/
+  }
+    
+  /* tab-area 안에 존재하는 input 태그가 체크되었을 때, 
+  체크된 input 태그 다음에 등장하는 label의 css 값 */
+  .tab-area input:checked + label {
+    /* 해당 메뉴가 선택된 상태인지 아닌지를 사용자에게 알려줄 수 있음 */
+    font-weight: bold;
+    color: #0071E3;
+  }
+    
+  
+  /* 3. tab 내용 부분 디자인 */
+  
+
+
+.allWrap{
+    width: 100%;
+    height: 100%;
+    margin:0 auto;
+}
+
+  .tabBox{
+    margin:20px 0
+}
+
+  .tab-link{
+    width: 47%;
+    display: inline-block;
+    padding:10px;
+    text-align: center;
+    background-color:#929090;
+    border-radius: 30px;
+    color:#fff;
+    cursor: pointer;
+  }
+
+  .tab-link.current{
+      background-color: #0071E3;
+      font-weight: 600;
+  }
+
+  .tab-content{
+      display: none;
+  }
+
+  .tab-content.current{
+      display: flex;
+      /* justify-content: center; */
+      width: 100%;
+      height: 100%;
+      /* background-color:#d5d8d7; */
+      font-size: 30px;
+      text-align: center;
+      line-height: 250px;
+  }
+
+</style>
+
+{% endblock css %}
+
+
 {% block body %}
-  <h1>eventhome</h1>
+
+<div class="py-5">
+  <div class="container text-center">
+      <div class="row">
+        <div class="col">
+          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div style="border-radius: 35px;" class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4179/pc_img/27383/P_Banner_860x340_%EB%A9%94%EC%9D%B8%EC%85%80%EB%A0%89%EC%85%98%EB%B0%B0%EB%84%88-1.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4094/pc_img/27016/CG_%EB%A9%94%EC%9D%B8%EC%85%80%EB%A0%89%EC%85%98_PC_1%EC%95%88.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4180/pc_img/27388/%EC%8A%88%ED%8D%BC%EC%87%BC%ED%8D%BC%EC%B9%B4%EB%93%9C_Main_Selection_PC.jpg" alt="">
+            
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+        </div>
+        <div class="col">
+          <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div style="border-radius: 35px;" class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4179/pc_img/27383/P_Banner_860x340_%EB%A9%94%EC%9D%B8%EC%85%80%EB%A0%89%EC%85%98%EB%B0%B0%EB%84%88-1.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4094/pc_img/27016/CG_%EB%A9%94%EC%9D%B8%EC%85%80%EB%A0%89%EC%85%98_PC_1%EC%95%88.jpg" alt="">
+                </div>
+                <div class="carousel-item">
+                  <img class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" src="https://api.card-gorilla.com:8080/storage/display/4180/pc_img/27388/%EC%8A%88%ED%8D%BC%EC%87%BC%ED%8D%BC%EC%B9%B4%EB%93%9C_Main_Selection_PC.jpg" alt="">
+            
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<!-- 이벤트 제목 -->
+<div class="py-5">
+  <div class="container">
+    <div style="display: flex; justify-content:center;" class="row">
+      <div  class="col-md-12">
+        <p style="margin-bottom: 0; font-size: 80px; font-family: 'Shrikhand';" class="text-center">ONLY CLASS CARD </p> <br>
+        <p style="margin-bottom: 39px; font-size: 25px;" class="text-center">총액 149만원 상당 이벤트</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="py-0">
+  <div class="container text-center">
+      <button style="border-style: none; border-radius: 30px; background-color: #0071E3; color: #fff;;"  type="button" class="btn1 text-center">이벤트 FAQ</button>
+      <button style="border-style: none; border-radius: 30px; background-color: #4B4A49; color: #fff;;"  type="button" class="btn1 text-center">상품 검색</button>
+  </div>
+</div>
+
+
+
+
+<!-- 카드사 이벤트 -->
+<div class="container">
+  <div class="allWrap">     
+      <div style="display: flex; justify-content: center; margin: 40px;" class="tabBox">
+          <p style="margin: 10px;" class="tab-link current" data-tab="tab-1">전체 이벤트</p>
+          <p style="margin: 10px;" class="tab-link"  data-tab="tab-2">신한 카드</p>
+          <p style="margin: 10px;" class="tab-link"  data-tab="tab-3">삼성 카드</p>
+          <p style="margin: 10px;" class="tab-link"  data-tab="tab-4">롯데 카드</p>
+          <p style="margin: 10px;" class="tab-link"  data-tab="tab-5">하나 카드</p>
+      </div>
+      <div id="tab-1" class="tab-content current">
+          <div class="py-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/59/logo_img/26009/2330card.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/107/logo_img/27387/ss_3card.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="card"> <img class="card-img-top" src="https://api.card-gorilla.com:8080/storage/event/114/logo_img/26830/hn_8card.png" alt="Card image cap">
+                      <div class="card-body">
+                        <h4 class="card-title">Card title</h4>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> <a href="#" class="btn btn-primary">Go somewhere</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+      </div>
+      <div  id="tab-2" class="tab-content">ㄴㅇㄹㄴㅇㄹㄴㅇㅇㅇㅇ</div>
+      <div  id="tab-3" class="tab-content">ㄴㅇㄹㄴ</div>
+      <div  id="tab-4" class="tab-content">ㄴㅇㄹㄴㅇㄹ</div>
+      <div  id="tab-5" class="tab-content">contents05</div>
+  </div>
+</div>
+
 {% endblock body %}
+
+
+
+{% block script %}
+
+<script>
+  $('.tab-link').click(function () {
+        var tab_id = $(this).attr('data-tab');
+
+        $('.tab-link').removeClass('current');
+        $('.tab-content').removeClass('current');
+
+        $(this).addClass('current');
+        $("#" + tab_id).addClass('current');
+
+    });
+</script>
+
+
+{% endblock script %}
