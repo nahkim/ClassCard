@@ -9,6 +9,7 @@ from .forms import CustomUserChangeForm, CheckPasswordForm
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
+from django.http import JsonResponse
 
 
 @require_safe
@@ -23,19 +24,26 @@ def profile(request, username):
     return render(request, "accounts/profile.html", context)
 
 
-@require_POST
+@login_required
 def follow(request, username):
-    if not request.user.is_authenticated:
-        messages.warning(request, "로그인이 필요합니다.")
-        return redirect("login")
+    user = get_user_model().objects.get(username=username)
 
-    user = get_object_or_404(get_user_model(), username=username)
-    if user != request.user:
-        if user.followers.filter(username=request.user.username).exists():
-            user.followers.remove(request.user)
-        else:
+    if request.user not in user.followers.all():
+        if user != request.user:
             user.followers.add(request.user)
-    return redirect("accounts:profile", user.username)
+            is_following = True
+        else:
+            return redirect("accounts:profile", user.username)
+    else:
+        user.followers.remove(request.user)
+        is_following = False
+
+    context = {
+        "is_followed": is_following,
+        "followersCnt": user.followers.all().count(),
+        "followingsCnt": user.follow.all().count(),
+    }
+    return JsonResponse(context)
 
 
 @login_required
