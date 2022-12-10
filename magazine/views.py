@@ -4,7 +4,7 @@ from .forms import MagazineForm, MagazineCommentForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, JsonResponse
 from django.views.decorators.http import require_POST
 
 # Create your views here.
@@ -125,15 +125,24 @@ def mzcomment_delete(request, mz_pk, mzcm_pk):
 
 
 @require_POST
-def magazine_bookmark(request, magazine_pk):
-    magazine = get_object_or_404(Magazine, pk=magazine_pk)
+def magazine_bookmark(request, mz_pk):
+    magazine = get_object_or_404(Magazine, pk=mz_pk)
 
     if not request.user.is_authenticated:
         messages.warning(request, "로그인이 필요합니다.")
-        return redirect("login")
+        return redirect("/login")
 
     if magazine.bookmark_users.filter(pk=request.user.pk).exists():
         magazine.bookmark_users.remove(request.user)
+        is_bookmarked = False
+        # print(is_bookmarked)
     else:
         magazine.bookmark_users.add(request.user)
-    return redirect("magazine:index", magazine_pk)
+        is_bookmarked = True
+        # print(is_bookmarked)
+    # print(magazine.bookmark_users.all())
+    # data = {
+    #     'is_bookmarked' : is_bookmarked,
+    # }
+    return redirect('magazine:detail', mz_pk)
+    

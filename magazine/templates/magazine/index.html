@@ -160,9 +160,11 @@
     <div>
       <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 매거진</span>
     </div>
+    {% if request.user.role == 'C' %}
     <div style="width: 130px;">
       <a href="{% url 'magazine:create' %}" class='btn' style="position: absolute; top: 25px; background-color: white; color: gray; border: 1px solid gray; padding: 20px 25px 20px 25px;">매거진 작성하기</a>
     </div>
+    {% endif %}
   </div>
 
   <!-- Tab -->
@@ -208,7 +210,7 @@
               <div class="card" style="width: 380px; height:450px;">
                 <a href="{% url 'magazine:detail' magazine.pk %}">
                   <div class="p-3">
-                    <img style="border-radius: 15px;" src="{{ magazine.image.url }}" class="card-img-top">
+                    <img style="border-radius: 15px; height: 200px;" src="{{ magazine.image.url }}" class="card-img-top img-fluid">
                   </div>
                   <div class="card-body">
                     <div class="d-flex justify-content-between">
