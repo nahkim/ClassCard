@@ -10,6 +10,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
+from magazine.models import Magazine
 
 
 @require_safe
@@ -17,9 +18,12 @@ def profile(request, username):
     # get_user_model 확인
     user = get_object_or_404(get_user_model(), username=username)
     following_users = user.follow.all()
+    bookmarks = Magazine.objects.filter(bookmark_users__exact=user)
+    print(bookmarks)
     context = {
         "user": user,
         "following_users": following_users,
+        'bookmarks' : bookmarks,
     }
     return render(request, "accounts/profile.html", context)
 

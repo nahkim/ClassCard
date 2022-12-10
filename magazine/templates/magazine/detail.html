@@ -13,9 +13,14 @@
     <div class="m-5 d-flex justify-content-center" style="flex-direction: column">
       <!-- Title -->
       <h1 style="text-align: center">{{ magazine.title }}</h1>
-      <form action="{% url 'magazine:bookmark' %}" method='POST'>
+      <form action="{% url 'magazine:mzbookmark' magazine.pk %}" method='POST'>
         {% csrf_token %}
-        <input type="submit" value='북마크'>
+
+        {% if request.user in magazine.bookmark_users.all %}
+          <input type="submit" value='북마크취소' class='btn btn-danger'>
+        {% else %}
+          <input type="submit" value='북마크' class='btn btn-warning'>
+        {% endif %}
       </form>
       <a href="{% url 'accounts:profile' magazine.user.username %}" class="d-flex justify-content-end" style="font-size: 25px;">
         <p style="font-size: 20px; padding-top: 5px; padding-right: 10px;" class="text-muted m-0">
