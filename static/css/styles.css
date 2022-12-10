@@ -924,3 +924,83 @@ align-items: center;
 .rotate90 { 
   transform: rotate(90deg); 
 }
+
+/* card compare modal */
+.compare-bag-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-bag-card-image-box{
+  height: 160px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: #738ffd4f;
+}
+
+.compare-bag-card-name{
+  margin: 0.5rem 0 0 0;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.compare-bag-card-search{
+  text-align: center;
+  color:white;
+}
+
+.compare-bag-card-search:hover{
+  color:rgb(119, 119, 119);
+}
+
+.compare-bag-overlay{
+  position: absolute;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  width: 100px;
+  border-radius: 8px;
+  background-color: #91a4f9f2;
+  visibility: hidden;
+}
+
+.compare-bag-overlay-word{
+  font-weight: bold;
+}
+
+.compare-bag-card:hover .compare-bag-overlay{
+  visibility: visible;
+}
+
+.btn-compare-card,
+.btn-compare-card-cancel{
+  border: 0;
+  border-radius: 10px;
+  padding: 0.3rem 0.8rem;
+  color: white;
+}
+
+.btn-compare-card{
+  background-color: #0071E3;
+}
+
+.btn-compare-card:hover{
+  cursor: pointer;
+  background-color: #85bdf5;
+  color: white;
+}
+
+.btn-compare-card-cancel{
+  background-color: #fd7373;
+}
+
+.btn-compare-card-cancel:hover{
+  cursor: pointer;
+  background-color: #ffbaba;
+}

@@ -492,17 +492,13 @@ from django.db.models import Count
 
 @login_required
 def bookmark(request,pk):
-    # ======== nav바에 카드비교 카테고리 ========= 
-    if request.user.is_authenticated:
-        compare_cards = CompareCard.objects.filter(user=request.user)
-    else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
-
 
     user = request.user
     card = Card.objects.get(pk=pk)
     not_work = True
     compare_add = True
+
+    compare_bag = []
 
     if user.is_authenticated:
         user_bookmark = CompareCard.objects.filter(user = user)
@@ -541,17 +537,33 @@ def bookmark(request,pk):
             else:
                 not_work = False
                 messages.warning(request,'3개만 추가 가능합니다')
-
     else:
         pass
 
+    
+    cardcard = CompareCard.objects.filter(user=user)
+
+    for card in cardcard:
+        compare_bag.append({
+            "cardName": card.card.card_name,
+            "cardImg": card.card.card_img,
+        })
+
     data = {
-        "compare_cards": compare_cards,
+        "compareBag" : compare_bag,
         "compareAdd" : compare_add,
         "notWork" : not_work,
     }
 
     return JsonResponse(data)
+
+@login_required
+def cancel_bookmark(request, card_pk, user_pk):
+
+    if request.user.is_authenticated:
+       card_delete = CompareCard.objects.filter(card_id = card_pk)
+
+    return redirect()
 
 
 def card_list(request):
