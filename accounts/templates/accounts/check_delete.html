@@ -4,34 +4,49 @@
 
 
 {% block body %}
-<form method="POST" novalidate>
-  {% csrf_token %}
-  <p><strong>{{ user.user_id }}</strong> 회원님의 계정이 삭제됩니다.<br>탈퇴시 개인정보 및 이용정보가 삭제되며 복구할 수 없습니다. <br>본인의 비밀번호를 입력한 후 하단의 유의사항 동의에 체크하세요.</p>
-  <div>
-      <label name="label_password" for="{{ password_form.password.id_for_label }}">{{ password_form.password.label }}</label>
-      {{ password_form.password }}
-      {% if password_form.password.errors %}
-      <script type="text/javascript">
-          document.getElementsByName('password')[0].setAttribute('class', 'form-control is-invalid')
-      </script>
-      {% for error in password_form.password.errors %}
-      <div class="invalid-feedback">
-          {{ error }}
-      </div>
-      {% endfor %}
-      {% endif %}
-      <small>
-          본인인증을 위해 비밀번호를 입력해주세요.
-      </small>
-  </div>
 
-  <label>
-      <input type="checkbox" name="ck" onClick="checkDisable(this.form)">
-      <span>유의사항 동의</span>
-  </label>
-  
-  <button type="submit" name="bt" disabled="true" >탈퇴하기</button>
-</form>
+<div class="py-5 text-center text-white" style="height: 800px; background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);  background-position: center center, center center;  background-size: cover, cover;  background-repeat: repeat, repeat;">
+    <div class="container">
+      <div class="row">
+        <div style="margin-top: 70px;" class="mx-auto col-md-10 p-4">
+            <form  method="POST" novalidate>
+                {% csrf_token %}
+                <h1><strong>{{ user.user_id }}</strong> 회원님의 계정이 삭제됩니다.</h1>
+                    <p style="margin-top: 30px;" class="mb-4 lead text-light">탈퇴시 개인정보 및 이용 정보가 삭제되며 복구할 수 없습니다.<br>본인의 비밀번호를 입력한 후 유의사항 동의에 체크하세요.</p>
+                <div>
+                    <label style="margin: 20px;" name="label_password" for="{{ password_form.password.id_for_label }}">{{ password_form.password.label }}</label>
+                    {{ password_form.password }}
+                    {% if password_form.password.errors %}
+                    <script type="text/javascript">
+                        document.getElementsByName('password')[0].setAttribute('class', 'form-control is-invalid')
+                    </script>
+                    {% for error in password_form.password.errors %}
+                    <div  class="invalid-feedback">
+                        {{ error }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    <div style="margin-top: 30px;">
+                        <small >
+                            본인인증을 위해 비밀번호를 입력해주세요.
+                        </small>
+                    </div>
+                    
+                </div>
+                <div style="margin-top: 20px;">
+                    <label>
+                        <input type="checkbox" name="ck" onClick="checkDisable(this.form)">
+                        <span>유의사항 동의</span>
+                    </label>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button style="padding: 10px 20px 10px 20px; border-style: none; background-color: #0071E3; color: #fff; border-radius: 50px;" type="submit" name="bt" disabled="true" >탈퇴하기</button>
+                </div>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 
