@@ -75,7 +75,10 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)">카드 비교</a>
+            <!-- Button trigger modal -->
+            <a class="header-card-compare-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              카드 비교
+            </a>
           </li>
           <li>
             <a href="{% url 'articles:eventhome' %}">이벤트</a>
@@ -118,6 +121,7 @@
             </div>
           </li>
         </ul>
+    
 
         <div class="search-wrap">
           <div class="search">
@@ -181,6 +185,25 @@
 
       </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">카드 비교함</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            {{ compare_cards }}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">카드 비교 보러가기</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     {% block body %}{% endblock body %}
     <!--FOOTER-->

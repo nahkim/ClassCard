@@ -329,6 +329,11 @@ header .clone-menu {
   display: none;
 }
 
+.header-card-compare-modal{
+  color: #b9b9b9;
+  background-color: black;
+}
+
 /* **************************** Search Animation **************************** */
 /* 스타일을 한 번에 지정 */
 header .search input,

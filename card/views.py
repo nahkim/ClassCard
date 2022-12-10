@@ -53,6 +53,11 @@ benefit_key = list(benefit_lst)
 
 
 def detail(request, num):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
 
     try:
         card = Card.objects.get(pk=num)
@@ -142,6 +147,7 @@ def detail(request, num):
             user_compare_card.append(c.user)
 
         context = {
+            'compare_cards': compare_cards,
             # 카드 배너
             "card_id": card.pk,
             "card_img": card.card_img,
@@ -273,6 +279,13 @@ from django.core.paginator import Paginator, PageNotAnInteger
 
 card_list = []
 def search(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+
     global card_list
 
     if request.method == "GET":
@@ -432,6 +445,8 @@ def search(request):
     #     print(card_random_list)
 
     context = {
+        "compare_cards" :compare_cards,
+
         "kor_benefit_lst": kor_benefit_dict_keys,
         # "benefit_card_list": paged_list, 
         # "card_random_list"  : card_random_list,
@@ -445,11 +460,30 @@ def search(request):
 
 
 def cardcompanylist(request):
-    return render(request, 'card/cardcompanylist.html')
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request, 'card/cardcompanylist.html', context)
+
 
 def cardcompany(request,company):
+
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+
     card_list = Card.objects.filter(card_brand=company)
     context = {
+        "compare_cards" : compare_cards,
         'card_list' : card_list,
     }
     return render(request,'card/cardcompany.html', context)
@@ -458,6 +492,12 @@ from django.db.models import Count
 
 @login_required
 def bookmark(request,pk):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
 
     user = request.user
     card = Card.objects.get(pk=pk)
@@ -506,6 +546,7 @@ def bookmark(request,pk):
         pass
 
     data = {
+        "compare_cards": compare_cards,
         "compareAdd" : compare_add,
         "notWork" : not_work,
     }
@@ -514,10 +555,40 @@ def bookmark(request,pk):
 
 
 def card_list(request):
-    return render(request, 'card/card_list.html')
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request, 'card/card_list.html', context)
+
+
 
 def card_compare(request):
-    return render(request,"card/card_compare.html")
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request,"card/card_compare.html", context)
 
 def search_list(request):
-    return render(request, "card/search_list.html")
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    
+    return render(request, "card/search_list.html", context)
