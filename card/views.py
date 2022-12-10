@@ -53,6 +53,11 @@ benefit_key = list(benefit_lst)
 
 
 def detail(request, num):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
 
     try:
         card = Card.objects.get(pk=num)
@@ -142,6 +147,7 @@ def detail(request, num):
             user_compare_card.append(c.user)
 
         context = {
+            'compare_cards': compare_cards,
             # 카드 배너
             "card_id": card.pk,
             "card_img": card.card_img,
@@ -273,6 +279,13 @@ from django.core.paginator import Paginator, PageNotAnInteger
 
 card_list = []
 def search(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+
     global card_list
 
     if request.method == "GET":
@@ -432,6 +445,8 @@ def search(request):
     #     print(card_random_list)
 
     context = {
+        "compare_cards" :compare_cards,
+
         "kor_benefit_lst": kor_benefit_dict_keys,
         # "benefit_card_list": paged_list, 
         # "card_random_list"  : card_random_list,
@@ -445,11 +460,30 @@ def search(request):
 
 
 def cardcompanylist(request):
-    return render(request, 'card/cardcompanylist.html')
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request, 'card/cardcompanylist.html', context)
+
 
 def cardcompany(request,company):
+
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+
     card_list = Card.objects.filter(card_brand=company)
     context = {
+        "compare_cards" : compare_cards,
         'card_list' : card_list,
     }
     return render(request,'card/cardcompany.html', context)
@@ -463,6 +497,8 @@ def bookmark(request,pk):
     card = Card.objects.get(pk=pk)
     not_work = True
     compare_add = True
+
+    compare_bag = []
 
     if user.is_authenticated:
         user_bookmark = CompareCard.objects.filter(user = user)
@@ -501,25 +537,68 @@ def bookmark(request,pk):
             else:
                 not_work = False
                 messages.warning(request,'3개만 추가 가능합니다')
-
     else:
         pass
 
+    
+    cardcard = CompareCard.objects.filter(user=user)
+
+    for card in cardcard:
+        compare_bag.append({
+            "cardName": card.card.card_name,
+            "cardImg": card.card.card_img,
+        })
+
     data = {
+        "compareBag" : compare_bag,
         "compareAdd" : compare_add,
         "notWork" : not_work,
     }
 
     return JsonResponse(data)
 
+@login_required
+def cancel_bookmark(request, card_pk, user_pk):
+
+    if request.user.is_authenticated:
+       card_delete = CompareCard.objects.filter(card_id = card_pk)
+
+    return redirect()
+
 
 def card_list(request):
-    return render(request, 'card/card_list.html')
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request, 'card/card_list.html', context)
+
+
 
 def card_compare(request):
-    return render(request,"card/card_compare.html")
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    context = {
+        "compare_cards" : compare_cards,
+    }
+    return render(request,"card/card_compare.html", context)
 
 def search_list(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        
     bene_tu_li = []
     # 혜택 갯수 조절
     for bk in kor_benefit_dict_keys[1:28]:
@@ -529,14 +608,22 @@ def search_list(request):
         bene_tu_li.append((bk,card))
     print(len(bene_tu_li))
     context = {
+        "compare_cards" : compare_cards,
         'bene_tu_li' : bene_tu_li,
     }
     return render(request, "card/search_list.html",context)
 
 def rank(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     card_credit = Card.objects.filter(card_name__icontains='신용')[:9]
     card_check = Card.objects.filter(card_name__icontains='체크')[:9]
     context = {
+        "compare_cards" : compare_cards,
         'card_credit' : card_credit,
         'card_check' : card_check,
     }

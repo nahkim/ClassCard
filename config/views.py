@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_safe
+from card.models import Card, CompareCard, Benefit
 
 benefit_dict = {
     'bene' : ['혜택2', '혜택5', '혜택 프로모션', '할인', '수수료우대', '연회비지원', '무이자할부', '바우처', '무실적', '모든가맹점'],
@@ -40,6 +41,13 @@ benefit_key = list(benefit_lst)
 
 @require_safe
 def main(request):
+
+# ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     card1 = Card.objects.get(pk=668) # 현대카드
     card2 = Card.objects.get(pk=1109) # 삼성 id
     card3 = Card.objects.get(pk=2252) # 내맘대로 쁨
@@ -50,6 +58,7 @@ def main(request):
     card8 = Card.objects.get(pk=26)
     card9 = Card.objects.get(pk=2334)
     context = {
+        'compare_cards' : compare_cards,
         'card1' : card1,
         'card2' : card2,
         'card3' : card3,
@@ -68,6 +77,12 @@ from card.models import Card, Benefit, DetailComment
 from magazine.models import Magazine
 
 def nav_search(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     if request.method == 'GET':
         text = request.GET.get('text')
         card_list = Card.objects.filter(Q(card_name__icontains=text)|Q(card_brand__icontains=text)|Q(card_in_out_1__contains=text)|Q(card_in_out_2__icontains=text)|Q(card_in_out_3__icontains=text)|Q(card_overseas__icontains=text)).distinct()

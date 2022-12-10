@@ -10,11 +10,18 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse
+from card.models import CompareCard, Card, Benefit
 from magazine.models import Magazine
 
 
 @require_safe
 def profile(request, username):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     # get_user_model 확인
     user = get_object_or_404(get_user_model(), username=username)
     following_users = user.follow.all()
@@ -23,6 +30,7 @@ def profile(request, username):
     context = {
         "user": user,
         "following_users": following_users,
+        "compare_cards" : compare_cards,
         'bookmarks' : bookmarks,
     }
     return render(request, "accounts/profile.html", context)
@@ -53,6 +61,12 @@ def follow(request, username):
 @login_required
 @require_http_methods(["GET", "POST"])
 def update(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, request.FILES, instance=request.user)
         if form.is_valid():
@@ -62,6 +76,7 @@ def update(request):
     else:
         form = CustomUserChangeForm(instance=request.user)
     context = {
+        "compare_cards": compare_cards,
         "form": form,
     }
     return render(request, "accounts/update.html", context)
@@ -69,6 +84,12 @@ def update(request):
 
 @login_required
 def delete(request):
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
     if request.method == "POST":
         password_form = CheckPasswordForm(request.user, request.POST)
 
@@ -79,5 +100,8 @@ def delete(request):
             return redirect("main")
     else:
         password_form = CheckPasswordForm(request.user)
-    context = {"password_form": password_form}
+    context = {
+        "password_form": password_form,
+        "compare_cards" : compare_cards,
+        }
     return render(request, "accounts/check_delete.html", context)

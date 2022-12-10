@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Montserrat&family=Noto+Sans+KR:wght@400;700&family=Shrikhand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Jua&family=Montserrat&family=Noto+Sans+KR:wght@400;700&family=Shrikhand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- bootstrap icon -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
@@ -75,7 +76,10 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)">카드 비교</a>
+            <!-- Button trigger modal -->
+            <a class="header-card-compare-modal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              카드 비교
+            </a>
           </li>
           <li>
             <a href="{% url 'articles:eventhome' %}">이벤트</a>
@@ -118,6 +122,7 @@
             </div>
           </li>
         </ul>
+    
 
         <div class="search-wrap">
           <div class="search">
@@ -181,6 +186,75 @@
 
       </div>
     </nav>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel" style="color:black;">카드 비교함</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="card-modal-body">
+            {% if request.user.is_authenticated %}
+            <div class="row">
+              <div class="col compare-bag-card">
+                {% if compare_cards.0 %}
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.0.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.0.card.card_name }}</p>
+                {% else %}
+                <div class="compare-bag-card-image-box">
+                  <a class="compare-bag-card-search" href="{% url 'card:search' %}"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+                </div>
+                {% endif %}
+              </div>
+              <div class="col compare-bag-card">
+                {% if compare_cards.1 %}
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.1.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.1.card.card_name }}</p>
+                {% else %}
+                <div class="compare-bag-card-image-box">
+                  <a class="compare-bag-card-search" href="{% url 'card:search' %}"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+                </div>
+                {% endif %}
+              </div>
+              <div class="col compare-bag-card">
+                {% if compare_cards.2 %}
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.2.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.2.card.card_name }}</p>
+                {% else %}
+                <div class="compare-bag-card-image-box">
+                  <a class="compare-bag-card-search" href="{% url 'card:search' %}"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <p style="color:black;">{{ compare_cards }}</p>
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <a href="#" type="button" class="btn-compare-card">카드 비교 보러가기</a>
+            <button type="button" class="btn-compare-card-cancel" data-bs-dismiss="modal">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     {% block body %}{% endblock body %}
     <!--FOOTER-->
@@ -287,6 +361,25 @@
 
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script>
+
+    <script>
+      // 모달에 있는 카드들 세로로 바꾸기
+      let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
+      console.log(modalCardImage)
+
+      for (let i = 0 ; i < modalCardImage.length ; i ++) {
+    
+        if (modalCardImage[i].width > modalCardImage[i].height) {
+          console.log('회전하기!')
+          modalCardImage[i].style.width = '160px';
+          modalCardImage[i].style.height = '100px';
+          modalCardImage[i].classList.add('rotate90');
+        } else {
+          modalCardImage[i].style.width = '100px';
+          modalCardImage[i].style.height = '160px';
+        }
+      }
+    </script>
 
     {% block script %}{% endblock script %}
 
