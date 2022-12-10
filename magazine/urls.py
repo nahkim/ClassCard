@@ -11,5 +11,5 @@ urlpatterns = [
     path('<int:pk>/delete/', views.delete_magazine, name='delete_magazine'),
     path('<int:pk>/mzcomment_create/', views.mzcomment_create, name='mzcomment_create'),
     path('<int:mz_pk>/mzcomment/<int:mzcm_pk>', views.mzcomment_delete, name='mzcomment_delete'),
-    
+    path('<int:mz_pk>/mzbookmark/',views.magazine_bookmark, name='mzbookmark'),
 ]

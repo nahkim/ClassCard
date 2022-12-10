@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block body %}
+  <h1>rank</h1>
+  <h1>신용카드</h1>
+  {% for cardcre in card_credit %}
+    <img src="{{cardcre.card_img }}" alt="">
+    <a href="{% url 'card:detail' cardcre.pk %}">
+
+      {{ cardcre.card_name }}
+    </a>
+  {% endfor %}
+  <h1>체크카드</h1>
+  {% for cardchk in card_check %}
+    <img src="{{cardchk.card_img }}" alt="">
+    <a href="{% url 'card:detail' cardchk.pk %}">
+      {{ cardchk.card_name }}
+    </a>
+  {% endfor %}
+{% endblock body %}
