@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_safe
+from card.models import Card, CompareCard, Benefit
 
 # allauth 비민벌호 변경 기능
 from allauth.account.views import PasswordChangeView
@@ -117,9 +118,16 @@ benefit_key = list(benefit_lst)
 
 @require_safe
 def main(request):
-    card1 = Card.objects.get(pk=668)  # 현대카드
-    card2 = Card.objects.get(pk=1109)  # 삼성 id
-    card3 = Card.objects.get(pk=2252)  # 내맘대로 쁨
+
+# ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    card1 = Card.objects.get(pk=668) # 현대카드
+    card2 = Card.objects.get(pk=1109) # 삼성 id
+    card3 = Card.objects.get(pk=2252) # 내맘대로 쁨
     card4 = Card.objects.get(pk=2181)
     card5 = Card.objects.get(pk=85)
     card6 = Card.objects.get(pk=2256)
@@ -127,18 +135,18 @@ def main(request):
     card8 = Card.objects.get(pk=26)
     card9 = Card.objects.get(pk=2334)
     context = {
-        "card1": card1,
-        "card2": card2,
-        "card3": card3,
-        "card4": card4,
-        "card5": card5,
-        "card6": card6,
-        "card7": card7,
-        "card8": card8,
-        "card9": card9,
+        'compare_cards' : compare_cards,
+        'card1' : card1,
+        'card2' : card2,
+        'card3' : card3,
+        'card4' : card4,
+        'card5' : card5,
+        'card6' : card6,
+        'card7' : card7,
+        'card8' : card8,
+        'card9' : card9,
     }
     return render(request, "main.html", context)
-
 
 # nav 검색기능(프로젝트 전체)
 from django.db.models import Q, Avg
@@ -147,16 +155,17 @@ from magazine.models import Magazine
 
 
 def nav_search(request):
-    if request.method == "GET":
-        text = request.GET.get("text")
-        card_list = Card.objects.filter(
-            Q(card_name__icontains=text)
-            | Q(card_brand__icontains=text)
-            | Q(card_in_out_1__contains=text)
-            | Q(card_in_out_2__icontains=text)
-            | Q(card_in_out_3__icontains=text)
-            | Q(card_overseas__icontains=text)
-        ).distinct()
+    # ======== nav바에 카드비교 카테고리 ========= 
+    if request.user.is_authenticated:
+        compare_cards = CompareCard.objects.filter(user=request.user)
+    else:
+        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+
+    if request.method == 'GET':
+        text = request.GET.get('text')
+        card_list = Card.objects.filter(Q(card_name__icontains=text)|Q(card_brand__icontains=text)|Q(card_in_out_1__contains=text)|Q(card_in_out_2__icontains=text)|Q(card_in_out_3__icontains=text)|Q(card_overseas__icontains=text)).distinct()
+        
+        
 
         # 카드 id 필드 사라짐. 보류
         # benefit_list = Benefit.objects.filter(Q(bnf_name__icontains=text)|Q(bnf_content__icontains=text)|Q(bnf_detail__icontains=text))

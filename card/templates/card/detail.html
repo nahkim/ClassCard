@@ -440,19 +440,23 @@
 
 <script>
   // 카드 디테일 세로로 바꾸기
-  let cardImage = document.querySelector('.card-detail-image')
-  let imageWidth = cardImage.width
-  let imageHeight = cardImage.height
+  function cardDetailVertical() {
+    let cardImage = document.querySelector('.card-detail-image')
+    let imageWidth = cardImage.width
+    let imageHeight = cardImage.height
 
-  if (imageWidth > imageHeight) {
-    console.log('회전하기!')
-    cardImage.style.width = '300px';
-    cardImage.style.height = '190px';
-    cardImage.classList.add('rotate90');
-  } else {
-    cardImage.style.width = '190px';
-    cardImage.style.height = '300px';
+    if (imageWidth > imageHeight) {
+      console.log('회전하기!')
+      cardImage.style.width = '300px';
+      cardImage.style.height = '190px';
+      cardImage.classList.add('rotate90');
+    } else {
+      cardImage.style.width = '190px';
+      cardImage.style.height = '300px';
+    }
   }
+
+  cardDetailVertical()
 
   // 카드 비교에 넣기
   const cardCompare = document.querySelector("#card-com-add")
@@ -463,24 +467,164 @@
       method: 'get',
       url: `/card/bookmark/${event.target.dataset.cardcomId}/`
     }) .then (response => {
-      console.log(response)
+
+      function cardModalVertical() {
+      let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
+      console.log(modalCardImage)
+
+      for (let i = 0 ; i < modalCardImage.length ; i ++) {
+    
+        if (modalCardImage[i].width > modalCardImage[i].height) {
+          console.log('회전하기!')
+          modalCardImage[i].style.width = '160px';
+          modalCardImage[i].style.height = '100px';
+          modalCardImage[i].classList.add('rotate90');
+        } else {
+          modalCardImage[i].style.width = '100px';
+          modalCardImage[i].style.height = '160px';
+        }
+      }
+    }
+
+      compareModal = document.querySelector("#card-modal-body")
+      compareModal.textContent = ""
+      compareBag = response.data.compareBag
+
+      console.log(compareBag[2])
+
+      function compareModalInsert() {
+        if (compareBag.length === 3) {
+          // 모달에 비동기로 카드 추가하기
+          compareModal.insertAdjacentHTML('beforeend', `
+          <div class="row">
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[1].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[1].cardName } </p>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[2].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[2].cardName } </p>
+            </div>
+          </div>
+          `)} else if (compareBag.length === 2) {
+          // 모달에 비동기로 카드 추가하기
+          compareModal.insertAdjacentHTML('beforeend', `
+          <div class="row">
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[1].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[1].cardName } </p>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+          </div>
+          `)} else if (compareBag.length === 1) {
+          // 모달에 비동기로 카드 추가하기
+          compareModal.insertAdjacentHTML('beforeend', `
+          <div class="row">
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
+              </div>
+              <div class="compare-bag-overlay">
+                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+              </div>
+              <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+          </div>
+          `)} else if (compareBag.length === 0) {
+          // 모달에 비동기로 카드 추가하기
+          compareModal.insertAdjacentHTML('beforeend', `
+          <div class="row">
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+            <div class="col compare-bag-card">
+              <div class="compare-bag-card-image-box">
+                <a class="compare-bag-card-search" href="/card/search/"><span class="material-symbols-outlined" style="font-size: 3rem; margin: 0;">add</span></a>
+              </div>
+            </div>
+          </div>
+          `)}
+        }
+
       if (response.data.notWork === true) {   
         if (response.data.compareAdd === true) {
           event.target.classList.remove(".card-compare-pos")
           event.target.classList.add(".card-compare-neg")
           cardCompare.innerText = "비교함에서 꺼내기"
           event.target.style.color = "#fd7373"
+          compareModalInsert()
+          cardModalVertical()
+          
         } else {
           event.target.classList.remove(".card-compare-neg")
           event.target.classList.add(".card-compare-pos")
           cardCompare.innerText = "비교함에 추가"
           event.target.style.color = "#738ffd"
+          compareModalInsert()
+          cardModalVertical()
+          
         }
       } else {
         alert('카드 3개까지 추가가 가능합니다! 비교함에서 카드를 꺼내주세요 ㅜ.ㅜ')
       }
     })
   })
+
+
 
 
   // 카드 베너 가로로 바꾸기
