@@ -18,18 +18,24 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from . import views
+from config.views import CustomPasswordChangeView
 
 urlpatterns = [
-
     path("", views.main, name="main"),
     path("articles/", include("articles.urls")),
     path("accounts/", include("accounts.urls")),
-    path("", include("allauth.urls")),
     path("card/", include("card.urls")),
     path("magazine/", include("magazine.urls")),
     path("admin/", admin.site.urls),
-    path('summernote/', include('django_summernote.urls')),
-    path('service/', include('servicecenter.urls')),
-    path('nav_search/', views.nav_search, name='nav_search'),
-    path('tete/',views.tete, name='tete'),
+    path("summernote/", include("django_summernote.urls")),
+    path("service/", include("servicecenter.urls")),
+    path("nav_search/", views.nav_search, name="nav_search"),
+    path("tete/", views.tete, name="tete"),
+    # allauth
+    path(
+        "password/change/",
+        CustomPasswordChangeView.as_view(),
+        name="account_password_change",
+    ),
+    path("", include("allauth.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
