@@ -198,13 +198,14 @@
             <div class="row">
               <div class="col compare-bag-card">
                 {% if compare_cards.0 %}
-                  <div class="compare-bag-card-image-box">
-                    <img class="compare-bag-card-image" src="{{ compare_cards.0.card.card_img }}" alt="" srcset="">
-                  </div>
-                  <div class="compare-bag-overlay">
-                    <a class="compare-bag-overlay-word" href="#">취소하기</a>
-                  </div>
-                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.0.card.card_name }}</p>
+
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.0.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.0.card.id %}">카드<br>보러 가기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.0.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -214,13 +215,14 @@
               </div>
               <div class="col compare-bag-card">
                 {% if compare_cards.1 %}
-                  <div class="compare-bag-card-image-box">
-                    <img class="compare-bag-card-image" src="{{ compare_cards.1.card.card_img }}" alt="" srcset="">
-                  </div>
-                  <div class="compare-bag-overlay">
-                    <a class="compare-bag-overlay-word" href="#">취소하기</a>
-                  </div>
-                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.1.card.card_name }}</p>
+
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.1.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.1.card.id %}">카드<br>보러 가기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.1.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -230,13 +232,13 @@
               </div>
               <div class="col compare-bag-card">
                 {% if compare_cards.2 %}
-                  <div class="compare-bag-card-image-box">
-                    <img class="compare-bag-card-image" src="{{ compare_cards.2.card.card_img }}" alt="" srcset="">
-                  </div>
-                  <div class="compare-bag-overlay">
-                    <a class="compare-bag-overlay-word" href="#">취소하기</a>
-                  </div>
-                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.2.card.card_name }}</p>
+                <div class="compare-bag-card-image-box">
+                  <img class="compare-bag-card-image" src="{{ compare_cards.2.card.card_img }}" alt="" srcset="">
+                </div>
+                <div class="compare-bag-overlay">
+                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.2.card.id %}">카드<br>보러 가기</a>
+                </div>
+                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.2.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -247,11 +249,14 @@
             </div>
           {% else %}
             <p style="color:black;">{{ compare_cards }}</p>
-          {% endif %}
-        </div>
-        <div class="modal-footer">
-          <a href="#" type="button" class="btn-compare-card">카드 비교 보러가기</a>
-          <button type="button" class="btn-compare-card-cancel" data-bs-dismiss="modal">취소</button>
+
+            {% endif %}
+          </div>
+          <div class="modal-footer">
+            <a href="{% url 'card:card_compare' %}" type="button" class="btn-compare-card">카드 비교 보러가기</a>
+            <button type="button" class="btn-compare-card-cancel" data-bs-dismiss="modal">취소</button>
+          </div>
+          
         </div>
       </div>
     </div>

@@ -1,0 +1,28 @@
+
+
+.card-list-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  padding: 1.5rem;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #738ffd;
+}
+
+.card-list-image-box{
+  width: 150px;
+  height: 250px;
+}
+
+.card-list-image{
+  width: 150px;
+  height: 250px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 18px 0px #0000008f;
+}
+
+.card-list-name{
+  font-size: 2rem;
+}

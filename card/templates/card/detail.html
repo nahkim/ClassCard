@@ -502,7 +502,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[0].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
             </div>
@@ -511,7 +511,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[1].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[1].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[1].cardName } </p>
             </div>
@@ -520,7 +520,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[2].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[2].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[2].cardName } </p>
             </div>
@@ -534,7 +534,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[0].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
             </div>
@@ -543,7 +543,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[1].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[1].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[1].cardName } </p>
             </div>
@@ -562,7 +562,7 @@
                 <img class="compare-bag-card-image" src="${ compareBag[0].cardImg }" alt="" srcset="">
               </div>
               <div class="compare-bag-overlay">
-                <a class="compare-bag-overlay-word" href="#">취소하기</a>
+                <a class="compare-bag-overlay-word" href="/card/detail/${ compareBag[0].cardId}/">카드<br>보러 가기</a>
               </div>
               <p class="compare-bag-card-name" style="color:black;"> ${ compareBag[0].cardName } </p>
             </div>
@@ -620,6 +620,8 @@
         }
       } else {
         alert('카드 3개까지 추가가 가능합니다! 비교함에서 카드를 꺼내주세요 ㅜ.ㅜ')
+        compareModalInsert()
+        cardModalVertical()
       }
     })
   })

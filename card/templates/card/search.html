@@ -14,7 +14,7 @@
   </div>
 
   <div class="card-cate">
-    <form action="" method="GET" class="card-cate-form">
+    <form action="{% url 'card:card_list' %}" method="GET" class="card-cate-form">
       <!-- 유저 나이대 (필수면서, 하나씩 밖에 못 고름) -->
       <div class="card-cate-age">
         <p class="card-cate-age-title">연령대를 골라주세요 <span style="font-size: 1rem; color: #7797fe;">필수</span></p>
@@ -222,22 +222,6 @@
       <input type="submit" class="btn-cate-submit" value="카드 검색">
     </form>
   </div>
-  <br>
-
-  {% comment %} <div class="random-card-5">
-    <div class="card-random-card-box">
-      {% for card in card_random_list %}
-        <div class="card-random-card col-12 col-sm-6 col-md-4 col-lg-2">
-          <div class="card-search-overlay">
-            <a href="{% url 'card:detail' card.pk %}">더 자세히 보기</a>
-          </div>
-          <div class="card-search-card-arrange">
-            <img class="card-search-image" src="{{ card.card_img }}" alt="">
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-  </div> {% endcomment %}
 
 
 {% endblock body %}
