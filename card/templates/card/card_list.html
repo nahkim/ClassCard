@@ -2,57 +2,72 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-{% block css %} 
-
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/card_list.css' %}">
 {% endblock css %}
 
 {% block body %}
-<div class="py-5">
-    <div style="background-color: bisque;" class="container">
-      <div class="row" >
-        <div class="col-md-4">
-          <div style="display: flex;" class="container1">
-            <div class="card1">
-              <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2300/card_img/25153/2300card.png" alt="" class="card__img"> 
-          
-              <!-- <div class="card__content">  -->
-              <div class="card__data">
-                <h1 class="card__title">내맘대로 쁨 카드</h1>
-                <p class="card__description">전 가맹점 0.5% / 대형마트 5% / 주유소 5% 하나머니 적립</p>
-                <a href="#" class="card__button"> 추가하기 + </a>
-              </div>
-              <!-- </div> -->
-            </div>
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="container">
-            <div style="margin-top: 30px; display: flex; justify-content: space-between;">
-              <h1 style="font-size: 30px;" >네이버페이 머니 하나 체크카드</h1>
-              <button>자세히 보기</button>
-            </div>
-            <div>
-              <p style="margin-bottom: 100px; font-size: 20px;">하나카드</p>
-            </div>
-  
-            <div class="name">
-              <p style="font-size: 25px; margin-bottom: 20px;" >네이버페이</p>
-              <p><span style="font-size: 25px;"> 1.2% </span> 포인트 적립</p>
-            </div>
-  
-            <div style="display: flex;">
-              <p>국내전용 없음 / 해외겸용 없음 </p> 
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              <p>전월실적 25만원 이상</p>
-              
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </div>
 
+  <h1>카드 맞춤 검색</h1>
+  
+  <div class="container">
+  {% for card in card_lst %}
+    <p>{{card}}</p>
+  {% endfor %}
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-12 my-5">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          {% if card_lst.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?age=30대&type=체크{{ answers_page }}&p={{ card_lst.previous_page_number }}">이전</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#">이전</a>
+            </li>
+          {% endif %}
+          <li class="page-item">
+            <a class="page-link" href="#">{{ card_lst.number }}
+              /
+              {{ card_lst.paginator.num_pages }}</a>
+          </li>
+          {% if card_lst.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?age=30대&type=체크{{ answers_page }}&p={{ card_lst.next_page_number }}">다음</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#">다음</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </div>
 
 
 
 {% endblock body %}
+
+{% block script %}
+<script>
+  // 카드 디테일 세로로 바꾸기
+  let cardImage = document.querySelectorAll('.card-list-image')
+
+  for (let i = 0 ; i < cardImage.length ; i ++) {
+
+    if (cardImage[i].width > cardImage[i].height) {
+      console.log('회전하기!')
+      cardImage[i].style.width = '250px';
+      cardImage[i].style.height = '150px';
+      cardImage[i].classList.add('rotate90');
+    } else {
+      cardImage[i].style.width = '150px';
+      cardImage[i].style.height = '250px';
+    }
+  }
+</script>
+{% endblock script %}
