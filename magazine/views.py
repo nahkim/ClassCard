@@ -85,7 +85,7 @@ def detail(request, pk):
     return render(request, "magazine/detail.html", context)
 
 
-@login_required
+@login_required(login_url='/login')
 def update_(request, pk):
     # ======== nav바에 카드비교 카테고리 ========= 
     if request.user.is_authenticated:
@@ -110,7 +110,7 @@ def update_(request, pk):
     return render(request, "magazine/create.html", context)
 
 
-@login_required
+@login_required(login_url='/login')
 def delete_magazine(request, pk):
     magazine = Magazine.objects.get(pk=pk)
     if request.user == magazine.user:
@@ -125,7 +125,7 @@ def delete_magazine(request, pk):
         return redirect("magazine:detail", pk)
 
 
-# @login_required
+@login_required(login_url='/login')
 def mzcomment_create(request, pk):
     magazine = get_object_or_404(Magazine, pk=pk)
     if request.method == "POST":
@@ -141,7 +141,7 @@ def mzcomment_create(request, pk):
     return redirect("magazine:detail", pk)
 
 
-# @login_required
+@login_required(login_url='/login')
 def mzcomment_delete(request, mz_pk, mzcm_pk):
     magazine = Magazine.objects.get(pk=mz_pk)
     mzcomment = Comment.objects.get(pk=mzcm_pk)

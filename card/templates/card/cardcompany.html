@@ -7,7 +7,7 @@
 {% endblock css %}
 
 {% block body %}
-  
+ 
 <div class="mt-5 container">
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
   {% for card in card_list %} 
@@ -32,7 +32,13 @@
     {% endif %}
 
     {% for p in card_list.paginator.page_range %}
-      <a href="?page={{p}}" class="mx-1">{{p}}</a>
+      {% if p >= card_list.number|add:-2 and p <= card_list.number|add:2 %}
+        {% if p == card_list.number %}
+          <a href="?page={{p}}" class="mx-1">{{p}}</a>
+        {% else %}
+          <a href="?page={{p}}" class="mx-1">{{p}}</a>
+        {% endif %}
+      {% endif %}
     {% endfor %}
 
     {% if card_list.has_next %}
