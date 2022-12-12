@@ -32,7 +32,8 @@
         {% for cardcre in card_credit_page %}
         <div class="col-md-3">
           <div class="card1">
-            <img style="width: 200px;" src="{{cardcre.card_img }}" alt="" class="card__img">
+            <img src="{{cardcre.card_img }}" alt="" class="card__img">
+            <!-- <img style="width: 200px;" src="{{cardcre.card_img }}" alt="" class="card__img"> -->
             <!-- <div class="card__content"> -->
             <div class="card__data">
               <BC class="card__title">{{ cardcre.card_name }}</h1>
@@ -150,6 +151,21 @@
 
 {% block script %}
 <script>
-  let cnt = 0
+  
+  // let cardImage = document.querySelectorAll('.card__img')
+
+  // for (let i = 0 ; i < cardImage.length ; i ++) {
+
+  //   if (cardImage[i].width > cardImage[i].height) {
+  //     console.log('회전하기!')
+  //     cardImage[i].style.width = '315px';
+  //     cardImage[i].style.height = '200px';
+  //     cardImage[i].classList.add('rotate90');
+  //     // cardImage[i].classList.remove('card__img');
+  //   } else {
+  //     cardImage[i].style.width = '200px';
+  //     cardImage[i].style.height = '315px';
+  //   }
+  // }
 </script>
 {% endblock script %}
