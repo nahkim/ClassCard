@@ -207,7 +207,7 @@
           <div class="swiper-wrapper">
             {% for magazine in magazines %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' magazine.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px; height: 200px;" src="{{ magazine.image.url }}" class="card-img-top img-fluid">
@@ -219,8 +219,10 @@
                         <span style="font-size: 12px;">{{ magazine.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ magazine.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ magazine.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ magazine.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ magazine.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -236,7 +238,7 @@
           <div class="swiper-wrapper">
             {% for my in mz_year %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' my.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px;" src="{{ my.image.url }}" class="card-img-top" alt="...">
@@ -248,8 +250,10 @@
                         <span style="font-size: 12px;">{{ my.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ my.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ my.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ my.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ my.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -265,7 +269,7 @@
           <div class="swiper-wrapper">
             {% for mn in mz_news %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' mn.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px;" src="{{ mn.image.url }}" class="card-img-top" alt="...">
@@ -277,8 +281,10 @@
                         <span style="font-size: 12px;">{{ mn.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ mn.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ mn.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ mn.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ mn.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -294,7 +300,7 @@
           <div class="swiper-wrapper">
             {% for mr in mz_recommend %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' mr.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px;" src="{{ mr.image.url }}" class="card-img-top" alt="...">
@@ -306,8 +312,10 @@
                         <span style="font-size: 12px;">{{ mr.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ mr.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ mr.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ mr.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ mr.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -323,7 +331,7 @@
           <div class="swiper-wrapper">
             {% for mb in mz_basic %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' mb.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px;" src="{{ mb.image.url }}" class="card-img-top" alt="...">
@@ -335,8 +343,10 @@
                         <span style="font-size: 12px;">{{ mb.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ mb.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ mb.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ mb.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ mb.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -352,7 +362,7 @@
           <div class="swiper-wrapper">
             {% for mbd in mz_bodo %}
             <div class="swiper-slide">
-              <div class="card" style="width: 380px; height:450px;">
+              <div class="card" style="width: 380px; height:auto;">
                 <a href="{% url 'magazine:detail' mbd.pk %}">
                   <div class="p-3">
                     <img style="border-radius: 15px;" src="{{ mbd.image.url }}" class="card-img-top" alt="...">
@@ -364,8 +374,10 @@
                         <span style="font-size: 12px;">{{ mbd.user}}</span>
                       </span>
                     </div>
-                    <p class="card-title" style="font-size: 14px;">{{ mbd.title }}</p>
-                    <p class="card-text" style="font-size: 13px;">{{ mbd.sub_title }}</p>
+                    <div style="text-align: start;">
+                      <p class="card-title ellipsis magazine-box" style="font-size: 14px;">{{ mbd.title }}</p>
+                      <p class="card-text ellipsis magazine-box" style="font-size: 13px;">{{ mbd.sub_title }}</p>
+                    </div>
                   </div>
                 </a>
               </div>
@@ -479,12 +491,30 @@ $(document).ready(function () {
 var swiper = new Swiper(".mySwiper", {
   slidesPerView: 4,
   spaceBetween: 20,
-  slidesPerGroup: 4,
   loop: true,
   loopFillGroupWithBlank: true,
   navigation: {
     nextEl: ".swiper-button-next",
     prevEl: ".swiper-button-prev",
+  },
+  breakpoints: {
+    400: {
+      slidesPerView: 1,  //브라우저가 768보다 클 때
+      spaceBetween: 40,
+    },
+        
+    768: {
+      slidesPerView: 2,  //브라우저가 768보다 클 때
+      spaceBetween: 40,
+    },
+    1024: {
+      slidesPerView: 3,  //브라우저가 1024보다 클 때
+      spaceBetween: 50,
+    },
+    1224: {
+      slidesPerView: 4,  //브라우저가 1024보다 클 때
+      spaceBetween: 50,
+    },
   },
 });
 </script>
