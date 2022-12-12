@@ -2,4 +2,8 @@
 {% load account %}
 
 {% user_display user as user_display %}
-<p><strong>{% trans "Note" %}:</strong> {% blocktrans %}you are already logged in as {{ user_display }}.{% endblocktrans %}</p>
+<div class="d-flex justify-content-center" style="text-align: center;">
+  <div style="margin-bottom: 1rem; width: 80%; height: auto; background-color: #fff3cd; border-radius: 8px;">
+    <p class="fw-bold" style="color: #7a4444;">{% blocktrans %}you are already logged in as {{ user_display }}.{% endblocktrans %}</p>
+  </div>
+</div>
