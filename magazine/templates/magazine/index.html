@@ -5,13 +5,14 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/magazine.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock css %}
 
 {% block body %}
 <!-- banner -->
 <div class="container mt-5">
-  <p class="bg-img"></p>
+  <p class="bg-img animate__animated animate__backInDown"></p>
   <div class="d-flex justify-content-center">
     <h1 class="bg-txt">카드  
       <img class="bg-txt-img" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26378/tips_gosty_bi.png">
@@ -63,7 +64,7 @@
 <!-- YouTube -->
 <div class="mt-5 d-flex justify-content-center container">
   <!-- 에디터 Class가 추천해주는 영상 -->
-  <div class="editor-tag" style="margin-right: 40px;">
+  <div class="editor-tag animate__animated animate__backInLeft" style="margin-right: 40px;">
     <div class="mb-5">
       <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 영상</span>
     </div>
@@ -160,11 +161,11 @@
 <!-- 에디터 Class가 추천해주는 매거진 -->
 <div class="container mt-5">
   <div class="editor-tag2 d-flex justify-content-between" style="margin-right: 40px; position: relative;">
-    <div>
+    <div class="animate__animated animate__backInLeft">
       <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 매거진</span>
     </div>
     {% if request.user.role == 'C' %}
-    <div style="width: 130px;">
+    <div class="animate__animated animate__jello" style="width: 130px;">
       <a href="{% url 'magazine:create' %}" class='btn' style="position: absolute; top: 25px; background-color: white; color: gray; border: 1px solid gray; padding: 20px 25px 20px 25px;">매거진 작성하기</a>
     </div>
     {% endif %}
