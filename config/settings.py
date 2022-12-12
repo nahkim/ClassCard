@@ -197,12 +197,32 @@ AUTH_USER_MODEL = "accounts.User"
 ACCOUNT_FORMS = {"signup": "accounts.forms.CustomUserCreationForm"}
 # 로그아웃 확인 페이지 제거
 ACCOUNT_LOGOUT_ON_GET = True
-# SMTP 서버실행 해결
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# SMTP 서버실행
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+# 사용할 도메인 주소
+EMAIL_HOST = "smtp.gmail.com"
+# gmail의 port 번호
+EMAIL_PORT = "587"
+# email을 보내는 이메일
+EMAIL_HOST_USER = os.getenv("EMAIL")
+EMAIL_HOST_PASSWORD = os.getenv("PASS")
+# email 보낼때 암호화 여부
+EMAIL_USE_TLS = True
+# mail보낼 email id 지정
+DEFAULT_FORM_EMAIL = EMAIL_HOST_USER
+# email 만료 기간
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+# 보낸 email 맨앞에 붙여지는 이름
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[이메일 인증] "
 # 세션 쿠키 유효기간
 SESSION_COOKIE_AGE = 3600
 # 소셜 로그인 확인 페이지 제거
 SOCIALACCOUNT_LOGIN_ON_GET = True
+
 
 # 썸머노트 이미지 용량제한
 SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}

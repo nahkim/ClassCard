@@ -4,9 +4,12 @@ from card.models import Card, CompareCard, Benefit
 
 # allauth 비민벌호 변경 기능
 from allauth.account.views import PasswordChangeView
+from allauth.account.views import ConfirmEmailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+from django.http import HttpResponse
 
 benefit_dict = {
     "bene": [
@@ -221,3 +224,6 @@ def tete(request):
 # allauth 비밀번호 변경 완료시 메인페이지로 리다이렉트
 class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     success_url = reverse_lazy("main")
+
+
+# class CustomConfirmEmailView(ConfirmEmailView):
