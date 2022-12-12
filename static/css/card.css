@@ -26,3 +26,22 @@
   width:70px; 
   height:30px;
 }
+
+.card-cardcompany-image-box{
+  width: 170px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e2e2e2;
+  border-radius: 50%;
+}
+
+.banner-rotate90 {
+  transform: rotate(270deg);
+}
+
+.card-cardcompany-banner-card-image:hover {
+  transform: translate(-0rem, -1rem);
+  transition: all 0.5s ease-out;
+}
