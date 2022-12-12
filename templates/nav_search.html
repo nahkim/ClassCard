@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
   <!-- <h1>nav_search</h1> -->
-  <h1>{{text}}</h1>
-  <h6>카드</h6>
-  {% for card in card_list %}
+  <!-- <h1>{{text}}</h1>
+  <h6>카드</h6> -->
+  <!-- {% for card in card_list %}
     <a href="{% url 'card:detail' card.pk%}">
       {{card.card_name}}
     </a><br>
-  {% endfor %}
-  <div class="">
+  {% endfor %} -->
+  <!-- <div class="">
 
     {% if card_list.has_previous %}
       <a href="{{request.get_full_path}}?page={{card_list.previous_page_number}}">이전</a>
@@ -21,15 +21,15 @@
     {% if card_list.has_next %}
       <a href="{{request.get_full_path}}?page={{card_list.next_page_number}}">다음</a>
     {% endif %}
-  </div>
+  </div> -->
   <!-- <h6>혜택</h6> {% for bcard in benefit_card_lst %} {{bcard.card_name}} {% endfor %} -->
 
-  <h6>매거진</h6>
+  <!-- <h6>매거진</h6>
   {% for magazine in magazine_list %}
     <a href="{% url 'magazine:detail' magazine.pk %}">
       {{magazine.title}}
     </a><br>
-  {% endfor %}
+  {% endfor %} -->
 
 
 
@@ -37,85 +37,79 @@
     <div class="container py-5">
       <div class="row">
         <div class="mx-auto col-lg-8 col-md-10">
-          <h1 class="display-3 mb-4">A wonderful serenity</h1>
-          <p class="lead mb-5">Has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone, and feel the charm of existence.</p> <a href="#" class="btn btn-lg btn-primary mx-1">Take me there</a> <a class="btn btn-lg mx-1 btn-outline-primary" href="#">Let's Go</a>
+          <h1 class="display-3 mb-4">검색 결과를 확인해보세요.</h1>
+          <p class="lead mb-5">Check out the search results</p>
+          <h1>{{text}}</h1>
+          <h6>카드</h6>
         </div>
       </div>
     </div>
   </div>
+
+
   <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+              {% for card in card_list %}
+                <a href="{% url 'card:detail' card.pk%}">
+                  {{card.card_name}}
+                </a><br>
+              {% endfor %}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+
   <div class="py-5">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+              <p style="border-radius: 50px; color: #fff; background-color: #0071E3;" class="text-center" >신한카드 The CLASSIC-Y </p>
+            </div>
+            <div class="col-md-3">
+              <p style="border-radius: 50px; color: #fff; background-color: #0071E3;" class="text-center" >신한카드 HI-POINT</p>
+            </div>
+            <div class="col-md-3">
+              <p style="border-radius: 50px; color: #fff; background-color: #0071E3;" class="text-center" >신한카드 HI-POINT</p>
+            </div>
+            <div class="col-md-3">
+              <p style="border-radius: 50px; color: #fff; background-color: #0071E3;" class="text-center" >신한카드 HI-POINT</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2"></div>
-          </div>
-        </div>
-      </div>
+
+  <h6>매거진</h6>
+  {% for magazine in magazine_list %}
+    <a href="{% url 'magazine:detail' magazine.pk %}">
+      {{magazine.title}}
+    </a><br>
+  {% endfor %}
+  
+
+
+    <div style="margin-top: 50px; margin-bottom: 60px; display: flex; justify-content: center;" class="">
+
+      {% if card_list.has_previous %}
+        <a href="{{request.get_full_path}}?page={{card_list.previous_page_number}}">이전</a>
+      {% endif %}
+  
+      {% for p in card_list.paginator.page_range %}
+        <a href="{{request.get_full_path}}?page={{p}}" class="mx-1">{{p}}</a>
+      {% endfor %}
+  
+      {% if card_list.has_next %}
+        <a href="{{request.get_full_path}}?page={{card_list.next_page_number}}">다음</a>
+      {% endif %}
     </div>
-  </div>
-  <div class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="row" >
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-            <div class="col-md-3"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <div class="">
-
-    {% if magazine_list.has_previous %}
-      <a href="?mzpage={{magazine_list.previous_page_number}}">이전</a>
-    {% endif %}
-
-    {% for p in magazine_list.paginator.page_range %}
-      <a href="?mzpage={{p}}" class="mx-1">{{p}}</a>
-    {% endfor %}
-
-    {% if magazine_list.has_next %}
-      <a href="?mzpage={{magazine_list.next_page_number}}">다음</a>
-    {% endif %}
-
-  </div>
 {% endblock body %}
