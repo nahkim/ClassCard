@@ -36,7 +36,7 @@ def profile(request, username):
     return render(request, "accounts/profile.html", context)
 
 
-@login_required
+@login_required(login_url='/login')
 def follow(request, username):
     user = get_user_model().objects.get(username=username)
 
@@ -58,7 +58,7 @@ def follow(request, username):
     return JsonResponse(context)
 
 
-@login_required
+@login_required(login_url='/login')
 @require_http_methods(["GET", "POST"])
 def update(request):
     # ======== nav바에 카드비교 카테고리 ========= 
@@ -82,7 +82,7 @@ def update(request):
     return render(request, "accounts/update.html", context)
 
 
-@login_required
+@login_required(login_url='/login')
 def delete(request):
     # ======== nav바에 카드비교 카테고리 ========= 
     if request.user.is_authenticated:
