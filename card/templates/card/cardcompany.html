@@ -6,4 +6,18 @@
     <a href="{% url 'card:detail' card.pk %}">{{ card.card_name }}</a>
     <br>
   {% endfor %}
+  <div class="">
+
+    {% if card_list.has_previous %}
+      <a href="?page={{card_list.previous_page_number}}">이전</a>
+    {% endif %}
+
+    {% for p in card_list.paginator.page_range %}
+      <a href="?page={{p}}" class="mx-1">{{p}}</a>
+    {% endfor %}
+
+    {% if card_list.has_next %}
+      <a href="?page={{card_list.next_page_number}}">다음</a>
+    {% endif %}
+  </div>
 {% endblock body %}
