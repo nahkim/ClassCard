@@ -176,6 +176,7 @@ AUTHENTICATION_BACKENDS = [
 SITE_ID = 1
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_SIGNUP_REDIRECT_URL = "/"
+LOGIN_URL = "/login"
 
 
 # Provider specific settings
