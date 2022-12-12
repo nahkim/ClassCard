@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1>rank</h1>
+  <!-- <h1>rank</h1>
   <h1>신용카드</h1>
   {% for cardcre in card_credit %}
     <img src="{{cardcre.card_img }}" alt="">
@@ -15,7 +15,7 @@
     <a href="{% url 'card:detail' cardchk.pk %}">
       {{ cardchk.card_name }}
     </a>
-  {% endfor %}
+  {% endfor %} -->
 
 
    <!-- ----------------------------------------- 신용카드  -------------------------------------- -->
@@ -27,130 +27,28 @@
           <h1>2022 BEST 신용 카드</h1>
         </div>
       </div>
+      
       <div class="row">
+        {% for cardcre in card_credit_page %}
         <div class="col-md-3">
           <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
+            <img src="{{cardcre.card_img }}" alt="" class="card__img">
+            <!-- <img style="width: 200px;" src="{{cardcre.card_img }}" alt="" class="card__img"> -->
             <!-- <div class="card__content"> -->
             <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
+              <BC class="card__title">{{ cardcre.card_name }}</h1>
               <!-- <span class="card__preci">현대카드</span> -->
               <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
+              <a href="{% url 'card:detail' cardcre.pk %}" class="card__button">
                 자세히보기
               </a>
             </div>
             <!-- </div> -->
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
+        {% endfor %}
       </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2347/card_img/25291/2347card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-      </div>
+      
     </div>
   </div>
   <!--__________________ 페이지네이션 ____________________-->
@@ -159,12 +57,17 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="#">Prev</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-            <li class="page-item active"> <a class="page-link" href="#">3</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">4</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+            {% if card_credit_page.has_previous %}
+            <li class="page-item"> <a class="page-link" href="?page={{card_credit_page.previous_page_number}}">Prev</a> </li>
+            {% endif %}
+
+            {% for p in card_credit_page.paginator.page_range %}
+              <li class="page-item"> <a class="page-link" href="?page={{p}}">{{p}}</a> </li>
+            {% endfor %}
+
+            {% if card_credit_page.has_next %}
+            <li class="page-item"> <a class="page-link" href="?page={{card_credit_page.next_page_number}}">Next</a> </li>
+            {% endif %}
           </ul>
         </div>
       </div>
@@ -202,128 +105,23 @@
         <div class="col-md-12"></div>
       </div>
       <div class="row">
+        {% for cardchk in card_check_page %}
         <div class="col-md-3">
           <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
+            <img style="width: 200px;" src="{{cardchk.card_img }}" alt="" class="card__img">
             <!-- <div class="card__content"> -->
             <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
+              <BC class="card__title">{{ cardchk.card_name }}</h1>
               <!-- <span class="card__preci">현대카드</span> -->
               <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
+              <a href="{% url 'card:detail' cardchk.pk %}" class="card__button">
                 자세히보기
               </a>
             </div>
             <!-- </div> -->
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card1">
-            <img style="width: 200px;" src="https://api.card-gorilla.com:8080/storage/card/2379/card_img/25379/2379card.png" alt="" class="card__img">
-            <!-- <div class="card__content"> -->
-            <div class="card__data">
-              <BC class="card__title">BC 바로 리워드 플러스</h1>
-              <!-- <span class="card__preci">현대카드</span> -->
-              <p class="card__description">현대카드 M3 BOOST 신규 발급 시 연회비 9만원 중 3만원 캐시백</p>
-              <a href="" class="card__button">
-                자세히보기
-              </a>
-            </div>
-            <!-- </div> -->
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
@@ -333,15 +131,41 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="pagination">
-            <li class="page-item"> <a class="page-link" href="#">Prev</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">2</a> </li>
-            <li class="page-item active"> <a class="page-link" href="#">3</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">4</a> </li>
-            <li class="page-item"> <a class="page-link" href="#">Next</a> </li>
+            {% if card_check_page.has_previous %}
+            <li class="page-item"> <a class="page-link" href="?page={{card_check_page.previous_page_number}}">Prev</a> </li>
+            {% endif %}
+
+            {% for p in card_check_page.paginator.page_range %}
+              <li class="page-item"> <a class="page-link" href="?page={{p}}">{{p}}</a> </li>
+            {% endfor %}
+
+            {% if card_check_page.has_next %}
+            <li class="page-item"> <a class="page-link" href="?page={{card_check_page.next_page_number}}">Next</a> </li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </div>
   </div>
 {% endblock body %}
+
+{% block script %}
+<script>
+  
+  // let cardImage = document.querySelectorAll('.card__img')
+
+  // for (let i = 0 ; i < cardImage.length ; i ++) {
+
+  //   if (cardImage[i].width > cardImage[i].height) {
+  //     console.log('회전하기!')
+  //     cardImage[i].style.width = '315px';
+  //     cardImage[i].style.height = '200px';
+  //     cardImage[i].classList.add('rotate90');
+  //     // cardImage[i].classList.remove('card__img');
+  //   } else {
+  //     cardImage[i].style.width = '200px';
+  //     cardImage[i].style.height = '315px';
+  //   }
+  // }
+</script>
+{% endblock script %}

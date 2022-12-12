@@ -10,20 +10,184 @@ from django.db.models import Q
 import random
 import json
 
-benefit_all = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"테마파크" ,"음원사이트" ,"공연/전시" ,"문화센터" ,"게임" ,"고속버스" ,"렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" ,"베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑" ,"패스트푸드" ,"저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트" ,"해외직구" ,"아울렛" ,"홈쇼핑" ,"소셜커머스" ,"쇼핑" ,"백화점" ,"마트/편의점" ,"온라인쇼핑" ,"전통시장" ,"편의점" ,"공항" ,"공항라운지" ,"공항라운지/PP" ,"대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어" ,"라운지키" ,"교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스" ,"프리미엄" ,"프리미엄 서비스" ,"PP" ,"생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
+benefit_all = [
+    "혜택2",
+    "혜택5",
+    "혜택 프로모션",
+    "할인",
+    "수수료우대",
+    "연회비지원",
+    "무이자할부",
+    "바우처",
+    "무실적",
+    "모든가맹점",
+    "APP",
+    "골프",
+    "경기관람",
+    "레저/스포츠",
+    "영화",
+    "영화/문화",
+    "디지털구독",
+    "테마파크",
+    "음원사이트",
+    "공연/전시",
+    "문화센터",
+    "게임",
+    "고속버스",
+    "렌탈",
+    "호텔",
+    "면세점",
+    "리조트",
+    "온라인 여행사",
+    "여행/숙박",
+    "여행사",
+    "교통",
+    "기차",
+    "대중교통",
+    "택시",
+    "PAYCO",
+    "네이버페이",
+    "간편결제",
+    "카카오페이",
+    "삼성페이",
+    "차/중고차",
+    "충전소",
+    "주유",
+    "주유소",
+    "렌터카",
+    "정비",
+    "하이패스",
+    "자동차",
+    "자동차/하이패스",
+    "동물병원",
+    "펫샵",
+    "애완동물",
+    "카페",
+    "카페/디저트",
+    "베이커리",
+    "병원",
+    "병원/약국",
+    "약국",
+    "피트니스",
+    "드럭스토어",
+    "보험",
+    "보험사",
+    "PAYCO",
+    "네이버페이",
+    "간편결제",
+    "카카오페이",
+    "삼성페이",
+    "아이스크림",
+    "패밀리레스토랑",
+    "패스트푸드",
+    "저녁",
+    "점심",
+    "푸드",
+    "일반음식점",
+    "배달앱",
+    "CJ ONE",
+    "OK캐쉬백",
+    "해피포인트",
+    "캐시백",
+    "멤버십포인트",
+    "적립",
+    "BC TOP",
+    "SSM",
+    "금융",
+    "증권사",
+    "은행사",
+    "KT",
+    "LGU+",
+    "SKT",
+    "통신",
+    "헤어",
+    "화장품",
+    "뷰티/피트니스",
+    "대형마트",
+    "해외직구",
+    "아울렛",
+    "홈쇼핑",
+    "소셜커머스",
+    "쇼핑",
+    "백화점",
+    "마트/편의점",
+    "온라인쇼핑",
+    "전통시장",
+    "편의점",
+    "공항",
+    "공항라운지",
+    "공항라운지/PP",
+    "대한항공",
+    "아시아나항공",
+    "항공권",
+    "항공마일리지",
+    "제주항공",
+    "저가항공",
+    "진에어",
+    "라운지키",
+    "교육/육아",
+    "도서",
+    "학습지",
+    "학원",
+    "어린이집",
+    "유치원",
+    "SPA브랜드",
+    "직장인",
+    "비즈니스",
+    "프리미엄",
+    "프리미엄 서비스",
+    "PP",
+    "생활",
+    "인테리어",
+    "아이행복",
+    "공과금",
+    "공과금/렌탈",
+    "국민행복",
+    "해외",
+    "해외이용",
+    "지역",
+    "카드사",
+    "선택형",
+    "하이브리드",
+    "제휴/PLCC",
+    "기타",
+]
 
 # Create your views here.
 benefit_dict = {
-    "bene": ["혜택2", "혜택5", "혜택 프로모션", "할인", "수수료우대", "연회비지원", "무이자할부", "바우처", "무실적", "모든가맹점"],
+    "bene": [
+        "혜택2",
+        "혜택5",
+        "혜택 프로모션",
+        "할인",
+        "수수료우대",
+        "연회비지원",
+        "무이자할부",
+        "바우처",
+        "무실적",
+        "모든가맹점",
+    ],
     "sport": ["골프", "경기관람", "레저/스포츠"],
-    "movie": [ "영화", "영화/문화", "디지털구독"],
+    "movie": ["영화", "영화/문화", "디지털구독"],
     "culture": ["게임", "테마파크", "음원사이트", "문화센터", "공연/전시"],
     "travel": ["고속버스", "렌탈", "호텔", "면세점", "리조트", "온라인 여행사", "여행/숙박", "여행사"],
     "transport": ["교통", "기차", "대중교통", "택시"],
     "pay": ["PAYCO", "네이버페이", "간편결제", "카카오페이", "삼성페이"],
     "point": ["CJ ONE", "OK캐쉬백", "해피포인트", "캐시백", "멤버십포인트", "적립", "BC TOP", "SSM"],
     "tele": ["KT", "LGU+", "SKT", "통신"],
-    "shop": ["대형마트", "해외직구", "아울렛", "홈쇼핑", "소셜커머스", "쇼핑", "백화점", "마트/편의점", "온라인쇼핑", "전통시장", "편의점"],
+    "shop": [
+        "대형마트",
+        "해외직구",
+        "아울렛",
+        "홈쇼핑",
+        "소셜커머스",
+        "쇼핑",
+        "백화점",
+        "마트/편의점",
+        "온라인쇼핑",
+        "전통시장",
+        "편의점",
+    ],
     "edu": ["교육/육아", "도서", "학습지", "학원", "어린이집", "유치원"],
     "business": ["직장인", "비즈니스"],
     "life": ["생활", "인테리어", "아이행복"],
@@ -38,7 +202,19 @@ benefit_dict = {
     "food": ["아이스크림", "패밀리레스토랑", "패스트푸드", "저녁", "점심", "푸드", "일반음식점", "배달앱"],
     "finance": ["금융", "증권사", "은행사"],
     "beauty": ["헤어", "화장품", "뷰티/피트니스"],
-    "airplane": ["공항", "공항라운지", "공항라운지/PP", "대한항공", "아시아나항공", "항공권", "항공마일리지", "제주항공", "저가항공", "진에어", "라운지키"],
+    "airplane": [
+        "공항",
+        "공항라운지",
+        "공항라운지/PP",
+        "대한항공",
+        "아시아나항공",
+        "항공권",
+        "항공마일리지",
+        "제주항공",
+        "저가항공",
+        "진에어",
+        "라운지키",
+    ],
     "fashion": ["SPA브랜드"],
     "premium": ["프리미엄", "프리미엄 서비스", "PP"],
     "place": ["해외", "해외이용", "지역"],
@@ -46,18 +222,49 @@ benefit_dict = {
     "note": ["유의사항"],
 }
 
-kor_benefit_dict_keys = ["혜택", "스포츠", "영화", "문화", "여행", "교통", "페이", "포인트", "통신사", "쇼핑", "교육", "비즈니스", "생활", "공과금", "카드", "어플", "애완동물", "자동차", "카페", "건강", "보험", "음식", "금융", "뷰티", "항공", "패션", "프리미엄", "지역", "기타", "유의사항"]
+kor_benefit_dict_keys = [
+    "혜택",
+    "스포츠",
+    "영화",
+    "문화",
+    "여행",
+    "교통",
+    "페이",
+    "포인트",
+    "통신사",
+    "쇼핑",
+    "교육",
+    "비즈니스",
+    "생활",
+    "공과금",
+    "카드",
+    "어플",
+    "애완동물",
+    "자동차",
+    "카페",
+    "건강",
+    "보험",
+    "음식",
+    "금융",
+    "뷰티",
+    "항공",
+    "패션",
+    "프리미엄",
+    "지역",
+    "기타",
+    "유의사항",
+]
 
 benefit_lst = benefit_dict.keys()
 benefit_key = list(benefit_lst)
 
 
 def detail(request, num):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     try:
         card = Card.objects.get(pk=num)
@@ -139,15 +346,15 @@ def detail(request, num):
 
         detail_comments_num = card.detailcomment_set.all().count
 
-        #=============== 카드 비교 ==========
-        compare_card = CompareCard.objects.filter(card_id = card.pk)
+        # =============== 카드 비교 ==========
+        compare_card = CompareCard.objects.filter(card_id=card.pk)
         user_compare_card = []
 
         for c in compare_card:
             user_compare_card.append(c.user)
 
         context = {
-            'compare_cards': compare_cards,
+            "compare_cards": compare_cards,
             # 카드 배너
             "card_id": card.pk,
             "card_img": card.card_img,
@@ -169,79 +376,86 @@ def detail(request, num):
             "detail_comment_form": detail_comment_form,
             "detail_comments": detail_comments,
             "detail_comments_num": detail_comments_num,
-
             # CompareCard
-            "user_card_compare" : user_compare_card,
+            "user_card_compare": user_compare_card,
         }
     except:
         return redirect("main")
 
     return render(request, "card/detail.html", context)
 
-@login_required
+
+@login_required(login_url='/login')
 def comment(request, pk):
     card = Card.objects.get(pk=pk)
     user = request.user.pk
 
     if request.method == "POST":
         comment_form = DetailCommentForm(request.POST)
-        
+
         if comment_form.is_valid():
             comment = comment_form.save(commit=False)
             comment.card = card
             comment.user = request.user
             comment.save()
 
-    comments = DetailComment.objects.all().order_by('-updated_at')
+    comments = DetailComment.objects.all().order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
-        comment_data.append({
-            'user_id' : comment.user.id,
-            'comment_id': comment.id,
-            'userName': comment.user.username,
-            'rate' : comment.rate,
-            'content' : comment.content,
-            'update' : comment.updated_at,
-        })
-    
+        comment_data.append(
+            {
+                "user_id": comment.user.id,
+                "comment_id": comment.id,
+                "userName": comment.user.username,
+                "rate": comment.rate,
+                "content": comment.content,
+                "update": comment.updated_at,
+            }
+        )
+
     data = {
-        'commentData' : comment_data,
-        'user' : user,
-        'cardId' : card.pk,
+        "commentData": comment_data,
+        "user": user,
+        "cardId": card.pk,
     }
 
     return JsonResponse(data)
 
 
+@login_required(login_url='/login')
 def comment_delete(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
-    comment = DetailComment.objects.get(pk = comment_pk)
+    comment = DetailComment.objects.get(pk=comment_pk)
     user = request.user.pk
 
     comment.delete()
 
-    comments = DetailComment.objects.all().order_by('-updated_at')
+    comments = DetailComment.objects.all().order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
-        comment_data.append({
-            'user_id' : comment.user.id,
-            'comment_id': comment.id,
-            'userName': comment.user.username,
-            'rate' : comment.rate,
-            'content' : comment.content,
-            'update' : comment.updated_at,
-        })
-    
+        comment_data.append(
+            {
+                "user_id": comment.user.id,
+                "comment_id": comment.id,
+                "userName": comment.user.username,
+                "rate": comment.rate,
+                "content": comment.content,
+                "update": comment.updated_at,
+            }
+        )
+
     data = {
-        'commentData' : comment_data,
-        'user' : user,
-        'cardId' : card.pk,
+        "commentData": comment_data,
+        "user": user,
+        "cardId": card.pk,
     }
 
     return JsonResponse(data)
 
+
+@login_required(login_url='/login')
 def comment_update(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
@@ -249,36 +463,43 @@ def comment_update(request, card_id, comment_pk):
 
     jsonObject = json.loads(request.body)
 
-    if request.method == 'POST':
-        comment.content = jsonObject.get('content')
-        comment.rate = jsonObject.get('rate')
+    if request.method == "POST":
+        comment.content = jsonObject.get("content")
+        comment.rate = jsonObject.get("rate")
         comment.save()
 
-    comments = DetailComment.objects.all().order_by('-updated_at')
+    comments = DetailComment.objects.all().order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
-        comment_data.append({
-            'user_id' : comment.user.id,
-            'comment_id': comment.id,
-            'userName': comment.user.username,
-            'rate' : comment.rate,
-            'content' : comment.content,
-            'update' : comment.updated_at,
-        })
-    
+        comment_data.append(
+            {
+                "user_id": comment.user.id,
+                "comment_id": comment.id,
+                "userName": comment.user.username,
+                "rate": comment.rate,
+                "content": comment.content,
+                "update": comment.updated_at,
+            }
+        )
+
     data = {
-        'commentData' : comment_data,
-        'user' : user,
-        'cardId' : card.pk,
+        "commentData": comment_data,
+        "user": user,
+        "cardId": card.pk,
     }
 
     return JsonResponse(data)
 
+
 from django.core.paginator import Paginator, PageNotAnInteger
 
+
+card_list = []
+
+@login_required(login_url='/login')
 def search(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
@@ -415,9 +636,9 @@ def card_list(request):
 
     if request.method == "GET":
         card_list = []
-        cards = Card.objects.exclude(card_name = None)
-        
-        #============================ 체크 카드랑 신용카드 분리 하기 ===========================
+        cards = Card.objects.exclude(card_name=None)
+
+        # ============================ 체크 카드랑 신용카드 분리 하기 ===========================
 
         check_card = []
         credit_card = []
@@ -427,8 +648,8 @@ def card_list(request):
                 check_card.append(card)
             else:
                 credit_card.append(card)
-                
-        #==========================================================
+
+        # ==========================================================
 
         age = request.GET.get("age", "")
         card_type = request.GET.get("type", "")
@@ -437,10 +658,108 @@ def card_list(request):
 
         # ============================ 나이와 카드 종류로 필터링 하기 ==========================================
         if age == "20대":
-            age_20 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"테마파크" ,"음원사이트" ,"공연/전시" ,"게임" ,"고속버스" ,"렌탈" ,"면세점", "온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통", "PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이", "동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" , "베이커리", "피트니스" , "PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림", "패스트푸드" ,"저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" , "KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스", "해외직구" ,"아울렛", "소셜커머스" ,"쇼핑" ,"백화점" ,"마트/편의점" ,"온라인쇼핑","편의점" , "공항", "대한항공", "아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어", "도서", "SPA브랜드" ,"직장인" ,"비즈니스" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
-            
+            age_20 = [
+                "혜택2",
+                "혜택5",
+                "혜택 프로모션",
+                "할인",
+                "수수료우대",
+                "연회비지원",
+                "무이자할부",
+                "바우처",
+                "무실적",
+                "모든가맹점",
+                "APP",
+                "골프",
+                "경기관람",
+                "레저/스포츠",
+                "영화",
+                "영화/문화",
+                "디지털구독",
+                "테마파크",
+                "음원사이트",
+                "공연/전시",
+                "게임",
+                "고속버스",
+                "렌탈",
+                "면세점",
+                "온라인 여행사",
+                "여행/숙박",
+                "여행사",
+                "교통",
+                "기차",
+                "대중교통",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "동물병원",
+                "펫샵",
+                "애완동물",
+                "카페",
+                "카페/디저트",
+                "베이커리",
+                "피트니스",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "아이스크림",
+                "패스트푸드",
+                "저녁",
+                "점심",
+                "푸드",
+                "일반음식점",
+                "배달앱",
+                "CJ ONE",
+                "OK캐쉬백",
+                "해피포인트",
+                "캐시백",
+                "멤버십포인트",
+                "적립",
+                "BC TOP",
+                "SSM",
+                "KT",
+                "LGU+",
+                "SKT",
+                "통신",
+                "헤어",
+                "화장품",
+                "뷰티/피트니스",
+                "해외직구",
+                "아울렛",
+                "소셜커머스",
+                "쇼핑",
+                "백화점",
+                "마트/편의점",
+                "온라인쇼핑",
+                "편의점",
+                "공항",
+                "대한항공",
+                "아시아나항공",
+                "항공권",
+                "항공마일리지",
+                "제주항공",
+                "저가항공",
+                "진에어",
+                "도서",
+                "SPA브랜드",
+                "직장인",
+                "비즈니스",
+                "해외",
+                "해외이용",
+                "지역",
+                "카드사",
+                "선택형",
+                "하이브리드",
+                "제휴/PLCC",
+                "기타",
+            ]
+
             # ================ 카드 혜택 필터링도 입력 했을 때 ==================
-            if kbl: 
+            if kbl:
                 bnf_list = []
 
                 for k in kbl:
@@ -450,32 +769,159 @@ def card_list(request):
                     for bnf in bnfs:
                         if bnf in age_20:
                             bnf_list.append(bnf)
-                
+
                 if card_type == "체크":
                     for check in check_card:
-                        benefits_temp = Benefit.objects.filter(card_id = check.pk)
-                        
+                        benefits_temp = Benefit.objects.filter(card_id=check.pk)
+
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
                                 card_list.append(check)
                                 break
-                
+
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
-                        
+                        benefits_temp = Benefit.objects.filter(card_id=credit.pk)
+
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
                                 card_list.append(credit)
                                 break
-        
+
             print(card_list)
 
         elif age == "30대":
-            age_30 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"음원사이트" ,"공연/전시","렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물" ,"카페" ,"카페/디저트" ,"베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑", "저녁" ,"점심" ,"푸드" ,"일반음식점" ,"배달앱" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트" ,"해외직구" ,"아울렛" ,"소셜커머스" ,"쇼핑" ,"백화점","온라인쇼핑", "편의점" ,"공항", "대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어", "교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스", "생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
-            
+            age_30 = [
+                "혜택2",
+                "혜택5",
+                "혜택 프로모션",
+                "할인",
+                "수수료우대",
+                "연회비지원",
+                "무이자할부",
+                "바우처",
+                "무실적",
+                "모든가맹점",
+                "APP",
+                "골프",
+                "경기관람",
+                "레저/스포츠",
+                "영화",
+                "영화/문화",
+                "디지털구독",
+                "음원사이트",
+                "공연/전시",
+                "렌탈",
+                "호텔",
+                "면세점",
+                "리조트",
+                "온라인 여행사",
+                "여행/숙박",
+                "여행사",
+                "교통",
+                "기차",
+                "대중교통",
+                "택시",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "차/중고차",
+                "충전소",
+                "주유",
+                "주유소",
+                "렌터카",
+                "정비",
+                "하이패스",
+                "자동차",
+                "자동차/하이패스",
+                "동물병원",
+                "펫샵",
+                "애완동물",
+                "카페",
+                "카페/디저트",
+                "베이커리",
+                "병원",
+                "병원/약국",
+                "약국",
+                "피트니스",
+                "드럭스토어",
+                "보험",
+                "보험사",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "아이스크림",
+                "패밀리레스토랑",
+                "저녁",
+                "점심",
+                "푸드",
+                "일반음식점",
+                "배달앱",
+                "CJ ONE",
+                "OK캐쉬백",
+                "해피포인트",
+                "캐시백",
+                "멤버십포인트",
+                "적립",
+                "BC TOP",
+                "SSM",
+                "금융",
+                "증권사",
+                "은행사",
+                "KT",
+                "LGU+",
+                "SKT",
+                "통신",
+                "헤어",
+                "화장품",
+                "뷰티/피트니스",
+                "대형마트",
+                "해외직구",
+                "아울렛",
+                "소셜커머스",
+                "쇼핑",
+                "백화점",
+                "온라인쇼핑",
+                "편의점",
+                "공항",
+                "대한항공",
+                "아시아나항공",
+                "항공권",
+                "항공마일리지",
+                "제주항공",
+                "저가항공",
+                "진에어",
+                "교육/육아",
+                "도서",
+                "학습지",
+                "학원",
+                "어린이집",
+                "유치원",
+                "SPA브랜드",
+                "직장인",
+                "비즈니스",
+                "생활",
+                "인테리어",
+                "아이행복",
+                "공과금",
+                "공과금/렌탈",
+                "국민행복",
+                "해외",
+                "해외이용",
+                "지역",
+                "카드사",
+                "선택형",
+                "하이브리드",
+                "제휴/PLCC",
+                "기타",
+            ]
+
             # ================ 카드 혜택 필터링도 입력 했을 때 ==================
-            if kbl: 
+            if kbl:
                 bnf_list = []
 
                 for k in kbl:
@@ -488,27 +934,158 @@ def card_list(request):
 
                 if card_type == "체크":
                     for check in check_card:
-                        benefits_temp = Benefit.objects.filter(card_id = check.pk)
-                        
+                        benefits_temp = Benefit.objects.filter(card_id=check.pk)
+
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
                                 card_list.append(check)
                                 break
-                
+
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
-                        
+                        benefits_temp = Benefit.objects.filter(card_id=credit.pk)
+
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
                                 card_list.append(credit)
                                 break
 
         else:
-            age_40 = ["혜택2" ,"혜택5" ,"혜택 프로모션" ,"할인" ,"수수료우대" ,"연회비지원" ,"무이자할부" ,"바우처" ,"무실적" ,"모든가맹점" ,"APP" ,"골프" ,"경기관람" ,"레저/스포츠" ,"영화" ,"영화/문화" ,"디지털구독" ,"음원사이트" ,"공연/전시" ,"문화센터","렌탈" ,"호텔" ,"면세점" ,"리조트" ,"온라인 여행사" ,"여행/숙박" ,"여행사" ,"교통" ,"기차" ,"대중교통" ,"택시" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"차/중고차" ,"충전소" ,"주유" ,"주유소" ,"렌터카" ,"정비" ,"하이패스" ,"자동차" ,"자동차/하이패스" ,"동물병원" ,"펫샵" ,"애완동물","베이커리" ,"병원" ,"병원/약국" ,"약국" ,"피트니스" ,"드럭스토어" ,"보험" ,"보험사" ,"PAYCO" ,"네이버페이" ,"간편결제" ,"카카오페이" ,"삼성페이" ,"아이스크림" ,"패밀리레스토랑", "저녁" ,"점심" ,"푸드" ,"일반음식점" ,"CJ ONE" ,"OK캐쉬백" ,"해피포인트" ,"캐시백" ,"멤버십포인트" ,"적립" ,"BC TOP" ,"SSM" ,"금융" ,"증권사" ,"은행사" ,"KT" ,"LGU+" ,"SKT" ,"통신" ,"헤어" ,"화장품" ,"뷰티/피트니스" ,"대형마트", "아울렛", "홈쇼핑", "쇼핑" ,"백화점", "온라인쇼핑" ,"전통시장" ,"편의점" ,"공항" ,"공항라운지" ,"공항라운지/PP" ,"대한항공" ,"아시아나항공" ,"항공권" ,"항공마일리지" ,"제주항공" ,"저가항공" ,"진에어" ,"라운지키" ,"교육/육아" ,"도서" ,"학습지" ,"학원" ,"어린이집" ,"유치원" ,"SPA브랜드" ,"직장인" ,"비즈니스" ,"프리미엄" ,"프리미엄 서비스" ,"PP" ,"생활" ,"인테리어" ,"아이행복" ,"공과금" ,"공과금/렌탈" ,"국민행복" ,"해외" ,"해외이용" ,"지역" ,"카드사" ,"선택형" ,"하이브리드" ,"제휴/PLCC" ,"기타"]
-            
+            age_40 = [
+                "혜택2",
+                "혜택5",
+                "혜택 프로모션",
+                "할인",
+                "수수료우대",
+                "연회비지원",
+                "무이자할부",
+                "바우처",
+                "무실적",
+                "모든가맹점",
+                "APP",
+                "골프",
+                "경기관람",
+                "레저/스포츠",
+                "영화",
+                "영화/문화",
+                "디지털구독",
+                "음원사이트",
+                "공연/전시",
+                "문화센터",
+                "렌탈",
+                "호텔",
+                "면세점",
+                "리조트",
+                "온라인 여행사",
+                "여행/숙박",
+                "여행사",
+                "교통",
+                "기차",
+                "대중교통",
+                "택시",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "차/중고차",
+                "충전소",
+                "주유",
+                "주유소",
+                "렌터카",
+                "정비",
+                "하이패스",
+                "자동차",
+                "자동차/하이패스",
+                "동물병원",
+                "펫샵",
+                "애완동물",
+                "베이커리",
+                "병원",
+                "병원/약국",
+                "약국",
+                "피트니스",
+                "드럭스토어",
+                "보험",
+                "보험사",
+                "PAYCO",
+                "네이버페이",
+                "간편결제",
+                "카카오페이",
+                "삼성페이",
+                "아이스크림",
+                "패밀리레스토랑",
+                "저녁",
+                "점심",
+                "푸드",
+                "일반음식점",
+                "CJ ONE",
+                "OK캐쉬백",
+                "해피포인트",
+                "캐시백",
+                "멤버십포인트",
+                "적립",
+                "BC TOP",
+                "SSM",
+                "금융",
+                "증권사",
+                "은행사",
+                "KT",
+                "LGU+",
+                "SKT",
+                "통신",
+                "헤어",
+                "화장품",
+                "뷰티/피트니스",
+                "대형마트",
+                "아울렛",
+                "홈쇼핑",
+                "쇼핑",
+                "백화점",
+                "온라인쇼핑",
+                "전통시장",
+                "편의점",
+                "공항",
+                "공항라운지",
+                "공항라운지/PP",
+                "대한항공",
+                "아시아나항공",
+                "항공권",
+                "항공마일리지",
+                "제주항공",
+                "저가항공",
+                "진에어",
+                "라운지키",
+                "교육/육아",
+                "도서",
+                "학습지",
+                "학원",
+                "어린이집",
+                "유치원",
+                "SPA브랜드",
+                "직장인",
+                "비즈니스",
+                "프리미엄",
+                "프리미엄 서비스",
+                "PP",
+                "생활",
+                "인테리어",
+                "아이행복",
+                "공과금",
+                "공과금/렌탈",
+                "국민행복",
+                "해외",
+                "해외이용",
+                "지역",
+                "카드사",
+                "선택형",
+                "하이브리드",
+                "제휴/PLCC",
+                "기타",
+            ]
+
             # ================ 카드 혜택 필터링도 입력 했을 때 ==================
-            if kbl: 
+            if kbl:
                 bnf_list = []
 
                 for k in kbl:
@@ -520,28 +1097,26 @@ def card_list(request):
                             bnf_list.append(bnf)
 
                 if card_type == "체크":
-                        for check in check_card:
-                            benefits_temp = Benefit.objects.filter(card_id = check.pk)
-                            
-                            for benefit in benefits_temp:
-                                if benefit.bnf_name in bnf_list:
-                                    card_list.append(check)
-                                    break
-                    
+                    for check in check_card:
+                        benefits_temp = Benefit.objects.filter(card_id=check.pk)
+
+                        for benefit in benefits_temp:
+                            if benefit.bnf_name in bnf_list:
+                                card_list.append(check)
+                                break
+
                 else:
                     for credit in credit_card:
-                        benefits_temp = Benefit.objects.filter(card_id = credit.pk)
-                        
+                        benefits_temp = Benefit.objects.filter(card_id=credit.pk)
+
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
                                 card_list.append(credit)
                                 break
 
-
     page = int(request.GET.get("p", 1))
     pagenator = Paginator(card_list, 10)
     boards = pagenator.get_page(page)
-
 
 
     context = {
@@ -553,55 +1128,68 @@ def card_list(request):
         "age_param": age,
         "card_type_param": card_type, 
     }
-    return render(request, 'card/card_list.html', context)
+    return render(request, "card/card_list.html", context)
 
 
-
+@login_required(login_url='/login')
 def card_compare(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     context = {
-        "compare_cards" : compare_cards,
+        "compare_cards": compare_cards,
     }
-    return render(request,"card/card_compare.html", context)
+    return render(request, "card/card_compare.html", context)
+
 
 def search_list(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
-        
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
+
     bene_tu_li = []
     # 혜택 갯수 조절
     for bk in kor_benefit_dict_keys[1:28]:
-        ls = Benefit.objects.filter(bnf_content__icontains=bk).values_list('card_id',flat=True).distinct()
+        ls = (
+            Benefit.objects.filter(bnf_content__icontains=bk)
+            .values_list("card_id", flat=True)
+            .distinct()
+        )
         # 카드 갯수 조절
         card = Card.objects.filter(id__contains=ls)[:4]
-        bene_tu_li.append((bk,card))
+        bene_tu_li.append((bk, card))
     print(len(bene_tu_li))
     context = {
-        "compare_cards" : compare_cards,
-        'bene_tu_li' : bene_tu_li,
+        "compare_cards": compare_cards,
+        "bene_tu_li": bene_tu_li,
     }
-    return render(request, "card/search_list.html",context)
+    return render(request, "card/search_list.html", context)
+
 
 def rank(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
-    card_credit = Card.objects.filter(card_name__icontains='신용')[:9]
-    card_check = Card.objects.filter(card_name__icontains='체크')[:9]
+    page = request.GET.get("page")
+    card_credit = Card.objects.filter(card_name__icontains="신용")[:9]
+    card_check = Card.objects.filter(card_name__icontains="체크")[:9]
+    credit_paginator = Paginator(card_credit, 8)
+    check_paginator = Paginator(card_check, 8)
+    card_credit_page = credit_paginator.get_page(page)
+    card_check_page = check_paginator.get_page(page)
     context = {
-        "compare_cards" : compare_cards,
-        'card_credit' : card_credit,
-        'card_check' : card_check,
+        "compare_cards": compare_cards,
+        "card_credit": card_credit,
+        "card_check": card_check,
+        "card_credit_page": card_credit_page,
+        "card_check_page": card_check_page,
     }
-    return render(request,'card/rank.html',context)
+    return render(request, "card/rank.html", context)

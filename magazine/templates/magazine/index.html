@@ -5,13 +5,14 @@
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/magazine.css' %}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 {% endblock css %}
 
 {% block body %}
 <!-- banner -->
 <div class="container mt-5">
-  <p class="bg-img"></p>
+  <p class="bg-img animate__animated animate__backInDown"></p>
   <div class="d-flex justify-content-center">
     <h1 class="bg-txt">카드  
       <img class="bg-txt-img" src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26378/tips_gosty_bi.png">
@@ -27,31 +28,34 @@
 <div class="container mt-5">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col">
+      <a href="https://www.gosty.co.kr/">
       <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
         <img src="https://api.card-gorilla.com:8080/storage/corp/7/tips/26377/tips_gosty.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">  
         <div class="card-img-overlay d-flex justify-content-center">
           <h3 class="card-title" style="position: relative; top:110px; height: 30px;">Gosty</h3>
         </div>
       </div>
-      <p class="mt-2">카드 새 옷을 입다</p>
+      <p class="mt-2">카드 새 옷을 입다</p></a>
     </div>
     <div class="col">
+      <a href="https://www.wooricardnu.co.kr/">
       <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
         <img src="https://api.card-gorilla.com:8080/storage/corp/2/tips/25414/tips_wooricardnu.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">
         <div class="card-img-overlay d-flex justify-content-center">
           <h3 class="card-title" style="position: relative; top:110px; height: 30px;">우리카드 NU</h3>
         </div>
       </div>
-      <p class="mt-2">What's NU?</p>
+      <p class="mt-2">What's NU?</p></a>
     </div>
     <div class="col">
+      <a href="https://www.koreanair.com/kr/ko">
       <div class="card text-bg-dark" style="border-radius: 35px; border: 1px solid white;">
         <img src="http://photo.sentv.co.kr/photo/2022/02/18/20220218103210.jpg" class="card-img" style="height:290px; border-radius: 40px; filter: brightness(50%);">
         <div class="card-img-overlay d-flex justify-content-center">
           <h3 class="card-title" style="position: relative; top:110px; height: 30px;">대한항공</h3>
         </div>
       </div>
-      <p class="mt-2">"올해는, 한국을 뜨셔야죠"</p>
+      <p class="mt-2">"올해는, 한국을 뜨셔야죠"</p></a>
     </div>
   </div>
   <hr class="mt-5">
@@ -60,7 +64,7 @@
 <!-- YouTube -->
 <div class="mt-5 d-flex justify-content-center container">
   <!-- 에디터 Class가 추천해주는 영상 -->
-  <div class="editor-tag" style="margin-right: 40px;">
+  <div class="editor-tag animate__animated animate__backInLeft" style="margin-right: 40px;">
     <div class="mb-5">
       <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 영상</span>
     </div>
@@ -157,11 +161,11 @@
 <!-- 에디터 Class가 추천해주는 매거진 -->
 <div class="container mt-5">
   <div class="editor-tag2 d-flex justify-content-between" style="margin-right: 40px; position: relative;">
-    <div>
+    <div class="animate__animated animate__backInLeft">
       <span style="font-size: 37px;"><span style="font-size: 37px; color: blue;">에디터 Class</span>가<br> 추천해주는 매거진</span>
     </div>
     {% if request.user.role == 'C' %}
-    <div style="width: 130px;">
+    <div class="animate__animated animate__jello" style="width: 130px;">
       <a href="{% url 'magazine:create' %}" class='btn' style="position: absolute; top: 25px; background-color: white; color: gray; border: 1px solid gray; padding: 20px 25px 20px 25px;">매거진 작성하기</a>
     </div>
     {% endif %}
