@@ -1,9 +1,95 @@
 {% extends 'base.html' %}
 
 {% block css %} 
+<style>
+  .list-wrap {
+	width: 600px;
+}
+
+.list-wrap-li {
+	display: table;
+	margin-top: 0;
+	table-layout: fixed;
+	position: relative;
+	width: 100%;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	background: rgb(255, 255, 255);
+}
 
 
+.card_img {
+	display: table-cell;
+	position: relative;
+	vertical-align: middle;
+	height: 100px;
+	width: 120px;
+	text-align: center;
+}
 
+.img {
+	margin: 0;
+	padding: 0; 
+	border: 0;
+}
+
+.img a {
+	display: block; 
+	outline: 0 !important; 
+	box-shadow: none; 
+	background-color: unset; 
+	text-decoration: none;
+}
+
+.img a img {
+	display: block; 
+	display: table-cell; 
+	vertical-align: middle;  
+	height: 100px;
+}
+
+.card_name  {
+	line-height: 29px; 
+	font-weight: 700; 
+	font-size: 18px; 
+	letter-spacing: -1px;
+ 
+}
+
+.card_name a {
+	display: block;
+  margin-top: 10px;
+}
+
+.card_smallname {
+	line-height: 21px; 
+	margin-top: 6px; 
+	font-size: 15px; 
+	letter-spacing: -0.5px;
+}
+
+.detail_view {
+	width: 52px; 
+	display: table-cell; 
+	position: relative; 
+	vertical-align: middle; 
+	height: 100px; 
+	padding: 0; 
+	border: 0;
+}
+
+.detail_view a {
+	display: block; 
+	cursor: pointer; 
+	height: 100%; 
+	font-size: 0; 
+	text-indent: -9999px;
+    background-image: url(https://www.card-gorilla.com/statics/img/icon_arr_right.png); 
+	background-position: 50%; 
+    background-repeat: no-repeat; 
+	transition: all 0.15s;	
+}
+</style>
 {% endblock css %}
 
 {% block body %}
@@ -25,9 +111,143 @@
 
 <div class="py-5">
   <div class="container">
+    <img src="" alt="">
     <h4>항공 마일리지 추천 카드를 확인해보세요</h4>
   </div>
 </div>
+
+<div class="py-3">
+  <div class="container text-center">
+    <div class="row">
+      <!-- 첫번째 카드  -->
+      <div class="col">
+        <div class="list-wrap">
+          <ul>
+            <li class="list-wrap-li">
+              <div class="card_img">
+                <p class="img">
+                  <a href="">
+                    <img style="vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="https://api.card-gorilla.com:8080/storage/card/49/card_img/24313/49card.png" alt="">
+                  </a>
+                </p>
+              </div>
+              <div >
+                <p class="card_name">
+                  <a href=""> 삼성카드 & MILEAGE PLATINUM</a>
+                </p>
+                <P class="card_smallname">삼성카드</P>
+              </div>
+              <div class="detail_view">
+                <a class="view_btn" href=""> 상세보기</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 두번째 카드 -->
+      <div class="col">
+        <div class="list-wrap">
+          <ul>
+            <li class="list-wrap-li">
+              <div class="card_img">
+                <p class="img">
+                  <a href="">
+                    <img style="vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="https://api.card-gorilla.com:8080/storage/card/49/card_img/24313/49card.png" alt="">
+                  </a>
+                </p>
+              </div>
+              <div >
+                <p class="card_name">
+                  <a href=""> 삼성카드 & MILEAGE PLATINUM</a>
+                </p>
+                <P class="card_smallname">삼성카드</P>
+              </div>
+              <div class="detail_view">
+                <a class="view_btn" href=""> 상세보기</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 세번쨰 카드 -->
+      <div class="col">
+        <div class="list-wrap">
+          <ul>
+            <li class="list-wrap-li">
+              <div class="card_img">
+                <p class="img">
+                  <a href="">
+                    <img style="vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="https://api.card-gorilla.com:8080/storage/card/49/card_img/24313/49card.png" alt="">
+                  </a>
+                </p>
+              </div>
+              <div >
+                <p class="card_name">
+                  <a href=""> 삼성카드 & MILEAGE PLATINUM</a>
+                </p>
+                <P class="card_smallname">삼성카드</P>
+              </div>
+              <div class="detail_view">
+                <a class="view_btn" href=""> 상세보기</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 네번째 카드 -->
+      <div class="col">
+        <div class="list-wrap">
+          <ul>
+            <li class="list-wrap-li">
+              <div class="card_img">
+                <p class="img">
+                  <a href="">
+                    <img style="vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="https://api.card-gorilla.com:8080/storage/card/2281/card_img/20685/2281card.png" alt="">
+                  </a>
+                </p>
+              </div>
+              <div >
+                <p class="card_name">
+                  <a href=""> 삼성카드 & MILEAGE PLATINUM</a>
+                </p>
+                <P class="card_smallname">삼성카드</P>
+              </div>
+              <div class="detail_view">
+                <a class="view_btn" href=""> 상세보기</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>  
+</div>
+
+
+
+
+<!-- 카드 원본 -->
+<!-- <div class="list-wrap">
+  <ul>
+    <li class="list-wrap-li">
+      <div class="card_img">
+        <p class="img">
+          <a href="">
+            <img style="vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="https://api.card-gorilla.com:8080/storage/card/49/card_img/24313/49card.png" alt="">
+          </a>
+        </p>
+      </div>
+      <div >
+        <p class="card_name">
+          <a href=""> 삼성카드 & MILEAGE PLATINUM</a>
+        </p>
+        <P class="card_smallname">삼성카드</P>
+      </div>
+      <div class="detail_view">
+        <a class="view_btn" href=""> 상세보기</a>
+      </div>
+    </li>
+  </ul>
+</div> -->
 
 
 {% endblock body %}
