@@ -73,14 +73,14 @@
 
 <div  style="display: flex; justify-content: center;" class="py-3">
 <div class="container">
-  <div style="background-color: #0071E3; border-radius: 50px; height: 50px;">
+  <div style="background-color: #0071E3; border-radius: 50px; height: 50px; width: 300px;">
      <h4 style="margin-top: 9px; padding-top: 9px; color: #fff;" class="text-center">내가 추가한 에디터 글</h4>
   </div>
 <div style="margin-top: 80px; display: flex; justify-content: center;" class="row flex-wrap" >
   {% for bookmark in bookmarks %}
   <div class="col-md-4">
-    <div style="width: 400px;" class="card">
-      <img src="{{bookmark.image.url}}" class="card-img-top" alt="...">
+    <div style="width: 380px; height: 350px;" class="card">
+      <img style="width: 100%; height: 300px; object-fit: cover;" src="{{bookmark.image.url}}" class="card-img-top img-top" alt="...">
       <div class="card-body">
         <p class="card-text">{{bookmark.title}}</p>
       </div>
@@ -89,16 +89,16 @@
   {% endfor %}
   {% comment %} 
   <div class="col-md-4">
-    <div style="width: 400px;" class="card">
-      <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+    <div style="width: 380px; height: 350px;" class="card">
+      <img style="width: 100%; height: 300px; object-fit: cover;" src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
     </div>
   </div>
   <div class="col-md-4">
-    <div style="width: 400px;" class="card">
-      <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+    <div style="width: 380px; height: 350px;" class="card">
+      <img style="width: 100%; height: 300px; object-fit: cover;"src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
       </div>
