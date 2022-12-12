@@ -155,7 +155,7 @@ def main(request):
 from django.db.models import Q, Avg
 from card.models import Card, Benefit, DetailComment
 from magazine.models import Magazine
-
+from django.core.paginator import Paginator, PageNotAnInteger
 
 def nav_search(request):
     # ======== nav바에 카드비교 카테고리 ========= 
@@ -164,27 +164,31 @@ def nav_search(request):
     else:
         compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
 
-    if request.method == 'GET':
-        text = request.GET.get('text')
-        card_list = Card.objects.filter(Q(card_name__icontains=text)|Q(card_brand__icontains=text)|Q(card_in_out_1__contains=text)|Q(card_in_out_2__icontains=text)|Q(card_in_out_3__icontains=text)|Q(card_overseas__icontains=text)).distinct()
-        
-        
+    text = request.GET.get('text')
+    
+    card_list = Card.objects.filter(Q(card_name__icontains=text)|Q(card_brand__icontains=text)|Q(card_in_out_1__contains=text)|Q(card_in_out_2__icontains=text)|Q(card_in_out_3__icontains=text)|Q(card_overseas__icontains=text)).distinct()
+    magazine_list = Magazine.objects.filter(
+        Q(title__icontains=text) | Q(content__icontains=text)
+    ).distinct()
 
-        # 카드 id 필드 사라짐. 보류
-        # benefit_list = Benefit.objects.filter(Q(bnf_name__icontains=text)|Q(bnf_content__icontains=text)|Q(bnf_detail__icontains=text))
-        # benefit_card_lst = benefit_list.values('card_id').distinct()
+    page = request.GET.get('page')
+    mzpage = request.GET.get('mzpage')
+    paginator = Paginator(card_list, 20)
+    cards = paginator.get_page(page)
+    # 카드 id 필드 사라짐. 보류
+    # benefit_list = Benefit.objects.filter(Q(bnf_name__icontains=text)|Q(bnf_content__icontains=text)|Q(bnf_detail__icontains=text))
+    # benefit_card_lst = benefit_list.values('card_id').distinct()
 
-        # 매거진
-        magazin_list = Magazine.objects.filter(
-            Q(title__icontains=text) | Q(content__icontains=text)
-        ).distinct()
-        context = {
-            "text": text,
-            "card_list": card_list,
-            # 'benefit_card_lst' : benefit_list,
-            "magazine_list": magazin_list,
-        }
-        return render(request, "nav_search.html", context)
+    # 매거진
+    paginator = Paginator(magazine_list, 20)
+    magazines = paginator.get_page(mzpage)
+    context = {
+        "text": text,
+        "card_list": cards,
+        # 'benefit_card_lst' : benefit_list,
+        "magazine_list": magazines,
+    }
+    return render(request, "nav_search.html", context)
 
 
 # 테스트용 함수입니다.
