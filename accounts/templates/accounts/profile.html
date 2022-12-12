@@ -2,62 +2,63 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
-
 {% block body %}
-<div class="py-0">
-  <div class="background">
+  <div class="py-0">
+    <div class="background">
       <img style=" position: relative; width: 100%; height: 350px; object-fit: cover;" src="https://i.pinimg.com/originals/54/e6/d1/54e6d1d65a904550f2d0ee56c4f33665.gif" alt="">
       <!-- <img style=" position: relative; width: 100%; height: 350px; object-fit: cover;" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/a733bf86128681.5d909dad4a123.jpg" alt=""> -->
       <!-- <img style=" position: relative; width: 100%; height: 350px; object-fit: cover;" src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/1c19e086128681.5d909dad462a4.jpg" alt=""> -->
       <!-- <video preload="" tabindex="-1" loop="" style="" src="blob:https://player.vimeo.com/7f7bfa30-346b-42ba-be71-73e62d2beb25"></video> -->
       <!-- 현재 시간 -->
       <div style="display: flex; justify-content:center;">
-          <h2 style="font-family: 'Jua', sans-serif; position: absolute;  top: 180px;" id="clock">00:00:00</h2>
+        <h2 style="font-family: 'Jua', sans-serif; position: absolute;  top: 180px;" id="clock">00:00:00</h2>
       </div>
       <!-- 안녕! -->
       <div style="display: flex; justify-content:center;">
-          <div style="font-size: 18px;  position: absolute; top: 250px;" id="quote">
-              <span></span>
-              <p></p>
-            </div>
+        <div style="font-size: 18px;  position: absolute; top: 250px;" id="quote">
+          <span></span>
+          <p></p>
+        </div>
       </div>
       <!-- 프로필 사진 -->
       <div style="display: flex; justify-content: center;">
-          <img style="position: absolute; top: 320px; border-radius: 100%" src="https://i.pinimg.com/236x/88/6a/e3/886ae34b619741656539c23719cea560.jpg" alt="">
+        <img style="position: absolute; top: 320px; border-radius: 100%" src="https://i.pinimg.com/236x/88/6a/e3/886ae34b619741656539c23719cea560.jpg" alt="">
       </div>
       <!-- 프로필 관련 정보 수정하기 -->
       <div style="margin-top: 30px;" class="container">
-          <div style="border-color: #fff; " class="">
-              <div style="display: flex; " class="container-fluid">
-                  <a style=" margin-top: 10px; color: #000; font-size: 23px;"  class="">EMAIL: {{user.email}} </a>
-                  {% if request.user.is_authenticated %}
-                  {% if user == request.user %}
-                  <div style="display: flex; margin-left: 700px; " class="d-flex" role="search">
-                    <button style="margin: 10px; " class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:update' %}'">정보 수정하기</button>
-                    <button style="margin: 10px;" class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:delete' %}'">회원 탈퇴하기</button>
-                  </div>
-                  {% endif %}
-                  {% endif %}
+        <div style="border-color: #fff; " class="">
+          <div style="display: flex; " class="container-fluid">
+            <a style=" margin-top: 10px; color: #000; font-size: 23px;" class="">EMAIL:
+              {{user.email}}
+            </a>
+            {% if request.user.is_authenticated %}
+              {% if user == request.user %}
+                <div style="display: flex; margin-left: 700px; " class="d-flex" role="search">
+                  <button style="margin: 10px; " class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:update' %}'">정보 수정하기</button>
+                  <button style="margin: 10px;" class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:delete' %}'">회원 탈퇴하기</button>
                 </div>
-            </div>
+              {% endif %}
+            {% endif %}
+          </div>
+        </div>
       </div>
       <!-- 프로필 NAME -->
       <div style="margin-top: 40px; font-size: 30px; display: flex; justify-content: center; top: 10px;">{{ user }}</div>
       <div style="display: flex; justify-content:center;">
         <!-- 팔로우 버튼 -->
         {% if request.user.is_authenticated %}
-        {% if request.user != user %}
-          {% if request.user in user.follow.all %}
-            <button style=" display: flex; justify-content: center;" id="follow-btn" type="button" data-user-name="{{ user.username }}" style=" margin: 10px;" class="btn btn-outline-success">팔로우 취소</button>
-          {% else %}
-            {% if user.role == "C" %}
-            <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style="margin: 10px;" class="btn btn-outline-success">팔로우</button>
+          {% if request.user != user %}
+            {% if request.user in user.follow.all %}
+              <button style=" margin: 10px;" id="follow-btn" type="button" data-user-name="{{ user.username }}" class="btn btn-outline-success">팔로우 취소</button>
+            {% else %}
+              {% if user.role == "C" %}
+                <button id="follow-btn" type="button" data-user-name="{{ user.username }}" style="margin: 10px;" class="btn btn-outline-success">팔로우</button>
+              {% endif %}
             {% endif %}
           {% endif %}
         {% endif %}
-        {% endif %}
         <div style="display: flex; justify-content:center; margin-top: 8px;  margin-bottom: 50px; ">
-          <p  id="following-cnt">팔로잉
+          <p id="following-cnt">팔로잉
             {{user.follow.count}}
           </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <p id="follower-cnt">팔로워
@@ -65,187 +66,155 @@
           </p>
         </div>
       </div>
-  </div>
-</div>
-
-
-
-<!-- 내가 추가한 에디터 글 -->
-
-<div  style="display: flex; justify-content: center;" class="py-3">
-<div class="container">
-  <div style="background-color: #0071E3; border-radius: 50px; height: 50px; width: 300px;">
-     <h4 style="margin-top: 9px; padding-top: 9px; color: #fff;" class="text-center">내가 추가한 에디터 글</h4>
-  </div>
-<div style="margin-top: 80px; display: flex; justify-content: center;" class="row flex-wrap" >
-  {% for bookmark in bookmarks %}
-  <div class="col-md-4">
-    <a href="{% url 'magazine:detail' bookmark.pk %}">
-      <div style="width: 380px; height: 350px;" class="card">
-        <img style="width: 100%; height: 300px; object-fit: cover;" src="{{bookmark.image.url}}" class="card-img-top img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">{{bookmark.title}}</p>
-        </div>
-      </div>
-    </a>
-  </div>
-  {% endfor %}
-  {% comment %} 
-  <div class="col-md-4">
-    <div style="width: 380px; height: 350px;" class="card">
-      <img style="width: 100%; height: 300px; object-fit: cover;" src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      </div>
     </div>
   </div>
-  <div class="col-md-4">
-    <div style="width: 380px; height: 350px;" class="card">
-      <img style="width: 100%; height: 300px; object-fit: cover;"src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-      <div class="card-body">
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+
+  <!-- 내가 추가한 에디터 글 -->
+
+  <div style="display: flex; justify-content: center;" class="py-3">
+    <div class="container">
+      <div style="background-color: #0071E3; border-radius: 50px; height: 50px; width: 300px;">
+        <h4 style="margin-top: 9px; padding-top: 9px; color: #fff;" class="text-center">내가 추가한 에디터 글</h4>
       </div>
+      <div style="margin-top: 80px; display: flex; justify-content: center;" class="row flex-wrap">
+        {% for bookmark in bookmarks %}
+          <div class="col-md-4 mb-5">
+            <a href="{% url 'magazine:detail' bookmark.pk %}">
+              <div style="width: 380px; height: 350px;" class="card">
+                <img style="width: 100%; height: 300px; object-fit: cover;" src="{{bookmark.image.url}}" class="card-img-top img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">{{bookmark.title}}</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      {% comment "" %}
+        
+        <!-- 두번째 줄 -->
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 세번째 줄 -->
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 30px;" class="col-md-4">
+          <div style="width: 400px;" class="card">
+            <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+        </div>
+        {% endcomment %}
+      </div>
+      
     </div>
   </div>
-  {% endcomment %}
-
-  <!-- 두번째 줄 -->
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-
-  <!-- 세번째 줄 -->
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-  <div style="margin-top: 30px;" class="col-md-4">
-      <div style="width: 400px;" class="card">
-          <img src="https://i.pinimg.com/236x/21/b9/c1/21b9c17bede38d5120632546f038dfa2.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-  </div>
-</div>
-</div>
-</div>
 
 {% endblock body %}
 
 {% block script %}
-<script>
-  const clock = document.querySelector("h2#clock");
+  <script>
+    const clock = document.querySelector("h2#clock");
 
-function getClock() {
-  const date = new Date();
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  const seconds = String(date.getSeconds()).padStart(2, "0");
-  clock.innerText = `${hours}:${minutes}:${seconds}`;
-}
+    function getClock() {
+      const date = new Date();
+      const hours = String(date.getHours()).padStart(2, "0");
+      const minutes = String(date.getMinutes()).padStart(2, "0");
+      const seconds = String(date.getSeconds()).padStart(2, "0");
+      clock.innerText = `${hours}:${minutes}:${seconds}`;
+    }
 
-getClock();
-setInterval(getClock, 1000);
+    getClock();
+    setInterval(getClock, 1000);
 
-
-const quotes = [
-    {
-      quote: "반가워요! 오늘 하루도 힘내요!",
-    },
-    {
-      quote: "오늘 혹시 시원한 맥주 한잔 어떤가요?",
-    },
-    {
-      quote:
-        "쇼핑하기 좋은 시간이죠! 클라스 카드와 함께해요!",
-    },
-    {
-      quote: "오늘도 고생많았어요!",
-    },
-    {
-      quote: "여행가기전에 마일리지 카드 확인하셨나요?",
-    },
-    {
-      quote: "에디터 글을 추가하면 나의 프로필에서 확인 할 수 있어요!",
-    },
-    {
-      quote: "항상 코로나 조심하세요!",
-    },
-    {
-      quote: "속상한 걸 이겨내봐요",
-    },
-    {
-      quote: "반려동물 혜택 카드의 이벤트 확인해보세요!",
-    },
-    {
-      quote: "스타벅스 50% 할인 카드 확인해 보셨나요?",
-    },
-  ];
-  
-  const quote = document.querySelector("#quote span:first-child");
-  const author = document.querySelector("#quote span:last-child");
-  const todaysQuote = quotes[Math.floor(Math.random() * quotes.length)];
-  
-  quote.innerText = todaysQuote.quote;
-  author.innerText = todaysQuote.author;
-</script>
-
-<!-- 팔로우 비동기 -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  const followBtn = document.querySelector('#follow-btn')
-
-  followBtn.addEventListener('click', function(event) {
-    axios({
-      method: 'get',
-      url: `/accounts/follow/${event.target.dataset.userName}`
-    })
-    .then (response => {
-      if (response.data.is_followed === true) {
-        followBtn.innerText = "팔로우 취소";
-      } else {
-        followBtn.innerText = "팔로우";
+    const quotes = [
+      {
+        quote: "반가워요! 오늘 하루도 힘내요!"
+      }, {
+        quote: "오늘 혹시 시원한 맥주 한잔 어떤가요?"
+      }, {
+        quote: "쇼핑하기 좋은 시간이죠! 클라스 카드와 함께해요!"
+      }, {
+        quote: "오늘도 고생많았어요!"
+      }, {
+        quote: "여행가기전에 마일리지 카드 확인하셨나요?"
+      }, {
+        quote: "에디터 글을 추가하면 나의 프로필에서 확인 할 수 있어요!"
+      }, {
+        quote: "항상 코로나 조심하세요!"
+      }, {
+        quote: "속상한 걸 이겨내봐요"
+      }, {
+        quote: "반려동물 혜택 카드의 이벤트 확인해보세요!"
+      }, {
+        quote: "스타벅스 50% 할인 카드 확인해 보셨나요?"
       }
-      const followerCnt = document.querySelector('#follower-cnt')
-      followerCnt.innerText = '팔로워 ' + response.data.followersCnt
+    ];
 
-      const followingCnt = document.querySelector('#following-cnt')
-      followingCnt.innerText = '팔로잉 ' + response.data.followingsCnt
+    const quote = document.querySelector("#quote span:first-child");
+    const author = document.querySelector("#quote span:last-child");
+    const todaysQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
+    quote.innerText = todaysQuote.quote;
+    author.innerText = todaysQuote.author;
+  </script>
+
+  <!-- 팔로우 비동기 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const followBtn = document.querySelector('#follow-btn')
+
+    followBtn.addEventListener('click', function (event) {
+      axios({method: 'get', url: `/accounts/follow/${event.target.dataset.userName}`}).then(response => {
+        if (response.data.is_followed === true) {
+          followBtn.innerText = "팔로우 취소";
+        } else {
+          followBtn.innerText = "팔로우";
+        }
+        const followerCnt = document.querySelector('#follower-cnt')
+        followerCnt.innerText = '팔로워 ' + response.data.followersCnt
+
+        const followingCnt = document.querySelector('#following-cnt')
+        followingCnt.innerText = '팔로잉 ' + response.data.followingsCnt
+      })
     })
-  })
-</script>
+  </script>
 {% endblock script %}
