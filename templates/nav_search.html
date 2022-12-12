@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% block body %}
-  <!-- <h1>nav_search</h1> -->
-  <!-- <h1>{{text}}</h1>
-  <h6>카드</h6> -->
-  <!-- {% for card in card_list %}
+  <h1>nav_search</h1>
+  <h1>{{text}}</h1>
+  <h3>카드</h3>
+  {% for card in card_list %}
     <a href="{% url 'card:detail' card.pk%}">
       {{card.card_name}}
     </a><br>
@@ -11,19 +11,22 @@
   <!-- <div class="">
 
     {% if card_list.has_previous %}
-      <a href="{{request.get_full_path}}?page={{card_list.previous_page_number}}">이전</a>
+      <a href="{{request.get_full_path}}&page={{card_list.previous_page_number}}">이전</a>
     {% endif %}
-
-    {% for p in card_list.paginator.page_range %}
-      <a href="{{request.get_full_path}}?page={{p}}" class="mx-1">{{p}}</a>
-    {% endfor %}
+    <span>{{card_list.number}}</span>
+    <span>/</span>
+    <span>{{card_list.paginator.num_pages}}</span>
+    {% comment %} {% for p in card_list.paginator.page_range %}
+      <a href="{{request.get_full_path}}&?page={{p}}" class="mx-1">{{p}}</a>
+    {% endfor %} {% endcomment %}
 
     {% if card_list.has_next %}
-      <a href="{{request.get_full_path}}?page={{card_list.next_page_number}}">다음</a>
+      <a href="{{request.get_full_path}}&page={{card_list.next_page_number}}">다음</a>
     {% endif %}
   </div> -->
   <!-- <h6>혜택</h6> {% for bcard in benefit_card_lst %} {{bcard.card_name}} {% endfor %} -->
 
+  <h3>매거진</h3>
   <!-- <h6>매거진</h6>
   {% for magazine in magazine_list %}
     <a href="{% url 'magazine:detail' magazine.pk %}">
@@ -97,6 +100,20 @@
   {% endfor %}
   
 
+    {% if magazine_list.has_previous %}
+      <a href="{{request.get_full_path}}&page={{magazine_list.previous_page_number}}">이전</a>
+    {% endif %}
+    <span>{{magazine_list.number}}</span>
+    <span>/</span>
+    <span>{{magazine_list.paginator.num_pages}}</span>
+    {% comment %} {% for p in magazine_list.paginator.page_range %}
+      <a href="{{request.get_full_path}}&?page={{p}}" class="mx-1">{{p}}</a>
+    {% endfor %} {% endcomment %}
+
+    {% if magazine_list.has_next %}
+      <a href="{{request.get_full_path}}&page={{magazine_list.next_page_number}}">다음</a>
+    {% endif %}
+  </div>
 
     <div style="margin-top: 50px; margin-bottom: 60px; display: flex; justify-content: center;" class="">
 
