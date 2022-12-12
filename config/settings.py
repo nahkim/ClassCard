@@ -222,7 +222,7 @@ ACCOUNT_EMAIL_SUBJECT_PREFIX = "[이메일 인증] "
 SESSION_COOKIE_AGE = 3600
 # 소셜 로그인 확인 페이지 제거
 SOCIALACCOUNT_LOGIN_ON_GET = True
-
+# ACCOUNT_PASSWORD_RESET_VERIFIED_ONLY = True
 
 # 썸머노트 이미지 용량제한
 SUMMERNOTE_CONFIG = {"attachment_filesize_limit": 5 * 1024 * 1024}
