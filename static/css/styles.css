@@ -515,7 +515,7 @@ nav .menu li.active:hover a {
 }
 
 .card__title {
-  margin-top: 10px;
+  /* margin-top: 10px; */
   font-size: var(--h1-font-size);
   color: var(--first-color);
   margin-bottom: .5rem;
