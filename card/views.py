@@ -481,10 +481,15 @@ def cardcompany(request,company):
         compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
 
 
+    page = request.GET.get('page')
     card_list = Card.objects.filter(card_brand=company)
+    paginator = Paginator(card_list, 20)
+    cards = paginator.get_page(page)
+
     context = {
         "compare_cards" : compare_cards,
-        'card_list' : card_list,
+        'card_list' : cards,
+
     }
     return render(request,'card/cardcompany.html', context)
     
