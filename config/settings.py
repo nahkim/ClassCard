@@ -223,7 +223,7 @@ ACCOUNT_FORMS = {"signup": "accounts.forms.CustomUserCreationForm"}
 # 로그아웃 확인 페이지 제거
 ACCOUNT_LOGOUT_ON_GET = True
 # SMTP 서버실행
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
