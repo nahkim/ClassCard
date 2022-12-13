@@ -43,11 +43,13 @@
   <!-- Libraries Stylesheet -->
   <link rel="stylesheet" href="{% static 'lib/animate/animate.min.css' %}"/>
   <link rel="stylesheet" href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"/>
-  <link rel="stylesheet" href="{% static 'lib/lightbox/css/lightbox.min.css' %}"/>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
   <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   {% block css %}{% endblock css %}
 
 </head>
@@ -57,7 +59,7 @@
   <header>
     <div class="inner">
 
-      <ul class="menu">
+      <ul class="menu p-0">
         <li class="menu-starter">
           <a>
             <div>
@@ -273,50 +275,60 @@
       {% endfor %}
     </div>
   </ul>
-{% endif %}
-{% block body %}{% endblock body %}
 
-<!--FOOTER-->
 
-<footer style="margin-top: 90px;">
-  <div class="inner">
+  {% endif %}
+  {% block body %}{% endblock body %}
 
-    <ul style="list-style-type : none;" class="menu">
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)" class="green">개인정보처리방침</a>
-      </li>
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)">영상정보처리기기 운영관리 방침</a>
-      </li>
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)">홈페이지 이용약관</a>
-      </li>
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)">위치정보 이용약관</a>
-      </li>
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)">클라스 카드 이용약관</a>
-      </li>
-      <li>
-        <a style="text-decoration: none;" href="javascript:void(0)">윤리경영 핫라인</a>
-      </li>
-    </ul>
+  <!--FOOTER-->
+  
+  <footer style="margin-top: 90px;">
+    <div class="inner">
 
-    <div class="btn-group">
-      <div style="display: flex; justify-content:center;" class="container">
-        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">찾아오시는 길
-          </a>
-        </button>
-        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">신규 소식
-          </a>
-        </button>
-        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">사이트 맵
-          </a>
-        </button>
+      <ul style="list-style-type : none;" class="menu p-0">
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)" class="green">개인정보처리방침</a>
+        </li>
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)">영상정보처리기기 운영관리 방침</a>
+        </li>
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)">홈페이지 이용약관</a>
+        </li>
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)">위치정보 이용약관</a>
+        </li>
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)">클라스 카드 이용약관</a>
+        </li>
+        <li>
+          <a style="text-decoration: none;" href="javascript:void(0)">윤리경영 핫라인</a>
+        </li>
+      </ul>
+
+      <div class="btn-group">
+        <div style="display: flex; justify-content:center;" class="container">
+          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">찾아오시는 길
+            </a>
+          </button>
+          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">신규 소식
+            </a>
+          </button>
+          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">사이트 맵
+            </a>
+          </button>
+        </div>
       </div>
+
+      <div style="margin-top: 80px; margin-bottom: 80px; display: flex; justify-content: center;">
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="addthis_inline_share_toolbox"></div> 
+
+      </div>
+      
 
     </div>
 
@@ -324,6 +336,9 @@
     <div style="margin-top: 50px; margin-bottom: 30px; display: flex; justify-content: center;" class="container">
       <div class="addthis_inline_share_toolbox"></div>
     </div>
+
+  
+
 
     <div class="info">
       <span>사업자등록번호 000-00-0000</span>
@@ -340,47 +355,69 @@
   </div>
 </footer>
 
-<!--TO TOP BUTTON-->
-<div id="to-top">
-  <div class="material-icons">arrow_upward</div>
-</div>
+  <!--TO TOP BUTTON-->
+  <!-- <div id="to-top">
+    <div class="material-icons">arrow_upward</div>
+  </div> -->
+  <!-- child of the body tag -->
+  <span id="top-link-block" class="hidden">
+    <a href="#top" class="well well-sm" onclick="$('html,body').animate({scrollTop:0},'slow');return false;">
+      <div class="material-icons">arrow_upward</div>
+    </a>
+  </span><!-- /top-link-block -->
 
-<!-- JS 영역 -->
-<script src="{% static 'js/test.js' %}"></script>
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<!--GSAP & ScrollToPlugin-->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js" integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q==" crossorigin="anonymous"></script>
 
-<!--ScrollMagic-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+  <!-- JS 영역 -->
+  <script src="{% static 'js/test.js' %}"></script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!--ScrollMagic-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!-- GSAP JS Library -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- GSAP JS Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script>
-  // 모달에 있는 카드들 세로로 바꾸기
+
+  <!-- Go to www.addthis.com/dashboard to customize your tools --> 
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script> 
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <script> 
+    AOS.init(); 
+  </script>
+
+  <!-- jquery -->
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  
+  <script>
+    // 모달에 있는 카드들 세로로 바꾸기
+    let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
+    console.log(modalCardImage)
+
+
+  </script>
+  <!-- 모달에 있는 카드들 세로로 바꾸기
   let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
   console.log(modalCardImage)
 
@@ -399,6 +436,22 @@
     }
   }
 </script>
+
+</> -->
+
+
+<script>
+  // Only enable if the document has a long scroll bar
+  // Note the window height + offset
+  if ( ($(window).height() + 100) < $(document).height() ) {
+      $('#top-link-block').removeClass('hidden').affix({
+          // how far to scroll down before link "slides" into view
+          offset: {top:100}
+      });
+  }
+  </script>
+  
+
 
 {% block script %}{% endblock script %}
 
