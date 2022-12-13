@@ -59,10 +59,7 @@ class CustomUserChangeForm(UserChangeForm):
             "profile",
             "nickname",
         )
-        labels = {
-            "profile": "프로필 이미지",
-            "nickname": "닉네임",
-        }
+        labels = {"profile": "프로필 이미지", "nickname": "닉네임"}
 
     def clean_email(self):
         email = self.cleaned_data["email"]
