@@ -49,23 +49,30 @@ class CustomUserCreationForm(SignupForm):
 
 
 class CustomUserChangeForm(UserChangeForm):
-    email = forms.EmailField(
-        required=True,
-    )
+    # email = forms.EmailField(
+    #     required=False,
+    # )
+    password = None
 
     class Meta:
         model = get_user_model()
         fields = (
-            "profile",
             "nickname",
+            "profile",
         )
-        labels = {"profile": "프로필 이미지", "nickname": "닉네임"}
+        labels = {"nickname": "닉네임", "profile": "프로필 이미지"}
 
-    def clean_email(self):
-        email = self.cleaned_data["email"]
-        if len(get_user_model().objects.filter(email=email)):
-            raise ValidationError("중복된 이메일이 있습니다.")
-        return
+    # def clean_email(self):
+    #     email = self.cleaned_data["email"]
+    #     if len(get_user_model().objects.filter(email=email)):
+    #         raise ValidationError("중복된 이메일이 있습니다.")
+    #     return
+
+    # def clean_nickname(self):
+    #     nickname = self.cleaned_data["nickname"]
+    #     if len(get_user_model().objects.filter(nickname=nickname)):
+    #         raise ValidationError("중복된 닉네임입니다.")
+    #     return
 
 
 class CheckPasswordForm(forms.Form):

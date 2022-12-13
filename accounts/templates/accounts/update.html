@@ -16,8 +16,9 @@
       <p class="mt-3 d-flex justify-content-center" style="font-size: 20px;">회원 정보 수정</p>     
       <form action="" method='POST' enctype='multipart/form-data'>
         {% csrf_token %}
+        {% bootstrap_form form %}
 
-        <label for="">닉네임</label>
+        <!-- <label for="">닉네임</label>
         <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-envelope"></span>
           {{ form.nickname }}
@@ -27,14 +28,14 @@
         <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-envelope"></span>
           {{ form.email }}
-        </div>
+        </div> -->
         
         <!--profile image-->
-        <label for="" class="mb-3">프로필 이미지</label>
+        <!-- <label for="" class="mb-3">프로필 이미지</label>
         <div class="input-group">         
           <span class="input-group-addon glyphicon glyphicon-envelope"></span>
           {{ form.profile }}
-        </div>
+        </div> -->
 
         <!-- Button -->
         <div class="mt-4 d-flex justify-content-center" style="position: relative;">

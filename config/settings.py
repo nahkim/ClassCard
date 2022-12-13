@@ -40,7 +40,7 @@ if DEBUG:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
-    
+
 else:
     DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
@@ -219,11 +219,14 @@ SOCIALACCOUNT_PROVIDERS = {
 
 AUTH_USER_MODEL = "accounts.User"
 
-ACCOUNT_FORMS = {"signup": "accounts.forms.CustomUserCreationForm"}
+ACCOUNT_FORMS = {
+    "signup": "accounts.forms.CustomUserCreationForm",
+    "update": "accounts.forms.CustomUserChangeForm",
+}
 # 로그아웃 확인 페이지 제거
 ACCOUNT_LOGOUT_ON_GET = True
 # SMTP 서버실행
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
