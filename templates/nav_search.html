@@ -13,7 +13,7 @@
     </div>
   </div>
   <!--카드 리스트.ver1 시작-->
-  <div class="py-5">
+  <!-- <div class="py-5">
     <div class="container">
       <h6>카드</h6>
       <div class="row">
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!--카드 리스트.ver1 끝-->
 
@@ -55,6 +55,7 @@
     </div>
   </div>
   <!--카드 리스트.ver2 끝-->
+
   <!--card-list-pagination div 시작-->
   <div style="margin-top: 50px; margin-bottom: 60px; display: flex; justify-content: center;" class="">
 
@@ -71,8 +72,10 @@
     {% endif %}
   </div>
   <!--card-list-pagination div 끝-->
+
+
   <!--매거진 리스트 시작-->
-  <h6>매거진</h6>
+
   {% for magazine in magazine_list %}
     <a href="{% url 'magazine:detail' magazine.pk %}">
       {{magazine.title}}
@@ -93,4 +96,30 @@
   </div>
   <!--magazine-list pagination div 끝-->
   <!--매거진 리스트 끝-->
+
+
+<!-- 매거진 시작__________________________________________프론트_______________________ -->
+<div>
+  <div class="container text-center">
+    <div class="title">
+      <p style="font-size: 50px; font-family: 'Shrikhand';">Magazine</p>
+    </div>
+    <!-- 매거진 카드 시작____________________________________ -->
+    <div style="margin-top: 90px;" class="row">
+      <div class="col">
+        <!-- 카드 시작 -->
+        <div class="card" style="width: 18rem;">
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">col</div>
+      <div class="col">col</div>
+      <div class="col">col</div>
+    </div>
+</div>
+ 
+  
 {% endblock body %}
