@@ -48,6 +48,9 @@
   <!-- Favicon -->
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
   <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   {% block css %}{% endblock css %}
 
 </head>
@@ -379,6 +382,14 @@
   <!-- Go to www.addthis.com/dashboard to customize your tools -->
   <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script>
 
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+  <script> 
+    AOS.init(); 
+  </script>
+  
   <script>
     // 모달에 있는 카드들 세로로 바꾸기
     let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
