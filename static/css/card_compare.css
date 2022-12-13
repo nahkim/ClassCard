@@ -108,3 +108,138 @@
   height: 360px;
   width: 227px;
 }
+
+.compare-card-images-box-none{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px;
+  width: 227px;
+  border-radius: 12px;
+  background-color: #738ffdad;
+  box-shadow: 4px -4px 14px #000000b5;
+}
+
+.compare-card-search{
+  margin-top: 50px
+}
+
+.compare-card-search-btn{
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #738ffd;
+  color: white;
+  font-weight: bold;
+}
+
+.compare-card-search-btn:hover{
+  background-color: #738ffd5d;
+  color:white;
+}
+
+.compare-card-search-btn-none{
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #929090;
+  color: white;
+  font-weight: bold;
+}
+
+.compare-card-search-btn-none:hover{
+  background-color: #92909075;
+  color:white;
+}
+
+.compare-card-cards{
+  border-radius: 35px;
+  background-color: rgb(115 143 253);
+  margin-right: 10px;
+  box-shadow: 5px 4px 20px #00000036;
+}
+
+.card-compare-bnf1-inout,
+.card-compare-record-detail,
+.card-compare-overseas-detail{
+  font-size: 1.3rem;
+  color: white;
+}
+
+.card-compare-bnf1-inout-name,
+.card-compare-record-name,
+.card-compare-overseas-name{
+  margin-top: 2rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-overseas{
+  margin-bottom: 2rem;
+}
+
+.compare-card-cards-none{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  background-color: rgb(115 143 253);
+  margin-right: 10px;
+  box-shadow: 5px 4px 20px #00000036;
+}
+
+.card-compare-bnf1-none-alert {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-no-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-compare-no-card p{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #929090;
+}
+
+.compare-card-bnf2{
+  border-radius: 35px;
+  margin-right: 10px;
+  padding-bottom: 2rem;
+  box-shadow: 5px 4px 20px #00000036;
+  background-color: rgb(115 143 253);
+}
+
+.card-compare-bnf2-content{
+  font-size: 1.3rem;
+  color: white;
+}
+
+.card-compare-bnf2-name{
+  margin-top: 2rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-bnf2-none{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.compare-card-bnf2-none-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  margin-right: 10px;
+  padding-bottom: 2rem;
+  box-shadow: 5px 4px 20px #00000036;
+  background-color: rgb(115 143 253);
+}

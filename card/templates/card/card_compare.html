@@ -15,6 +15,9 @@
         <p style="opacity:0; margin-top: 45px; font-weight: 600; font-size: 40px; position: absolute;" class="\">비교하실 카드를 골라주세요.</p>
         <div  class="container">
           <div class="row">
+
+            {% if compare_cards %}
+            {% if compare_cards.count == 1 %}
             <div class="col-md-4 compare-card-box">
               <div class="compare-card-images-box">
                 <img class="compare-card-images d-block" src="{{ compare_cards.0.card.card_img }}">
@@ -24,7 +27,39 @@
               </div>
               <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.0.card.card_name }}</p>
               <div>
-                <a href="{% url 'card:detail' compare_cards.0.card.id %}" type="button" class="btn btn-primary btn-sm">자세히보기</a>
+                <a href="{% url 'card:detail' compare_cards.0.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
+              </div>
+            </div>
+              
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
+              </div>
+            </div>
+
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
+              </div>
+            </div>
+
+            {% elif compare_cards.count == 2 %}
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box">
+                <img class="compare-card-images d-block" src="{{ compare_cards.0.card.card_img }}">
+              </div>
+              <div style="display: flex; justify-content:center;">
+                <h6 style="margin-top: 20px;" class="">{{ compare_cards.0.card.card_brand }}</h6>
+              </div>
+              <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.0.card.card_name }}</p>
+              <div>
+                <a href="{% url 'card:detail' compare_cards.0.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
               </div>
             </div>
 
@@ -37,7 +72,43 @@
               </div>
               <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.1.card.card_name }}</p>
               <div>
-                <a href="{% url 'card:detail' compare_cards.1.card.id %}" type="button" class="btn btn-primary btn-sm">자세히보기</a>
+                <a href="{% url 'card:detail' compare_cards.1.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
+              </div>
+            </div>
+
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
+              </div>
+            </div>
+
+            {% elif compare_cards.count == 3 %}
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box">
+                <img class="compare-card-images d-block" src="{{ compare_cards.0.card.card_img }}">
+              </div>
+              <div style="display: flex; justify-content:center;">
+                <h6 style="margin-top: 20px;" class="">{{ compare_cards.0.card.card_brand }}</h6>
+              </div>
+              <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.0.card.card_name }}</p>
+              <div>
+                <a href="{% url 'card:detail' compare_cards.0.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
+              </div>
+            </div>
+
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box">
+                <img class="compare-card-images d-block" src="{{ compare_cards.1.card.card_img }}">
+              </div>
+              <div style="display: flex; justify-content:center;">
+                <h6 style="margin-top: 20px;" class="">{{ compare_cards.1.card.card_brand }}</h6>
+              </div>
+              <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.1.card.card_name }}</p>
+              <div>
+                <a href="{% url 'card:detail' compare_cards.1.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
               </div>
             </div>
 
@@ -50,15 +121,40 @@
               </div>
               <p style="font-size: 22px; font-weight: 700; text-align: center;">{{ compare_cards.2.card.card_name }}</p>
               <div>
-                <a href="{% url 'card:detail' compare_cards.2.card.id %}" type="button" class="btn btn-primary btn-sm">자세히보기</a>
+                <a href="{% url 'card:detail' compare_cards.2.card.id %}" type="button" class="compare-card-search-btn">자세히보기</a>
+              </div>
+            </div>
+            {% endif %}
+            
+            {% else %}
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
               </div>
             </div>
 
-            {% comment %} <div style="display: flex; top: 480px; justify-content: space-around;" class="card-btn">
-              <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 490px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
-              <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 880px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
-              <button style="background-color: rgba(215, 219, 223, 0.5); position: absolute; left: 1260px;  top: 480px;" type="button" class="btn">카드를 선택해주세요</button>
-            </div> {% endcomment %}
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
+              </div>
+            </div>
+
+            <div class="col-md-4 compare-card-box">
+              <div class="compare-card-images-box-none">
+              </div>
+              <p class="compare-card-search" style="font-size: 22px; font-weight: 700; text-align: center;">비교할 카드를 찾아주세요</p>
+              <div>
+                <a href="{% url 'card:search' %}" type="button" class="compare-card-search-btn-none">찾으러 가기</a>
+              </div>
+            </div>
+            {% endif %}
+
           </div>
         </div>
       </div>
@@ -76,6 +172,7 @@
     
     
     <!-- 카드사 이벤트 -->
+    {% if compare_cards %}
     <div class="container">
       <div class="allWrap">     
           <div style="display: flex; justify-content: center; margin: 40px;" class="tabBox">
@@ -85,83 +182,252 @@
           <div id="tab-1" class="tab-content current">
             
             <div class="container text-center">
-              <!-- <div style="width: 800px; height: 20px; margin-bottom: 200px;">
-                <p style="width: 800px; height: 20px; left:;">카드의 종류를 확인해 보세요!</p>
-              </div> -->
-              <div class="row">
 
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+              <div class="row">
+                
+                {% if compare_cards.count == 3 %}
+                <div class="col compare-card-cards">
                   <div>
                     {% if compare_cards.0.card.card_in_out_2 != None  %}
-                    <p class="card-detail-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} / {{ compare_cards.0.card.card_in_out_2 }}</p>
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }}</p>
                     {% elif compare_cards.0.card.card_in_out_3 != None %}
-                    <p class="card-detail-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} / {{ compare_cards.0.card.card_in_out_2 }} / {{ compare_cards.0.card.card_in_out_3 }}</p>
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }} | {{ compare_cards.0.card.card_in_out_3 }}</p>
                     {% else %}
-                    <p class="card-detail-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }}</p>
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }}</p>
                     {% endif %}
-                    <p>{{ compare_cards.0.card.card_record }}</p>
-                    <p>{{ compare_cards.0.card.card_overseas }}</p>
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.0.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.0.card.card_overseas }}</p>
+                    </div>
                   </div>
                 </div>
 
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
-                  {% if compare_cards.0.card.card_in_out_2 != None  %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} / {{ compare_cards.1.card.card_in_out_2 }}</p>
-                  {% elif compare_cards.0.card.card_in_out_3 != None %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} / {{ compare_cards.1.card.card_in_out_2 }} / {{ compare_cards.1.card.card_in_out_3 }}</p>
-                  {% else %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }}</p>
-                  {% endif %}
-                  <p>{{ compare_cards.1.card.card_record }}</p>
-                  <p>{{ compare_cards.1.card.card_overseas }}</p>
+                <div class="col compare-card-cards">
+                  <div>
+                    {% if compare_cards.0.card.card_in_out_2 != None  %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} | {{ compare_cards.1.card.card_in_out_2 }}</p>
+                    {% elif compare_cards.0.card.card_in_out_3 != None %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} | {{ compare_cards.1.card.card_in_out_2 }} | {{ compare_cards.1.card.card_in_out_3 }}</p>
+                    {% else %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }}</p>
+                    {% endif %}
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.1.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.1.card.card_overseas }}</p>
+                    </div>
+                  </div>
                 </div>
 
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
-                  {% if compare_cards.0.card.card_in_out_2 != None  %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }} / {{ compare_cards.2.card.card_in_out_2 }}</p>
-                  {% elif compare_cards.0.card.card_in_out_3 != None %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }} / {{ compare_cards.2.card.card_in_out_2 }} / {{ compare_cards.2.card.card_in_out_3 }}</p>
-                  {% else %}
-                  <p class="card-detail-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }}</p>
-                  {% endif %}
-                  <p>{{ compare_cards.2.card.card_record }}</p>
-                  <p>{{ compare_cards.2.card.card_overseas }}</p>
+                <div class="col compare-card-cards">
+                  <div>
+                    {% if compare_cards.0.card.card_in_out_2 != None  %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }} | {{ compare_cards.2.card.card_in_out_2 }}</p>
+                    {% elif compare_cards.0.card.card_in_out_3 != None %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }} | {{ compare_cards.2.card.card_in_out_2 }} | {{ compare_cards.2.card.card_in_out_3 }}</p>
+                    {% else %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.2.card.card_in_out_1 }}</p>
+                    {% endif %}
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.2.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.2.card.card_overseas }}</p>
+                    </div>
+                  </div>
                 </div>
+
+                {% elif compare_cards.count == 2 %}
+                <div class="col compare-card-cards">
+                  <div>
+                    {% if compare_cards.0.card.card_in_out_2 != None  %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }}</p>
+                    {% elif compare_cards.0.card.card_in_out_3 != None %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }} | {{ compare_cards.0.card.card_in_out_3 }}</p>
+                    {% else %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }}</p>
+                    {% endif %}
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.0.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.0.card.card_overseas }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col compare-card-cards">
+                  <div>
+                    {% if compare_cards.0.card.card_in_out_2 != None  %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} | {{ compare_cards.1.card.card_in_out_2 }}</p>
+                    {% elif compare_cards.0.card.card_in_out_3 != None %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }} | {{ compare_cards.1.card.card_in_out_2 }} | {{ compare_cards.1.card.card_in_out_3 }}</p>
+                    {% else %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.1.card.card_in_out_1 }}</p>
+                    {% endif %}
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.1.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.1.card.card_overseas }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col compare-card-cards-none">
+                  <div class="card-compare-bnf1-none">
+                    <p class="card-compare-bnf1-none-alert">카드를 골라주세요</p>
+                  </div>
+                </div>
+
+                {% elif compare_cards.count == 1 %}
+                <div class="col compare-card-cards">
+                  <div>
+                    {% if compare_cards.0.card.card_in_out_2 != None  %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }}</p>
+                    {% elif compare_cards.0.card.card_in_out_3 != None %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }} | {{ compare_cards.0.card.card_in_out_2 }} | {{ compare_cards.0.card.card_in_out_3 }}</p>
+                    {% else %}
+                    <p class="card-compare-bnf1-inout-name">연회비</p>
+                    <p class="card-compare-bnf1-inout">{{ compare_cards.0.card.card_in_out_1 }}</p>
+                    {% endif %}
+                    <div class="card-compare-record">
+                      <p class="card-compare-record-name">전월실적</p>
+                      <p class="card-compare-record-detail">{{ compare_cards.0.card.card_record }}</p>
+                    </div>
+                    <div class="card-compare-overseas">
+                      <p class="card-compare-overseas-name">해외 연동 카드사</p>
+                      <p class="card-compare-overseas-detail">{{ compare_cards.0.card.card_overseas }}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col compare-card-cards-none">
+                  <div class="card-compare-bnf1-none">
+                    <p class="card-compare-bnf1-none-alert">카드를 골라주세요</p>
+                  </div>
+                </div>
+
+                <div class="col compare-card-cards-none">
+                  <div class="card-compare-bnf1-none">
+                    <p class="card-compare-bnf1-none-alert">카드를 골라주세요</p>
+                  </div>
+                </div>
+                {% endif %}
+              
               </div>
             </div>
-    
           </div>
-          <div  id="tab-2" class="tab-content">
     
+          <div id="tab-2" class="tab-content">
+            
             <div class="container text-center">
               <div class="row">
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+                {% if compare_cards.count == 3 %}
+                <div class="compare-card-bnf2 col">
                   <div>
                     {% for bnf in compare_cards.0.card.benefit_set.all %}
-                    <p>{{ bnf.bnf_name }}</p>
-                    <p>{{ bnf.bnf_content }}</p>
+                    <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                    <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
                     {% endfor %}
                   </div>
                 </div>
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+
+                <div class="compare-card-bnf2 col">
                   {% for bnf in compare_cards.1.card.benefit_set.all %}
-                  <p>{{ bnf.bnf_name }}</p>
-                  <p>{{ bnf.bnf_content }}</p>
+                  <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                  <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
                   {% endfor %}
                 </div>
-                <div style="border-radius: 35px; background-color: rgba(132, 171, 210, 0.5); margin-right: 10px;" class="col">
+
+                <div class="compare-card-bnf2 col">
                   {% for bnf in compare_cards.2.card.benefit_set.all %}
-                  <p>{{ bnf.bnf_name }}</p>
-                  <p>{{ bnf.bnf_content }}</p>
+                  <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                  <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
                   {% endfor %}
                 </div>
+
+                {% elif compare_cards.count == 2 %}
+                <div class="compare-card-bnf2 col">
+                  <div>
+                    {% for bnf in compare_cards.0.card.benefit_set.all %}
+                    <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                    <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="compare-card-bnf2 col">
+                  {% for bnf in compare_cards.1.card.benefit_set.all %}
+                  <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                  <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="compare-card-bnf2-none-box col">
+                  <p class="card-compare-bnf2-none">카드를 골라주세요</p>
+                </div>
+
+                {% elif compare_cards.count == 1 %}
+                <div class="compare-card-bnf2 col">
+                  {% for bnf in compare_cards.0.card.benefit_set.all %}
+                  <p class="card-compare-bnf2-name">{{ bnf.bnf_name }}</p>
+                  <p class="card-compare-bnf2-content">{{ bnf.bnf_content }}</p>
+                  {% endfor %}
+                </div>
+
+                <div class="compare-card-bnf2-none-box col">
+                  <p class="card-compare-bnf2-none">카드를 골라주세요</p>
+                </div>
+
+                <div class="compare-card-bnf2-none-box col">
+                  <p class="card-compare-bnf2-none">카드를 골라주세요</p>
+                </div>
+                {% endif %}
               </div>
             </div>
-    
           </div>
-
+    
+        </div>
+        
       </div>
     </div>
+    {% else %}
+    <div class="card-compare-no-card">
+      <p>비교함에 카드가 없습니다</p>
+      <p>카드를 골라주세요</p>
+    </div>
+    {% endif %}
 
 </div>
 
