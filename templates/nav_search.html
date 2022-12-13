@@ -1,4 +1,12 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/search_list.css' %}">
+
+{% endblock css %}
+
+
 {% block body %}
 
   <div class="py-5 text-center text-white h-100 align-items-center d-flex" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, .75), rgba(0, 0, 0, .75)), url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);  background-position: center center, center center;  background-size: cover, cover;  background-repeat: repeat, repeat;">
@@ -35,19 +43,37 @@
   <!--카드 리스트.ver1 끝-->
 
   <!--카드 리스트.ver2 시작-->
-  <div class="py-5">
+  <div class="py-5" style="margin-top: 2rem;">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
           <div class="row">
             {% for card in card_list %}
-              <div class="col-md-3">
-                <a href="{% url 'card:detail' card.pk%}">
-                  <p style="border-radius: 50px; color: #fff; background-color: #0071E3;" class="text-center">
-                    {{card.card_name}}
-                  </p>
-                </a>
+            <!-- 카드  -->
+            <div class="col" style="display:flex; justify-content: center;">
+              <div class="list-wrap">
+                <ul>
+                  <li class="list-wrap-li">
+                    <div class="card_img">
+                      <p class="img">
+                        <a href="{% url 'card:detail' card.id %}">
+                          <img style="margin-left: 20px; vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="{{ card.card_img }}" alt="">
+                        </a>
+                      </p>
+                    </div>
+                    <div >
+                      <p class="card_name">
+                        <a href="{% url 'card:detail' card.id %}"> {{ card.card_name }}</a>
+                      </p>
+                      <P class="card_smallname">{{ card.card_brand }}</P>
+                    </div>
+                    <div class="detail_view">
+                      <a class="view_btn" href="{% url 'card:detail' card.id %}"> 상세보기</a>
+                    </div>
+                  </li>
+                </ul>
               </div>
+            </div>
             {% endfor %}
           </div>
         </div>
@@ -56,70 +82,38 @@
   </div>
   <!--카드 리스트.ver2 끝-->
 
-  <!--card-list-pagination div 시작-->
-  <div style="margin-top: 50px; margin-bottom: 60px; display: flex; justify-content: center;" class="">
-
-    {% if card_list.has_previous %}
-      <a href="{{request.get_full_path}}&page={{card_list.previous_page_number}}">이전</a>
-    {% endif %}
-
-    <span>{{card_list.number}}</span>
-    <span>/</span>
-    <span>{{card_list.paginator.num_pages}}</span>
-
-    {% if card_list.has_next %}
-      <a href="{{request.get_full_path}}&page={{card_list.next_page_number}}">다음</a>
-    {% endif %}
+  <div class="row mt-2">
+    <div class="col-12 my-5">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          {% if card_list.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="{{request.get_full_path}}&page={{card_list.previous_page_number}}">이전</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#">이전</a>
+            </li>
+          {% endif %}
+          <li class="page-item">
+            <a class="page-link" href="#">{{card_list.number}}
+              /
+              {{card_list.paginator.num_pages}}</a>
+          </li>
+          {% if card_list.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="{{request.get_full_path}}&page={{card_list.next_page_number}}">다음</a>
+            </li>
+          {% else %}
+            <li class="page-item disabled">
+              <a class="page-link" href="#">다음</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
   </div>
   <!--card-list-pagination div 끝-->
 
 
-  <!--매거진 리스트 시작-->
-
-  {% for magazine in magazine_list %}
-    <a href="{% url 'magazine:detail' magazine.pk %}">
-      {{magazine.title}}
-    </a><br>
-  {% endfor %}
-  <!--magazine-list pagination div 시작-->
-  <div class="">
-
-    {% if magazine_list.has_previous %}
-      <a href="{{request.get_full_path}}&page={{magazine_list.previous_page_number}}">이전</a>
-    {% endif %}
-    <span>{{magazine_list.number}}</span>
-    <span>/</span>
-    <span>{{magazine_list.paginator.num_pages}}</span>
-    {% if magazine_list.has_next %}
-      <a href="{{request.get_full_path}}&page={{magazine_list.next_page_number}}">다음</a>
-    {% endif %}
-  </div>
-  <!--magazine-list pagination div 끝-->
-  <!--매거진 리스트 끝-->
-
-
-<!-- 매거진 시작__________________________________________프론트_______________________ -->
-<div>
-  <div class="container text-center">
-    <div class="title">
-      <p style="font-size: 50px; font-family: 'Shrikhand';">Magazine</p>
-    </div>
-    <!-- 매거진 카드 시작____________________________________ -->
-    <div style="margin-top: 90px;" class="row">
-      <div class="col">
-        <!-- 카드 시작 -->
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">col</div>
-      <div class="col">col</div>
-      <div class="col">col</div>
-    </div>
-</div>
- 
-  
 {% endblock body %}
