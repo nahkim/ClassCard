@@ -4,16 +4,58 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/card_list.css' %}">
+  <link rel="stylesheet" href="{% static 'css/search_list.css' %}">
 {% endblock css %}
 
 {% block body %}
 
-  <h1>카드 맞춤 검색</h1>
+  <div class="card-list-banner">
+    <h1 style="margin: 4rem 0 2rem; text-align:center; font-weight:bold; color:white;">카드 맞춤 검색</h1>
+  </div>
+
+  <div class="card-list-arrange">
+    <p class="card-list-arrange-name">카드사 선택</p>
+    <div class="card-list-arrange-search-box">
+      <a class="card-list-arrange-search" href="?age={{ age_param }}&type=체크{{ answers_page }}&brand=">모두 보기</a>
+      {% for brand in card_brand %}
+      <a class="card-list-arrange-search" href="?age={{ age_param }}&type=체크{{ answers_page }}&brand={{ brand }}">{{ brand }}</a>
+      {% endfor %}
+    </div>
+  </div> 
   
-  <div class="container">
-  {% for card in card_lst %}
-    <p>{{card}}</p>
-  {% endfor %}
+  <div class="py-3">
+    <div class="container text-center">
+      <div class="row">
+
+        {% for card in card_lst %}
+        <!-- 카드  -->
+        <div class="col" style="display:flex; justify-content: center;">
+          <div class="list-wrap">
+            <ul>
+              <li class="list-wrap-li">
+                <div class="card_img">
+                  <p class="img">
+                    <a href="{% url 'card:detail' card.id %}">
+                      <img style="margin-left: 20px; vertical-align: top; max-width: 80px; max-height: 80px; width: auto; height: auto;" src="{{ card.card_img }}" alt="">
+                    </a>
+                  </p>
+                </div>
+                <div >
+                  <p class="card_name">
+                    <a href="{% url 'card:detail' card.id %}"> {{ card.card_name }}</a>
+                  </p>
+                  <P class="card_smallname">{{ card.card_brand }}</P>
+                </div>
+                <div class="detail_view">
+                  <a class="view_btn" href="{% url 'card:detail' card.id %}"> 상세보기</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>  
   </div>
 
   <div class="row mt-2">
@@ -22,7 +64,7 @@
         <ul class="pagination justify-content-center">
           {% if card_lst.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?age=30대&type=체크{{ answers_page }}&p={{ card_lst.previous_page_number }}">이전</a>
+              <a class="page-link" href="?age={{ age_param }}&type=체크{{ answers_page }}&brand={{ brand }}&p={{ card_lst.previous_page_number }}">이전</a>
             </li>
           {% else %}
             <li class="page-item disabled">
@@ -36,7 +78,7 @@
           </li>
           {% if card_lst.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?age=30대&type=체크{{ answers_page }}&p={{ card_lst.next_page_number }}">다음</a>
+              <a class="page-link" href="?age={{ age_param }}&type=체크{{ answers_page }}&brand={{ brand }}&p={{ card_lst.next_page_number }}">다음</a>
             </li>
           {% else %}
             <li class="page-item disabled">
