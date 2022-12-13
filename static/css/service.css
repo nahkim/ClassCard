@@ -55,6 +55,13 @@
   }
 }
 
+@media all and (max-width: 700px) {
+  .servicecenter_list_hidden {
+    display: none;
+    max-width: 300px;
+  }
+}
+
 .Qna {
   display: flex;
   justify-content: end;
