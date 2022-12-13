@@ -12,11 +12,11 @@ from card.models import Card, CompareCard, Benefit
 
 
 def index(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     # 인덱스에서 별점 평균 어떻게 산출할까요 나중에 데이터 넣고 고민해봅시다.
     magazines = Magazine.objects.all()
@@ -26,7 +26,7 @@ def index(request):
     mz_basic = Magazine.objects.filter(tag__contains="BASIC")
     mz_bodo = Magazine.objects.filter(tag__contains="BODO")
     context = {
-        "compare_cards" : compare_cards,
+        "compare_cards": compare_cards,
         "magazines": magazines,
         "mz_year": mz_year,
         "mz_news": mz_news,
@@ -40,11 +40,11 @@ def index(request):
 # admin에서 사용자들 -> 사용자 이름 클릭 -> role 변경(필수항목 점검)
 @login_required(login_url="/login/")
 def create_(request):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     if request.user.role == "C":
         if request.method == "POST":
@@ -67,11 +67,11 @@ def create_(request):
 
 
 def detail(request, pk):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     magazine = Magazine.objects.get(pk=pk)
     mzcomment_form = MagazineCommentForm()
@@ -85,13 +85,13 @@ def detail(request, pk):
     return render(request, "magazine/detail.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url="/login")
 def update_(request, pk):
-    # ======== nav바에 카드비교 카테고리 ========= 
+    # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
         compare_cards = CompareCard.objects.filter(user=request.user)
     else:
-        compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
+        compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     magazine = Magazine.objects.get(pk=pk)
     if request.method == "POST":
@@ -110,7 +110,7 @@ def update_(request, pk):
     return render(request, "magazine/create.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url="/login")
 def delete_magazine(request, pk):
     magazine = Magazine.objects.get(pk=pk)
     if request.user == magazine.user:
@@ -125,7 +125,7 @@ def delete_magazine(request, pk):
         return redirect("magazine:detail", pk)
 
 
-@login_required(login_url='/login')
+@login_required(login_url="/login")
 def mzcomment_create(request, pk):
     magazine = get_object_or_404(Magazine, pk=pk)
     if request.method == "POST":
@@ -141,7 +141,7 @@ def mzcomment_create(request, pk):
     return redirect("magazine:detail", pk)
 
 
-@login_required(login_url='/login')
+@login_required(login_url="/login")
 def mzcomment_delete(request, mz_pk, mzcm_pk):
     magazine = Magazine.objects.get(pk=mz_pk)
     mzcomment = Comment.objects.get(pk=mzcm_pk)
@@ -153,7 +153,6 @@ def mzcomment_delete(request, mz_pk, mzcm_pk):
         return HttpResponseForbidden()
 
 
-@require_POST
 def magazine_bookmark(request, mz_pk):
     magazine = get_object_or_404(Magazine, pk=mz_pk)
 
@@ -170,8 +169,8 @@ def magazine_bookmark(request, mz_pk):
         is_bookmarked = True
         # print(is_bookmarked)
     # print(magazine.bookmark_users.all())
-    # data = {
-    #     'is_bookmarked' : is_bookmarked,
-    # }
-    return redirect('magazine:detail', mz_pk)
-    
+    context = {
+        "is_bookmarked": is_bookmarked,
+    }
+    return JsonResponse(context)
+    # return redirect('magazine:detail', mz_pk)
