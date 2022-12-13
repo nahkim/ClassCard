@@ -43,7 +43,6 @@
   <!-- Libraries Stylesheet -->
   <link rel="stylesheet" href="{% static 'lib/animate/animate.min.css' %}"/>
   <link rel="stylesheet" href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"/>
-  <link rel="stylesheet" href="{% static 'lib/lightbox/css/lightbox.min.css' %}"/>
 
   <!-- Favicon -->
   <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
@@ -202,13 +201,13 @@
               <div class="col compare-bag-card">
                 {% if compare_cards.0 %}
 
-                <div class="compare-bag-card-image-box">
-                  <img class="compare-bag-card-image" src="{{ compare_cards.0.card.card_img }}" alt="" srcset="">
-                </div>
-                <div class="compare-bag-overlay">
-                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.0.card.id %}">카드<br>보러 가기</a>
-                </div>
-                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.0.card.card_name }}</p>
+                  <div class="compare-bag-card-image-box">
+                    <img class="compare-bag-card-image" src="{{ compare_cards.0.card.card_img }}" alt="" srcset="">
+                  </div>
+                  <div class="compare-bag-overlay">
+                    <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.0.card.id %}">카드<br>보러 가기</a>
+                  </div>
+                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.0.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -219,13 +218,13 @@
               <div class="col compare-bag-card">
                 {% if compare_cards.1 %}
 
-                <div class="compare-bag-card-image-box">
-                  <img class="compare-bag-card-image" src="{{ compare_cards.1.card.card_img }}" alt="" srcset="">
-                </div>
-                <div class="compare-bag-overlay">
-                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.1.card.id %}">카드<br>보러 가기</a>
-                </div>
-                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.1.card.card_name }}</p>
+                  <div class="compare-bag-card-image-box">
+                    <img class="compare-bag-card-image" src="{{ compare_cards.1.card.card_img }}" alt="" srcset="">
+                  </div>
+                  <div class="compare-bag-overlay">
+                    <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.1.card.id %}">카드<br>보러 가기</a>
+                  </div>
+                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.1.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -235,13 +234,13 @@
               </div>
               <div class="col compare-bag-card">
                 {% if compare_cards.2 %}
-                <div class="compare-bag-card-image-box">
-                  <img class="compare-bag-card-image" src="{{ compare_cards.2.card.card_img }}" alt="" srcset="">
-                </div>
-                <div class="compare-bag-overlay">
-                  <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.2.card.id %}">카드<br>보러 가기</a>
-                </div>
-                <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.2.card.card_name }}</p>
+                  <div class="compare-bag-card-image-box">
+                    <img class="compare-bag-card-image" src="{{ compare_cards.2.card.card_img }}" alt="" srcset="">
+                  </div>
+                  <div class="compare-bag-overlay">
+                    <a class="compare-bag-overlay-word" href="{% url 'card:detail' compare_cards.2.card.id %}">카드<br>보러 가기</a>
+                  </div>
+                  <p class="compare-bag-card-name" style="color:black;">{{ compare_cards.2.card.card_name }}</p>
                 {% else %}
                   <div class="compare-bag-card-image-box">
                     <a class="compare-bag-card-search" href="{% url 'card:search' %}">
@@ -253,154 +252,154 @@
           {% else %}
             <p style="color:black;">{{ compare_cards }}</p>
 
-            {% endif %}
-          </div>
-          <div class="modal-footer">
-            <a href="{% url 'card:card_compare' %}" type="button" class="btn-compare-card">카드 비교 보러가기</a>
-            <button type="button" class="btn-compare-card-cancel" data-bs-dismiss="modal">취소</button>
-          </div>
-          
+          {% endif %}
         </div>
+        <div class="modal-footer">
+          <a href="{% url 'card:card_compare' %}" type="button" class="btn-compare-card">카드 비교 보러가기</a>
+          <button type="button" class="btn-compare-card-cancel" data-bs-dismiss="modal">취소</button>
+        </div>
+
       </div>
     </div>
   </div>
+</div>
 
-  {% if messages %}
-    <ul class="messages list-unstyled">
-      <div class="alert alert-warning" role="alert">
-        {% for message in messages %}
-          <li {% if message.tags %} class="{{ message.tags }} text-center" {% endif %}>{{ message }}</li>
-        {% endfor %}
-      </div>
+{% if messages %}
+  <ul class="messages list-unstyled">
+    <div class="alert alert-warning" role="alert">
+      {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }} text-center" {% endif %}>{{ message }}</li>
+      {% endfor %}
+    </div>
+  </ul>
+{% endif %}
+{% block body %}{% endblock body %}
+
+<!--FOOTER-->
+
+<footer style="margin-top: 90px;">
+  <div class="inner">
+
+    <ul style="list-style-type : none;" class="menu">
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)" class="green">개인정보처리방침</a>
+      </li>
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)">영상정보처리기기 운영관리 방침</a>
+      </li>
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)">홈페이지 이용약관</a>
+      </li>
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)">위치정보 이용약관</a>
+      </li>
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)">클라스 카드 이용약관</a>
+      </li>
+      <li>
+        <a style="text-decoration: none;" href="javascript:void(0)">윤리경영 핫라인</a>
+      </li>
     </ul>
-  {% endif %}
-  {% block body %}{% endblock body %}
 
-  <!--FOOTER-->
-  
-  <footer style="margin-top: 90px;">
-    <div class="inner">
-
-      <ul style="list-style-type : none;" class="menu">
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)" class="green">개인정보처리방침</a>
-        </li>
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)">영상정보처리기기 운영관리 방침</a>
-        </li>
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)">홈페이지 이용약관</a>
-        </li>
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)">위치정보 이용약관</a>
-        </li>
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)">클라스 카드 이용약관</a>
-        </li>
-        <li>
-          <a style="text-decoration: none;" href="javascript:void(0)">윤리경영 핫라인</a>
-        </li>
-      </ul>
-
-      <div class="btn-group">
-        <div style="display: flex; justify-content:center;" class="container">
-          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">찾아오시는 길
-            </a>
-          </button>
-          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">신규 소식
-            </a>
-          </button>
-          <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
-            <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">사이트 맵
-            </a>
-          </button>
-        </div>
-
+    <div class="btn-group">
+      <div style="display: flex; justify-content:center;" class="container">
+        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">찾아오시는 길
+          </a>
+        </button>
+        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">신규 소식
+          </a>
+        </button>
+        <button style=" border-radius: 30px; height: 38px; background-color: #0071E3;" type="button" class="btn">
+          <a style=" margin: 20px; color: #fff; text-decoration: none;" href="">사이트 맵
+          </a>
+        </button>
       </div>
-
-      <!-- Go to www.addthis.com/dashboard to customize your tools -->
-      <div style="margin-top: 50px; margin-bottom: 30px; display: flex; justify-content: center;" class="container">
-        <div class="addthis_inline_share_toolbox"></div>
-      </div>
-
-      <div class="info">
-        <span>사업자등록번호 000-00-0000</span>
-        <span>(주)클라스 카드</span>
-        <span>TEL :02) 000-000 / FAX : 02) 000-000</span>
-        <span>개인정보 책임자 : 000</span>
-      </div>
-
-      <p class="copyright">
-        &copy;
-        <span class="this-year"></span>Class Card Company. All Rights Reserved.
-      </p>
 
     </div>
-  </footer>
 
-  <!--TO TOP BUTTON-->
-  <div id="to-top">
-    <div class="material-icons">arrow_upward</div>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <div style="margin-top: 50px; margin-bottom: 30px; display: flex; justify-content: center;" class="container">
+      <div class="addthis_inline_share_toolbox"></div>
+    </div>
+
+    <div class="info">
+      <span>사업자등록번호 000-00-0000</span>
+      <span>(주)클라스 카드</span>
+      <span>TEL :02) 000-000 / FAX : 02) 000-000</span>
+      <span>개인정보 책임자 : 000</span>
+    </div>
+
+    <p class="copyright">
+      &copy;
+      <span class="this-year"></span>Class Card Company. All Rights Reserved.
+    </p>
+
   </div>
+</footer>
 
-  <!-- JS 영역 -->
-  <script src="{% static 'js/test.js' %}"></script>
-  <!-- Swiper JS -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-  <!--GSAP & ScrollToPlugin-->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js" integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q==" crossorigin="anonymous"></script>
+<!--TO TOP BUTTON-->
+<div id="to-top">
+  <div class="material-icons">arrow_upward</div>
+</div>
 
-  <!--ScrollMagic-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+<!-- JS 영역 -->
+<script src="{% static 'js/test.js' %}"></script>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<!--GSAP & ScrollToPlugin-->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" integrity="sha512-IQLehpLoVS4fNzl7IfH8Iowfm5+RiMGtHykgZJl9AWMgqx0AmJ6cRWcB+GaGVtIsnC4voMfm8f2vwtY+6oPjpQ==" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollToPlugin.min.js" integrity="sha512-nTHzMQK7lwWt8nL4KF6DhwLHluv6dVq/hNnj2PBN0xMl2KaMm1PM02csx57mmToPAodHmPsipoERRNn4pG7f+Q==" crossorigin="anonymous"></script>
 
-  <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<!--ScrollMagic-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
 
-  <!-- GSAP JS Library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <!-- JavaScript Libraries -->
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- GSAP JS Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js" integrity="sha512-gmwBmiTVER57N3jYS3LinA9eb8aHrJua5iQD7yqYCKa5x6Jjc7VDVaEA0je0Lu0bP9j7tEjV3+1qUm6loO99Kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js" integrity="sha512-Eak/29OTpb36LLo2r47IpVzPBLXnAMPAVypbSZiZ4Qkf8p/7S/XRG5xp7OKWPPYfJT6metI+IORkR5G8F900+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/noframework.waypoints.min.js" integrity="sha512-fHXRw0CXruAoINU11+hgqYvY/PcsOWzmj0QmcSOtjlJcqITbPyypc8cYpidjPurWpCnlB8VKfRwx6PIpASCUkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js" integrity="sha512-/6TZODGjYL7M8qb7P6SflJB/nTGE79ed1RfJk3dfm/Ib6JwCT4+tOfrrseEHhxkIhwG8jCl+io6eaiWLS/UX1w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <!-- Go to www.addthis.com/dashboard to customize your tools -->
-  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" integrity="sha512-k2GFCTbp9rQU412BStrcD/rlwv1PYec9SNrkbQlo6RZCf75l6KcC3UwDY8H5n5hl4v77IDtIPwOk9Dqjs/mMBQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-  <script>
-    // 모달에 있는 카드들 세로로 바꾸기
-    let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
-    console.log(modalCardImage)
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6370773bcd26bc2f"></script>
 
-    for (let i = 0; i < modalCardImage.length; i++) {
+<script>
+  // 모달에 있는 카드들 세로로 바꾸기
+  let modalCardImage = document.querySelectorAll('.compare-bag-card-image')
+  console.log(modalCardImage)
 
-      if (modalCardImage[i].width > modalCardImage[i].height) {
-        console.log('회전하기!')
-        modalCardImage[i].style.width = '160px';
-        modalCardImage[i].style.height = '100px';
-        modalCardImage[i]
-          .classList
-          .add('rotate90');
-      } else {
-        modalCardImage[i].style.width = '100px';
-        modalCardImage[i].style.height = '160px';
-      }
+  for (let i = 0; i < modalCardImage.length; i++) {
+
+    if (modalCardImage[i].width > modalCardImage[i].height) {
+      console.log('회전하기!')
+      modalCardImage[i].style.width = '160px';
+      modalCardImage[i].style.height = '100px';
+      modalCardImage[i]
+        .classList
+        .add('rotate90');
+    } else {
+      modalCardImage[i].style.width = '100px';
+      modalCardImage[i].style.height = '160px';
     }
-  </script>
+  }
+</script>
 
-  {% block script %}{% endblock script %}
+{% block script %}{% endblock script %}
 
 </body>
 
