@@ -63,7 +63,14 @@ else:
             "PORT": "5432",
         }
     }
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    
+		# "Elastic Beanstalk URL",
+		# 주소 마지막에 / 를 작성하지 말아주세요.
+    "classcard-env.eba-xnqaards.ap-northeast-2.elasticbeanstalk.com", # 예시입니다. 본인 URL로 해주세요.
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
@@ -73,6 +80,7 @@ INSTALLED_APPS = [
     "articles",
     "card",
     "magazine",
+    "storages",
     "servicecenter",
     "django.contrib.sites",
     "django.contrib.admin",
