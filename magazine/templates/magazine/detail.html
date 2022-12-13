@@ -17,9 +17,9 @@
         {% csrf_token %}
 
         {% if request.user in magazine.bookmark_users.all %}
-          <input type="submit" value='북마크취소' class='btn btn-danger'>
+          <button id="bookmark-btn" data-magazine-id="{{magazine.pk}}" type="button" class='btn btn-danger'>북마크 취소</button>
         {% else %}
-          <input type="submit" value='북마크' class='btn btn-warning'>
+          <button id="bookmark-btn" data-magazine-id="{{magazine.pk}}" type="button" class='btn btn-warning'>북마크</button>
         {% endif %}
       </form>
       <a href="{% url 'accounts:profile' magazine.user.username %}" class="d-flex justify-content-end" style="font-size: 25px;">
@@ -94,3 +94,27 @@
   </div>
 
 {% endblock body %}
+
+{% block script %}
+<!-- 북마크 비동기 처리 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  const bookmarkBtn = document.querySelector('#bookmark-btn')
+
+  bookmarkBtn.addEventListener('click', function(event) {
+    console.log(event.target.dataset)
+    axios({
+      method: 'get',
+      url: `/magazine/${event.target.dataset.magazineId}/mzbookmark/`
+    })
+    .then (res => {
+      console.log(res)
+      if (res.data.is_bookmarked === true) {
+        bookmarkBtn.innerHTML = '북마크 취소'
+      } else {
+        bookmarkBtn.innerHTML = '북마크'
+      }
+    })
+  })
+</script>
+{% endblock script %}

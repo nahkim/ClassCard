@@ -22,7 +22,11 @@
       </div>
       <!-- 프로필 사진 -->
       <div style="display: flex; justify-content: center;">
-        <img style="position: absolute; top: 320px; border-radius: 100%" src="https://i.pinimg.com/236x/88/6a/e3/886ae34b619741656539c23719cea560.jpg" alt="">
+        {% if user.profile %}
+        <img style="position: absolute; top: 320px; border-radius: 100%" src="{{ user.profile.url }}" alt="직접 설정해둔 프로필 사진" />
+        {% else %}
+        <img style="position: absolute; top: 320px; border-radius: 100%" src="https://i.pinimg.com/236x/88/6a/e3/886ae34b619741656539c23719cea560.jpg" alt="기본 프로필 사진">
+        {% endif %}
       </div>
       <!-- 프로필 관련 정보 수정하기 -->
       <div style="margin-top: 30px;" class="container">
