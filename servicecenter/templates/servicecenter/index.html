@@ -16,8 +16,7 @@
 <!-- Search -->
 <div class="container my-5 d-flex justify-content-center">
   <div style="position: relative;">
-    <form class="d-flex" role="search" method='GET'>
-      {% csrf_token %}
+    <form class="d-flex" role="search" method='GET' autocomplete='off'>
       <input class="Search-bar" type="text" name='search' placeholder="궁금하신 내용을 검색해 주세요.">
       <button type="sumbit" style="position: absolute; right: 18px; top: 12px; border: 0px; background-color: rgb(219 219 219);">
         <img style="filter: invert();" src="{% static 'images/loupe.png' %}">
