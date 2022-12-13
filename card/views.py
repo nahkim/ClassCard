@@ -636,7 +636,8 @@ def card_list(request):
 
     if request.method == "GET":
         card_list = []
-        cards = Card.objects.exclude(card_name=None)
+        card_brand = []
+        cards = Card.objects.exclude(card_name=None).order_by('-pk')
 
         # ============================ 체크 카드랑 신용카드 분리 하기 ===========================
 
@@ -655,6 +656,7 @@ def card_list(request):
         card_type = request.GET.get("type", "")
         # korean benefit list
         kbl = request.GET.getlist("answers", "")
+        brand = request.GET.get("brand", "")
 
         # ============================ 나이와 카드 종류로 필터링 하기 ==========================================
         if age == "20대":
@@ -678,6 +680,7 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(check.card_brand)
                                 card_list.append(check)
                                 break
 
@@ -687,10 +690,10 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(credit.card_brand)
                                 card_list.append(credit)
                                 break
 
-            print(card_list)
 
         elif age == "30대":
             age_30 = ["혜택2", "혜택5", "혜택 프로모션", "할인", "수수료우대", "연회비지원", "무이자할부", "바우처", "무실적", "모든가맹점", "APP", "골프", "경기관람", "레저/스포츠", "영화", "영화/문화", "디지털구독", "음원사이트", "공연/전시", "렌탈", "호텔", "면세점", "리조트", "온라인 여행사", "여행/숙박", "여행사", "교통", "기차", "대중교통", "택시", "PAYCO", "네이버페이", "간편결제", "카카오페이", "삼성페이", "차/중고차", "충전소", "주유", "주유소", "렌터카", "정비", "하이패스", "자동차", "자동차/하이패스", "동물병원", "펫샵", "애완동물", "카페", "카페/디저트", "베이커리", "병원", "병원/약국", "약국", "피트니스", "드럭스토어", "보험", "보험사", "PAYCO", "네이버페이", "간편결제", "카카오페이", "삼성페이", "아이스크림", "패밀리레스토랑", "저녁", "점심", "푸드", "일반음식점", "배달앱", "CJ ONE", "OK캐쉬백", "해피포인트", "캐시백", "멤버십포인트", "적립", "BC TOP", "SSM", "금융", "증권사", "은행사", "KT", "LGU+", "SKT", "통신", "헤어", "화장품", "뷰티/피트니스", "대형마트", "해외직구", "아울렛", "소셜커머스", "쇼핑", "백화점", "온라인쇼핑", "편의점", "공항", "대한항공", "아시아나항공", "항공권", "항공마일리지", "제주항공", "저가항공", "진에어", "교육/육아", "도서", "학습지", "학원", "어린이집", "유치원", "SPA브랜드", "직장인", "비즈니스", "생활", "인테리어", "아이행복", "공과금", "공과금/렌탈", "국민행복", "해외", "해외이용", "지역", "카드사", "선택형", "하이브리드", "제휴/PLCC", "기타"]
@@ -713,6 +716,7 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(check.card_brand)
                                 card_list.append(check)
                                 break
 
@@ -722,6 +726,7 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(credit.card_brand)
                                 card_list.append(credit)
                                 break
 
@@ -745,6 +750,7 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(check.card_brand)
                                 card_list.append(check)
                                 break
 
@@ -754,8 +760,24 @@ def card_list(request):
 
                         for benefit in benefits_temp:
                             if benefit.bnf_name in bnf_list:
+                                card_brand.append(credit.card_brand)
                                 card_list.append(credit)
                                 break
+
+
+    # ========== arrange ========
+    card_brand = set(card_brand)
+
+    print(card_brand)
+        
+    if brand != "":
+        brand_cate = []
+        for card in card_list:
+            if card.card_brand == brand:
+                brand_cate.append(card)
+        card_list = brand_cate
+        
+
 
     page = int(request.GET.get("p", 1))
     pagenator = Paginator(card_list, 10)
@@ -765,6 +787,8 @@ def card_list(request):
     context = {
         "compare_cards" : compare_cards,
         "answers_page" : ''.join(answers_pages),
+        "card_brand" : card_brand,
+        "brand" : brand,
         "card_lst" : boards,
         "age_param": age,
         "card_type_param": card_type, 
