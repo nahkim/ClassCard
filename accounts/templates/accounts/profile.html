@@ -23,7 +23,7 @@
       <!-- 프로필 사진 -->
       <div style="display: flex; justify-content: center;">
         {% if user.profile %}
-        <img style="position: absolute; top: 320px; border-radius: 100%" src="{{ user.profile.url }}" alt="직접 설정해둔 프로필 사진" />
+        <img style="position: absolute; top: 320px; width: 100%; height: 100%; max-width: 236px; max-height: 236px; object-fit: cover; border-radius: 100%" src="{{ user.profile.url }}" alt="직접 설정해둔 프로필 사진" />
         {% else %}
         <img style="position: absolute; top: 320px; border-radius: 100%" src="https://i.pinimg.com/236x/88/6a/e3/886ae34b619741656539c23719cea560.jpg" alt="기본 프로필 사진">
         {% endif %}

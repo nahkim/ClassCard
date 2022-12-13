@@ -56,18 +56,17 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DATABASE_NAME"), # .env 파일에 value 작성
+            "NAME": os.getenv("DATABASE_NAME"),  # .env 파일에 value 작성
             "USER": "postgres",
-            "PASSWORD": os.getenv("DATABASE_PASSWORD"), # .env 파일에 value 작성
-            "HOST": os.getenv("DATABASE_HOST"), # .env 파일에 value 작성
+            "PASSWORD": os.getenv("DATABASE_PASSWORD"),  # .env 파일에 value 작성
+            "HOST": os.getenv("DATABASE_HOST"),  # .env 파일에 value 작성
             "PORT": "5432",
         }
     }
 ALLOWED_HOSTS = [
-    
-		# "Elastic Beanstalk URL",
-		# 주소 마지막에 / 를 작성하지 말아주세요.
-    "classcard-env.eba-xnqaards.ap-northeast-2.elasticbeanstalk.com", # 예시입니다. 본인 URL로 해주세요.
+    # "Elastic Beanstalk URL",
+    # 주소 마지막에 / 를 작성하지 말아주세요.
+    "classcard-env.eba-xnqaards.ap-northeast-2.elasticbeanstalk.com",  # 예시입니다. 본인 URL로 해주세요.
     "127.0.0.1",
     "localhost",
 ]
@@ -169,8 +168,8 @@ STATIC_URL = "/static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
-STATIC_ROOT = 'staticfiles'
- 
+STATIC_ROOT = "staticfiles"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -223,7 +222,7 @@ ACCOUNT_FORMS = {"signup": "accounts.forms.CustomUserCreationForm"}
 # 로그아웃 확인 페이지 제거
 ACCOUNT_LOGOUT_ON_GET = True
 # SMTP 서버실행
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
