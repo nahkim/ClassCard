@@ -1,0 +1,43 @@
+{
+	"folders": {},
+	"connections": {
+		"postgres-jdbc-185094fe332-7f7a83c2e34daf7c": {
+			"provider": "postgresql",
+			"driver": "postgres-jdbc",
+			"name": "classcard_rds",
+			"save-password": true,
+			"configuration": {
+				"host": "classcard-rds.cii7blp8pyhl.ap-northeast-2.rds.amazonaws.com",
+				"port": "5432",
+				"database": "classcard_rds",
+				"url": "jdbc:postgresql://classcard-rds.cii7blp8pyhl.ap-northeast-2.rds.amazonaws.com:5432/classcard_rds",
+				"home": "postgresql_client",
+				"type": "dev",
+				"provider-properties": {
+					"@dbeaver-show-non-default-db@": "false",
+					"@dbeaver-show-template-db@": "false",
+					"@dbeaver-show-unavailable-db@": "false",
+					"show-database-statistics": "false",
+					"@dbeaver-read-all-data-types-db@": "false",
+					"read-keys-with-columns": "false",
+					"@dbeaver-use-prepared-statements-db@": "false",
+					"postgresql.dd.plain.string": "false",
+					"postgresql.dd.tag.string": "false"
+				},
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
