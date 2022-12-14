@@ -172,13 +172,14 @@
                     <div class="col-md-4">
                       <div style="display: flex;" class="container1">
                         <div class="card1">
-                          <img style="width: 200px;" src="{{card3.card_img}}" alt="" class="card__img">
+                          <img style="width: 200px;" src="{{card4.card_img}}" alt="" class="card__img">
 
                           <!-- <div class="card__content"> -->
                           <div class="card__data">
-                            <h1 class="card__title">{{card3.card_name}}</h1>
-                            <p class="card__description">전 가맹점 0.5% / 대형마트 5% / 주유소 5% 하나머니 적립</p>
-                            <a href="{% url 'card:detail' card3.pk %}" class="card__button">
+                            <h1 class="card__title">{{card4.card_name}}</h1>
+                            <!-- <span class="card__preci">현대카드</span> -->
+                            <p class="card__description">스타벅스 50% 결제일 할인 간편결제 시 스타벅스 60% 결제일 할인</p>
+                            <a href="{% url 'card:detail' card4.pk %}" class="card__button">
                               자세히보기
                             </a>
                           </div>
@@ -194,14 +195,14 @@
                     <div class="col-md-4">
                       <div class="container1">
                         <div class="card1">
-                          <img style="width: 200px;" src="{{card4.card_img}}" alt="" class="card__img">
-
+                          <div style="display: flex; justify-content: center;">
+                            <img style="width: 200px; margin-top: 56px;" src="{{card3.card_img}}" alt="" class="card__img">
+                          </div>
                           <!-- <div class="card__content"> -->
                           <div class="card__data">
-                            <h1 class="card__title">{{card4.card_name}}</h1>
-                            <!-- <span class="card__preci">현대카드</span> -->
-                            <p class="card__description">스타벅스 50% 결제일 할인 간편결제 시 스타벅스 60% 결제일 할인</p>
-                            <a href="{% url 'card:detail' card4.pk %}" class="card__button">
+                            <h1 class="card__title">{{card3.card_name}}</h1>
+                            <p class="card__description">전 가맹점 0.5% / 대형마트 5% / 주유소 5% 하나머니 적립</p>
+                            <a href="{% url 'card:detail' card3.pk %}" class="card__button">
                               자세히보기
                             </a>
                           </div>
@@ -251,7 +252,9 @@
                     <div class="col-md-4">
                       <div class="container1">
                         <div class="card1">
-                          <img style="width: 200px;" src="{{card7.card_img}}" alt="" class="card__img">
+                          <div style="display: flex; justify-content: center;">
+                            <img style="width: 200px; margin-top: 56px;" src="{{card7.card_img}}" alt="" class="card__img">
+                          </div>
 
                           <!-- <div class="card__content"> -->
                           <div class="card__data">
@@ -624,3 +627,23 @@
   </section>
 
 {% endblock body %}
+
+{% block script %}
+<script>
+  let cardImage = document.querySelectorAll('.card__img')
+
+  for (let i = 0 ; i < cardImage.length ; i ++) {
+
+    if (cardImage[i].width > cardImage[i].height) {
+      console.log('회전하기!')
+      cardImage[i].style.width = '315px';
+      cardImage[i].style.height = '200px';
+      cardImage[i].classList.add('rotate90');
+      cardImage[i].classList.add('card__img_rotate');
+    } else {
+      cardImage[i].style.width = '200px';
+      cardImage[i].style.height = '315px';
+    }
+  }
+</script>
+{% endblock script%}
