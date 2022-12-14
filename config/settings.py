@@ -220,9 +220,10 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = "/"
-ACCOUNT_SIGNUP_REDIRECT_URL = "/"
-LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/main/"
+ACCOUNT_SIGNUP_REDIRECT_URL = "/main/"
+LOGIN_URL = "/login/"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/main/"
 
 
 # Provider specific settings
