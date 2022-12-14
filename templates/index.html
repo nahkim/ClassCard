@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CLASS CARD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/default.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  </head>
+
+  <body style="" class="before-load">
+    <div class="loading">
+      <svg class="loading-circle">
+        <circle cx="50%" cy="50%" r="25"></circle>
+      </svg>
+    </div>
+    <div class="container">
+      <section class="scroll-section" id="scroll-section-0">
+        <h1 style="color:#000">CLASS CARD</h1>
+        <!-- pencil로고 -->
+        <object class="sticky-elem pencil-logo" data="{% static 'images/hand_card.svg' %}" type="image/svg+xml"></object>
+        <div class="sticky-elem main-message a">
+          <p style="color:#000">모두를 위한
+          </p>
+        </div>
+        <!-- 빨강 리본 -->
+        <span class="sticky-elem ribbon-path">
+          <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 700 450">
+            <path class="st1" d="M709,41.5c-194,38-387,122-455,159c-64.13,34.89-73.4,42.42,20,26c82.5-14.5,126.34-33.68,185-38 c47.5-3.5,69.22,7.98-11,39c-75,29-251,98-459,169"></path>
+          </svg>
+        </span>
+        <div class="sticky-elem main-message b">
+          <p>클래스 카드</p>
+        </div>
+        <img class="sticky-elem pencil" src="{% static 'images/pencil.png' %}">
+      </section>
+      <div class="normal-content">
+        <section>
+          <p class="mid-message">
+            20대가 사용할 수 있는 카드는? 더 저렴하게 살 수 있는 방법은 없을까? 40대 이후에도 카드를 계속 사용할 수 있을까? 체크카드 혜택도 너무 궁금해 가스비 난방 인상이 되어도 카드비 걱정없이 지내고 싶어 무슨 방법은 없을까?
+          </p>
+        </section>
+        <div style=" height: 70px; margin-top: 80px; display:flex; justify-content: center;">
+          <a style="width: 580px; border-radius: 50px; font-size: 35px; color:#fff; background-color: #0071E3;z-index: 999;" href="{% url 'main' %}">
+            <p style="margin-left: 45px;">우리가 해결해줄게요 CLASS CARD</p>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="{% static 'js/main.js' %}"></script>
+  </body>
+
+</html>

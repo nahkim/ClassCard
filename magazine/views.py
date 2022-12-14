@@ -98,8 +98,10 @@ def update_(request, pk):
         magazine_form = MagazineForm(request.POST, request.FILES, instance=magazine)
         if magazine_form.is_valid():
             form = magazine_form.save(commit=False)
-            request.user = form.user
-            form.save()
+            if request.user == form.user:
+                form.save()
+            else:
+                messages.warning(request,'작성자가 아닙니다!')
             return redirect("magazine:detail", pk)
     else:
         magazine_form = MagazineForm(instance=magazine)

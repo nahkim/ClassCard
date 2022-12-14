@@ -207,7 +207,7 @@
     const followBtn = document.querySelector('#follow-btn')
 
     followBtn.addEventListener('click', function (event) {
-      axios({method: 'get', url: `/accounts/follow/${event.target.dataset.userName}`}).then(response => {
+      axios({method: 'get', url: `/accounts/follow/${event.target.dataset.userName}/`}).then(response => {
         if (response.data.is_followed === true) {
           followBtn.innerText = "팔로우 취소";
         } else {

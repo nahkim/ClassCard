@@ -30,17 +30,19 @@
       </a>
 
       <!-- Update, Delete Button -->
-      <div class="mt-2 d-flex justify-content-end">
-        <span>
-          <a href="{% url 'magazine:update' magazine.pk %}" class='btn' style="margin-right: 14px; width: 70px; height: 30px; background-color: #cfd3e1; color: white;">수정</a>
-        </span>
-        <span>
-          <form action="{% url 'magazine:delete_magazine' magazine.pk %}" method='POST'>
-            {% csrf_token %}
-            <input type="submit" class='btn' style="width: 70px; height: 30px; background-color: #d94141; color: white;" value='삭제'>
-          </form>
-        </span>
-      </div>
+      {% if magazine.user == request.user %}
+        <div class="mt-2 d-flex justify-content-end">
+          <span>
+            <a href="{% url 'magazine:update' magazine.pk %}" class='btn' style="margin-right: 14px; width: 70px; height: 30px; background-color: #cfd3e1; color: white;">수정</a>
+          </span>
+          <span>
+            <form action="{% url 'magazine:delete_magazine' magazine.pk %}" method='POST'>
+              {% csrf_token %}
+              <input type="submit" class='btn' style="width: 70px; height: 30px; background-color: #d94141; color: white;" value='삭제'>
+            </form>
+          </span>
+        </div>
+      {% endif %}
 
       <!-- Content -->
       <div class="mt-4">
@@ -96,25 +98,21 @@
 {% endblock body %}
 
 {% block script %}
-<!-- 북마크 비동기 처리 -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  const bookmarkBtn = document.querySelector('#bookmark-btn')
+  <!-- 북마크 비동기 처리 -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    const bookmarkBtn = document.querySelector('#bookmark-btn')
 
-  bookmarkBtn.addEventListener('click', function(event) {
-    console.log(event.target.dataset)
-    axios({
-      method: 'get',
-      url: `/magazine/${event.target.dataset.magazineId}/mzbookmark/`
+    bookmarkBtn.addEventListener('click', function (event) {
+      console.log(event.target.dataset)
+      axios({method: 'get', url: `/magazine/${event.target.dataset.magazineId}/mzbookmark/`}).then(res => {
+        console.log(res)
+        if (res.data.is_bookmarked === true) {
+          bookmarkBtn.innerHTML = '북마크 취소'
+        } else {
+          bookmarkBtn.innerHTML = '북마크'
+        }
+      })
     })
-    .then (res => {
-      console.log(res)
-      if (res.data.is_bookmarked === true) {
-        bookmarkBtn.innerHTML = '북마크 취소'
-      } else {
-        bookmarkBtn.innerHTML = '북마크'
-      }
-    })
-  })
-</script>
+  </script>
 {% endblock script %}
