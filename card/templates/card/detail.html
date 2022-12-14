@@ -661,7 +661,6 @@
       data: new FormData(commentForm)
     }).then(response => {
       
-      console.log(response.data.cardId)
       const comments = document.querySelector(".detail-comment-box")
       comments.textContent= ""
       const commentData = response.data.commentData
@@ -684,6 +683,7 @@
           rate = '⭐⭐⭐⭐⭐'
         }
 
+        // 댓글을 저장한 유저가 댓글의 user_id와 같을 때
         if (user === commentData[i].user_id) {
         comments.insertAdjacentHTML('beforeend', `
         <div class="detail-comment">
