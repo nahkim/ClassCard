@@ -38,6 +38,7 @@
             {% if request.user.is_authenticated %}
               {% if user == request.user %}
                 <div style="display: flex; margin-left: 700px; " class="d-flex" role="search">
+                  <button style="margin: 10px; " class="btn btn-outline-success" type="submit" onclick="location.href='/password/set/'">비밀번호 변경하기</button>
                   <button style="margin: 10px; " class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:update' %}'">정보 수정하기</button>
                   <button style="margin: 10px;" class="btn btn-outline-success" type="submit" onclick="location.href='{% url 'accounts:delete' %}'">회원 탈퇴하기</button>
                 </div>
