@@ -1,0 +1,245 @@
+
+.btn1 {
+  /* display: flex;
+  justify-content: center; */
+  width: 270px;
+  height: 70px;
+  margin: 20px;
+  font-size: 22px;
+}
+
+
+
+/* 1. tab 영역 css 설정 */
+.tab-area {
+  width: 1500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+
+/* 2. tab 메뉴 부분 디자인 */
+.tab-area input {
+  display: none;
+}  
+
+.tab-area label {
+  margin-left: auto;
+  margin-right: auto;
+}
+  
+/* label에 마우스 올렸을 때 */
+.tab-area label:hover {
+  cursor: pointer; /*마우스 모양 변경*/
+}
+  
+/* tab-area 안에 존재하는 input 태그가 체크되었을 때, 
+체크된 input 태그 다음에 등장하는 label의 css 값 */
+.tab-area input:checked + label {
+  /* 해당 메뉴가 선택된 상태인지 아닌지를 사용자에게 알려줄 수 있음 */
+  font-weight: bold;
+  color: #0071E3;
+}
+  
+
+/* 3. tab 내용 부분 디자인 */
+
+
+
+.allWrap{
+  width: 100%;
+  height: 100%;
+  margin:0 auto;
+}
+
+.tabBox{
+  margin:20px 0
+}
+
+.tab-link{
+  width: 47%;
+  display: inline-block;
+  padding:10px;
+  text-align: center;
+  background-color:#929090;
+  border-radius: 30px;
+  color:#fff;
+  cursor: pointer;
+}
+
+.tab-link.current{
+    background-color: #0071E3;
+    font-weight: 600;
+}
+
+.tab-content{
+    display: none;
+}
+
+.tab-content.current{
+    display: flex;
+    /* justify-content: center; */
+    width: 100%;
+    height: 100%;
+    /* background-color:#d5d8d7; */
+    font-size: 30px;
+    text-align: center;
+    line-height: 250px;
+}
+
+/* cards */
+.compare-card-box{
+  margin-top: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.compare-card-images{
+  border-radius: 12px;
+  box-shadow: 4px -4px 14px #000000b5;
+}
+
+.compare-card-images-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px;
+  width: 227px;
+}
+
+.compare-card-images-box-none{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 360px;
+  width: 227px;
+  border-radius: 12px;
+  background-color: #738ffdad;
+  box-shadow: 4px -4px 14px #000000b5;
+}
+
+.compare-card-search{
+  margin-top: 50px
+}
+
+.compare-card-search-btn{
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #738ffd;
+  color: white;
+  font-weight: bold;
+}
+
+.compare-card-search-btn:hover{
+  background-color: #738ffd5d;
+  color:white;
+}
+
+.compare-card-search-btn-none{
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  background-color: #929090;
+  color: white;
+  font-weight: bold;
+}
+
+.compare-card-search-btn-none:hover{
+  background-color: #92909075;
+  color:white;
+}
+
+.compare-card-cards{
+  border-radius: 35px;
+  background-color: rgb(115 143 253);
+  margin-right: 10px;
+  box-shadow: 5px 4px 20px #00000036;
+}
+
+.card-compare-bnf1-inout,
+.card-compare-record-detail,
+.card-compare-overseas-detail{
+  font-size: 1.3rem;
+  color: white;
+}
+
+.card-compare-bnf1-inout-name,
+.card-compare-record-name,
+.card-compare-overseas-name{
+  margin-top: 2rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-overseas{
+  margin-bottom: 2rem;
+}
+
+.compare-card-cards-none{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  background-color: rgb(115 143 253);
+  margin-right: 10px;
+  box-shadow: 5px 4px 20px #00000036;
+}
+
+.card-compare-bnf1-none-alert {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-no-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-compare-no-card p{
+  font-size: 2rem;
+  font-weight: bold;
+  color: #929090;
+}
+
+.compare-card-bnf2{
+  border-radius: 35px;
+  margin-right: 10px;
+  padding-bottom: 2rem;
+  box-shadow: 5px 4px 20px #00000036;
+  background-color: rgb(115 143 253);
+}
+
+.card-compare-bnf2-content{
+  font-size: 1.3rem;
+  color: white;
+}
+
+.card-compare-bnf2-name{
+  margin-top: 2rem;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card-compare-bnf2-none{
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.compare-card-bnf2-none-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 35px;
+  margin-right: 10px;
+  padding-bottom: 2rem;
+  box-shadow: 5px 4px 20px #00000036;
+  background-color: rgb(115 143 253);
+}

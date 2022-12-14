@@ -1,0 +1,485 @@
+/* banner */
+body {
+  background-color: white;
+  color: white;
+}
+
+.banner-rotate90 {
+  transform: rotate(270deg);
+}
+
+.one {
+  background-image: url("/static/images/bg_1.jpg");
+  background-size: cover;
+  background-position: center;
+
+}
+
+.two {
+  background-image: url("/static/images/bg_2.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.three {
+  background-image: url("/static/images/bg_3.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.four {
+  background-image: url("/static/images/bg_4.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.five {
+  background-image: url("/static/images/bg_5.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.one_0 {
+  margin-top: 4rem;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  animation: img_ 3s;
+}
+
+/* .one_1 {
+  background-image: url("/static/images/oooo.plus_162.png");
+  background-size: cover;
+  background-position: center;
+  width: 250px;
+  height: 480px;
+} */
+
+.one_2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:350px;
+  height:210px;
+  top: 270px;
+  right: 2px;
+  animation: img_2 3s;
+  animation-fill-mode: forwards;
+}
+
+.text {
+  position: relative;
+  animation: fadeInUp 3s;
+}
+
+.carousel-control-next, .carousel-control-prev {
+  width: 6%;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0.5;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+@keyframes img_ {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 0.5;
+    transform: scale(0.9)
+  }
+}
+
+@keyframes img_2 {
+  0% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.2)
+  }
+}
+
+@media (max-width: 800px) {
+  .btn {
+    visibility: hidden;
+  }
+}
+
+/*============= card detail 페이지 ====================*/
+.card-detail{
+  position: relative;
+  padding: 4rem 0;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-detail-top{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: -50%;
+}
+
+.card-detail-image-box{
+  display: flex;
+  height: 300px;
+  width: 190px;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-detail-image{
+  width: 300px;
+  height: 190px;
+  border-radius: 10px;
+  box-shadow: #8e8e8e 5px 2px 20px 3px;
+}
+
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.card-detail-name{
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+}
+
+.card-detail-brand {
+  margin-top: 1rem;
+  color: #757d89;
+}
+
+.card-detail-bnf1-all{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12rem 1rem 2.5rem;
+}
+
+.card-detail-bnf1{
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.card-detail-bnf1-btn{
+  margin-top: 2rem;
+  border-radius: 30px;
+  padding: 1rem;
+  background-color: #C59F19;
+}
+
+.card-detail-bnf1-btn > a{
+  color:white;
+}
+
+.card-detail-bnf1-btn > a:hover{
+  color: rgb(153, 153, 153);
+}
+
+.card-detail-bnf1-inout,
+.card-detail-bnf1-record,
+.card-detail-bnf1-overseas{
+  color: #757d89;
+  margin: 0 1rem;
+  font-size: 1.2rem;
+}
+
+
+.card-detail-bnf2-name,
+.card-detail-bnf2-content,
+.card-detail-bnf2-detail {
+  color: white;
+}
+
+.card-detail-bnf2{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 6rem;
+}
+
+.card-detail-bnf2-title{
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+  border-top: solid 1px #828b9747;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #757d89;
+  font-weight: bold;
+}
+
+.card-detail-card-group{
+  display: flex;
+  justify-content: center;
+}
+
+.card-detail-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 250px;
+  height: 360px;
+  /* background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat; */
+  background-color: #738ffd;
+  box-shadow: 1px 3px 8px 0px #666e7894;
+}
+
+.card-detail-card-all .card-detail-card-cards{
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-detail-back{
+  position: absolute;
+  border-radius: 10px;
+  width: 251px;
+  height: 360px;
+  background-color: #ebebebea;
+  z-index: 1;
+  padding: 10px;
+  bottom: -80%;
+  visibility: hidden;
+}
+
+.card-detail-card-all:hover .card-detail-back{
+  top: 32px;
+  visibility: visible;
+  transition: all ease-in 2s;
+}
+
+.btn-bnf{
+  margin-top: 1.5rem;
+  border-radius: 30px;
+  border: solid 1px #0071e3;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: #0071e3;
+  background-color: #ffffff00;
+}
+
+.btn-bnf:hover{
+  margin-top: 1.5rem;
+  border-radius: 30px;
+  border: solid 1px #0071e3;
+  padding: 10px;
+  font-size: 1.1rem;
+  color: white;
+  background-color: #0071e3;
+}
+
+.card-detail-bnf2-name{
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-detail-detail{
+  color: black;
+  margin: 2rem 0;
+}
+
+.linebreaks p {
+  color: black;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .card-detail-bnf1 {
+    flex-direction: column;
+    align-items: center;
+    margin: rem 10rem;
+  }
+
+  .card-detail-bnf1-inout,
+  .card-detail-bnf1-record,
+  .card-detail-bnf1-overseas{
+    margin: 1rem 0;
+    font-size: 1.2rem;
+  }
+}
+
+
+/*=================== Comment================== */
+
+.detail-comment-create{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0 4rem;
+  border-bottom: solid 1px #828b9747;
+}
+
+.detail-comment-title{
+  margin: 2rem 0;
+  text-align: center;
+  font-size: 2rem;
+  color: #757d89;
+  font-weight: bold;
+}
+
+.detail-comment-form{
+  display: flex;
+  align-items: center;
+}
+
+.detail-comment-input-box{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.detail-comment-write{
+  height: 78px;
+  width: 50vw;
+}
+
+.detail-comment-rate{
+ width: 20vw;
+}
+
+.btn-detail-comment{
+  height: 140px;
+  margin-left:2rem;
+  border-radius: 10px;
+  border: 0px;
+  color: white;
+  background-color: #666e78;
+}
+
+.btn-detail-comment:hover{
+  background-color: #666e7852;
+}
+
+.detail-comment-detail{
+  display: flex;
+  margin: 2rem 15% 0;
+  padding: 1rem 0;
+}
+
+.detail-comment-review{
+  width: 75%;
+  background-color: #738ffd;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.detail-comment-user {
+  color:#666e78;
+  font-size: 1.2rem;
+}
+
+.detail-comment-content{
+  margin-bottom: 0.4rem;
+  color: white;
+  font-size: 1.4rem;
+}
+
+.detail-comment-user{
+  width: 200px;
+}
+
+.detail-comment-time {
+  color:#f9f9f98e;
+  font-size: 0.8rem;
+}
+
+.detail-comment-update,
+.detail-comment-delete {
+  color: #666e78;
+}
+
+.detail-comment-update:hover,
+.detail-comment-delete:hover {
+  color: #738ffd;
+  cursor: pointer;
+}
+
+.comment-update-form-style{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.comment-update-rate{
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 0.3rem;
+  border: 0px;
+  color: #738ffd;
+}
+
+.comment-update-content{
+  width: 90%;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 0px;
+  padding: 0.3rem;
+  color: #6a717b;
+}
+
+.comment-control-update:hover,
+.comment-control-update-exit:hover{
+  color: #6a717b;
+  cursor: pointer;
+}
+
+/* 카드 비교 넣기 */
+.card-compare-pos{
+  border:0px;
+  background-color: white;
+  color: #738ffd;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-compare-neg{
+  border:0px;
+  background-color: white;
+  color: #fd7373;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.card-compare-pos:hover,
+.card-compare-neg:hover{
+  cursor: pointer;
+  color: #505361;
+}

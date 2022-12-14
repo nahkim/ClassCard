@@ -1,0 +1,160 @@
+
+.card-list-banner{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 400px;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.card-list-arrange{
+  width: 70%;
+  margin: 2rem auto;
+  border-radius: 10px;
+  padding: 1rem;
+  background-color: #7290fe;
+}
+
+.card-list-arrange-search-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-list-arrange-name{
+  margin-bottom: 0;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.card-list-arrange-search{
+  color: white;
+  margin: 1rem;
+}
+
+.card-list-arrange-search:hover{
+  color: rgba(255, 255, 255, 0.397);
+}
+
+.list-wrap {
+  width: 600px;
+}
+
+.list-wrap-li {
+  display: table;
+  margin-top: 0;
+  table-layout: fixed;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  background: rgb(255, 255, 255);
+}
+
+
+.card_img {
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+  height: 100px;
+  width: 120px;
+  text-align: center;
+}
+
+.img {
+  margin: 0;
+  padding: 0; 
+  border: 0;
+  margin-left: 20px;
+}
+
+.img a {
+  display: block; 
+  outline: 0 !important; 
+  box-shadow: none; 
+  background-color: unset; 
+  text-decoration: none;
+}
+
+.img a img {
+  display: block; 
+  display: table-cell; 
+  vertical-align: middle;  
+  height: 100px;
+}
+
+.card_name  {
+  line-height: 29px; 
+  font-weight: 700; 
+  font-size: 18px; 
+  letter-spacing: -1px;
+  
+}
+
+.card_name a {
+  display: block;
+  margin-top: 10px;
+}
+
+.card_smallname {
+  line-height: 21px; 
+  margin-top: 6px; 
+  font-size: 15px; 
+  letter-spacing: -0.5px;
+}
+
+.detail_view {
+  width: 52px; 
+  display: table-cell; 
+  position: relative; 
+  vertical-align: middle; 
+  height: 100px; 
+  padding: 0; 
+  border: 0;
+}
+
+.detail_view a {
+  display: block; 
+  cursor: pointer; 
+  height: 100%; 
+  font-size: 0; 
+  text-indent: -9999px;
+  background-image: url(https://www.card-gorilla.com/statics/img/icon_arr_right.png); 
+  background-position: 50%; 
+  background-repeat: no-repeat; 
+  transition: all 0.15s;	
+}
+
+.card-list-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 80%;
+  padding: 1.5rem;
+  border-radius: 15px;
+  align-items: center;
+  background-color: #738ffd;
+}
+
+.card-list-image-box{
+  width: 150px;
+  height: 250px;
+}
+
+.card-list-image{
+  width: 150px;
+  height: 250px;
+  border-radius: 10px;
+  box-shadow: 3px 4px 18px 0px #0000008f;
+}
+
+.card-list-name{
+  font-size: 2rem;
+}
