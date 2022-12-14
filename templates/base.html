@@ -169,10 +169,7 @@
       <div class="menu-toggler"></div>
       <ul style="margin-top: 15px; list-style:none;" class="menu">
         <li>
-          <a href="javascript:void(0)">Class Card를 선택하는 이유</a>
-        </li>
-        <li>
-          <a href="javascript:void(0)">CARD 정보</a>
+          <a href="{% url 'inter' %}">Class Card를 선택하는 이유</a>
         </li>
       </ul>
       {% if request.user.is_authenticated %}

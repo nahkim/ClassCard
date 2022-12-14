@@ -231,3 +231,6 @@ class CustomPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
 
 
 # class CustomConfirmEmailView(ConfirmEmailView):
+
+def inter(request):
+    return render(request,'index.html')

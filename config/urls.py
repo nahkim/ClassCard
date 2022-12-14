@@ -21,7 +21,7 @@ from . import views
 from config.views import CustomPasswordChangeView
 
 urlpatterns = [
-    path("", views.main, name="main"),
+    path("main/", views.main, name="main"),
     path("articles/", include("articles.urls")),
     path("accounts/", include("accounts.urls")),
     path("card/", include("card.urls")),
@@ -38,4 +38,5 @@ urlpatterns = [
         name="account_password_change",
     ),
     path("", include("allauth.urls")),
+    path('', views.inter,name='inter'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
