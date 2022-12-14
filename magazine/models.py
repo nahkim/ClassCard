@@ -19,9 +19,9 @@ class Magazine(models.Model):
     created_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to="image/mzimg")
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-    # tag = models.CharField(
-    #     max_length=20, verbose_name="태그명", choices=TAG_CHOICES, default="ECT"
-    # )
+    tag = models.CharField(
+        max_length=20, verbose_name="태그명", choices=TAG_CHOICES, default="ECT"
+    )
     bookmark_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="bookmark_articles"
     )

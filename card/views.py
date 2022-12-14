@@ -385,7 +385,7 @@ def detail(request, num):
     return render(request, "card/detail.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment(request, pk):
     card = Card.objects.get(pk=pk)
     user = request.user.pk
@@ -423,7 +423,7 @@ def comment(request, pk):
     return JsonResponse(data)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment_delete(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
@@ -455,7 +455,7 @@ def comment_delete(request, card_id, comment_pk):
     return JsonResponse(data)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment_update(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
@@ -497,7 +497,7 @@ from django.core.paginator import Paginator, PageNotAnInteger
 
 card_list = []
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def search(request):
     # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
@@ -549,7 +549,7 @@ def cardcompany(request,company):
     
 from django.db.models import Count
 
-@login_required
+@login_required(login_url='/login/')
 def bookmark(request,pk):
 
     user = request.user
@@ -796,7 +796,7 @@ def card_list(request):
     return render(request, "card/card_list.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def card_compare(request):
     # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
