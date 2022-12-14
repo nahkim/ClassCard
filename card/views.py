@@ -817,21 +817,34 @@ def search_list(request):
     else:
         compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
-    # bene_tu_li = []
-    # # 혜택 갯수 조절
-    # for bk in kor_benefit_dict_keys[1:28]:
-    #     ls = (
-    #         Benefit.objects.filter(bnf_content__icontains=bk)
-    #         .values_list("card_id", flat=True)
-    #         .distinct()
-    #     )
-    #     # 카드 갯수 조절
-    #     card = Card.objects.filter(id__contains=ls)[:4]
-    #     bene_tu_li.append((bk, card))
-    # print(len(bene_tu_li))
+    # 혜택 갯수 조절
+    air_mileage = Benefit.objects.filter(bnf_name__icontains='항공').values_list("card_id",flat=True).distinct()[:6]
+    air_mileage_cards = Card.objects.filter(id__in=air_mileage)
+    # print(air_mileage_cards)
+    # 점심+교통
+    luntra = Benefit.objects.filter(bnf_name__in=['점심','교통']).values_list("card_id",flat=True).distinct()[:6]
+    luntra_cards = Card.objects.filter(id__in=luntra)
+    # print(luntra_cards)
+    # 편의점 + 카페
+    concafe = Benefit.objects.filter(bnf_name__in=['편의점','카페']).values_list("card_id",flat=True).distinct()[:6]
+    concafe_cards = Card.objects.filter(id__in=concafe)
+    
+    # 통신+공과금
+    telefee = Benefit.objects.filter(bnf_name__in=['통신','공과금']).values_list("card_id",flat=True).distinct()[:6]
+    telefee_cards = Card.objects.filter(id__in=telefee)
+    
+    # 마트+교육
+    martedu = Benefit.objects.filter(bnf_name__in=['영화','경기관람']).values_list("card_id",flat=True).distinct()[:6]
+    martedu_cards = Card.objects.filter(id__in=martedu)
+    print(martedu)
+    
     context = {
         "compare_cards": compare_cards,
-        # "bene_tu_li": bene_tu_li,
+        "air_mileage_cards": air_mileage_cards,
+        "luntra_cards" : luntra_cards,
+        "concafe_cards" : concafe_cards,
+        "telefee_cards" : telefee_cards,
+        "martedu_cards" : martedu_cards,
     }
     return render(request, "card/search_list.html", context)
 
