@@ -15,6 +15,7 @@
     <h3>{{ question.content }}</h3>
   </div>
 
+  {% if request.user == is_staff %}
   <form action="" method='POST'>
     {% csrf_token %}
     {% bootstrap_form comment_form %}
@@ -22,6 +23,7 @@
       <input value="작성" type="submit" class='btn' style="width: 25%; padding: 14px 0px 22px 0px; border: 1px solid gray; background-color: white; color: gray;">
     </div>
   </form>
+  {% endif %}
 
   <div class="mt-5" style="background-color: #fbfbfb; object-fit: contain;">
     {% for comment in comments %}
