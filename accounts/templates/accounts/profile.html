@@ -47,7 +47,7 @@
         </div>
       </div>
       <!-- 프로필 NAME -->
-      <div style="margin-top: 40px; font-size: 30px; display: flex; justify-content: center; top: 10px;">{{ user }}</div>
+      <div style="margin-top: 40px; font-size: 30px; display: flex; justify-content: center; top: 10px;">{{ user.nickname }}</div>
       <div style="display: flex; justify-content:center;">
         <!-- 팔로우 버튼 -->
         {% if request.user.is_authenticated %}
