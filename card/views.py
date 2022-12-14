@@ -342,9 +342,9 @@ def detail(request, num):
 
         detail_comment_form = DetailCommentForm()
 
-        detail_comments = card.detailcomment_set.all().order_by("-updated_at")
+        detail_comments = card.detailcomment_set.filter(card_id=num).order_by("-updated_at")
 
-        detail_comments_num = card.detailcomment_set.all().count
+        detail_comments_num = card.detailcomment_set.filter(card_id=num).count
 
         # =============== 카드 비교 ==========
         compare_card = CompareCard.objects.filter(card_id=card.pk)
@@ -399,7 +399,7 @@ def comment(request, pk):
             comment.user = request.user
             comment.save()
 
-    comments = DetailComment.objects.all().order_by("-updated_at")
+    comments = DetailComment.objects.filter(pk=pk).order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
@@ -431,7 +431,7 @@ def comment_delete(request, card_id, comment_pk):
 
     comment.delete()
 
-    comments = DetailComment.objects.all().order_by("-updated_at")
+    comments = DetailComment.objects.filter(pk=card_id).order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
@@ -468,7 +468,7 @@ def comment_update(request, card_id, comment_pk):
         comment.rate = jsonObject.get("rate")
         comment.save()
 
-    comments = DetailComment.objects.all().order_by("-updated_at")
+    comments = DetailComment.objects.filter(pk=card_id).order_by("-updated_at")
     comment_data = []
 
     for comment in comments:
