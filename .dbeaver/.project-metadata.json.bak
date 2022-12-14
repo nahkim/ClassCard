@@ -1,1 +1,1 @@
-{"resources":{"Scripts/Script.sql":{"default-datasource":"postgres-jdbc-18509662691-6cedb8f4adcfd386","default-catalog":"classcard_rds","default-schema":"public"}}}
+{"resources":{"Scripts/Script-1.sql":{"default-datasource":"postgres-jdbc-18509f420e0-645debdd3e8d6b07","default-catalog":"classcard_rds","default-schema":"public"},"Scripts/Script.sql":{"default-schema":"public","default-datasource":"postgres-jdbc-18509f420e0-645debdd3e8d6b07","default-catalog":"classcard_rds"}}}

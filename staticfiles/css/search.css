@@ -1,0 +1,207 @@
+
+/* banner */
+.search-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 400px;
+  background-image: url(https://mir-s3-cdn-cf.behance.net/project_modules/1400/816e3b86128681.5d909dad46bf1.jpg);
+  background-position: center;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.search-banner-title{
+  color: white;
+  font-weight: bold;
+  font-size: 8rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .search-banner-title {
+    font-size: 7rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .search-banner-title {
+    font-size: 6rem;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .search-banner{
+    height: 300px;
+  }
+
+  .search-banner-title {
+    font-size: 4rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .search-banner{
+    height: 150px;
+  }
+  .search-banner-title {
+    font-size: 2rem;
+  }
+}
+
+/* category search */
+
+.card-cate{
+  margin-top: 3rem;
+  margin-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-cate-form{
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-cate-benefit{
+  margin-bottom: 2rem;
+}
+
+.card-cate-age-title,
+.card-cate-type-title,
+.card-cate-brand-title,
+.card-cate-benefit-title{
+  text-align: center;
+  font-size: 1.5rem;
+  color: #757d89;
+}
+
+.card-cate-type,
+.card-cate-age{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+#card-type,
+#card-age{
+  height: 50px;
+  overflow: hidden;
+  border: none;
+}
+
+#card-type::-moz-focus-inner,
+#card-age::-moz-focus-inner {
+  border: 0;
+}
+
+#card-type:focus,
+#card-age:focus {
+  outline: none;
+}
+
+#card-type option,
+#card-age option{
+  display: inline-block;
+  margin-right: 1rem;
+  border: #7797fe solid 1px;
+  border-radius: 30px;
+  padding: 0.5rem 1.2rem;
+  text-align: center;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #7797fe;
+}
+
+.btn-group {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.material-symbols-outlined{
+  margin-right:0.5rem;
+}
+
+#cate-btn{
+  margin: 0.5rem;
+  border: 1px #7797fe solid;
+  padding: 1.2rem;
+  background-color: white;
+  color: #7797fe;
+  font-size: 1.3rem
+}
+
+.btn-cate-submit{
+  margin-top: 2rem;
+  border: 0px;
+  border-radius: 10px;
+  padding: 0.5rem 2rem;
+  background-color: #7797fe;
+  color: white;
+}
+
+
+/*=========== card area =================*/
+.rotate90 {
+  transform: rotate(90deg);
+}
+
+.random-card-5{
+  margin: 4rem 0;
+}
+
+.card-random-card-box{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-random-card{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-search-card-arrange{
+  display: flex;
+  width: 150px;
+  height: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-search-image{
+  border-radius: 15px;
+  box-shadow: 2px -1px 20px 0px #393939e3;
+}
+
+.card-search-overlay{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  z-index: 100;
+  width: 150px;
+  height: 240px;
+  background: #b3b3b3bf;
+  visibility: hidden;
+}
+
+.card-search-overlay a {
+  color:#ffffff;
+  font-weight: bold;
+}
+
+.card-search-overlay a:hover {
+  color: #7797fe;
+}
+
+.card-random-card:hover .card-search-overlay{
+  visibility: visible;
+}

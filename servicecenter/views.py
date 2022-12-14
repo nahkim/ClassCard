@@ -29,7 +29,7 @@ def index(request):
     }
     return render(request, 'servicecenter/index.html', context)
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def create(request):
     # ======== nav바에 카드비교 카테고리 ========= 
     if request.user.is_authenticated:

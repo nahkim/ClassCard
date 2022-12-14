@@ -385,7 +385,7 @@ def detail(request, num):
     return render(request, "card/detail.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment(request, pk):
     card = Card.objects.get(pk=pk)
     user = request.user.pk
@@ -423,7 +423,7 @@ def comment(request, pk):
     return JsonResponse(data)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment_delete(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
@@ -455,7 +455,7 @@ def comment_delete(request, card_id, comment_pk):
     return JsonResponse(data)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def comment_update(request, card_id, comment_pk):
     card = Card.objects.get(pk=card_id)
     comment = DetailComment.objects.get(pk=comment_pk)
@@ -497,7 +497,7 @@ from django.core.paginator import Paginator, PageNotAnInteger
 
 card_list = []
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def search(request):
     # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
@@ -549,7 +549,7 @@ def cardcompany(request,company):
     
 from django.db.models import Count
 
-@login_required
+@login_required(login_url='/login/')
 def bookmark(request,pk):
 
     user = request.user
@@ -796,7 +796,7 @@ def card_list(request):
     return render(request, "card/card_list.html", context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='/login/')
 def card_compare(request):
     # ======== nav바에 카드비교 카테고리 =========
     if request.user.is_authenticated:
@@ -817,21 +817,21 @@ def search_list(request):
     else:
         compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
-    bene_tu_li = []
-    # 혜택 갯수 조절
-    for bk in kor_benefit_dict_keys[1:28]:
-        ls = (
-            Benefit.objects.filter(bnf_content__icontains=bk)
-            .values_list("card_id", flat=True)
-            .distinct()
-        )
-        # 카드 갯수 조절
-        card = Card.objects.filter(id__contains=ls)[:4]
-        bene_tu_li.append((bk, card))
-    print(len(bene_tu_li))
+    # bene_tu_li = []
+    # # 혜택 갯수 조절
+    # for bk in kor_benefit_dict_keys[1:28]:
+    #     ls = (
+    #         Benefit.objects.filter(bnf_content__icontains=bk)
+    #         .values_list("card_id", flat=True)
+    #         .distinct()
+    #     )
+    #     # 카드 갯수 조절
+    #     card = Card.objects.filter(id__contains=ls)[:4]
+    #     bene_tu_li.append((bk, card))
+    # print(len(bene_tu_li))
     context = {
         "compare_cards": compare_cards,
-        "bene_tu_li": bene_tu_li,
+        # "bene_tu_li": bene_tu_li,
     }
     return render(request, "card/search_list.html", context)
 
