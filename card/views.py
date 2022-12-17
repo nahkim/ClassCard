@@ -202,19 +202,7 @@ benefit_dict = {
     "food": ["아이스크림", "패밀리레스토랑", "패스트푸드", "저녁", "점심", "푸드", "일반음식점", "배달앱"],
     "finance": ["금융", "증권사", "은행사"],
     "beauty": ["헤어", "화장품", "뷰티/피트니스"],
-    "airplane": [
-        "공항",
-        "공항라운지",
-        "공항라운지/PP",
-        "대한항공",
-        "아시아나항공",
-        "항공권",
-        "항공마일리지",
-        "제주항공",
-        "저가항공",
-        "진에어",
-        "라운지키",
-    ],
+    "airplane": ["공항","공항라운지","공항라운지/PP","대한항공","아시아나항공","항공권","항공마일리지","제주항공","저가항공","진에어","라운지키",],
     "fashion": ["SPA브랜드"],
     "premium": ["프리미엄", "프리미엄 서비스", "PP"],
     "place": ["해외", "해외이용", "지역"],
@@ -222,38 +210,7 @@ benefit_dict = {
     "note": ["유의사항"],
 }
 
-kor_benefit_dict_keys = [
-    "혜택",
-    "스포츠",
-    "영화",
-    "문화",
-    "여행",
-    "교통",
-    "페이",
-    "포인트",
-    "통신사",
-    "쇼핑",
-    "교육",
-    "비즈니스",
-    "생활",
-    "공과금",
-    "카드",
-    "어플",
-    "애완동물",
-    "자동차",
-    "카페",
-    "건강",
-    "보험",
-    "음식",
-    "금융",
-    "뷰티",
-    "항공",
-    "패션",
-    "프리미엄",
-    "지역",
-    "기타",
-    "유의사항",
-]
+kor_benefit_dict_keys = ["혜택",    "스포츠",    "영화",    "문화",    "여행",    "교통",    "페이",    "포인트",    "통신사",    "쇼핑",    "교육",    "비즈니스",    "생활",    "공과금",    "카드",    "어플",    "애완동물",    "자동차",    "카페",    "건강",    "보험",    "음식",    "금융",    "뷰티",    "항공",    "패션",    "프리미엄",    "지역",    "기타",    "유의사항"]
 
 benefit_lst = benefit_dict.keys()
 benefit_key = list(benefit_lst)
@@ -818,23 +775,29 @@ def search_list(request):
         compare_cards = "로그인을 해야 카드 비교 기능을 사용하실 수 있습니다"
 
     # 혜택 갯수 조절
-    air_mileage = Benefit.objects.filter(bnf_name__icontains='항공').values_list("card_id",flat=True).distinct()[:6]
+    air_mileage = Benefit.objects.filter(bnf_name__icontains='항공').values_list("card_id",flat=True).distinct()
+    air_mileage = air_mileage.order_by('?')[:6]
     air_mileage_cards = Card.objects.filter(id__in=air_mileage)
     # print(air_mileage_cards)
     # 점심+교통
-    luntra = Benefit.objects.filter(bnf_name__in=['점심','교통']).values_list("card_id",flat=True).distinct()[:6]
+    luntra = Benefit.objects.filter(bnf_name__in=['점심','교통', '기차', '대중교통', '택시']).values_list("card_id",flat=True).distinct()
+    luntra = luntra.order_by('?')[:6]
     luntra_cards = Card.objects.filter(id__in=luntra)
     # print(luntra_cards)
     # 편의점 + 카페
-    concafe = Benefit.objects.filter(bnf_name__in=['편의점','카페']).values_list("card_id",flat=True).distinct()[:6]
+    concafe = Benefit.objects.filter(bnf_name__in=['편의점', '마트/편의점','카페', '카페/디저트', '베이커리']).values_list("card_id",flat=True).distinct()
+    concafe = concafe.order_by('?')[:6]
     concafe_cards = Card.objects.filter(id__in=concafe)
     
     # 통신+공과금
-    telefee = Benefit.objects.filter(bnf_name__in=['통신','공과금']).values_list("card_id",flat=True).distinct()[:6]
+    telefee = Benefit.objects.filter(bnf_name__in=['통신','KT', 'LGU+', 'SKT','공과금', '공과금/렌탈']).values_list("card_id",flat=True).distinct()
+    telefee = telefee.order_by('?')[:6]
     telefee_cards = Card.objects.filter(id__in=telefee)
     
-    # 마트+교육
-    martedu = Benefit.objects.filter(bnf_name__in=['영화','경기관람']).values_list("card_id",flat=True).distinct()[:6]
+
+    # 영화+경기관람
+    martedu = Benefit.objects.filter(bnf_name__in=['영화', '영화/문화', '디지털구독','경기관람', '골프']).values_list("card_id",flat=True).distinct()
+    martedu = martedu.order_by('?')[:6]
     martedu_cards = Card.objects.filter(id__in=martedu)
     print(martedu)
     
