@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from card.models import Card, CompareCard, Benefit
 from django.http import JsonResponse
+import json
 # Create your views here.
 
 def index(request):
@@ -80,3 +81,29 @@ def detail(request,pk):
         'comments':comment,
     }
     return render(request, 'servicecenter/detail.html', context)
+
+def comment_delete(request, service_pk, comment_pk):
+    service = ServiceQuestion.objects.get(id = service_pk)
+    comment = ServiceComment.objects.get(id = comment_pk)
+    user = request.user.pk
+
+    if request.user == comment.user:
+        comment.delete()
+
+    return redirect('card:detail', service.id)
+
+def comment_update(request, service_pk, comment_pk):
+    service = ServiceQuestion.objects.get(id = service_pk)
+    comment = ServiceComment.objects.get(id = comment_pk)
+    user = request.user.pk
+
+    jsonObject = json.loads(request.body)
+
+    if request.user == comment.user:
+
+        if request.method == "POST":
+            comment.content = jsonObject.get("content")
+            comment.save()
+
+
+    return redirect('card:detail', service.id)
