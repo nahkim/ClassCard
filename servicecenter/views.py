@@ -63,16 +63,7 @@ def detail(request,pk):
     
     question = ServiceQuestion.objects.get(pk=pk)
     comment = ServiceComment.objects.filter(quest_id=pk)
-    if request.POST:
-        comment_form = ServiceCommentCreateForm(request.POST)
-        if comment_form.is_valid():
-            form = comment_form.save(commit=False)
-            form.quest_id = pk
-            form.user = request.user
-            form.save()
-            return redirect('service:detail', pk)
-    else:
-        comment_form = ServiceCommentCreateForm()
+    comment_form = ServiceCommentCreateForm()
 
     context = {
         "compare_cards" : compare_cards,
@@ -81,6 +72,22 @@ def detail(request,pk):
         'comments':comment,
     }
     return render(request, 'servicecenter/detail.html', context)
+
+
+def comment(request, pk):
+    service = ServiceQuestion.objects.get(id = pk)
+    user = request.user.pk
+
+    if request.method == 'POST':
+        comment_form = ServiceCommentCreateForm(request.POST)
+        if comment_form.is_valid():
+            form = comment_form.save(commit=False)
+            form.quest_id = pk
+            form.user = request.user
+            form.save()
+    return redirect('service:detail', pk)
+    
+
 
 def comment_delete(request, service_pk, comment_pk):
     service = ServiceQuestion.objects.get(id = service_pk)
@@ -104,6 +111,5 @@ def comment_update(request, service_pk, comment_pk):
         if request.method == "POST":
             comment.content = jsonObject.get("content")
             comment.save()
-
 
     return redirect('card:detail', service.id)

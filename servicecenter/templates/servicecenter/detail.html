@@ -2,6 +2,10 @@
 {% load django_bootstrap5 %}
 {% load static %}
 
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/service_detail.css' %}">
+{% endblock css %}
+
 {% block body %}
 
 <div class="container mt-5">
@@ -16,7 +20,7 @@
   </div>
 
   {% if request.user.is_staff %}
-  <form action="" method='POST'>
+  <form action="{% url 'service:comment' question.id %}" class="ser-comment-form" method='POST' data-question-id={{ question.id }}>
     {% csrf_token %}
     {% bootstrap_form comment_form %}
     <div class="d-flex justify-content-center">
@@ -40,7 +44,21 @@
           </div>    
         </div>
         <div style="max-width: 76%; word-break: break-all;">
-          <p>{{ comment.content}}</p>  
+          <p>{{ comment.content}}</p>
+          {% if comment.user == request.user %}
+          <div class="ser-comment-change">
+            <p class="ser-comment-update">수정</p>
+            <p class="ser-comment-delete">삭제</p>
+          </div>
+          <form class="ser-comment-update-form" action="{% url 'service:comment_update' question.id comment.id %}" method="post">
+            {% csrf_token %}
+            <input class="comment-content-update">
+            <div class="comment-update-buttons">
+              <p class="comment-control-done">수정 완료</p>
+              <p class="comment-control-exit">취소</p>
+            </div>
+          </form>
+          {% endif %}
         </div>
         <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
           <p>{{comment.created_at|date:'Y-m-d H:i'}}</p>
@@ -55,7 +73,24 @@
 {% block script %}
 
 <script>
-  
+  // 댓글 생성 비동기
+  const commentForm = document.querySelector('.ser-comment-form')
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+  commentForm.addEventListener('submit', function(event){
+    event.preventDefault();
+    axios({
+      method: 'post',
+      url: `/service/comment/${event.target.dataset.questionId}/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: new FormData(commentForm)
+    }) .then(response => {
+      
+
+    })
+  })
 </script>
 
 {% endblock script %}
