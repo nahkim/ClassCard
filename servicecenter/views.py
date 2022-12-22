@@ -85,7 +85,29 @@ def comment(request, pk):
             form.quest_id = pk
             form.user = request.user
             form.save()
-    return redirect('service:detail', pk)
+
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y%m%d %H:%M")
+
+        comment_data.append({
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)
     
 
 

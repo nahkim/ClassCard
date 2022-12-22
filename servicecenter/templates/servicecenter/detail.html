@@ -29,17 +29,17 @@
   </form>
   {% endif %}
 
-  <div class="mt-5" style="background-color: #fbfbfb; object-fit: contain;">
+  <div class="ser-comments mt-5" style="background-color: #fbfbfb; object-fit: contain;">
     {% for comment in comments %}
       <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
-        <div style="position: relative;">
-          <div style="margin-right: 2rem;">
+        <div>
+          <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
             {% if comment.user.image %}
-              <img src="{{ comment.user.image.url }}" alt="" style="width: 80px; heigth: 80px; border-radius: 50px;">
-              <span style="position: absolute;">{{ comment.user.username }}</span>
+              <img src="{{ comment.user.image.url }}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+              <span>{{ comment.user.username }}</span>
             {% else %}
-              <img src="{% static 'images/profile.png' %}" style="width: 80px; heigth: 80px; border-radius: 50px;">     
-              <span style="position: absolute; top: 85px; left: 14px;">{{ comment.user.username }}</span>
+              <img src="{% static 'images/profile.png' %}" style="width: 80px; height: 80px; border-radius: 50px;">     
+              <span>{{ comment.user.username }}</span>
             {% endif %}
           </div>    
         </div>
@@ -88,9 +88,118 @@
       data: new FormData(commentForm)
     }) .then(response => {
       
+      const comments = document.querySelector(".ser-comments")
+      comments.textContent = ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const serviceId = response.data.serviceId
+
+      for (i = 0; i < commentData.length; i++) {
+
+        // 유저가 프로필 이미지가 있을 때
+        if (commentData[i].commentUserImg) {
+          // 해당 댓글이 지금 로그인 된 유저가 쓴 글일때
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+                <div class="ser-comment-change">
+                  <p class="ser-comment-update">수정</p>
+                  <p class="ser-comment-delete">삭제</p>
+                </div>
+                <form class="ser-comment-update-form" action="" method="post">
+                  <input class="comment-content-update">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done">수정 완료</p>
+                    <p class="comment-control-exit">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+
+        } else {
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+                <div class="ser-comment-change">
+                  <p class="ser-comment-update">수정</p>
+                  <p class="ser-comment-delete">삭제</p>
+                </div>
+                <form class="ser-comment-update-form" action="" method="post">
+                  <input class="comment-content-update">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done">수정 완료</p>
+                    <p class="comment-control-exit">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div style="position: relative;">
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+        }
+
+      }
 
     })
   })
 </script>
+
 
 {% endblock script %}
