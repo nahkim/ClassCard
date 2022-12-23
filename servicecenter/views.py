@@ -62,7 +62,7 @@ def detail(request,pk):
         compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
     
     question = ServiceQuestion.objects.get(pk=pk)
-    comment = ServiceComment.objects.filter(quest_id=pk)
+    comment = ServiceComment.objects.filter(quest_id = pk).order_by("-created_at")
     comment_form = ServiceCommentCreateForm()
 
     context = {
@@ -91,9 +91,10 @@ def comment(request, pk):
 
     for comment in comments:
         create = comment.created_at
-        create = create.strftime("%Y%m%d %H:%M")
+        create = create.strftime("%Y-%m-%d %H:%M")
 
         comment_data.append({
+            "commentId": comment.id,
             "user_id" : comment.user.id,
             "content": comment.content,
             "created_at": create,
@@ -119,7 +120,29 @@ def comment_delete(request, service_pk, comment_pk):
     if request.user == comment.user:
         comment.delete()
 
-    return redirect('card:detail', service.id)
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y-%m-%d %H:%M")
+
+        comment_data.append({
+            "commentId": comment.id,
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)
 
 def comment_update(request, service_pk, comment_pk):
     service = ServiceQuestion.objects.get(id = service_pk)
@@ -134,4 +157,26 @@ def comment_update(request, service_pk, comment_pk):
             comment.content = jsonObject.get("content")
             comment.save()
 
-    return redirect('card:detail', service.id)
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y-%m-%d %H:%M")
+
+        comment_data.append({
+            "commentId": comment.id,
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)

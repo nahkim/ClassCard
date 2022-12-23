@@ -20,7 +20,7 @@
   </div>
 
   {% if request.user.is_staff %}
-  <form action="{% url 'service:comment' question.id %}" class="ser-comment-form" method='POST' data-question-id={{ question.id }}>
+  <form action="{% url 'service:comment' question.id %}" class="ser-comment-form" method='POST' data-question-id="{{ question.id }}">
     {% csrf_token %}
     {% bootstrap_form comment_form %}
     <div class="d-flex justify-content-center">
@@ -34,8 +34,8 @@
       <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
         <div>
           <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
-            {% if comment.user.image %}
-              <img src="{{ comment.user.image.url }}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+            {% if comment.user.profile.url %}
+              <img src="{{ comment.user.profile.url }}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
               <span>{{ comment.user.username }}</span>
             {% else %}
               <img src="{% static 'images/profile.png' %}" style="width: 80px; height: 80px; border-radius: 50px;">     
@@ -44,18 +44,18 @@
           </div>    
         </div>
         <div style="max-width: 76%; word-break: break-all;">
-          <p>{{ comment.content}}</p>
+          <p id="content-comment-update-{{ comment.pk }}">{{ comment.content}}</p>
           {% if comment.user == request.user %}
-          <div class="ser-comment-change">
-            <p class="ser-comment-update">수정</p>
-            <p class="ser-comment-delete">삭제</p>
+          <div class="ser-comment-change" id="btn-comment-update-{{ comment.pk }}">
+            <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-{{ comment.pk }}" data-queup-id="{{ question.id }}" data-comup-id="{{ comment.id }}">수정</p>
+            <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-{{ comment.pk }}" data-quedel-id="{{ question.id }}" data-comdel-id="{{ comment.id }}">삭제</p>
           </div>
-          <form class="ser-comment-update-form" action="{% url 'service:comment_update' question.id comment.id %}" method="post">
+          <form id="form-comment-update-{{ comment.pk }}" class="ser-comment-update-form" action="{% url 'service:comment_update' question.id comment.id %}" method="post" style="display:none;">
             {% csrf_token %}
-            <input class="comment-content-update">
+            <input class="comment-content-update" id="input-comment-update-{{ comment.pk }}" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="{{ comment.content }}">
             <div class="comment-update-buttons">
-              <p class="comment-control-done">수정 완료</p>
-              <p class="comment-control-exit">취소</p>
+              <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-{{ comment.pk }}" data-queupok-id="{{ question.id }}" data-comupok-id="{{ comment.id }}">수정 완료</p>
+              <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-{{ comment.pk }}" data-queupcan-id="{{ question.id }}" data-comupcan-id="{{ comment.id }}">취소</p>
             </div>
           </form>
           {% endif %}
@@ -109,16 +109,16 @@
                 </div>    
               </div>
               <div style="max-width: 76%; word-break: break-all;">
-                <p>${commentData[i].content}</p>
-                <div class="ser-comment-change">
-                  <p class="ser-comment-update">수정</p>
-                  <p class="ser-comment-delete">삭제</p>
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
                 </div>
-                <form class="ser-comment-update-form" action="" method="post">
-                  <input class="comment-content-update">
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
                   <div class="comment-update-buttons">
-                    <p class="comment-control-done">수정 완료</p>
-                    <p class="comment-control-exit">취소</p>
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
                   </div>
                 </form>
               </div>
@@ -157,16 +157,144 @@
                 </div>    
               </div>
               <div style="max-width: 76%; word-break: break-all;">
-                <p>${commentData[i].content}</p>
-                <div class="ser-comment-change">
-                  <p class="ser-comment-update">수정</p>
-                  <p class="ser-comment-delete">삭제</p>
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
                 </div>
-                <form class="ser-comment-update-form" action="" method="post">
-                  <input class="comment-content-update">
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
                   <div class="comment-update-buttons">
-                    <p class="comment-control-done">수정 완료</p>
-                    <p class="comment-control-exit">취소</p>
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div style="position: relative;">
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+        }
+
+      }
+    })
+
+    commentForm.reset()
+  })
+
+
+  // 댓글 삭제 비동기
+  const comment_delete = (e) => {
+
+    const commentDelete = document.querySelector(`#${e.id}`)
+    console.log(event)
+
+    axios({
+      method: 'post',
+      url: `/service/comment_delete/${event.target.dataset.quedelId}/${event.target.dataset.comdelId}/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      }
+    }) .then(response=> {
+      console.log(response)
+      const comments = document.querySelector(".ser-comments")
+      comments.textContent = ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const serviceId = response.data.serviceId
+
+      for (i = 0; i < commentData.length; i++) {
+
+        // 유저가 프로필 이미지가 있을 때
+        if (commentData[i].commentUserImg) {
+          // 해당 댓글이 지금 로그인 된 유저가 쓴 글일때
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
+                </div>
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+
+        } else {
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
+                </div>
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
                   </div>
                 </form>
               </div>
@@ -198,7 +326,157 @@
       }
 
     })
-  })
+  }
+
+  //댓글 수정 비동기
+  const comment_update_open = (e) => {
+    const commentUpdateOpen = document.querySelector(`#${e.id}`)
+    const commentUpdateForm = document.querySelector(`#form-${e.id}`)
+    const commentContent = document.querySelector(`#content-${e.id}`)
+    const commentBtn = document.querySelector(`#btn-${e.id}`)
+
+
+    commentUpdateForm.style.display = "block"
+    commentContent.style.display ="none"
+    commentBtn.style.display="none"
+
+  }
+
+  const comment_update_cancel = (e) => {
+    const commentUpdateOpen = document.querySelector(`#${e.id}`)
+    const commentUpdateForm = document.querySelector(`#form-${e.id}`)
+    const commentContent = document.querySelector(`#content-${e.id}`)
+    const commentBtn = document.querySelector(`#btn-${e.id}`)
+
+    commentUpdateForm.style.display = "none"
+    commentContent.style.display ="block"
+    commentBtn.style.display="flex"
+  }
+
+  const comment_update_done = (e) => {
+    const commentInput = document.querySelector(`#input-${e.id}`)
+
+    axios({
+      method: 'post',
+      url: `/service/comment_update/${ event.target.dataset.queupokId }/${ event.target.dataset.comupokId }/`,
+      headers: {
+        'X-CSRFToken': csrftoken
+      },
+      data: {
+        'content': commentInput.value,
+      }
+    }) .then(response => {
+      const comments = document.querySelector(".ser-comments")
+      comments.textContent = ""
+      const commentData = response.data.commentData
+      const user = response.data.user
+      const serviceId = response.data.serviceId
+
+      for (i = 0; i < commentData.length; i++) {
+
+        // 유저가 프로필 이미지가 있을 때
+        if (commentData[i].commentUserImg) {
+          // 해당 댓글이 지금 로그인 된 유저가 쓴 글일때
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
+                </div>
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="${commentData[i].commentUserImg}" alt="" style="width: 80px; height: 80px; border-radius: 50px;">
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+
+        } else {
+          if (user === commentData[i].user_id) {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div>
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p id="content-comment-update-${ commentData[i].commentId }">${ commentData[i].content }</p>
+                <div class="ser-comment-change" id="btn-comment-update-${ commentData[i].commentId }">
+                  <p class="ser-comment-update" onclick="comment_update_open(this)" id="comment-update-${ commentData[i].commentId }" data-queup-id="${ serviceId }" data-comup-id="${ commentData[i].commentId }">수정</p>
+                  <p class="ser-comment-delete" onclick="comment_delete(this)" id="comment-delete-${ commentData[i].commentId }" data-quedel-id="${ serviceId }" data-comdel-id="${ commentData[i].commentId }">삭제</p>
+                </div>
+                <form id="form-comment-update-${ commentData[i].commentId }" class="ser-comment-update-form" action="" method="post" style="display:none;">
+                  <input class="comment-content-update" id="input-comment-update-${ commentData[i].commentId }" style="border-radius: 10px; border: #7797fe 2px solid; box-shadow: 1px 1px 9px #9fa0c2; margin-bottom: 1rem; padding: 0.3rem 2rem;" value="${ commentData[i].content }">
+                  <div class="comment-update-buttons">
+                    <p class="comment-control-done" onclick="comment_update_done(this)" id="comment-update-${ commentData[i].commentId }" data-queupok-id="${ serviceId }" data-comupok-id="${ commentData[i].commentId }">수정 완료</p>
+                    <p class="comment-control-exit" onclick="comment_update_cancel(this)" id="comment-update-${ commentData[i].commentId }" data-queupcan-id="${ serviceId }" data-comupcan-id="${ commentData[i].commentId }">취소</p>
+                  </div>
+                </form>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          } else {
+            comments.insertAdjacentHTML('beforeend', `
+            <div class="d-flex p-4 mt-5 shadow rounded" style="position: relative; border: 1px solid #cbcbcb; background-color: white; border-radius: 10px; min-height: 150px;">         
+              <div style="position: relative;">
+                <div style="margin-right: 2rem; display: flex; flex-direction: column; align-items: center;">
+                  <img src="/static/images/profile.png" style="width: 80px; height: 80px; border-radius: 50px;">     
+                  <span>${commentData[i].commentUser}</span>
+                </div>    
+              </div>
+              <div style="max-width: 76%; word-break: break-all;">
+                <p>${commentData[i].content}</p>
+              </div>
+              <div class="text-muted" style="position: absolute; right: 11px; top: 5px;">
+                <p>${commentData[i].created_at}</p>
+              </div>
+            </div>
+            `)
+          }
+        }
+
+      }
+    })
+  }
+
 </script>
 
 
