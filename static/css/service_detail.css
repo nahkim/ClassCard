@@ -1,0 +1,25 @@
+
+.ser-comment-change,
+.comment-update-buttons{
+  display: flex;
+}
+
+.ser-comment-delete,
+.comment-control-exit{
+  margin-left: 1rem;
+}
+
+.ser-comment-update,
+.ser-comment-delete,
+.comment-control-done,
+.comment-control-exit{
+  color:#868686;
+}
+
+.ser-comment-update:hover,
+.ser-comment-delete:hover,
+.comment-control-done:hover,
+.comment-control-exit:hover{
+  color: #7797fe;
+  cursor: pointer;
+}

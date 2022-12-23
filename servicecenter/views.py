@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from card.models import Card, CompareCard, Benefit
 from django.http import JsonResponse
+import json
 # Create your views here.
 
 def index(request):
@@ -61,17 +62,8 @@ def detail(request,pk):
         compare_cards = '로그인을 해야 카드 비교 기능을 사용하실 수 있습니다'
     
     question = ServiceQuestion.objects.get(pk=pk)
-    comment = ServiceComment.objects.filter(quest_id=pk)
-    if request.POST:
-        comment_form = ServiceCommentCreateForm(request.POST)
-        if comment_form.is_valid():
-            form = comment_form.save(commit=False)
-            form.quest_id = pk
-            form.user = request.user
-            form.save()
-            return redirect('service:detail', pk)
-    else:
-        comment_form = ServiceCommentCreateForm()
+    comment = ServiceComment.objects.filter(quest_id = pk).order_by("-created_at")
+    comment_form = ServiceCommentCreateForm()
 
     context = {
         "compare_cards" : compare_cards,
@@ -80,3 +72,111 @@ def detail(request,pk):
         'comments':comment,
     }
     return render(request, 'servicecenter/detail.html', context)
+
+
+def comment(request, pk):
+    service = ServiceQuestion.objects.get(id = pk)
+    user = request.user.pk
+
+    if request.method == 'POST':
+        comment_form = ServiceCommentCreateForm(request.POST)
+        if comment_form.is_valid():
+            form = comment_form.save(commit=False)
+            form.quest_id = pk
+            form.user = request.user
+            form.save()
+
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y-%m-%d %H:%M")
+
+        comment_data.append({
+            "commentId": comment.id,
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)
+    
+
+
+def comment_delete(request, service_pk, comment_pk):
+    service = ServiceQuestion.objects.get(id = service_pk)
+    comment = ServiceComment.objects.get(id = comment_pk)
+    user = request.user.pk
+
+    if request.user == comment.user:
+        comment.delete()
+
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y-%m-%d %H:%M")
+
+        comment_data.append({
+            "commentId": comment.id,
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)
+
+def comment_update(request, service_pk, comment_pk):
+    service = ServiceQuestion.objects.get(id = service_pk)
+    comment = ServiceComment.objects.get(id = comment_pk)
+    user = request.user.pk
+
+    jsonObject = json.loads(request.body)
+
+    if request.user == comment.user:
+
+        if request.method == "POST":
+            comment.content = jsonObject.get("content")
+            comment.save()
+
+    comments = ServiceComment.objects.filter(quest_id = service.id).order_by("-created_at")
+    comment_data = []
+
+    for comment in comments:
+        create = comment.created_at
+        create = create.strftime("%Y-%m-%d %H:%M")
+
+        comment_data.append({
+            "commentId": comment.id,
+            "user_id" : comment.user.id,
+            "content": comment.content,
+            "created_at": create,
+            "commentUser": comment.user.username,
+            "commentUserImg" : comment.user.profile.url,
+        })
+
+    data = {
+        "commentData": comment_data,
+        "user" : user,
+        "serviceId": service.id,
+    }
+
+    return JsonResponse(data)

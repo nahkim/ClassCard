@@ -416,6 +416,7 @@
               {% csrf_token %}
               <div class="comment-update-form-style">
                 <select class="comment-update-rate" id="comment-update-rate-{{ comment.pk }}" value="{{ comment.rate }}">
+                  <option selected value="{{ comment.rate }}">{{ comment.get_rate_display }}</option>
                   <option value="1">⭐</option>
                   <option value="2">⭐⭐</option>
                   <option value="3">⭐⭐⭐</option>
@@ -704,6 +705,7 @@
               <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
                 <div class="comment-update-form-style">
                   <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option selected value="${ commentData[i].rate }">${rate}</option>
                     <option value="1">⭐</option>
                     <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
@@ -801,6 +803,7 @@
               <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
                 <div class="comment-update-form-style">
                   <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option selected value="${ commentData[i].rate }">${rate}</option>
                     <option value="1">⭐</option>
                     <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
@@ -900,6 +903,7 @@
               <form class="comment-update-form form-comment-update-${ commentData[i].comment_id }" id="form-comment-update-okBtn-${ commentData[i].comment_id }" action="/card/comment_update/${ cardId }/${ commentData[i].comment_id }/" method="post" style="display:none">
                 <div class="comment-update-form-style">
                   <select class="comment-update-rate" id="comment-update-rate-${ commentData[i].comment_id }" value="${ commentData[i].rate }">
+                    <option selected value="${ commentData[i].rate }">${rate}</option>
                     <option value="1">⭐</option>
                     <option value="2">⭐⭐</option>
                     <option value="3">⭐⭐⭐</option>
